@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Versta — site institucional
 
-## Getting Started
+Site da Versta (Análise, Experiência e Percepção), feito com Next.js,
+TypeScript e Tailwind CSS e publicado como site estático no GitHub Pages.
 
-First, run the development server:
+## Rodar localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Publicação
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Cada `push` na branch `main` gera e publica o site automaticamente pelo
+GitHub Actions (`.github/workflows/deploy.yml`).
 
-## Learn More
+Para gerar os arquivos estáticos localmente: `npm run build` (saída em `out/`).
 
-To learn more about Next.js, take a look at the following resources:
+## Onde editar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| O quê | Onde |
+|---|---|
+| Cores, fontes e escala tipográfica | `app/globals.css` (tokens) e `app/layout.tsx` (fontes) |
+| Frentes de consultoria | `data/frentes.ts` |
+| Contatos, redes e endereço do site | `data/site.ts` |
+| Ilustrações | `data/imagens.ts` + arquivos em `public/images` |
+| Logo e símbolo | `public/brand` (veja o README da pasta) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Conteúdos pendentes aparecem no site destacados como `[PREENCHER: ...]`.

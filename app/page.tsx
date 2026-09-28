@@ -1,69 +1,197 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Logo } from "@/components/brand/Logo";
+import { Reveal } from "@/components/motion/Reveal";
+import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
+import { CtaBanner } from "@/components/sections/CtaBanner";
+import { FrentesGrid } from "@/components/sections/FrentesGrid";
+import { HeroIntro } from "@/components/sections/intro/HeroIntro";
+import { OrgChart } from "@/components/sections/OrgChart";
+import { SplitFeature } from "@/components/sections/SplitFeature";
+import { TrailSteps, type Etapa } from "@/components/sections/TrailSteps";
+import { Button } from "@/components/ui/Button";
+import { Illustration } from "@/components/ui/Illustration";
+import { Container, Section } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ctaDiagnostico } from "@/data/navegacao";
+import { site } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  ...pageMetadata({
+    title: `${site.name} | ${site.tagline}`,
+    description: site.description,
+    path: "/",
+  }),
+  title: { absolute: `${site.name} | ${site.tagline}` },
+};
+
+const etapas: Etapa[] = [
+  {
+    titulo: "Diagnóstico",
+    texto: "A Versta analisa a empresa para compreender o terreno em que ela atua e os desafios que enfrenta.",
+  },
+  {
+    titulo: "Áreas a desenvolver",
+    texto: "Com o diagnóstico, as dores ficam claras e as áreas que precisam se desenvolver para crescer são identificadas.",
+  },
+  {
+    titulo: "Conexão com as soluções",
+    texto: "Cada área é conectada à solução especializada adequada, dentro do ecossistema de parceiros da Versta.",
+  },
+  {
+    titulo: "[PREENCHER: etapa de acompanhamento]",
+    texto: "[PREENCHER: se houver acompanhamento após a conexão, descrever como funciona.]",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* 1. HERO com intro (nuvens abrindo ao rolar) */}
+      <HeroIntro
+        labelledBy="home-titulo"
+        background={<Illustration imagem="heroHome" priority className="absolute! inset-0 -z-10" />}
+        logo={<Logo layout="vertical" tagline priority className="text-[2.75rem] md:text-[3.5rem]" />}
+      >
+        <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
+          O caminho certo para o crescimento da sua empresa
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lead text-ink-muted">
+          A Versta diagnostica sua empresa, identifica as áreas que precisam se
+          desenvolver e conecta você às soluções especializadas que ela precisa.
+        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <Button href={ctaDiagnostico.href} variant="primary" arrow>
+            {ctaDiagnostico.label}
+          </Button>
+          <Button href="/consultoria" variant="outline">
+            Conheça as frentes
+          </Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+      </HeroIntro>
+
+      {/* 2. QUEM É A VERSTA — título, organograma e texto */}
+      <Section aria-labelledby="oque-titulo">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="oque-titulo"
+              eyebrow="Quem é a Versta"
+              title="Um hub entre a sua empresa e as soluções que ela precisa"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          </Reveal>
+          <Reveal from="fade" delay={100} className="mt-14">
+            <OrgChart />
+          </Reveal>
+          <Reveal delay={120} className="mt-14 grid gap-5 text-lead text-ink-muted md:grid-cols-2 md:gap-12">
+            <p>
+              A empresa chega com um problema. A Versta analisa, identifica as dores e
+              as áreas que precisam se desenvolver para crescer, aponta o caminho e
+              conecta com quem resolve.
+            </p>
+            <p>
+              Essa conexão acontece dentro de um ecossistema de parceiros
+              especializados, em áreas que vão da consultoria ambiental ao marketing.
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* 3. DIAGNÓSTICO EMPRESARIAL (imagem 3) */}
+      <SplitFeature
+        id="diagnostico-titulo"
+        tone="peach"
+        reverse
+        eyebrow="Diagnóstico empresarial"
+        title="Entendemos a geografia do mercado"
+        paragrafos={[
+          "Todo caminho começa pela leitura do terreno. A Versta analisa a empresa com rigor para identificar as dores e as áreas que precisam se desenvolver para crescer.",
+          "Análise, experiência e percepção se somam para reconhecer padrões e perceber sinais discretos antes que fiquem evidentes.",
+        ]}
+        imagem="diagnosticoEmpresarial"
+      >
+        <Button href={ctaDiagnostico.href} variant="primary" arrow>
+          {ctaDiagnostico.label}
+        </Button>
+      </SplitFeature>
+
+      {/* 4. CONEXÃO ENTRE DESAFIOS E SOLUÇÕES (imagem 4) */}
+      <SplitFeature
+        id="conexao-titulo"
+        eyebrow="Conexão"
+        title="Do desafio à solução certa"
+        paragrafos={[
+          "Com o diagnóstico em mãos, a Versta conecta cada necessidade a quem resolve, dentro do seu ecossistema de parceiros especializados.",
+          "Em vez de procurar sozinha, a empresa segue por um caminho indicado com segurança.",
+        ]}
+        imagem="conexao"
+      >
+        <Link
+          href="/consultoria"
+          className="group inline-flex items-center gap-2 font-semibold text-caramel-700 underline-offset-4 hover:underline"
+        >
+          Conheça as frentes
+          <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+        </Link>
+      </SplitFeature>
+
+      {/* 5. MÉTODO DE TRABALHO (imagem 5) */}
+      <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
+        {/* flechas de crescimento compondo todo o fundo do bloco */}
+        <ArrowsBackdrop />
+        <Container>
+          <Reveal>
+            <SectionHeading
+              onDark
+              id="como-titulo"
+              eyebrow="Método de trabalho"
+              title="Do diagnóstico à solução, um passo de cada vez"
+              lead="Toda jornada começa por entender onde se está. A partir daí, a direção fica mais clara."
+            />
+          </Reveal>
+          <div className="mt-16 lg:mt-20">
+            <TrailSteps etapas={etapas} onDark />
+          </div>
+        </Container>
+      </Section>
+
+      {/* 6. ÁREAS DE ATUAÇÃO — FRENTES (imagem 6) */}
+      <Section aria-labelledby="frentes-titulo">
+        <Container>
+          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+            <Reveal from="left" className="lg:order-1 lg:col-span-6">
+              <Illustration
+                imagem="areasAtuacao"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="aspect-[16/9] w-full rounded-card"
+              />
+            </Reveal>
+            <Reveal delay={120} className="lg:order-2 lg:col-span-6">
+              <SectionHeading
+                id="frentes-titulo"
+                eyebrow="Áreas de atuação"
+                title="Nove frentes, um mesmo olhar"
+                lead="Da consultoria ambiental ao marketing, cada frente reúne soluções especializadas para uma área da empresa."
+              />
+              <Link
+                href="/consultoria"
+                className="group mt-8 inline-flex items-center gap-2 font-semibold text-caramel-700 underline-offset-4 hover:underline"
+              >
+                Ver todas as frentes
+                <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
+              </Link>
+            </Reveal>
+          </div>
+          <div className="mt-14 lg:mt-16">
+            <FrentesGrid />
+          </div>
+        </Container>
+      </Section>
+
+      {/* 5. CTA FINAL */}
+      <CtaBanner />
+    </>
   );
 }

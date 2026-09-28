@@ -1,26 +1,347 @@
 @import "tailwindcss";
 
+/* =========================================================================
+   TOKENS DA MARCA VERSTA
+   -------------------------------------------------------------------------
+   ⚠️ Valores aproximados, conferidos por amostragem nas imagens do manual
+   (pasta "Identidade visual"). CONFIRMAR com o manual da marca antes do
+   lançamento. Referências de impressão informadas no manual:
+     - Azul marinho: Pantone P 108-16 C — CMYK 100/55/0/70
+     - Caramelo:     Pantone P 42-14 C  — CMYK 11/56/66/26
+   Todas as cores do site saem daqui. Para ajustar, altere apenas este bloco.
+   ========================================================================= */
+@theme {
+  /* Principais */
+  --color-navy: #003462;          /* experiência, estabilidade, seriedade */
+  --color-caramel: #b36e4a;       /* acento: símbolo, detalhes, CTAs pontuais */
+  /* Derivado para acessibilidade: caramelo escurecido para texto pequeno,
+     links e botões (contraste ≥ 5:1 no off-white e com texto branco).
+     O caramelo original tem ~3,6:1 e só vale para texto grande/decoração. */
+  --color-caramel-700: #95583a;
+
+  /* Secundárias (pastéis) */
+  --color-offwhite: #f1f4ee;      /* fundo principal */
+  --color-peach-100: #fcddbc;
+  --color-peach-200: #fdcca2;
+  --color-green-900: #315b50;
+  --color-green-700: #467566;
+  --color-sage: #8fb19c;
+  --color-mist: #b8d1d6;
+  --color-sky: #96bad0;
+
+  /* Papéis de texto (derivados do marinho) */
+  --color-ink: #003462;
+  --color-ink-muted: #3e5670;     /* ≥ 5,9:1 no off-white e pêssego claro */
+
+  /* Tipografia — as variáveis --font-stix / --font-source-sans vêm do
+     next/font em app/layout.tsx. Para trocar de fonte, altere lá. */
+  --font-display: var(--font-stix), "Georgia", "Times New Roman", serif;
+  --font-body: var(--font-source-sans), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+
+  /* Escala tipográfica fluida */
+  --text-display: clamp(2.5rem, 1.55rem + 3.8vw, 4.75rem);
+  --text-display--line-height: 1.05;
+  --text-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-h1--line-height: 1.1;
+  --text-h2: clamp(1.875rem, 1.45rem + 1.7vw, 2.875rem);
+  --text-h2--line-height: 1.15;
+  --text-h3: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --text-h3--line-height: 1.25;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+  --text-lead--line-height: 1.6;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  /* Forma e movimento: sóbrio */
+  --radius-card: 6px;
+  --radius-button: 4px;
+  --ease-calm: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Variáveis CSS também disponíveis fora do Tailwind */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --header-h: 4.5rem;
+  --container: 76rem;
+  --gutter: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+  --section-y: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+  /* Textura de papel (ruído fractal em SVG) para os fundos aquarelados */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.25 0 0 0 0 0.3 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--color-offwhite);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: inherit;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--color-peach-200);
+    color: var(--color-navy);
+  }
+  /* Foco visível e consistente em todo o site */
+  :focus-visible {
+    outline: 2px solid var(--color-caramel-700);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-peach-100);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: calc(var(--container) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .section-y {
+    padding-block: var(--section-y);
+  }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-eyebrow);
+    line-height: var(--text-eyebrow--line-height);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .paper-grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .paper-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--paper-grain);
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Texto com marcação [PREENCHER] fica visível de propósito */
+  .todo-mark {
+    background: color-mix(in srgb, var(--color-peach-200) 55%, transparent);
+    border-bottom: 1px dashed var(--color-caramel-700);
+    color: var(--color-navy);
+    font-style: normal;
+    padding: 0 0.2em;
+    border-radius: 2px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .on-dark .todo-mark {
+    background: color-mix(in srgb, var(--color-peach-100) 18%, transparent);
+    border-bottom-color: var(--color-peach-100);
+    color: var(--color-peach-100);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   INTRO DA HOME (components/sections/intro/HeroIntro.tsx)
+   Base = hero estático (sem JS ou com "reduzir movimento").
+   O modo intro só liga com JavaScript e movimento permitido. O JS grava o
+   progresso nas variáveis --c, --cf, --sky, --l, --t, --h e --dy.
+   ------------------------------------------------------------------------- */
+.hero-intro-stage {
+  position: relative;
+  min-height: max(40rem, 100svh);
+  display: flex;
+}
+.hero-intro-wrap {
+  min-height: max(40rem, 100svh);
+  padding-bottom: 3.5rem;
+}
+.intro-sky,
+.intro-clouds,
+.intro-hint,
+.intro-logo-ghost {
+  display: none;
+}
+.intro-content > :nth-child(1) { --i: 0; }
+.intro-content > :nth-child(2) { --i: 1; }
+.intro-content > :nth-child(3) { --i: 2; }
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .hero-intro {
+    --c: 0;
+    --cf: 0;
+    --sky: 0;
+    --l: 0;
+    --t: 0;
+    --h: 0;
+    --dy: 0px;
+    --cloud-scale: 1;
+    height: 260svh;
+  }
+  .hero-intro-stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+  }
+  .hero-intro-wrap {
+    min-height: 0;
+  }
+
+  /* Céu em degradê: dá contraste às nuvens brancas e some revelando a paisagem */
+  .intro-sky {
+    display: block;
+    background: linear-gradient(
+      180deg,
+      #f6d6b8 0%,
+      #f5e4d3 38%,
+      #dfe6e2 70%,
+      #c3d7dc 100%
+    );
+    opacity: calc(1 - var(--sky));
+  }
+
+  .intro-clouds {
+    display: block;
+    z-index: 1;
+  }
+  .intro-cloud {
+    position: absolute;
+    width: calc(var(--w) * var(--cloud-scale) * 1vw);
+    aspect-ratio: 2.3;
+    transform: translate3d(
+        calc(var(--side) * (55vw + 50vw * var(--depth)) * var(--c)),
+        calc(-7svh * var(--depth) * var(--c)),
+        0
+      )
+      scale(calc(1 + (0.08 + 0.3 * var(--depth)) * var(--c)));
+    opacity: calc(1 - var(--cf));
+    will-change: transform, opacity;
+  }
+  .intro-cloud-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.8s var(--ease-calm);
+    animation-name: cloud-drift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  .intro-cloud-art[data-ready] {
+    opacity: 1;
+  }
+
+  /* Logo: começa maior e centralizado; desliza até o lugar dele no hero */
+  .intro-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, calc(-50% + var(--dy) * var(--l)), 0)
+      scale(calc(1.45 - 0.45 * var(--l)));
+    will-change: transform;
+  }
+  .intro-logo-ghost {
+    display: block;
+    visibility: hidden;
+  }
+
+  /* Headline, subheadline e botões entram em sequência */
+  .intro-content > * {
+    --v: clamp(0, calc(var(--t) * 1.6 - var(--i) * 0.3), 1);
+    opacity: var(--v);
+    transform: translate3d(0, calc((1 - var(--v)) * 28px), 0);
+  }
+
+  .intro-hint {
+    display: flex;
+    opacity: calc(1 - var(--h));
+  }
+  .intro-hint-line {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(var(--color-navy), transparent);
+    transform-origin: top;
+    animation: hint-line 2.4s var(--ease-calm) infinite;
+  }
+
+  /* Header oculto durante a intro (reaparece ao focar por teclado) */
+  html:has([data-home-intro]):not([data-intro-done]) .site-header:not(:focus-within) {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) and (max-width: 767px) {
+  .hero-intro {
+    --cloud-scale: 1.9;
+    height: 220svh;
+  }
+}
+
+@keyframes cloud-drift {
+  from {
+    transform: translate3d(calc(-1.6% * var(--side, 1)), 0.8%, 0);
+  }
+  to {
+    transform: translate3d(calc(1.6% * var(--side, 1)), -0.8%, 0);
+  }
+}
+@keyframes hint-line {
+  0% { transform: scaleY(0); opacity: 1; }
+  60% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* -------------------------------------------------------------------------
+   Revelação suave no scroll (componente <Reveal>).
+   Só esconde o conteúdo quando há JavaScript e o usuário não pediu
+   movimento reduzido — sem JS, tudo aparece normalmente.
+   ------------------------------------------------------------------------- */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    transition:
+      opacity 900ms var(--ease-calm),
+      transform 900ms var(--ease-calm);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+  }
+  [data-reveal="up"]:not([data-revealed]) {
+    transform: translateY(24px);
+  }
+  [data-reveal="left"]:not([data-revealed]) {
+    transform: translateX(-24px);
+  }
+  [data-reveal="right"]:not([data-revealed]) {
+    transform: translateX(24px);
+  }
 }
