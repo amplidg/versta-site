@@ -20,7 +20,7 @@ export function Footer() {
       <div className="container-site grid gap-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
           <Link href="/" className="inline-block rounded-sm">
-            <Logo tone="branca" tagline />
+            <Logo tone="branca" tagline className="w-56" />
             <span className="sr-only"> — página inicial</span>
           </Link>
           <p className="mt-6 max-w-xs text-[0.9375rem] leading-relaxed text-mist">

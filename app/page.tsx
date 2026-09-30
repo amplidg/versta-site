@@ -53,7 +53,7 @@ export default function Home() {
       <HeroIntro
         labelledBy="home-titulo"
         background={<Illustration imagem="heroHome" priority className="absolute! inset-0 -z-10" />}
-        logo={<Logo layout="vertical" tagline priority className="text-[2.75rem] md:text-[3.5rem]" />}
+        logo={<Logo layout="vertical" className="w-[14rem] md:w-[18rem]" />}
       >
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
           O caminho certo para o crescimento da sua empresa

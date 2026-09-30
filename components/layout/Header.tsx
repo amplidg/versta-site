@@ -46,7 +46,7 @@ export function Header() {
       />
       <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link href="/" className="shrink-0 rounded-sm">
-          <Logo />
+          <Logo className="w-40 md:w-44" />
           <span className="sr-only"> — página inicial</span>
         </Link>
 

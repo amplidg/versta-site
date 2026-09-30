@@ -1,92 +1,68 @@
-import { asset } from "@/lib/paths";
-import Image from "next/image";
 import { site } from "@/data/site";
-import { DogSymbol } from "./DogSymbol";
+import { DOG_PATH, TAGLINE_PATHS, WORDMARK_PATHS } from "./logoPaths";
 
 /**
- * Arquivos oficiais da marca. Ao receber os SVGs:
- *   1. salve em /public/brand com os nomes abaixo;
- *   2. mude `pronta` para true.
+ * Logo oficial da Versta, em SVG inline (vetores de
+ * public/brand/versta-logo-vertical-azul.svg).
+ *
+ * - vertical: exatamente o arquivo oficial (cão acima do nome + tagline).
+ * - horizontal: montada com as mesmas peças oficiais, com o cão à direita
+ *   do nome, como aparece no manual da marca. Substituir pelo SVG horizontal
+ *   oficial quando ele for enviado.
+ *
+ * Cores oficiais: nome e tagline em azul-marinho (#00294D) no fundo claro
+ * ou brancos no fundo azul; o cão sempre em caramelo (#B46D49).
  */
-export const marca = {
-  pronta: false,
-  horizontalAzul: "/brand/versta-logo-horizontal-azul.svg", // fundo claro
-  horizontalBranca: "/brand/versta-logo-horizontal-branca.svg", // fundo azul
-  verticalAzul: "/brand/versta-logo-vertical-azul.svg",
-  verticalBranca: "/brand/versta-logo-vertical-branca.svg",
-};
 
 type Props = {
-  /** horizontal: header e rodapé. vertical: símbolo acima do nome (hero). */
+  /** horizontal: header, rodapé, organograma. vertical: hero. */
   layout?: "horizontal" | "vertical";
-  /** Cor do texto: azul para fundo claro, branca para fundo azul. */
+  /** Cor do nome: azul para fundo claro, branca para fundo azul. */
   tone?: "azul" | "branca";
-  /** Exibe a tagline abaixo do nome. */
+  /** Exibe a tagline abaixo do nome (a versão vertical sempre exibe). */
   tagline?: boolean;
   className?: string;
+  /** Mantido por compatibilidade (o logo é inline, não há arquivo a priorizar). */
   priority?: boolean;
 };
 
-export function Logo({
-  layout = "horizontal",
-  tone = "azul",
-  tagline = false,
-  className = "",
-  priority = false,
-}: Props) {
-  if (marca.pronta) {
-    const key = `${layout}${tone === "azul" ? "Azul" : "Branca"}` as const;
-    return (
-      <Image
-        src={asset(marca[key])}
-        alt={`${site.name} — ${site.tagline}`}
-        width={layout === "horizontal" ? 220 : 280}
-        height={layout === "horizontal" ? 56 : 180}
-        priority={priority}
-        className={className}
-      />
-    );
-  }
+const NAVY = "var(--color-navy)";
+const CARAMEL = "var(--color-caramel)";
 
-  // Placeholder: nome em serifada + símbolo provisório
-  const textColor = tone === "azul" ? "text-navy" : "text-white";
-  const tagColor = tone === "azul" ? "text-navy/80" : "text-offwhite/85";
+/* Cão da versão horizontal: escala e posição para ficar à direita do nome,
+   com a base alinhada à linha de base e altura próxima à das letras. */
+const DOG_H_SCALE = 0.613;
+const DOG_H_TRANSFORM = `translate(277.83 130.49) scale(${DOG_H_SCALE})`;
+
+export function Logo({ layout = "horizontal", tone = "azul", tagline = false, className = "" }: Props) {
+  const nameFill = tone === "azul" ? NAVY : "#ffffff";
+  const label = `${site.name} — ${site.tagline}`;
 
   if (layout === "vertical") {
     return (
-      <span className={`inline-flex flex-col items-center ${className}`}>
-        <DogSymbol className="mb-2 h-[0.9em] w-auto" />
-        <span
-          className={`font-display leading-none font-bold tracking-[0.02em] ${textColor}`}
-        >
-          VERSTA
-        </span>
-        {tagline && (
-          <span
-            className={`mt-[0.35em] text-[0.14em] font-semibold tracking-[0.2em] uppercase ${tagColor}`}
-          >
-            {site.tagline}
-          </span>
-        )}
-      </span>
+      <svg viewBox="50 79 325 181" role="img" aria-label={label} className={`block h-auto ${className}`}>
+        <path d={DOG_PATH} fill={CARAMEL} />
+        <g fill={nameFill}>
+          <Paths list={WORDMARK_PATHS} />
+          <Paths list={TAGLINE_PATHS} />
+        </g>
+      </svg>
     );
   }
 
+  // Horizontal: nome (y 177–231) + cão à direita; tagline opcional abaixo.
+  const viewBox = tagline ? "50 175 406 85" : "50 175 406 58";
   return (
-    <span className={`inline-flex flex-col ${className}`}>
-      {/* Placeholder de texto; o cão entra junto com o arquivo oficial do logo */}
-      <span
-        className={`font-display text-[1.625rem] leading-none font-bold tracking-[0.02em] ${textColor}`}
-      >
-        VERSTA
-      </span>
-      {tagline && (
-        <span
-          className={`mt-1.5 text-[0.5625rem] font-semibold tracking-[0.18em] uppercase ${tagColor}`}
-        >
-          {site.tagline}
-        </span>
-      )}
-    </span>
+    <svg viewBox={viewBox} role="img" aria-label={label} className={`block h-auto ${className}`}>
+      <g fill={nameFill}>
+        <Paths list={WORDMARK_PATHS} />
+        {tagline && <Paths list={TAGLINE_PATHS} />}
+      </g>
+      <path d={DOG_PATH} fill={CARAMEL} transform={DOG_H_TRANSFORM} />
+    </svg>
   );
+}
+
+function Paths({ list }: { list: string[] }) {
+  return list.map((d, i) => <path key={i} d={d} />);
 }

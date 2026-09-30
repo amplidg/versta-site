@@ -46,7 +46,7 @@ export default function DesignPage() {
             as="h1"
             eyebrow="Referência interna"
             title="Sistema de design Versta"
-            lead="Tokens e componentes do site. Os valores de cor são aproximados e devem ser confirmados com o manual da marca."
+            lead="Tokens e componentes do site, com as cores oficiais da marca e o logo em vetor."
           />
         </Container>
       </Section>
@@ -100,11 +100,11 @@ export default function DesignPage() {
           </div>
 
           <div>
-            <h2 className="text-h2">Logo (placeholder)</h2>
+            <h2 className="text-h2">Logo oficial</h2>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              <Card className="flex items-center justify-center"><Logo tagline /></Card>
-              <Card className="flex items-center justify-center bg-navy!"><Logo tone="branca" tagline /></Card>
-              <Card tone="peach" className="flex items-center justify-center"><Logo layout="vertical" tagline className="text-5xl" /></Card>
+              <Card className="flex items-center justify-center"><Logo tagline className="w-56" /></Card>
+              <Card className="flex items-center justify-center bg-navy!"><Logo tone="branca" tagline className="w-56" /></Card>
+              <Card tone="peach" className="flex items-center justify-center"><Logo layout="vertical" className="w-52" /></Card>
             </div>
           </div>
 

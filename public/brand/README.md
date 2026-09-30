@@ -1,18 +1,18 @@
 # Arquivos da marca
 
-Salve aqui os arquivos oficiais (preferencialmente SVG) com estes nomes:
-
-| Arquivo | Uso |
+| Arquivo | Situação |
 |---|---|
-| `versta-logo-horizontal-azul.svg` | Header (fundo claro): "VERSTA" azul + cão caramelo à direita |
-| `versta-logo-horizontal-branca.svg` | Rodapé (fundo azul): "VERSTA" branco + cão caramelo |
-| `versta-logo-vertical-azul.svg` | Hero: cão acima do nome, com tagline |
-| `versta-logo-vertical-branca.svg` | Versão vertical para fundo azul |
-| `versta-simbolo-cao.svg` | Símbolo do cão isolado, caramelo |
-| `versta-simbolo-cao-branco.svg` | Símbolo do cão isolado, branco (seção manifesto) |
+| `versta-logo-vertical-azul.svg` | **Oficial** — logo vertical (cão acima do nome + tagline), cores oficiais |
 
-Depois de salvar:
+Como o logo é usado no site:
 
-- logos → em `components/brand/Logo.tsx`, mude `marca.pronta` para `true`;
-- símbolo → em `components/brand/DogSymbol.tsx`, mude `simbolo.pronto` para `true`;
-- ícone do navegador → substitua `app/icon.svg` pelo símbolo.
+- Os vetores do arquivo oficial foram extraídos para `components/brand/logoPaths.ts`
+  e são desenhados inline por `components/brand/Logo.tsx` e `DogSymbol.tsx`.
+- **Vertical** (hero da Home): idêntica ao arquivo oficial.
+- **Horizontal** (header, rodapé, organograma): montada com as peças oficiais,
+  com o cão à direita do nome, como no manual. Se chegar o SVG horizontal
+  oficial, substitua a composição em `Logo.tsx`.
+- **Versão para fundo azul**: nome e tagline em branco, cão em caramelo.
+- Ícone do navegador (`app/icon.svg`): cão oficial em caramelo sobre azul-marinho.
+
+Se o arquivo oficial mudar, regenere `logoPaths.ts` a partir do novo SVG.

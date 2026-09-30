@@ -1,4 +1,4 @@
-import { DogSymbol, simbolo } from "@/components/brand/DogSymbol";
+import { DogSymbol } from "@/components/brand/DogSymbol";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -15,12 +15,7 @@ export function Manifesto({ headingLevel = "h2" }: { headingLevel?: "h2" | "h3" 
     <Section tone="navy" aria-labelledby="manifesto-titulo" className="overflow-hidden">
       <Container className="grid items-center gap-14 lg:grid-cols-12">
         <Reveal from="fade" className="flex flex-col items-center lg:col-span-5">
-          <DogSymbol tone="branco" className="w-52 text-[5.5rem] md:w-72" />
-          {!simbolo.pronto && (
-            <p className="mt-4 text-center text-xs text-mist">
-              <mark className="todo-mark">[PREENCHER: símbolo oficial do cão em branco]</mark>
-            </p>
-          )}
+          <DogSymbol tone="branco" label="Símbolo da Versta: um cão atento" className="w-56 md:w-80" />
         </Reveal>
 
         <div className="lg:col-span-7">

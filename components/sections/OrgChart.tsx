@@ -66,7 +66,7 @@ function Desktop() {
       {/* Topo */}
       <div className="flex flex-col items-center">
         <Link href="/sobre" className="rounded-card bg-navy px-12 py-6 transition-colors hover:bg-green-900">
-          <Logo tone="branca" />
+          <Logo tone="branca" className="w-44" />
           <span className="sr-only"> — sobre a Versta</span>
         </Link>
         <span aria-hidden="true" className={`h-10 w-px ${linha}`} />
@@ -183,7 +183,7 @@ function Mobile() {
   return (
     <div className="md:hidden">
       <Link href="/sobre" className="flex justify-center rounded-card bg-navy px-6 py-5">
-        <Logo tone="branca" />
+        <Logo tone="branca" className="w-40" />
         <span className="sr-only"> — sobre a Versta</span>
       </Link>
 
