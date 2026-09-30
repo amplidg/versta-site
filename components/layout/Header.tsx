@@ -40,7 +40,7 @@ export function Header() {
         aria-hidden="true"
         className={`absolute inset-0 -z-10 transition-[background-color,box-shadow] duration-500 ${
           scrolled || mobileOpen
-            ? "bg-offwhite/95 shadow-[0_1px_0_rgb(0_52_98/0.08)] backdrop-blur-md"
+            ? "bg-offwhite/95 shadow-[0_1px_0_rgb(0_41_77/0.08)] backdrop-blur-md"
             : "bg-offwhite/0"
         }`}
       />
@@ -167,7 +167,7 @@ function FrentesDropdown({ active }: { active: boolean }) {
         hidden={!open}
         className="absolute top-full left-1/2 w-[34rem] -translate-x-1/2 pt-3"
       >
-        <div className="rounded-card border border-navy/10 bg-offwhite p-3 shadow-[0_24px_60px_-24px_rgb(0_52_98/0.28)]">
+        <div className="rounded-card border border-navy/10 bg-offwhite p-3 shadow-[0_24px_60px_-24px_rgb(0_41_77/0.28)]">
           <Link
             href="/consultoria"
             className="mb-2 flex items-center justify-between rounded-button bg-peach-100 px-4 py-3 text-sm font-semibold text-navy transition-colors hover:bg-peach-200"

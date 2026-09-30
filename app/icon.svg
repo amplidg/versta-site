@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <!-- Ícone provisório. TODO [PREENCHER]: trocar pelo símbolo oficial do cão. -->
-  <rect width="64" height="64" rx="12" fill="#003462"/>
+  <rect width="64" height="64" rx="12" fill="#00294d"/>
   <text x="32" y="45" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#f1f4ee">V</text>
-  <rect x="22" y="51" width="20" height="2.5" rx="1.25" fill="#b36e4a"/>
+  <rect x="22" y="51" width="20" height="2.5" rx="1.25" fill="#b46d49"/>
 </svg>

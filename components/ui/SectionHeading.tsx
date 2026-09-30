@@ -51,7 +51,7 @@ export function SectionHeading({
       {lead && (
         <p
           className={`mt-5 text-lead ${center ? "mx-auto" : ""} max-w-2xl ${
-            onDark ? "text-mist" : "text-ink-muted"
+            onDark ? "text-mint" : "text-ink-muted"
           }`}
         >
           <Texto>{lead}</Texto>

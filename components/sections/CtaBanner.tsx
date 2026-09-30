@@ -21,7 +21,7 @@ export function CtaBanner({
   headingLevel: H = "h2",
 }: Props) {
   return (
-    <Section tone="sage" aria-labelledby="cta-titulo">
+    <Section tone="mint" aria-labelledby="cta-titulo">
       <Container>
         <div className="grid overflow-hidden rounded-card bg-offwhite/60 lg:grid-cols-2">
           <Reveal className="flex flex-col justify-center p-8 md:p-14">

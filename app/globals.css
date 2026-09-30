@@ -3,34 +3,49 @@
 /* =========================================================================
    TOKENS DA MARCA VERSTA
    -------------------------------------------------------------------------
-   ⚠️ Valores aproximados, conferidos por amostragem nas imagens do manual
-   (pasta "Identidade visual"). CONFIRMAR com o manual da marca antes do
-   lançamento. Referências de impressão informadas no manual:
-     - Azul marinho: Pantone P 108-16 C — CMYK 100/55/0/70
-     - Caramelo:     Pantone P 42-14 C  — CMYK 11/56/66/26
+   Cores OFICIAIS, conforme o documento "VERSTA - cores - FINAL.pdf".
    Todas as cores do site saem daqui. Para ajustar, altere apenas este bloco.
+
+   Principais
+     Azul-marinho  #00294D  Pantone P 108-16 C (70% de preto)  CMYK 100/55/0/70
+     Caramelo      #B46D49  Pantone P 42-14 C                  CMYK 11/56/66/26
+   Secundárias
+     Pêssego claro #FCDAC4  Pantone P 37-2 C    CMYK 0/19/24/0
+     Pêssego       #FAC6AB  Pantone P 37-3 C    CMYK 0/29/33/0
+     Verde escuro  #006955  Pantone P 135-15 C  CMYK 84/13/61/43
+     Verde médio   #539282  Pantone P 135-13 C  CMYK 66/17/48/17
+     Verde sálvia  #9BBBAA  Pantone P 135-3 C   CMYK 44/13/36/3
+     Verde menta   #D6E9DF  Pantone P 127-9 C   CMYK 20/1/16/0
+     Azul claro    #9CCADC  Pantone P 119-3 C   CMYK 43/8/12/0
+     Azul          #75BAD4  Pantone P 119-4 C   CMYK 56/10/13/1
+
+   Não oficiais (apoio, fora do PDF): off-white de fundo, caramelo-700 e
+   ink-muted — mantidos por legibilidade/acessibilidade.
    ========================================================================= */
 @theme {
   /* Principais */
-  --color-navy: #003462;          /* experiência, estabilidade, seriedade */
-  --color-caramel: #b36e4a;       /* acento: símbolo, detalhes, CTAs pontuais */
-  /* Derivado para acessibilidade: caramelo escurecido para texto pequeno,
-     links e botões (contraste ≥ 5:1 no off-white e com texto branco).
-     O caramelo original tem ~3,6:1 e só vale para texto grande/decoração. */
-  --color-caramel-700: #95583a;
+  --color-navy: #00294d;          /* experiência, estabilidade, seriedade */
+  --color-caramel: #b46d49;       /* acento: símbolo, detalhes, CTAs pontuais */
+  /* Apoio (acessibilidade): caramelo escurecido para texto pequeno, links e
+     botões (≥ 5:1 no off-white e com texto branco). O caramelo oficial tem
+     ~3,6:1 e só vale para texto grande, ícones, linhas e decoração. */
+  --color-caramel-700: #8c5236;   /* ≥ 4,7:1 no pêssego claro, menta e off-white */
 
-  /* Secundárias (pastéis) */
-  --color-offwhite: #f1f4ee;      /* fundo principal */
-  --color-peach-100: #fcddbc;
-  --color-peach-200: #fdcca2;
-  --color-green-900: #315b50;
-  --color-green-700: #467566;
-  --color-sage: #8fb19c;
-  --color-mist: #b8d1d6;
-  --color-sky: #96bad0;
+  /* Secundárias oficiais */
+  --color-peach-100: #fcdac4;     /* pêssego claro */
+  --color-peach-200: #fac6ab;     /* pêssego */
+  --color-green-900: #006955;     /* verde escuro */
+  --color-green-700: #539282;     /* verde médio (não usar sob texto claro pequeno: 3,6:1) */
+  --color-sage: #9bbbaa;          /* verde sálvia */
+  --color-mint: #d6e9df;          /* verde menta claro */
+  --color-mist: #9ccadc;          /* azul claro */
+  --color-sky: #75bad4;           /* azul */
+
+  /* Apoio: fundo principal neutro (não consta no PDF) */
+  --color-offwhite: #f1f4ee;
 
   /* Papéis de texto (derivados do marinho) */
-  --color-ink: #003462;
+  --color-ink: #00294d;
   --color-ink-muted: #3e5670;     /* ≥ 5,9:1 no off-white e pêssego claro */
 
   /* Tipografia — as variáveis --font-stix / --font-source-sans vêm do
@@ -160,9 +175,9 @@
     box-decoration-break: clone;
   }
   .on-dark .todo-mark {
-    background: color-mix(in srgb, var(--color-peach-100) 18%, transparent);
+    background: color-mix(in srgb, var(--color-peach-100) 14%, transparent);
     border-bottom-color: var(--color-peach-100);
-    color: var(--color-peach-100);
+    color: #ffffff; /* branco: passa AA no verde escuro e no marinho */
   }
 }
 
@@ -213,15 +228,16 @@
     min-height: 0;
   }
 
-  /* Céu em degradê: dá contraste às nuvens brancas e some revelando a paisagem */
+  /* Céu em degradê (cores oficiais): dá contraste às nuvens brancas e some
+     revelando a paisagem */
   .intro-sky {
     display: block;
     background: linear-gradient(
       180deg,
-      #f6d6b8 0%,
-      #f5e4d3 38%,
-      #dfe6e2 70%,
-      #c3d7dc 100%
+      var(--color-peach-200) 0%,
+      var(--color-peach-100) 32%,
+      var(--color-mint) 68%,
+      var(--color-mist) 100%
     );
     opacity: calc(1 - var(--sky));
   }

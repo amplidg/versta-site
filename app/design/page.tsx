@@ -21,18 +21,20 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 });
 
+/* Cores oficiais ("VERSTA - cores - FINAL.pdf") + apoio. Espelha app/globals.css. */
 const cores = [
-  { nome: "navy", hex: "#003462", uso: "Títulos, texto, rodapé, seções de peso", text: "text-white" },
-  { nome: "caramel", hex: "#B36E4A", uso: "Acento: símbolo e detalhes (não usar em texto pequeno)", text: "text-white" },
-  { nome: "caramel-700", hex: "#95583A", uso: "Derivado AA: links e botões de acento", text: "text-white" },
-  { nome: "offwhite", hex: "#F1F4EE", uso: "Fundo principal", text: "text-navy" },
-  { nome: "peach-100", hex: "#FCDDBC", uso: "Fundos alternados e cards", text: "text-navy" },
-  { nome: "peach-200", hex: "#FDCCA2", uso: "Fundos alternados e cards", text: "text-navy" },
-  { nome: "green-900", hex: "#315B50", uso: "Fundos escuros alternativos", text: "text-white" },
-  { nome: "green-700", hex: "#467566", uso: "Seções de destaque (texto branco)", text: "text-white" },
-  { nome: "sage", hex: "#8FB19C", uso: "Fundos e cards (texto marinho)", text: "text-navy" },
-  { nome: "mist", hex: "#B8D1D6", uso: "Fundos e texto secundário no azul", text: "text-navy" },
-  { nome: "sky", hex: "#96BAD0", uso: "Fundos (texto marinho)", text: "text-navy" },
+  { nome: "navy · Azul-marinho", hex: "#00294D", uso: "Pantone P 108-16 C · títulos, texto, rodapé, seções de peso", text: "text-white" },
+  { nome: "caramel · Caramelo", hex: "#B46D49", uso: "Pantone P 42-14 C · acento: símbolo, ícones, linhas (não em texto pequeno)", text: "text-white" },
+  { nome: "peach-100 · Pêssego claro", hex: "#FCDAC4", uso: "Pantone P 37-2 C · fundos alternados e cards", text: "text-navy" },
+  { nome: "peach-200 · Pêssego", hex: "#FAC6AB", uso: "Pantone P 37-3 C · fundos e céu da intro", text: "text-navy" },
+  { nome: "green-900 · Verde escuro", hex: "#006955", uso: "Pantone P 135-15 C · seções escuras (texto claro)", text: "text-white" },
+  { nome: "green-700 · Verde médio", hex: "#539282", uso: "Pantone P 135-13 C · detalhes (evitar texto claro pequeno)", text: "text-white" },
+  { nome: "sage · Verde sálvia", hex: "#9BBBAA", uso: "Pantone P 135-3 C · fundos e cards (texto marinho)", text: "text-navy" },
+  { nome: "mint · Verde menta", hex: "#D6E9DF", uso: "Pantone P 127-9 C · fundo do CTA, texto de apoio no escuro", text: "text-navy" },
+  { nome: "mist · Azul claro", hex: "#9CCADC", uso: "Pantone P 119-3 C · fundos, texto secundário no marinho", text: "text-navy" },
+  { nome: "sky · Azul", hex: "#75BAD4", uso: "Pantone P 119-4 C · fundos (texto marinho)", text: "text-navy" },
+  { nome: "offwhite · apoio", hex: "#F1F4EE", uso: "Fora do PDF · fundo principal neutro", text: "text-navy" },
+  { nome: "caramel-700 · apoio", hex: "#8C5236", uso: "Fora do PDF · links e botões com texto pequeno (AA)", text: "text-white" },
 ];
 
 export default function DesignPage() {
