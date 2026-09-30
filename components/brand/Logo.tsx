@@ -1,17 +1,26 @@
 import { site } from "@/data/site";
-import { DOG_PATH, TAGLINE_PATHS, WORDMARK_PATHS } from "./logoPaths";
+import {
+  DOG_PATH,
+  H_DOG_PATH,
+  H_TAGLINE_PATHS,
+  H_WORDMARK_PATHS,
+  TAGLINE_PATHS,
+  WORDMARK_PATHS,
+} from "./logoPaths";
 
 /**
- * Logo oficial da Versta, em SVG inline (vetores de
- * public/brand/versta-logo-vertical-azul.svg).
+ * Logo oficial da Versta, em SVG inline (vetores dos arquivos oficiais em
+ * public/brand).
  *
- * - vertical: exatamente o arquivo oficial (cão acima do nome + tagline).
- * - horizontal: montada com as mesmas peças oficiais, com o cão à direita
- *   do nome, como aparece no manual da marca. Substituir pelo SVG horizontal
- *   oficial quando ele for enviado.
+ * - vertical: arquivo versta-logo-vertical-azul.svg (cão acima do nome +
+ *   tagline). Usado no hero.
+ * - horizontal: arquivos versta-logo-horizontal-*.svg (cão à direita do nome,
+ *   tagline centralizada abaixo). Header e organograma sem a tagline (ficaria
+ *   ilegível no tamanho pequeno); rodapé com a tagline.
  *
- * Cores oficiais: nome e tagline em azul-marinho (#00294D) no fundo claro
- * ou brancos no fundo azul; o cão sempre em caramelo (#B46D49).
+ * Cores (versões 5 e 6 do manual): nome e tagline em azul-marinho (#00294D)
+ * no fundo claro ou brancos no fundo azul; o cão sempre em caramelo (#B46D49).
+ * As versões monocromáticas (7 e 8) estão em public/brand, se necessárias.
  */
 
 type Props = {
@@ -29,11 +38,6 @@ type Props = {
 const NAVY = "var(--color-navy)";
 const CARAMEL = "var(--color-caramel)";
 
-/* Cão da versão horizontal: escala e posição para ficar à direita do nome,
-   com a base alinhada à linha de base e altura próxima à das letras. */
-const DOG_H_SCALE = 0.613;
-const DOG_H_TRANSFORM = `translate(277.83 130.49) scale(${DOG_H_SCALE})`;
-
 export function Logo({ layout = "horizontal", tone = "azul", tagline = false, className = "" }: Props) {
   const nameFill = tone === "azul" ? NAVY : "#ffffff";
   const label = `${site.name} — ${site.tagline}`;
@@ -50,15 +54,16 @@ export function Logo({ layout = "horizontal", tone = "azul", tagline = false, cl
     );
   }
 
-  // Horizontal: nome (y 177–231) + cão à direita; tagline opcional abaixo.
-  const viewBox = tagline ? "50 175 406 85" : "50 175 406 58";
+  // Horizontal oficial: nome + cão à direita (y 69.9–127.7); tagline
+  // opcional centralizada abaixo do conjunto (y 139.7–156.9).
+  const viewBox = tagline ? "65 68 437 91" : "65 68 437 62";
   return (
     <svg viewBox={viewBox} role="img" aria-label={label} className={`block h-auto ${className}`}>
       <g fill={nameFill}>
-        <Paths list={WORDMARK_PATHS} />
-        {tagline && <Paths list={TAGLINE_PATHS} />}
+        <Paths list={H_WORDMARK_PATHS} />
+        {tagline && <Paths list={H_TAGLINE_PATHS} />}
       </g>
-      <path d={DOG_PATH} fill={CARAMEL} transform={DOG_H_TRANSFORM} />
+      <path d={H_DOG_PATH} fill={CARAMEL} />
     </svg>
   );
 }
