@@ -59,8 +59,8 @@ export default function Home() {
           Toda empresa segue o caminho de quem a lidera.
         </h1>
         <p className="mx-auto mt-6 max-w-4xl px-3 text-lead leading-[calc(1.38em+10px)] text-balance text-white">
-          {/* Tarja por linha: azul-marinho a 70%, 1.38em de altura (justa ao texto) e 10px de vão */}
-          <span className="box-decoration-clone bg-[linear-gradient(color-mix(in_srgb,var(--color-navy)_70%,transparent)_0_0)] bg-size-[100%_1.38em] bg-center bg-no-repeat px-2">
+          {/* Tarja por linha: verde escuro a 70%, 1.38em de altura (justa ao texto) e 10px de vão */}
+          <span className="box-decoration-clone bg-[linear-gradient(color-mix(in_srgb,var(--color-green-900)_70%,transparent)_0_0)] bg-size-[100%_1.38em] bg-center bg-no-repeat px-2">
             Ajudamos líderes a enxergar sua empresa com clareza e a conduzir as
             pessoas
             <br className="hidden lg:block" /> na construção de uma organização
