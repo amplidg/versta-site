@@ -58,11 +58,15 @@ export default function Home() {
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
           Toda empresa segue o caminho de quem a lidera.
         </h1>
-        <p className="mx-auto mt-6 w-fit max-w-full rounded-lg bg-navy px-5 py-4 text-lead text-balance text-white md:px-7">
-          Ajudamos líderes a enxergar sua empresa com clareza{" "}
-          <br className="hidden md:block" />e a conduzir as pessoas na
-          construção de uma <br className="hidden md:block" />
-          organização mais humana e preparada para o futuro.
+        <p className="mx-auto mt-6 max-w-2xl px-3 text-lead text-balance text-white">
+          {/* Tarja por linha: o fundo acompanha cada linha do texto */}
+          <span className="box-decoration-clone bg-navy px-3 py-[0.12em]">
+            Ajudamos líderes a enxergar sua empresa com clareza
+            <br className="hidden md:block" /> e a conduzir as pessoas na
+            construção de uma
+            <br className="hidden md:block" /> organização mais humana e
+            preparada para o futuro.
+          </span>
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Button href={ctaDiagnostico.href} variant="primary" arrow>
