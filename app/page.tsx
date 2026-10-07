@@ -55,11 +55,11 @@ export default function Home() {
         background={<Illustration imagem="heroHome" priority className="absolute! inset-0 -z-10" />}
         logo={<Logo layout="vertical" className="w-[14rem] md:w-[18rem]" />}
       >
-        <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
+        <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 leading-[calc(1.1em-2px)] text-navy md:leading-[1.1]">
           Toda empresa segue o caminho de quem a lidera.
         </h1>
-        <p className="mx-auto mt-6 max-w-4xl px-3 text-lead leading-[calc(1.38em+10px)] text-balance text-white">
-          {/* Tarja por linha: azul-marinho, 1.38em de altura (justa ao texto) e 10px de vão */}
+        <p className="mx-auto mt-6 max-w-4xl px-3 text-lead leading-[calc(1.38em+8px)] md:leading-[calc(1.38em+10px)] text-balance text-white">
+          {/* Tarja por linha: azul-marinho, 1.38em de altura (justa ao texto); vão de 8px no celular e 10px a partir de md */}
           <span className="box-decoration-clone bg-[linear-gradient(var(--color-navy)_0_0)] bg-size-[100%_1.38em] bg-center bg-no-repeat px-2">
             Ajudamos líderes a enxergar sua empresa com clareza e a conduzir as
             pessoas
