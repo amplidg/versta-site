@@ -58,8 +58,8 @@ export default function Home() {
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
           Toda empresa segue o caminho de quem a lidera.
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl px-3 text-lead text-balance text-white">
-          {/* Tarja por linha: o fundo acompanha cada linha do texto */}
+        <p className="mx-auto mt-6 max-w-2xl px-3 text-lead leading-[2] text-balance text-white">
+          {/* Tarja por linha, com vão entre elas (entrelinha maior que a faixa) */}
           <span className="box-decoration-clone bg-navy px-3 py-[0.12em]">
             Ajudamos líderes a enxergar sua empresa com clareza
             <br className="hidden md:block" /> e a conduzir as pessoas na
