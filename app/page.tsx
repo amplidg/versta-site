@@ -56,11 +56,12 @@ export default function Home() {
         logo={<Logo layout="vertical" className="w-[14rem] md:w-[18rem]" />}
       >
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
-          O caminho certo para o crescimento da sua empresa
+          Toda empresa segue o caminho de quem a lidera.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lead text-ink-muted">
-          A Versta diagnostica sua empresa, identifica as áreas que precisam se
-          desenvolver e conecta você às soluções especializadas que ela precisa.
+          Ajudamos líderes a enxergar sua empresa com clareza e a conduzir as
+          pessoas na construção de uma organização mais humana e preparada para
+          o futuro.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Button href={ctaDiagnostico.href} variant="primary" arrow>
