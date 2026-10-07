@@ -58,14 +58,13 @@ export default function Home() {
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
           Toda empresa segue o caminho de quem a lidera.
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl px-3 text-lead leading-[calc(1.38em+5px)] text-balance text-white">
-          {/* Tarja por linha: faixa de 1.38em de altura (justa ao texto) e 5px de vão */}
-          <span className="box-decoration-clone bg-[linear-gradient(var(--color-navy),var(--color-navy))] bg-size-[100%_1.38em] bg-center bg-no-repeat px-2">
-            Ajudamos líderes a enxergar sua empresa com clareza
-            <br className="hidden md:block" /> e a conduzir as pessoas na
-            construção de uma
-            <br className="hidden md:block" /> organização mais humana e
-            preparada para o futuro.
+        <p className="mx-auto mt-6 max-w-4xl px-3 text-lead leading-[calc(1.38em+10px)] text-balance text-white">
+          {/* Tarja por linha: caramelo a 70%, 1.38em de altura (justa ao texto) e 10px de vão */}
+          <span className="box-decoration-clone bg-[linear-gradient(color-mix(in_srgb,var(--color-caramel)_70%,transparent)_0_0)] bg-size-[100%_1.38em] bg-center bg-no-repeat px-2">
+            Ajudamos líderes a enxergar sua empresa com clareza e a conduzir as
+            pessoas
+            <br className="hidden lg:block" /> na construção de uma organização
+            mais humana e preparada para o futuro.
           </span>
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
