@@ -58,9 +58,9 @@ export default function Home() {
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 text-navy">
           Toda empresa segue o caminho de quem a lidera.
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl px-3 text-lead leading-[calc(2em+11px)] text-balance text-white">
-          {/* Tarja por linha, com vão entre elas (entrelinha maior que a faixa) */}
-          <span className="box-decoration-clone bg-navy px-3 py-[0.12em]">
+        <p className="mx-auto mt-6 max-w-2xl px-3 text-lead leading-[calc(1.38em+5px)] text-balance text-white">
+          {/* Tarja por linha: faixa de 1.38em de altura (justa ao texto) e 5px de vão */}
+          <span className="box-decoration-clone bg-[linear-gradient(var(--color-navy),var(--color-navy))] bg-size-[100%_1.38em] bg-center bg-no-repeat px-2">
             Ajudamos líderes a enxergar sua empresa com clareza
             <br className="hidden md:block" /> e a conduzir as pessoas na
             construção de uma
