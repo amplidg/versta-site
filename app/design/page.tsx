@@ -130,7 +130,7 @@ export default function DesignPage() {
               <Illustration imagem="diagnosticoEmpresarial" className="aspect-[4/3] rounded-card" />
               <Illustration imagem="ctaHome" className="aspect-[4/3] rounded-card" />
               <Illustration imagem="quemEVersta" className="aspect-[4/3] rounded-card" />
-              <Illustration imagem="projetoRh2" className="aspect-[4/3] rounded-card" />
+              <Illustration imagem="sh2Hero" className="aspect-[4/3] rounded-card" />
               <Illustration imagem="instituto" className="aspect-[4/3] rounded-card" />
             </div>
           </div>

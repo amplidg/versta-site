@@ -80,8 +80,8 @@ export const imagens = {
   },
 
   /* ---------- Ainda pendentes (placeholders) ---------- */
-  projetoRh2: {
-    arquivo: "/images/projeto-rh2-pessoas.webp",
+  sh2Hero: {
+    arquivo: "/images/sh2-hero-pessoas.webp",
     alt: "Cena em aquarela de pessoas em conversa acolhedora",
     descricao: "Cena humana em aquarela: pessoas, harmonia, acolhimento",
     tom: "pessego",
@@ -99,13 +99,6 @@ export const imagens = {
     alt: "Pessoa e cão caminhando juntos em paisagem aquarelada",
     descricao: "Pessoa e cão caminhando juntos em trilha à beira do lago",
     tom: "lago",
-    pronta: false,
-  },
-  projetosHero: {
-    arquivo: "/images/projetos-hero-pessoas.webp",
-    alt: "Pessoas em aquarela trabalhando juntas",
-    descricao: "Cena humana: pessoas trabalhando em harmonia",
-    tom: "pessego",
     pronta: false,
   },
   institutoHero: {

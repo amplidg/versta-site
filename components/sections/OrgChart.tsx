@@ -9,7 +9,7 @@ import { frentes, type Frente } from "@/data/frentes";
  *   VERSTA → Projetos Sociais · Metodologia (SH2) ·
  *            Soluções (9 frentes)
  * Os nomes dos ramos são os do organograma (definidos pelo Lucas); os links
- * continuam levando a /instituto, /projetos e /consultoria.
+ * levam a /instituto, /metodologia (e /metodologia/sh2) e /consultoria.
  * Usado na Home (bloco "Quem é a Versta") e na página Sobre.
  *
  * - Desktop (lg): árvore completa, com as 9 frentes lado a lado.
@@ -33,10 +33,10 @@ const ramos: Ramo[] = [
   { nome: "Projetos Sociais", href: "/instituto", icone: Leaf, tom: "bg-peach-100" },
   {
     nome: "Metodologia",
-    href: "/projetos",
+    href: "/metodologia",
     icone: Lightbulb,
     tom: "bg-mist",
-    filho: { nome: "SH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/projetos" },
+    filho: { nome: "SH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/metodologia/sh2" },
   },
   { nome: "Soluções", href: "/consultoria", icone: Handshake, tom: "bg-sage/60", frentes: true },
 ];
