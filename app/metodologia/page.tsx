@@ -64,20 +64,22 @@ const etapas: Etapa[] = [
   {
     titulo: "Diagnóstico",
     texto:
-      "Mapeamos os riscos psicossociais, o ambiente de trabalho e a realidade das pessoas que fazem parte da empresa.",
+      "Realizamos o diagnóstico do PGR e o levantamento com os colaboradores para identificar os riscos psicossociais.",
   },
   {
-    titulo: "Plano de ação",
-    texto: "A partir do diagnóstico, definimos as prioridades e as ações mais adequadas para a empresa.",
+    titulo: "Plano sob medida",
+    texto:
+      "Com base no diagnóstico, definimos o plano do SH2 mais adequado, com as áreas e as frequências que fazem sentido para a empresa.",
   },
   {
     titulo: "Aplicação integrada",
     texto:
-      "As ações acontecem de forma coordenada, reunindo diferentes áreas e profissionais em uma mesma condução.",
+      "Com o plano definido, as atividades começam na empresa. A Versta organiza agendas, profissionais e espaços para que tudo funcione como um só programa.",
   },
   {
     titulo: "Acompanhamento",
-    texto: "Acompanhamos a evolução, ajustamos o que for necessário e mantemos a empresa no caminho certo.",
+    texto:
+      "Ao longo do programa, acompanhamos a participação dos colaboradores e a evolução do ambiente de trabalho, e ajustamos o plano sempre que necessário.",
   },
 ];
 
