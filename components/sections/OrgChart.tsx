@@ -6,7 +6,7 @@ import { frentes, type Frente } from "@/data/frentes";
 
 /**
  * Organograma da estrutura de atuação da Versta:
- *   VERSTA → Projetos Sociais · Metodologia (Projeto SH2) ·
+ *   VERSTA → Projetos Sociais · Metodologia (SH2) ·
  *            Soluções (9 frentes)
  * Os nomes dos ramos são os do organograma (definidos pelo Lucas); os links
  * continuam levando a /instituto, /projetos e /consultoria.
@@ -36,7 +36,7 @@ const ramos: Ramo[] = [
     href: "/projetos",
     icone: Lightbulb,
     tom: "bg-mist",
-    filho: { nome: "Projeto SH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/projetos" },
+    filho: { nome: "SH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/projetos" },
   },
   { nome: "Soluções", href: "/consultoria", icone: Handshake, tom: "bg-sage/60", frentes: true },
 ];
