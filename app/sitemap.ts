@@ -20,5 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
-  return [...paginas, ...paginasFrentes];
+  // páginas fora do menu
+  const paginasExtras = ["/metodologia/sh2"].map((href) => ({
+    url: pageUrl(href),
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+  return [...paginas, ...paginasExtras, ...paginasFrentes];
 }

@@ -87,6 +87,13 @@ export const imagens = {
     tom: "pessego",
     pronta: false,
   },
+  houseCoworking: {
+    arquivo: "/images/sh2-house-coworking.webp",
+    alt: "Ambiente da House Coworking",
+    descricao: "Ambiente da House Coworking",
+    tom: "lago",
+    pronta: false,
+  },
   instituto: {
     arquivo: "/images/instituto-projetos-sociais.webp",
     alt: "Cena em aquarela de comunidade reunida ao ar livre",
