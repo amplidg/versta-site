@@ -9,11 +9,12 @@ import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
 import { OrgChart } from "@/components/sections/OrgChart";
 import { SplitFeature } from "@/components/sections/SplitFeature";
-import { TrailSteps, type Etapa } from "@/components/sections/TrailSteps";
+import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Illustration } from "@/components/ui/Illustration";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { etapasMetodologia } from "@/data/metodologia";
 import { ctaDiagnostico } from "@/data/navegacao";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
@@ -26,25 +27,6 @@ export const metadata: Metadata = {
   }),
   title: { absolute: `${site.name} | ${site.tagline}` },
 };
-
-const etapas: Etapa[] = [
-  {
-    titulo: "Diagnóstico",
-    texto: "A Versta analisa a empresa para compreender o terreno em que ela atua e os desafios que enfrenta.",
-  },
-  {
-    titulo: "Áreas a desenvolver",
-    texto: "Com o diagnóstico, as dores ficam claras e as áreas que precisam se desenvolver para crescer são identificadas.",
-  },
-  {
-    titulo: "Conexão com as soluções",
-    texto: "Cada área é conectada à solução especializada adequada, dentro do ecossistema de parceiros da Versta.",
-  },
-  {
-    titulo: "[PREENCHER: etapa de acompanhamento]",
-    texto: "[PREENCHER: se houver acompanhamento após a conexão, descrever como funciona.]",
-  },
-];
 
 export default function Home() {
   return (
@@ -142,7 +124,7 @@ export default function Home() {
         </Link>
       </SplitFeature>
 
-      {/* 5. MÉTODO DE TRABALHO (imagem 5) */}
+      {/* 5. COMO A METODOLOGIA SE APLICA — mesmo bloco da página Metodologia */}
       <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
         {/* flechas de crescimento compondo todo o fundo do bloco */}
         <ArrowsBackdrop />
@@ -151,13 +133,12 @@ export default function Home() {
             <SectionHeading
               onDark
               id="como-titulo"
-              eyebrow="Método de trabalho"
-              title="Do diagnóstico à solução, um passo de cada vez"
-              lead="Toda jornada começa por entender onde se está. A partir daí, a direção fica mais clara."
+              eyebrow="Como a metodologia se aplica"
+              title="Do diagnóstico à evolução contínua"
             />
           </Reveal>
           <div className="mt-16 lg:mt-20">
-            <TrailSteps etapas={etapas} onDark />
+            <TrailSteps etapas={etapasMetodologia} onDark />
           </div>
         </Container>
       </Section>

@@ -19,10 +19,11 @@ import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { PageHero } from "@/components/sections/PageHero";
 import { SplitFeature } from "@/components/sections/SplitFeature";
-import { TrailSteps, type Etapa } from "@/components/sections/TrailSteps";
+import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { etapasMetodologia } from "@/data/metodologia";
 import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
@@ -116,29 +117,6 @@ const areas: { titulo: string; descricao: string; icone: LucideIcon; itens: Item
     descricao: "Um ambiente pensado para o cuidado acontecer.",
     icone: Building2,
     itens: ["Uso de salas privativas", "Equipamentos e salas disponíveis com hora marcada"],
-  },
-];
-
-const etapas: Etapa[] = [
-  {
-    titulo: "Diagnóstico",
-    texto:
-      "Realizamos o diagnóstico do PGR e o levantamento com os colaboradores para identificar os riscos psicossociais.",
-  },
-  {
-    titulo: "Plano sob medida",
-    texto:
-      "Com base no diagnóstico, definimos o plano do SH2 mais adequado, com as áreas e as frequências que fazem sentido para a empresa.",
-  },
-  {
-    titulo: "Aplicação integrada",
-    texto:
-      "Com o plano definido, as atividades começam na empresa. A Versta organiza agendas, profissionais e espaços para que tudo funcione como um só programa.",
-  },
-  {
-    titulo: "Acompanhamento",
-    texto:
-      "Ao longo do programa, acompanhamos a participação dos colaboradores e a evolução do ambiente de trabalho, e ajustamos o plano sempre que necessário.",
   },
 ];
 
@@ -339,7 +317,7 @@ export default function Sh2Page() {
             />
           </Reveal>
           <div className="mt-16 lg:mt-20">
-            <TrailSteps etapas={etapas} onDark />
+            <TrailSteps etapas={etapasMetodologia} onDark />
           </div>
         </Container>
       </Section>

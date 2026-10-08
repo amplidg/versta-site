@@ -4,11 +4,12 @@ import { Compass, Layers, Map, Repeat, Search, ShieldCheck } from "lucide-react"
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { PageHero } from "@/components/sections/PageHero";
-import { TrailSteps, type Etapa } from "@/components/sections/TrailSteps";
+import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Illustration } from "@/components/ui/Illustration";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { etapasMetodologia } from "@/data/metodologia";
 import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
@@ -57,29 +58,6 @@ const principios: { titulo: string; texto: string; icone: LucideIcon }[] = [
     texto:
       "Não existe um modelo único. O plano é construído de acordo com o porte, a realidade e as necessidades de cada organização.",
     icone: Map,
-  },
-];
-
-const etapas: Etapa[] = [
-  {
-    titulo: "Diagnóstico",
-    texto:
-      "Realizamos o diagnóstico do PGR e o levantamento com os colaboradores para identificar os riscos psicossociais.",
-  },
-  {
-    titulo: "Plano sob medida",
-    texto:
-      "Com base no diagnóstico, definimos o plano do SH2 mais adequado, com as áreas e as frequências que fazem sentido para a empresa.",
-  },
-  {
-    titulo: "Aplicação integrada",
-    texto:
-      "Com o plano definido, as atividades começam na empresa. A Versta organiza agendas, profissionais e espaços para que tudo funcione como um só programa.",
-  },
-  {
-    titulo: "Acompanhamento",
-    texto:
-      "Ao longo do programa, acompanhamos a participação dos colaboradores e a evolução do ambiente de trabalho, e ajustamos o plano sempre que necessário.",
   },
 ];
 
@@ -206,7 +184,7 @@ export default function MetodologiaPage() {
             />
           </Reveal>
           <div className="mt-16 lg:mt-20">
-            <TrailSteps etapas={etapas} onDark />
+            <TrailSteps etapas={etapasMetodologia} onDark />
           </div>
         </Container>
       </Section>
