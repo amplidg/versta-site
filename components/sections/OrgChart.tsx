@@ -1,13 +1,15 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { HandHeart, Handshake, Leaf, Lightbulb, UsersRound } from "lucide-react";
+import { HandHeart, Handshake, Leaf, Lightbulb } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { frentes, type Frente } from "@/data/frentes";
 
 /**
  * Organograma da estrutura de atuação da Versta:
- *   VERSTA → Instituto (Projetos Sociais) · Projetos (Projeto RH2) ·
- *            Consultoria (9 frentes)
+ *   VERSTA → Projetos Sociais · Metodologia (Projeto SH2) ·
+ *            Soluções (9 frentes)
+ * Os nomes dos ramos são os do organograma (definidos pelo Lucas); os links
+ * continuam levando a /instituto, /projetos e /consultoria.
  * Usado na Home (bloco "Quem é a Versta") e na página Sobre.
  *
  * - Desktop (lg): árvore completa, com as 9 frentes lado a lado.
@@ -23,24 +25,20 @@ type Ramo = {
   /** Cor do círculo do ícone (pastel da paleta). */
   tom: string;
   filho?: { nome: string; detalhe?: string; icone: LucideIcon; href: string };
+  /** Ramo que se abre nas 9 frentes. */
+  frentes?: boolean;
 };
 
 const ramos: Ramo[] = [
+  { nome: "Projetos Sociais", href: "/instituto", icone: Leaf, tom: "bg-peach-100" },
   {
-    nome: "Instituto",
-    href: "/instituto",
-    icone: Leaf,
-    tom: "bg-peach-100",
-    filho: { nome: "Projetos Sociais", icone: UsersRound, href: "/instituto" },
-  },
-  {
-    nome: "Projetos",
+    nome: "Metodologia",
     href: "/projetos",
     icone: Lightbulb,
     tom: "bg-mist",
-    filho: { nome: "Projeto RH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/projetos" },
+    filho: { nome: "Projeto SH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/projetos" },
   },
-  { nome: "Consultoria", href: "/consultoria", icone: Handshake, tom: "bg-sage/60" },
+  { nome: "Soluções", href: "/consultoria", icone: Handshake, tom: "bg-sage/60", frentes: true },
 ];
 
 const linha = "bg-caramel";
@@ -85,7 +83,7 @@ function Desktop() {
           <li key={r.nome} className="flex flex-col items-center">
             <span aria-hidden="true" className={`h-8 w-px ${linha}`} />
             <RamoCard ramo={r} />
-            {r.filho ? (
+            {r.filho && (
               <>
                 <span aria-hidden="true" className={`h-8 w-px ${linha}`} />
                 <ul className="w-full max-w-60">
@@ -95,16 +93,15 @@ function Desktop() {
                 </ul>
                 <span aria-hidden="true" className="h-10" />
               </>
-            ) : (
-              // Consultoria: linha desce até a barra das frentes
-              <span aria-hidden="true" className={`w-px flex-1 ${linha}`} />
             )}
+            {/* Soluções: linha desce até a barra das frentes */}
+            {r.frentes && <span aria-hidden="true" className={`w-px flex-1 ${linha}`} />}
           </li>
         ))}
       </ul>
       </div>
 
-      {/* Frentes da Consultoria */}
+      {/* Frentes (ramo Soluções) */}
       <FrentesRow />
     </div>
   );
@@ -207,6 +204,7 @@ function Mobile() {
               </Link>
 
               {/* filhos */}
+              {(r.filho || r.frentes) && (
               <ul className="relative mt-3 ml-5">
                 {(r.filho
                   ? [{ key: r.filho.nome, href: r.filho.href, icon: r.filho.icone, nome: r.filho.nome, sub: r.filho.detalhe }]
@@ -232,6 +230,7 @@ function Mobile() {
                   );
                 })}
               </ul>
+              )}
             </li>
           );
         })}
