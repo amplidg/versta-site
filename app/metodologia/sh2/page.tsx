@@ -264,41 +264,41 @@ export default function Sh2Page() {
               lead="O SH2 é organizado em oito áreas que se complementam. Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
             />
           </Reveal>
-          <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-16">
-            {areas.map((area, i) => {
+          {/* uma área por linha: nome e descrição à esquerda, itens à direita */}
+          <ul className="mt-12 border-b border-navy/15 lg:mt-14">
+            {areas.map((area) => {
               const Icon = area.icone;
               return (
                 <Reveal
                   as="li"
                   key={area.titulo}
-                  delay={(i % 2) * 120}
-                  className="rounded-card border border-navy/10 bg-offwhite p-7 md:p-9"
+                  className="grid gap-5 border-t border-navy/15 py-7 lg:grid-cols-12 lg:gap-10 lg:py-8"
                 >
-                  <div className="flex items-start gap-4">
-                    <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-mint">
-                      <Icon aria-hidden="true" className="size-6 text-caramel-700" strokeWidth={1.5} />
+                  <div className="flex items-start gap-4 lg:col-span-5">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-mint">
+                      <Icon aria-hidden="true" className="size-5 text-caramel-700" strokeWidth={1.5} />
                     </span>
                     <div>
-                      <h3 className="text-h3 text-navy">{area.titulo}</h3>
-                      <p className="mt-2 text-ink-muted">{area.descricao}</p>
+                      <h3 className="font-display text-xl leading-snug font-bold text-navy">{area.titulo}</h3>
+                      <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-muted">{area.descricao}</p>
                     </div>
                   </div>
-                  <ul className="mt-6 space-y-3 border-t border-navy/10 pt-6">
+                  <ul className="grid content-start gap-x-8 gap-y-2.5 pl-14 text-[0.9375rem] leading-snug text-ink sm:grid-cols-2 lg:col-span-7 lg:pt-1.5 lg:pl-0">
                     {area.itens.map((item) => {
                       const texto = typeof item === "string" ? item : item.texto;
                       return (
-                        <li key={texto} className="flex gap-3 text-ink">
+                        <li key={texto} className="flex gap-2.5">
                           <Check
                             aria-hidden="true"
-                            className="mt-1 size-4 shrink-0 text-green-900"
+                            className="mt-[0.2em] size-4 shrink-0 text-green-900"
                             strokeWidth={2}
                           />
                           <div>
                             {texto}
                             {typeof item !== "string" && (
-                              <ul className="mt-2 space-y-1 text-ink-muted">
-                                {item.sub.map((s) => (
-                                  <li key={s}>{s}</li>
+                              <ul className="mt-1.5 space-y-1 text-ink-muted">
+                                {item.sub.map((sub) => (
+                                  <li key={sub}>{sub}</li>
                                 ))}
                               </ul>
                             )}
