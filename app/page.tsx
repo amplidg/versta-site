@@ -63,15 +63,10 @@ export default function Home() {
           <Reveal from="fade" delay={100} className="mt-14">
             <OrgChart />
           </Reveal>
-          <Reveal delay={120} className="mt-14 grid gap-5 text-lead text-ink-muted md:grid-cols-2 md:gap-12">
+          <Reveal delay={120} className="mx-auto mt-14 max-w-3xl text-center text-lead text-ink-muted">
             <p>
-              A empresa chega com um problema. A Versta analisa, identifica as dores e
-              as áreas que precisam se desenvolver para crescer, aponta o caminho e
-              conecta com quem resolve.
-            </p>
-            <p>
-              Essa conexão acontece dentro de um ecossistema de parceiros
-              especializados, em áreas que vão da consultoria ambiental ao marketing.
+              Após um diagnóstico, sabemos exatamente o que sua empresa precisa para
+              continuar evoluindo com segurança e sustentabilidade.
             </p>
           </Reveal>
         </Container>
