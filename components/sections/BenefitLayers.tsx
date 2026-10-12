@@ -67,30 +67,29 @@ export function BenefitLayers() {
         aria-label="Três camadas concêntricas: Pessoas no centro, Segurança no meio e Mercado por fora"
         className="mx-auto block w-full max-w-[17rem] overflow-visible sm:max-w-[20rem] lg:max-w-[23rem]"
       >
-        <defs>
-          {/* borda irregular e suave, como mancha de aquarela. Região em
-              coordenadas do desenho: a caixa de um anel só de traço não
-              inclui o traço, e a região padrão o recortaria. */}
-          <filter id="aquarela-anel" filterUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="440">
-            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="11" />
-            <feDisplacementMap in="SourceGraphic" scale="9" />
-            <feGaussianBlur stdDeviation="1.1" />
-          </filter>
-        </defs>
-        {/* de fora para dentro, para o anel interno ficar por cima nas bordas */}
+        {/* Círculos geométricos (o Lucas preferiu ao estilo aquarelado): cada
+            anel tem preenchimento translúcido e um contorno nítido na própria
+            cor, que faz a divisão entre as camadas. */}
         {[2, 1, 0].map((i) => {
           const anel = aneis[i];
           const raio = (anel.interno + anel.externo) / 2;
           const espessura = anel.externo - anel.interno;
           return (
             <g key={camadas[i].id}>
-              <g filter="url(#aquarela-anel)" opacity="0.85">
-                {anel.interno === 0 ? (
-                  <circle cx="200" cy="200" r={anel.externo} fill={camadas[i].cor} />
-                ) : (
-                  <circle cx="200" cy="200" r={raio} fill="none" stroke={camadas[i].cor} strokeWidth={espessura + 3} />
-                )}
-              </g>
+              {anel.interno === 0 ? (
+                <circle cx="200" cy="200" r={anel.externo} fill={camadas[i].cor} opacity="0.4" />
+              ) : (
+                <circle
+                  cx="200"
+                  cy="200"
+                  r={raio}
+                  fill="none"
+                  stroke={camadas[i].cor}
+                  strokeWidth={espessura}
+                  opacity="0.4"
+                />
+              )}
+              <circle cx="200" cy="200" r={anel.externo} fill="none" stroke={camadas[i].cor} strokeWidth="2.5" />
               <text
                 x="200"
                 y={anel.rotuloY}
