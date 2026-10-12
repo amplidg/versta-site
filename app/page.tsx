@@ -51,7 +51,8 @@ export default function Home() {
       </HeroIntro>
 
       {/* 2. QUEM É A VERSTA — título, organograma e texto */}
-      <Section aria-labelledby="oque-titulo">
+      {/* sem texto após o organograma: metade do respiro de baixo, para aproximar do próximo bloco */}
+      <Section aria-labelledby="oque-titulo" className="pb-[calc(var(--section-y)/2)]">
         <Container>
           <Reveal>
             <SectionHeading
@@ -62,12 +63,6 @@ export default function Home() {
           </Reveal>
           <Reveal from="fade" delay={100} className="mt-14">
             <OrgChart />
-          </Reveal>
-          <Reveal delay={120} className="mx-auto mt-14 max-w-3xl text-center text-lead text-ink-muted">
-            <p>
-              Após um diagnóstico, sabemos exatamente o que sua empresa precisa para
-              continuar evoluindo com segurança e sustentabilidade.
-            </p>
           </Reveal>
         </Container>
       </Section>
