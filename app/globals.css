@@ -322,6 +322,19 @@
   }
 }
 
+/* Mensagem final do checklist do SH2: entra com um fade suave */
+@media (prefers-reduced-motion: no-preference) {
+  .sh2-resultado {
+    animation: sh2-resultado 600ms var(--ease-calm) both;
+  }
+}
+@keyframes sh2-resultado {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
 @keyframes cloud-drift {
   from {
     transform: translate3d(calc(-1.6% * var(--side, 1)), 0.8%, 0);

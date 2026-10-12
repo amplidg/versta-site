@@ -8,6 +8,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
 import { OrgChart } from "@/components/sections/OrgChart";
+import { Sh2Highlight } from "@/components/sections/Sh2Highlight";
 import { SplitFeature } from "@/components/sections/SplitFeature";
 import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
@@ -66,6 +67,9 @@ export default function Home() {
           </Reveal>
         </Container>
       </Section>
+
+      {/* PROGRAMA SH2 — destaque em azul-marinho, com checklist da NR-1 */}
+      <Sh2Highlight />
 
       {/* 3. COMO A METODOLOGIA SE APLICA — mesmo bloco da página Metodologia */}
       <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
