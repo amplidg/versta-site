@@ -103,7 +103,7 @@ export default function Home() {
               align="center"
             />
           </Reveal>
-          <Reveal delay={120} className="mt-14 lg:mt-16">
+          <Reveal delay={120} className="mt-8 lg:mt-9">
             <BenefitLayers />
           </Reveal>
           {/* faixa de destaque */}
