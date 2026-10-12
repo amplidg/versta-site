@@ -322,11 +322,9 @@
   }
 }
 
-/* Entrada com fade suave: mensagem final do checklist do SH2 e painel de
-   benefícios (ao trocar de camada) */
+/* Mensagem final do checklist do SH2: entra com um fade suave */
 @media (prefers-reduced-motion: no-preference) {
-  .sh2-resultado,
-  .fade-suave {
+  .sh2-resultado {
     animation: sh2-resultado 600ms var(--ease-calm) both;
   }
 }

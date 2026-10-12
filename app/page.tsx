@@ -109,7 +109,7 @@ export default function Home() {
           {/* faixa de destaque */}
           <Reveal
             delay={120}
-            className="mt-12 flex flex-col gap-6 rounded-card bg-peach-100 p-7 md:flex-row md:items-center md:gap-8 md:px-9 lg:mt-16"
+            className="mt-12 flex flex-col gap-6 rounded-card bg-mint p-7 md:flex-row md:items-center md:gap-8 md:px-9 lg:mt-16"
           >
             <Layers aria-hidden="true" className="size-9 shrink-0 text-caramel" strokeWidth={1.5} />
             <p className="flex-1 text-lead text-ink">
