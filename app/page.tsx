@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
+import { BenefitLayers } from "@/components/sections/BenefitLayers";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
@@ -87,6 +88,40 @@ export default function Home() {
           <div className="mt-16 lg:mt-20">
             <TrailSteps etapas={etapasMetodologia} onDark />
           </div>
+        </Container>
+      </Section>
+
+      {/* BENEFÍCIOS — três camadas concêntricas: Pessoas, Segurança, Mercado */}
+      <Section aria-labelledby="beneficios-titulo">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="beneficios-titulo"
+              eyebrow="Benefícios"
+              title="Uma transformação que começa nas pessoas e chega ao mercado."
+              lead="Com o Programa SH2 e as nove frentes de solução, a Versta atua em todas as camadas da empresa. O cuidado com as pessoas fortalece a estrutura, e uma estrutura sólida muda a forma como a empresa é vista lá fora."
+              align="center"
+            />
+          </Reveal>
+          <Reveal delay={120} className="mt-14 lg:mt-16">
+            <BenefitLayers />
+          </Reveal>
+          {/* faixa de destaque */}
+          <Reveal
+            delay={120}
+            className="mt-12 flex flex-col gap-6 rounded-card bg-peach-100 p-7 md:flex-row md:items-center md:gap-8 md:px-9 lg:mt-16"
+          >
+            <Layers aria-hidden="true" className="size-9 shrink-0 text-caramel" strokeWidth={1.5} />
+            <p className="flex-1 text-lead text-ink">
+              <strong className="font-semibold text-navy">Gestão simplificada.</strong> Todas as ações
+              reunidas em uma só condução, sem precisar contratar e coordenar vários fornecedores.
+            </p>
+            <div className="shrink-0">
+              <Button href={ctaDiagnostico.href} variant="primary" arrow>
+                {ctaDiagnostico.label}
+              </Button>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
