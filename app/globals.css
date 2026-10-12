@@ -335,6 +335,25 @@
   }
 }
 
+/* Linhas do bloco "Além do Programa SH2": cada linha tracejada é revelada
+   por uma máscara que se desenha do sinal até a frente, uma após a outra. */
+.conexao-linha-mascara {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.conexoes-visivel .conexao-linha-mascara {
+  stroke-dashoffset: 0;
+  transition-property: stroke-dashoffset;
+  transition-duration: 700ms;
+  transition-timing-function: var(--ease-calm);
+}
+@media (prefers-reduced-motion: reduce) {
+  .conexao-linha-mascara {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
 @keyframes cloud-drift {
   from {
     transform: translate3d(calc(-1.6% * var(--side, 1)), 0.8%, 0);

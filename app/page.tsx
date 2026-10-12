@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Layers } from "lucide-react";
+import { ArrowDown, ArrowRight, Layers } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { BenefitLayers } from "@/components/sections/BenefitLayers";
+import { ConnectionMap } from "@/components/sections/ConnectionMap";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
@@ -72,8 +73,42 @@ export default function Home() {
       {/* PROGRAMA SH2 — destaque em azul-marinho, com checklist da NR-1 */}
       <Sh2Highlight />
 
+      {/* ALÉM DO PROGRAMA SH2 — sinais do diagnóstico ligados às nove frentes */}
+      <Section aria-labelledby="alem-titulo" className="relative isolate overflow-hidden">
+        {/* textura sutil de aquarela nas bordas (decorativa) */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute top-24 -left-48 size-[34rem] rounded-full bg-sage opacity-30 blur-3xl" />
+          <div className="absolute -right-48 bottom-10 size-[36rem] rounded-full bg-peach-200 opacity-30 blur-3xl" />
+        </div>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="alem-titulo"
+              eyebrow="Além do Programa SH2"
+              title="A NR-1 é o ponto de partida. O diagnóstico revela o caminho inteiro."
+              lead="O Programa SH2 responde a uma necessidade urgente. Mas, ao olhar a fundo para uma empresa, o diagnóstico costuma perceber outros sinais, na liderança, nos contratos, na operação, na comunicação ou no meio ambiente. É aí que entram as nove frentes da Versta, para que cada desafio encontre a sua solução."
+              align="center"
+            />
+          </Reveal>
+          <Reveal from="fade" delay={120} className="mt-12 lg:mt-14">
+            <ConnectionMap />
+          </Reveal>
+          <Reveal delay={120} className="mt-14 text-center lg:mt-16">
+            <p className="mx-auto max-w-3xl font-display text-h3 font-bold text-balance text-navy">
+              Um diagnóstico. Um único olhar. Todas as soluções conectadas.
+            </p>
+            <div className="mt-8">
+              <Button href="#como-funciona" variant="outline">
+                Veja como funciona
+                <ArrowDown aria-hidden="true" className="size-4" strokeWidth={1.75} />
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
       {/* 3. COMO A METODOLOGIA SE APLICA — mesmo bloco da página Metodologia */}
-      <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
+      <Section id="como-funciona" tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
         {/* flechas de crescimento compondo todo o fundo do bloco */}
         <ArrowsBackdrop />
         <Container>
