@@ -67,7 +67,26 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* 3. DIAGNÓSTICO EMPRESARIAL (imagem 3) */}
+      {/* 3. COMO A METODOLOGIA SE APLICA — mesmo bloco da página Metodologia */}
+      <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
+        {/* flechas de crescimento compondo todo o fundo do bloco */}
+        <ArrowsBackdrop />
+        <Container>
+          <Reveal>
+            <SectionHeading
+              onDark
+              id="como-titulo"
+              eyebrow="Como a metodologia se aplica"
+              title="Do diagnóstico à evolução contínua"
+            />
+          </Reveal>
+          <div className="mt-16 lg:mt-20">
+            <TrailSteps etapas={etapasMetodologia} onDark />
+          </div>
+        </Container>
+      </Section>
+
+      {/* 4. DIAGNÓSTICO EMPRESARIAL (imagem 3) */}
       <SplitFeature
         id="diagnostico-titulo"
         tone="peach"
@@ -85,7 +104,7 @@ export default function Home() {
         </Button>
       </SplitFeature>
 
-      {/* 4. CONEXÃO ENTRE DESAFIOS E SOLUÇÕES (imagem 4) */}
+      {/* 5. CONEXÃO ENTRE DESAFIOS E SOLUÇÕES (imagem 4) */}
       <SplitFeature
         id="conexao-titulo"
         eyebrow="Conexão"
@@ -104,25 +123,6 @@ export default function Home() {
           <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
         </Link>
       </SplitFeature>
-
-      {/* 5. COMO A METODOLOGIA SE APLICA — mesmo bloco da página Metodologia */}
-      <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
-        {/* flechas de crescimento compondo todo o fundo do bloco */}
-        <ArrowsBackdrop />
-        <Container>
-          <Reveal>
-            <SectionHeading
-              onDark
-              id="como-titulo"
-              eyebrow="Como a metodologia se aplica"
-              title="Do diagnóstico à evolução contínua"
-            />
-          </Reveal>
-          <div className="mt-16 lg:mt-20">
-            <TrailSteps etapas={etapasMetodologia} onDark />
-          </div>
-        </Container>
-      </Section>
 
       {/* 6. ÁREAS DE ATUAÇÃO — FRENTES (imagem 6) */}
       <Section aria-labelledby="frentes-titulo">
@@ -157,7 +157,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* 5. CTA FINAL */}
+      {/* 7. CTA FINAL */}
       <CtaBanner />
     </>
   );
