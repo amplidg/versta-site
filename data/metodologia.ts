@@ -8,12 +8,12 @@ export const etapasMetodologia: Etapa[] = [
   {
     titulo: "Diagnóstico",
     texto:
-      "Realizamos o diagnóstico do PGR e o levantamento com os colaboradores para identificar os riscos psicossociais.",
+      "Começamos conhecendo a fundo a sua empresa, para identificar os pontos de risco e as oportunidades que ainda não estão evidentes.",
   },
   {
     titulo: "Plano sob medida",
     texto:
-      "Com base no diagnóstico, definimos o plano do SH2 mais adequado, com as áreas e as frequências que fazem sentido para a empresa.",
+      "A partir do que o diagnóstico revela, desenhamos um plano único, pensado para as necessidades e o momento da sua empresa.",
   },
   {
     titulo: "Aplicação integrada",
