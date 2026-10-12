@@ -7,6 +7,8 @@
  * - As flechas nascem da base do bloco; alturas crescem, com ritmo
  *   irregular, da esquerda para a direita.
  * - Opacidade baixa para não prejudicar a leitura. Decorativo (aria-hidden).
+ * - Por trás das flechas, duas manchas de luz em pêssego nos cantos (pedido
+ *   do Lucas: mesmo efeito do bloco do SH2, em tom pêssego).
  * - O filtro de borda aquarelada (#aquarela-seta) está em IllustrationDefs.
  */
 
@@ -89,9 +91,14 @@ function Composicao({
 
 export function ArrowsBackdrop() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 opacity-[0.09]">
-      <Composicao setas={DESKTOP} width={1440} height={1000} className="hidden md:block" />
-      <Composicao setas={MOBILE} width={400} height={1600} className="md:hidden" />
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+      {/* luz suave em pêssego nas bordas, como as manchas do bloco do SH2 na Home */}
+      <div className="absolute -top-44 -left-44 size-[36rem] rounded-full bg-peach-200 opacity-[0.17] blur-3xl" />
+      <div className="absolute -right-52 -bottom-52 size-[40rem] rounded-full bg-peach-100 opacity-[0.13] blur-3xl" />
+      <div className="absolute inset-0 opacity-[0.09]">
+        <Composicao setas={DESKTOP} width={1440} height={1000} className="hidden md:block" />
+        <Composicao setas={MOBILE} width={400} height={1600} className="md:hidden" />
+      </div>
     </div>
   );
 }
