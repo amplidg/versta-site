@@ -25,12 +25,25 @@ const CURVAS = Array.from({ length: 6 }, (_, k) => {
 });
 
 /**
- * Contorno em caramelo ao redor da foto (viewBox 100×125). Quem muda a forma
- * devagar ("respira") é o CSS, em globals.css, que usa a mesma estrutura de
- * comandos deste path.
+ * Forma de seixo (pedra de rio): quatro curvas, em coordenadas de 0 a 1,
+ * começando no topo e seguindo no sentido horário. A mesma lista de pontos
+ * gera o recorte da foto e o contorno em caramelo — por isso os dois têm
+ * exatamente o mesmo formato.
  */
-const CONTORNO_SEIXO =
-  "M52 0 C81 0 100 24 100 58 C100 91 83 125 53 125 C23 125 0 99 0 62 C0 26 23 0 52 0Z";
+const SEIXO_INICIO = [0.52, 0];
+const SEIXO_CURVAS = [
+  [0.8, 0, 1, 0.2, 1, 0.46],
+  [1, 0.72, 0.84, 1, 0.54, 1],
+  [0.24, 1, 0, 0.8, 0, 0.5],
+  [0, 0.2, 0.22, 0, 0.52, 0],
+];
+
+/** Path do seixo numa caixa de `largura` × `altura`. */
+function seixo(largura: number, altura: number) {
+  const ponto = (v: number, i: number) => +(v * (i % 2 === 0 ? largura : altura)).toFixed(3);
+  const curvas = SEIXO_CURVAS.map((c) => `C${c.map(ponto).join(" ")}`).join(" ");
+  return `M${SEIXO_INICIO.map(ponto).join(" ")} ${curvas}Z`;
+}
 
 function CurvasDeNivel() {
   return (
@@ -93,29 +106,37 @@ export function FounderBlock() {
           <Reveal from="fade" className="lg:col-span-5">
             {/* Foto recortada em forma de seixo (pedra de rio), com um contorno
                 orgânico em caramelo e curvas de nível ao fundo */}
-            <div className="relative isolate mx-auto w-4/5 max-w-[20rem] lg:w-full lg:max-w-[22rem]">
+            <InView className="relative isolate mx-auto w-4/5 max-w-[20rem] lg:w-full lg:max-w-[22rem]">
               <CurvasDeNivel />
-              {/* contorno: a mesma forma, ~14px maior e com pequenas variações,
-                  como mais uma curva de nível ao redor da foto */}
+              {/* Contorno: o MESMO path do recorte, ampliado a partir do centro
+                  (linha concêntrica, ~11px de distância em toda a volta; 8px no
+                  celular), desenhado atrás da foto. A linha percorre 75% da
+                  volta e deixa uma abertura no canto superior esquerdo, como
+                  uma trilha ao redor do retrato. */}
               <svg
                 aria-hidden="true"
                 viewBox="0 0 100 125"
                 preserveAspectRatio="none"
-                fill="none"
-                className="contorno-organico pointer-events-none absolute -top-3.5 -left-3.5 -z-10 h-[calc(100%+28px)] w-[calc(100%+28px)] translate-x-2 translate-y-2 overflow-visible lg:translate-x-3 lg:translate-y-3"
+                className="contorno-trilha pointer-events-none absolute -top-2 -left-2 -z-10 h-[calc(100%+16px)] w-[calc(100%+16px)] overflow-visible lg:-top-[11px] lg:-left-[11px] lg:h-[calc(100%+22px)] lg:w-[calc(100%+22px)]"
               >
+                {/* sem vector-effect: com ele o navegador deixa de respeitar o
+                    pathLength e a abertura sai do lugar. A espessura fica em
+                    ~1,5px (0.4 unidade do desenho). */}
                 <path
-                  d={CONTORNO_SEIXO}
-                  stroke="var(--color-caramel)"
-                  strokeWidth="1.5"
-                  vectorEffect="non-scaling-stroke"
+                  d={seixo(100, 125)}
+                  pathLength={100}
+                  fill="none"
+                  stroke="#B46D49"
+                  strokeWidth="0.4"
+                  strokeLinecap="round"
+                  strokeDasharray="75 25"
                 />
               </svg>
               {/* recorte da foto (coordenadas de 0 a 1, relativas à caixa) */}
               <svg aria-hidden="true" width="0" height="0" className="absolute">
                 <defs>
                   <clipPath id="seixo-fundadora" clipPathUnits="objectBoundingBox">
-                    <path d="M0.52 0 C0.8 0 1 0.2 1 0.46 C1 0.72 0.84 1 0.54 1 C0.24 1 0 0.8 0 0.5 C0 0.2 0.22 0 0.52 0Z" />
+                    <path d={seixo(1, 1)} />
                   </clipPath>
                 </defs>
               </svg>
@@ -137,7 +158,7 @@ export function FounderBlock() {
                   </div>
                 )}
               </div>
-            </div>
+            </InView>
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">

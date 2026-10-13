@@ -385,16 +385,20 @@
   }
 }
 
-/* Contorno da foto da fundadora: "respira" bem devagar, alterando de leve
-   a forma. Navegadores sem suporte a animar `d` mostram a linha parada. */
-@media (prefers-reduced-motion: no-preference) {
-  .contorno-organico path {
-    animation: contorno-respira 26s ease-in-out infinite;
+/* Contorno da foto da fundadora: ao entrar na tela (<InView>), a linha se
+   desenha até completar 75% da volta. Só com JavaScript e movimento
+   permitido; caso contrário, já aparece pronta. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .contorno-trilha path {
+    stroke-dasharray: 0 100;
+    opacity: 0;
+    transition:
+      stroke-dasharray 1500ms var(--ease-calm),
+      opacity 200ms linear;
   }
-}
-@keyframes contorno-respira {
-  50% {
-    d: path("M50 0 C79 0 100 27 100 61 C100 94 86 125 55 125 C25 125 0 96 0 59 C0 23 21 0 50 0Z");
+  [data-inview] > .contorno-trilha path {
+    stroke-dasharray: 75 25;
+    opacity: 1;
   }
 }
 
