@@ -38,7 +38,7 @@ export function TestimonialsBlock() {
           <Reveal
             className={temDepoimentos ? "mt-20 border-t border-sage pt-16 lg:mt-24 lg:pt-20" : "mt-12 lg:mt-14"}
           >
-            <h3 className="eyebrow text-center text-caramel-700">Empresas que confiaram nessa trajetória</h3>
+            <h3 className="eyebrow text-center text-caramel-700">Empresas atendidas</h3>
             <ul className="mt-10 grid grid-cols-3 gap-4 sm:gap-6 lg:grid-cols-6">
               {clientes.map((c, i) => (
                 <li key={`${i}-${c.nome}`} className="flex h-16 items-center justify-center">
