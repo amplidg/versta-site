@@ -6,10 +6,10 @@ import { ArrowRight } from "lucide-react";
 
 /* Textos fornecidos pelo Lucas — não reescrever. */
 const perguntas = [
-  "identificou os riscos psicossociais no PGR?",
-  "tem um plano de ação para lidar com esses riscos?",
-  "cuida da saúde mental das equipes de forma contínua?",
-  "consegue comprovar essas ações em uma fiscalização?",
+  "Identificou os riscos psicossociais no PGR?",
+  "Tem um plano de ação para lidar com esses riscos?",
+  "Cuida da saúde mental das equipes de forma contínua?",
+  "Consegue comprovar essas ações em uma fiscalização?",
 ];
 
 type Resposta = "sim" | "nao" | null;
