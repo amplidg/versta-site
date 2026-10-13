@@ -50,7 +50,8 @@ export function SectionHeading({
       </Tag>
       {lead && (
         <p
-          className={`mt-5 text-lead ${center ? "mx-auto" : ""} max-w-2xl ${
+          // centralizado: linhas equilibradas, sem palavra sozinha na última linha
+          className={`mt-5 text-lead ${center ? "mx-auto text-balance" : ""} max-w-2xl ${
             onDark ? "text-mint" : "text-ink-muted"
           }`}
         >
