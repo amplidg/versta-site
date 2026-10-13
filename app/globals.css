@@ -386,7 +386,7 @@
 }
 
 /* Contorno da foto da fundadora: ao entrar na tela (<InView>), a linha se
-   desenha até completar 75% da volta. Só com JavaScript e movimento
+   desenha até fechar a volta. Só com JavaScript e movimento
    permitido; caso contrário, já aparece pronta. */
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
   .contorno-trilha path {
@@ -397,7 +397,7 @@
       opacity 200ms linear;
   }
   [data-inview] > .contorno-trilha path {
-    stroke-dasharray: 75 25;
+    stroke-dasharray: 100 0;
     opacity: 1;
   }
 }

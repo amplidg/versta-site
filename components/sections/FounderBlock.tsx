@@ -108,30 +108,6 @@ export function FounderBlock() {
                 orgânico em caramelo e curvas de nível ao fundo */}
             <InView className="relative isolate mx-auto w-4/5 max-w-[20rem] lg:w-full lg:max-w-[22rem]">
               <CurvasDeNivel />
-              {/* Contorno: o MESMO path do recorte, ampliado a partir do centro
-                  (linha concêntrica, ~11px de distância em toda a volta; 8px no
-                  celular), desenhado atrás da foto. A linha percorre 75% da
-                  volta e deixa uma abertura no canto superior esquerdo, como
-                  uma trilha ao redor do retrato. */}
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 100 125"
-                preserveAspectRatio="none"
-                className="contorno-trilha pointer-events-none absolute -top-2 -left-2 -z-10 h-[calc(100%+16px)] w-[calc(100%+16px)] overflow-visible lg:-top-[11px] lg:-left-[11px] lg:h-[calc(100%+22px)] lg:w-[calc(100%+22px)]"
-              >
-                {/* sem vector-effect: com ele o navegador deixa de respeitar o
-                    pathLength e a abertura sai do lugar. A espessura fica em
-                    ~1,5px (0.4 unidade do desenho). */}
-                <path
-                  d={seixo(100, 125)}
-                  pathLength={100}
-                  fill="none"
-                  stroke="#B46D49"
-                  strokeWidth="0.4"
-                  strokeLinecap="round"
-                  strokeDasharray="75 25"
-                />
-              </svg>
               {/* recorte da foto (coordenadas de 0 a 1, relativas à caixa) */}
               <svg aria-hidden="true" width="0" height="0" className="absolute">
                 <defs>
@@ -158,6 +134,27 @@ export function FounderBlock() {
                   </div>
                 )}
               </div>
+              {/* Contorno em caramelo: a mesma forma do recorte, um pouco maior,
+                  levemente girada e deslocada. Dá a volta inteira por fora da
+                  foto e passa por cima dela só no canto inferior esquerdo
+                  (uns 10px para dentro), para dar profundidade — por isso
+                  fica NA FRENTE da foto. Pedido do Lucas. */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 100 125"
+                preserveAspectRatio="none"
+                fill="none"
+                className="contorno-trilha pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+              >
+                <path
+                  d={seixo(100, 125)}
+                  transform="translate(2.3 -2.3) rotate(-12 50 62.5) translate(50 62.5) scale(1.05) translate(-50 -62.5)"
+                  pathLength={100}
+                  stroke="#B46D49"
+                  strokeWidth="0.41"
+                  strokeLinecap="round"
+                />
+              </svg>
             </InView>
           </Reveal>
 
