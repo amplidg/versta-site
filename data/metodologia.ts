@@ -23,6 +23,6 @@ export const etapasMetodologia: Etapa[] = [
   {
     titulo: "Acompanhamento",
     texto:
-      "Ao longo do programa, acompanhamos a participação dos colaboradores e a evolução do ambiente de trabalho, e ajustamos o plano sempre que necessário.",
+      "Acompanhamos os resultados das soluções aplicadas e a evolução do ambiente de trabalho, e ajustamos o plano sempre que necessário.",
   },
 ];
