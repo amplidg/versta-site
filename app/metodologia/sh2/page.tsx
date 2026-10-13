@@ -28,9 +28,9 @@ import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "SH2: programa de saúde mental para empresas e adequação à NR-1",
+  title: "Programa SH2: saúde mental para empresas e adequação à NR-1",
   description:
-    "O SH2 (Ser Humano em Harmonia) é o programa da Versta que une diagnóstico, cuidado com a saúde mental e bem-estar no dia a dia, para que a empresa cuide das pessoas e esteja preparada para a NR-1.",
+    "O Programa SH2 (Ser Humano em Harmonia), da Versta, une diagnóstico, cuidado com a saúde mental e bem-estar no dia a dia, para que a empresa cuide das pessoas e esteja preparada para a NR-1.",
   path: "/metodologia/sh2",
 });
 
@@ -135,22 +135,22 @@ const resultados = [
 
 const perguntas = [
   {
-    pergunta: "O SH2 ajuda minha empresa a se adequar à NR-1?",
+    pergunta: "O Programa SH2 ajuda minha empresa a se adequar à NR-1?",
     resposta:
-      "Sim. O SH2 começa pelo diagnóstico do PGR, que identifica os riscos psicossociais, e organiza as ações para lidar com eles. A adequação depende também da continuidade dessas ações, e por isso a Versta acompanha a empresa ao longo de todo o processo.",
+      "Sim. O Programa SH2 começa pelo diagnóstico do PGR, que identifica os riscos psicossociais, e organiza as ações para lidar com eles. A adequação depende também da continuidade dessas ações, e por isso a Versta acompanha a empresa ao longo de todo o processo.",
   },
   {
     pergunta: "Contratar um psicólogo para a equipe não é suficiente?",
     resposta:
-      "O atendimento psicológico é importante, mas sozinho não identifica nem trata o que gera os riscos no ambiente de trabalho. Ações isoladas podem deixar brechas que expõem a empresa a riscos trabalhistas. O SH2 une diagnóstico, cuidado e prevenção em um mesmo plano.",
+      "O atendimento psicológico é importante, mas sozinho não identifica nem trata o que gera os riscos no ambiente de trabalho. Ações isoladas podem deixar brechas que expõem a empresa a riscos trabalhistas. O Programa SH2 une diagnóstico, cuidado e prevenção em um mesmo plano.",
   },
   {
-    pergunta: "Preciso contratar todas as áreas do SH2?",
+    pergunta: "Preciso contratar todas as áreas do Programa SH2?",
     resposta:
       "Não. Existem planos diferentes, montados de acordo com o diagnóstico, o porte e as necessidades de cada empresa.",
   },
   {
-    pergunta: "O SH2 atende empresas de qualquer porte e setor?",
+    pergunta: "O Programa SH2 atende empresas de qualquer porte e setor?",
     resposta:
       "Sim. O programa é adaptado à realidade de cada empresa, independentemente do tamanho ou do segmento.",
   },
@@ -160,7 +160,7 @@ const perguntas = [
       "As duas formas. Algumas atividades, como yoga diário, terapia e nutricionista, podem ser online. Outras acontecem presencialmente na House Coworking, com hora marcada.",
   },
   {
-    pergunta: "Quem são os profissionais que atuam no SH2?",
+    pergunta: "Quem são os profissionais que atuam no Programa SH2?",
     resposta:
       "A Versta reúne profissionais e empresas especializadas em cada área e coordena todo o trabalho, para que a empresa tenha uma única condução.",
   },
@@ -188,12 +188,12 @@ export default function Sh2Page() {
               Metodologia
             </Link>
             <ChevronRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
-            <span aria-current="page">SH2</span>
+            <span aria-current="page">Programa SH2</span>
           </nav>
         }
-        eyebrow="SH2"
+        eyebrow="Programa SH2"
         title="Programa de saúde mental para empresas e adequação à NR-1"
-        headline="SH2: Ser Humano em Harmonia"
+        headline="Programa SH2: Ser Humano em Harmonia"
         lead="Um programa completo que une diagnóstico, cuidado com a saúde mental e bem-estar no dia a dia, para que sua empresa cuide das pessoas e esteja preparada para a NR-1."
         imagem="sh2Hero"
       >
@@ -205,19 +205,19 @@ export default function Sh2Page() {
         </Button>
       </PageHero>
 
-      {/* O QUE É O SH2 */}
+      {/* O QUE É O Programa SH2 */}
       <Section tone="peach" aria-labelledby="oque-titulo">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
             <SectionHeading
               id="oque-titulo"
-              eyebrow="O que é o SH2"
+              eyebrow="O que é o Programa SH2"
               title="Tudo o que sua empresa precisa, reunido em um só lugar"
             />
           </Reveal>
           <Reveal delay={120} className="space-y-5 text-lead text-ink-muted lg:col-span-7">
             <p>
-              O SH2 é o programa da Versta para empresas que querem cuidar da saúde mental dos
+              O Programa SH2 é o programa da Versta para empresas que querem cuidar da saúde mental dos
               colaboradores com seriedade. Em vez de contratar e coordenar vários profissionais
               separadamente, a empresa conta com uma única condução, que começa pelo diagnóstico
               dos riscos psicossociais e se estende às ações que fazem diferença no dia a dia de
@@ -231,15 +231,15 @@ export default function Sh2Page() {
         </Container>
       </Section>
 
-      {/* O QUE ESTÁ DENTRO DO SH2 */}
+      {/* O QUE ESTÁ DENTRO DO Programa SH2 */}
       <Section id="incluido" aria-labelledby="incluido-titulo">
         <Container>
           <Reveal>
             <SectionHeading
               id="incluido-titulo"
-              eyebrow="O que está dentro do SH2"
-              title="O que está incluído no SH2"
-              lead="O SH2 é organizado em oito áreas que se complementam. Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
+              eyebrow="O que está dentro do Programa SH2"
+              title="O que está incluído no Programa SH2"
+              lead="O Programa SH2 é organizado em oito áreas que se complementam. Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
             />
           </Reveal>
           {/* uma área por linha: nome e descrição à esquerda, itens à direita */}
@@ -298,7 +298,7 @@ export default function Sh2Page() {
         eyebrow="A House Coworking"
         title="Um espaço preparado para cuidar das pessoas"
         paragrafos={[
-          "Parte das atividades do SH2 acontece na House Coworking, um espaço com salas privativas, equipamentos e ambientes preparados para atendimentos, práticas, treinamentos e encontros. Assim, os colaboradores têm um lugar acolhedor, fora da rotina da empresa, para cuidar de si. Os atendimentos são agendados com hora marcada, e várias atividades também podem ser feitas online.",
+          "Parte das atividades do Programa SH2 acontece na House Coworking, um espaço com salas privativas, equipamentos e ambientes preparados para atendimentos, práticas, treinamentos e encontros. Assim, os colaboradores têm um lugar acolhedor, fora da rotina da empresa, para cuidar de si. Os atendimentos são agendados com hora marcada, e várias atividades também podem ser feitas online.",
         ]}
         imagem="houseCoworking"
         tone="mist"
@@ -313,7 +313,7 @@ export default function Sh2Page() {
               onDark
               id="como-titulo"
               eyebrow="Como funciona"
-              title="Como o SH2 chega até a sua empresa"
+              title="Como o Programa SH2 chega até a sua empresa"
             />
           </Reveal>
           <div className="mt-16 lg:mt-20">
@@ -329,7 +329,7 @@ export default function Sh2Page() {
             <SectionHeading
               id="resultados-titulo"
               eyebrow="Resultados"
-              title="A transformação que o SH2 gera na sua empresa"
+              title="A transformação que o Programa SH2 gera na sua empresa"
             />
           </Reveal>
           <Reveal delay={120}>
@@ -350,7 +350,7 @@ export default function Sh2Page() {
       {/* CTA */}
       <CtaBanner
         title="Cuidar das pessoas também é cuidar da empresa."
-        text="Solicite um diagnóstico e descubra como o SH2 pode ser aplicado na realidade da sua empresa."
+        text="Solicite um diagnóstico e descubra como o Programa SH2 pode ser aplicado na realidade da sua empresa."
       />
 
       {/* PERGUNTAS FREQUENTES */}
@@ -360,7 +360,7 @@ export default function Sh2Page() {
             <SectionHeading
               id="faq-titulo"
               eyebrow="Perguntas frequentes"
-              title="Perguntas frequentes sobre o SH2"
+              title="Perguntas frequentes sobre o Programa SH2"
             />
           </Reveal>
           <Reveal delay={120} className="lg:col-span-8">
@@ -385,18 +385,18 @@ export default function Sh2Page() {
         />
       </Section>
 
-      {/* ALÉM DO SH2 */}
+      {/* ALÉM DO Programa SH2 */}
       <Section tone="peach" aria-labelledby="alem-titulo">
         <Container>
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionHeading
               id="alem-titulo"
-              eyebrow="Além do SH2"
+              eyebrow="Além do Programa SH2"
               title="O começo de um caminho maior"
               align="center"
             />
             <p className="mt-6 text-lead text-ink-muted">
-              O diagnóstico do SH2 revela muito sobre a empresa. Muitas vezes, ele mostra outras
+              O diagnóstico do Programa SH2 revela muito sobre a empresa. Muitas vezes, ele mostra outras
               áreas que também precisam evoluir, como a liderança, a cultura, a comunicação, a
               gestão de conflitos ou a segurança jurídica. Nesses casos, a Versta conecta a empresa
               às soluções certas para cada desafio, com o mesmo cuidado e a mesma condução.
