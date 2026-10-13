@@ -23,17 +23,11 @@ type Marco = { ano: string; descricao: string };
 
 export const fundadora = {
   nome: "[PREENCHER: nome completo]",
-  cargo: "Fundadora da Versta",
-
-  /** Frase da fundadora, sem aspas (o site desenha as aspas). */
-  citacao: "[PREENCHER: frase da fundadora]",
 
   apresentacao: [
     "[PREENCHER: parágrafo 1 sobre a trajetória]",
     "[PREENCHER: parágrafo 2 sobre por que isso importa para o cliente]",
   ],
-
-  formacoes: "[PREENCHER: formações]",
 
   /**
    * Foto: salve o arquivo em /public/images/fundadora.webp (retrato, na

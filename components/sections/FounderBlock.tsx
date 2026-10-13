@@ -82,21 +82,8 @@ export function FounderBlock() {
             <h2 id="fundadora-titulo" className="mt-4 text-h2 text-navy">
               <Texto>{fundadora.nome}</Texto>
             </h2>
-            <p className="mt-2 text-lead text-navy">{fundadora.cargo}</p>
 
-            <blockquote className="relative mt-8 pl-12">
-              <span
-                aria-hidden="true"
-                className="absolute -top-5 left-0 font-display text-[5.5rem] leading-none text-caramel select-none"
-              >
-                “
-              </span>
-              <p className="font-display text-h3 text-navy italic">
-                <Texto>{fundadora.citacao}</Texto>
-              </p>
-            </blockquote>
-
-            <div className="mt-8 space-y-4 text-navy">
+            <div className="mt-7 space-y-4 text-lead text-navy">
               {fundadora.apresentacao.map((p) => (
                 <p key={p}>
                   <Texto>{p}</Texto>
@@ -104,9 +91,6 @@ export function FounderBlock() {
               ))}
             </div>
 
-            <p className="mt-8 border-t border-navy/20 pt-5 text-sm text-navy">
-              <Texto>{fundadora.formacoes}</Texto>
-            </p>
           </Reveal>
         </div>
 
