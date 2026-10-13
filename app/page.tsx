@@ -13,6 +13,7 @@ import { HeroIntro } from "@/components/sections/intro/HeroIntro";
 import { OrgChart } from "@/components/sections/OrgChart";
 import { Sh2Highlight } from "@/components/sections/Sh2Highlight";
 import { SplitFeature } from "@/components/sections/SplitFeature";
+import { TestimonialsBlock } from "@/components/sections/TestimonialsBlock";
 import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Illustration } from "@/components/ui/Illustration";
@@ -158,6 +159,9 @@ export default function Home() {
 
       {/* QUEM CONDUZ A VERSTA — fundadora (conteúdo em data/fundadora.ts) */}
       <FounderBlock />
+
+      {/* DEPOIMENTOS + CARTELA DE CLIENTES (conteúdo em data/depoimentos.ts) */}
+      <TestimonialsBlock />
 
       {/* 4. DIAGNÓSTICO EMPRESARIAL (imagem 3) */}
       <SplitFeature

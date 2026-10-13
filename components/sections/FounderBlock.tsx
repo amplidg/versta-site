@@ -7,6 +7,7 @@ import { Container, Section } from "@/components/ui/Section";
 import { Texto } from "@/components/ui/Texto";
 import { fundadora } from "@/data/fundadora";
 import { asset } from "@/lib/paths";
+import { seixo } from "@/lib/seixo";
 
 /**
  * Curvas de nível (estilo mapa topográfico) atrás da foto: anéis orgânicos
@@ -23,27 +24,6 @@ const CURVAS = Array.from({ length: 6 }, (_, k) => {
   });
   return `M${pontos.join(" L")} Z`;
 });
-
-/**
- * Forma de seixo (pedra de rio): quatro curvas, em coordenadas de 0 a 1,
- * começando no topo e seguindo no sentido horário. A mesma lista de pontos
- * gera o recorte da foto e o contorno em caramelo — por isso os dois têm
- * exatamente o mesmo formato.
- */
-const SEIXO_INICIO = [0.52, 0];
-const SEIXO_CURVAS = [
-  [0.8, 0, 1, 0.2, 1, 0.46],
-  [1, 0.72, 0.84, 1, 0.54, 1],
-  [0.24, 1, 0, 0.8, 0, 0.5],
-  [0, 0.2, 0.22, 0, 0.52, 0],
-];
-
-/** Path do seixo numa caixa de `largura` × `altura`. */
-function seixo(largura: number, altura: number) {
-  const ponto = (v: number, i: number) => +(v * (i % 2 === 0 ? largura : altura)).toFixed(3);
-  const curvas = SEIXO_CURVAS.map((c) => `C${c.map(ponto).join(" ")}`).join(" ");
-  return `M${SEIXO_INICIO.map(ponto).join(" ")} ${curvas}Z`;
-}
 
 function CurvasDeNivel() {
   return (
