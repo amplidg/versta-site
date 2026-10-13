@@ -1,20 +1,28 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent, type TouchEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FocusEvent,
+  type KeyboardEvent,
+  type PointerEvent,
+  type TouchEvent,
+} from "react";
 import { User } from "lucide-react";
 import { Texto } from "@/components/ui/Texto";
 import type { Depoimento } from "@/data/depoimentos";
 import { asset } from "@/lib/paths";
 import { seixo } from "@/lib/seixo";
 
-const INTERVALO = 30_000;
+const INTERVALO = 10_000;
 const PAINEL_ID = "depoimento-painel";
 
 /**
  * Depoimento em destaque + trilha de fotos (os "marcos") que serve de
  * navegação. As fotos são abas (role="tab"); o depoimento é o painel.
- * Avança sozinho a cada 30s, pausando com o mouse em cima, com foco pelo
- * teclado e quando o visitante pede movimento reduzido. Estado só em memória.
+ * Avança sozinho a cada 10s, pausando com o mouse em cima, com foco pelo
+ * teclado (sobre a trilha de fotos) e quando o visitante pede movimento reduzido. Estado só em memória.
  */
 export function TestimonialCarousel({ depoimentos }: { depoimentos: Depoimento[] }) {
   const [ativo, setAtivo] = useState(0);
@@ -63,15 +71,23 @@ export function TestimonialCarousel({ depoimentos }: { depoimentos: Depoimento[]
     setAtivo((a) => (dx < 0 ? (a + 1) % total : (a - 1 + total) % total));
   }
 
+  // A pausa vale só para a trilha de fotos, com mouse de verdade em cima ou
+  // foco vindo do teclado. Antes ela valia para o bloco inteiro e para
+  // qualquer foco: bastava o mouse parado sobre o depoimento, ou um toque
+  // numa foto no celular, para a troca automática nunca mais acontecer.
   const pausa = {
-    onMouseEnter: () => setPausado(true),
-    onMouseLeave: () => setPausado(false),
-    onFocus: () => setPausado(true),
+    onPointerEnter: (e: PointerEvent) => {
+      if (e.pointerType === "mouse") setPausado(true);
+    },
+    onPointerLeave: () => setPausado(false),
+    onFocus: (e: FocusEvent) => {
+      if ((e.target as HTMLElement).matches(":focus-visible")) setPausado(true);
+    },
     onBlur: () => setPausado(false),
   };
 
   return (
-    <div {...pausa}>
+    <div>
       {/* recorte em seixo das fotos (o mesmo formato do retrato da fundadora) */}
       <svg aria-hidden="true" width="0" height="0" className="absolute">
         <defs>
@@ -127,7 +143,7 @@ export function TestimonialCarousel({ depoimentos }: { depoimentos: Depoimento[]
       </div>
 
       {/* PARTE 2 — trilha de marcos: as fotos navegam entre os depoimentos */}
-      <div ref={trilha} className="mt-9 overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div ref={trilha} {...pausa} className="mt-9 overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="relative mx-auto w-max min-w-full px-4 sm:min-w-0 sm:px-10">
           <span aria-hidden="true" className="absolute inset-x-0 top-1/2 border-t-2 border-dashed border-caramel/70" />
           <div role="tablist" aria-label="Depoimentos" className="relative flex justify-center gap-5 sm:gap-10">
