@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { User } from "lucide-react";
-import { DogSymbol } from "@/components/brand/DogSymbol";
 import { CountUp } from "@/components/motion/CountUp";
 import { InView } from "@/components/motion/InView";
 import { Reveal } from "@/components/motion/Reveal";
@@ -24,6 +23,14 @@ const CURVAS = Array.from({ length: 6 }, (_, k) => {
   });
   return `M${pontos.join(" L")} Z`;
 });
+
+/**
+ * Contorno em caramelo ao redor da foto (viewBox 100×125). Quem muda a forma
+ * devagar ("respira") é o CSS, em globals.css, que usa a mesma estrutura de
+ * comandos deste path.
+ */
+const CONTORNO_SEIXO =
+  "M52 0 C81 0 100 24 100 58 C100 91 83 125 53 125 C23 125 0 99 0 62 C0 26 23 0 52 0Z";
 
 function CurvasDeNivel() {
   return (
@@ -84,15 +91,35 @@ export function FounderBlock() {
         {/* 1. Apresentação */}
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal from="fade" className="lg:col-span-5">
-            {/* Foto em arco (topo em meio círculo, base reta), com contorno
-                deslocado em caramelo e curvas de nível ao fundo */}
+            {/* Foto recortada em forma de seixo (pedra de rio), com um contorno
+                orgânico em caramelo e curvas de nível ao fundo */}
             <div className="relative isolate mx-auto w-4/5 max-w-[20rem] lg:w-full lg:max-w-[22rem]">
               <CurvasDeNivel />
-              <div
+              {/* contorno: a mesma forma, ~14px maior e com pequenas variações,
+                  como mais uma curva de nível ao redor da foto */}
+              <svg
                 aria-hidden="true"
-                className="absolute inset-0 -z-10 translate-x-2.5 translate-y-2.5 rounded-t-full border-[1.5px] border-caramel lg:translate-x-4 lg:translate-y-4"
-              />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-t-full bg-offwhite">
+                viewBox="0 0 100 125"
+                preserveAspectRatio="none"
+                fill="none"
+                className="contorno-organico pointer-events-none absolute -top-3.5 -left-3.5 -z-10 h-[calc(100%+28px)] w-[calc(100%+28px)] translate-x-2 translate-y-2 overflow-visible lg:translate-x-3 lg:translate-y-3"
+              >
+                <path
+                  d={CONTORNO_SEIXO}
+                  stroke="var(--color-caramel)"
+                  strokeWidth="1.5"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+              {/* recorte da foto (coordenadas de 0 a 1, relativas à caixa) */}
+              <svg aria-hidden="true" width="0" height="0" className="absolute">
+                <defs>
+                  <clipPath id="seixo-fundadora" clipPathUnits="objectBoundingBox">
+                    <path d="M0.52 0 C0.8 0 1 0.2 1 0.46 C1 0.72 0.84 1 0.54 1 C0.24 1 0 0.8 0 0.5 C0 0.2 0.22 0 0.52 0Z" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <div className="relative aspect-[4/5] bg-offwhite" style={{ clipPath: "url(#seixo-fundadora)" }}>
                 {fundadora.foto.pronta ? (
                   <Image
                     src={asset(fundadora.foto.arquivo)}
@@ -102,7 +129,7 @@ export function FounderBlock() {
                     className="object-cover"
                   />
                 ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 text-center">
                     <User aria-hidden="true" className="size-16 text-green-700" strokeWidth={1.25} />
                     <p className="text-sm">
                       <mark className="todo-mark">[PREENCHER: foto da fundadora]</mark>
@@ -110,8 +137,6 @@ export function FounderBlock() {
                   </div>
                 )}
               </div>
-              {/* cão sobre a linha da base do arco, no canto inferior direito */}
-              <DogSymbol className="absolute -right-5 -bottom-px w-14 lg:-right-7 lg:w-16" />
             </div>
           </Reveal>
 
