@@ -1,11 +1,46 @@
+import Image from "next/image";
+import { User } from "lucide-react";
 import { DogSymbol } from "@/components/brand/DogSymbol";
 import { CountUp } from "@/components/motion/CountUp";
 import { InView } from "@/components/motion/InView";
 import { Reveal } from "@/components/motion/Reveal";
-import { Illustration } from "@/components/ui/Illustration";
 import { Container, Section } from "@/components/ui/Section";
 import { Texto } from "@/components/ui/Texto";
 import { fundadora } from "@/data/fundadora";
+import { asset } from "@/lib/paths";
+
+/**
+ * Curvas de nível (estilo mapa topográfico) atrás da foto: anéis orgânicos
+ * concêntricos gerados por uma fórmula fixa, sempre iguais a cada build.
+ */
+const CURVAS = Array.from({ length: 6 }, (_, k) => {
+  const base = 150 + k * 22;
+  const pontos = Array.from({ length: 72 }, (_, j) => {
+    const t = (j / 72) * Math.PI * 2;
+    const r = base * (1 + 0.11 * Math.sin(3 * t + k * 0.55) + 0.06 * Math.sin(5 * t + 1.3 + k * 0.3));
+    const x = 250 + k * 5 + r * Math.cos(t);
+    const y = 300 - k * 4 + r * 1.18 * Math.sin(t);
+    return `${x.toFixed(1)} ${y.toFixed(1)}`;
+  });
+  return `M${pontos.join(" L")} Z`;
+});
+
+function CurvasDeNivel() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 500 600"
+      className="pointer-events-none absolute -inset-x-[22%] -inset-y-[14%] -z-20 h-[128%] w-[144%] overflow-visible"
+      fill="none"
+    >
+      <g stroke="var(--color-navy)" strokeWidth="1.25" opacity="0.13" strokeLinejoin="round">
+        {CURVAS.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </g>
+    </svg>
+  );
+}
 
 /** Pedra arredondada que marca cada ponto da trilha (o último, preenchido). */
 function Pedra({ atual = false }: { atual?: boolean }) {
@@ -49,28 +84,34 @@ export function FounderBlock() {
         {/* 1. Apresentação */}
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal from="fade" className="lg:col-span-5">
-            <div className="relative mx-auto max-w-[17rem] sm:max-w-xs lg:max-w-[22rem]">
-              {/* moldura orgânica, como manchas de aquarela por trás da foto */}
+            {/* Foto em arco (topo em meio círculo, base reta), com contorno
+                deslocado em caramelo e curvas de nível ao fundo */}
+            <div className="relative isolate mx-auto w-4/5 max-w-[20rem] lg:w-full lg:max-w-[22rem]">
+              <CurvasDeNivel />
               <div
                 aria-hidden="true"
-                className="absolute -inset-5 -rotate-3 rounded-[34%_30%_36%_28%/28%_34%_30%_36%] bg-peach-100 opacity-80 blur-[2px]"
+                className="absolute inset-0 -z-10 translate-x-2.5 translate-y-2.5 rounded-t-full border-[1.5px] border-caramel lg:translate-x-4 lg:translate-y-4"
               />
-              <div
-                aria-hidden="true"
-                className="absolute -inset-3 translate-x-4 translate-y-3 rotate-2 rounded-[30%_36%_28%_34%/34%_28%_36%_30%] bg-mint opacity-75 blur-[2px]"
-              />
-              <Illustration
-                imagem="fundadora"
-                legenda={false}
-                sizes="(min-width: 1024px) 22rem, 20rem"
-                className="aspect-[4/5] w-full rounded-[30%_26%_32%_24%/24%_30%_26%_32%]"
-              />
-              {!fundadora.foto.pronta && (
-                <p className="absolute inset-x-6 top-1/2 -translate-y-1/2 text-center text-sm">
-                  <mark className="todo-mark">[PREENCHER: foto da fundadora]</mark>
-                </p>
-              )}
-              <DogSymbol className="absolute -right-3 -bottom-4 w-14 sm:-right-6" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-t-full bg-offwhite">
+                {fundadora.foto.pronta ? (
+                  <Image
+                    src={asset(fundadora.foto.arquivo)}
+                    alt={fundadora.foto.alt}
+                    fill
+                    sizes="(min-width: 1024px) 22rem, 20rem"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
+                    <User aria-hidden="true" className="size-16 text-green-700" strokeWidth={1.25} />
+                    <p className="text-sm">
+                      <mark className="todo-mark">[PREENCHER: foto da fundadora]</mark>
+                    </p>
+                  </div>
+                )}
+              </div>
+              {/* cão sobre a linha da base do arco, no canto inferior direito */}
+              <DogSymbol className="absolute -right-5 -bottom-px w-14 lg:-right-7 lg:w-16" />
             </div>
           </Reveal>
 

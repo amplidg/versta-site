@@ -1,5 +1,3 @@
-import type { Imagem } from "@/data/imagens";
-
 /**
  * Bloco "Quem conduz a Versta" da Home (components/sections/FounderBlock.tsx).
  *
@@ -35,11 +33,10 @@ export const fundadora = {
    */
   foto: {
     arquivo: "/images/fundadora.webp",
+    /** Descrição da foto para leitores de tela. */
     alt: "Retrato da fundadora da Versta",
-    descricao: "Foto da fundadora (retrato, na vertical)",
-    tom: "pessego",
     pronta: false,
-  } satisfies Imagem as Imagem,
+  },
 
   /** O caminho em números: exatamente três itens. */
   numeros: [
