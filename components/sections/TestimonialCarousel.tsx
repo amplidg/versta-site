@@ -7,13 +7,13 @@ import type { Depoimento } from "@/data/depoimentos";
 import { asset } from "@/lib/paths";
 import { seixo } from "@/lib/seixo";
 
-const INTERVALO = 8000;
+const INTERVALO = 30_000;
 const PAINEL_ID = "depoimento-painel";
 
 /**
  * Depoimento em destaque + trilha de fotos (os "marcos") que serve de
  * navegação. As fotos são abas (role="tab"); o depoimento é o painel.
- * Avança sozinho a cada 8s, pausando com o mouse em cima, com foco pelo
+ * Avança sozinho a cada 30s, pausando com o mouse em cima, com foco pelo
  * teclado e quando o visitante pede movimento reduzido. Estado só em memória.
  */
 export function TestimonialCarousel({ depoimentos }: { depoimentos: Depoimento[] }) {

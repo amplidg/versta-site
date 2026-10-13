@@ -3,13 +3,11 @@ import { TestimonialCarousel } from "@/components/sections/TestimonialCarousel";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { clientes, depoimentos } from "@/data/depoimentos";
-import { fundadora } from "@/data/fundadora";
 import { asset } from "@/lib/paths";
 
 /**
  * Depoimentos + cartela de clientes (Home, logo após o bloco da fundadora).
- * Conteúdo em `data/depoimentos.ts`; o nome da fundadora vem de
- * `data/fundadora.ts`. Cada parte só aparece se a sua lista tiver itens; com
+ * Conteúdo em `data/depoimentos.ts`. Cada parte só aparece se a sua lista tiver itens; com
  * as duas vazias, o bloco inteiro some.
  */
 export function TestimonialsBlock() {
@@ -24,8 +22,7 @@ export function TestimonialsBlock() {
           <SectionHeading
             id="depoimentos-titulo"
             eyebrow="Depoimentos"
-            title={`Quem já percorreu esse caminho com ${fundadora.nome}`}
-            lead={`Empresas atendidas por ${fundadora.nome} ao longo da sua trajetória, que hoje dá origem à Versta.`}
+            title="Quem já percorreu esse caminho com a Versta"
             align="center"
           />
         </Reveal>

@@ -1,9 +1,8 @@
 /**
  * Bloco "Depoimentos" da Home (components/sections/TestimonialsBlock.tsx).
  *
- * Tudo o que aparece nesse bloco vem deste arquivo (o nome da fundadora, no
- * título, vem de data/fundadora.ts). Para publicar as informações
- * definitivas, basta trocar os textos [PREENCHER: ...] abaixo.
+ * Tudo o que aparece nesse bloco vem deste arquivo. Para publicar as
+ * informações definitivas, basta trocar os textos [PREENCHER: ...] abaixo.
  *
  * - Lista `depoimentos` vazia: o depoimento em destaque e a trilha de fotos
  *   não aparecem.
