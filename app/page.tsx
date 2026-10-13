@@ -74,12 +74,8 @@ export default function Home() {
       <Sh2Highlight />
 
       {/* ALÉM DO PROGRAMA SH2 — sinais do diagnóstico ligados às nove frentes */}
-      <Section aria-labelledby="alem-titulo" className="relative isolate overflow-hidden">
-        {/* textura sutil de aquarela nas bordas (decorativa) */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute top-24 -left-48 size-[34rem] rounded-full bg-sage opacity-30 blur-3xl" />
-          <div className="absolute -right-48 bottom-10 size-[36rem] rounded-full bg-peach-200 opacity-30 blur-3xl" />
-        </div>
+      {/* fundo liso, sem manchas de luz (pedido do Lucas) */}
+      <Section aria-labelledby="alem-titulo">
         <Container>
           <Reveal>
             <SectionHeading
