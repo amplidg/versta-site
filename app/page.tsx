@@ -85,8 +85,8 @@ export default function Home() {
             <SectionHeading
               id="alem-titulo"
               eyebrow="Além do Programa SH2"
-              title="A NR-1 é o ponto de partida. O diagnóstico revela o caminho inteiro."
-              lead="O Programa SH2 responde a uma necessidade urgente. Mas, ao olhar a fundo para uma empresa, o diagnóstico costuma perceber outros sinais, na liderança, nos contratos, na operação, na comunicação ou no meio ambiente. É aí que entram as nove frentes da Versta, para que cada desafio encontre a sua solução."
+              title="O diagnóstico empresarial revela sinais em todas as áreas da empresa."
+              lead="Por isso, olhamos para ela por inteiro e conectamos cada desafio à sua solução."
               align="center"
             />
           </Reveal>
