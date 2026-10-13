@@ -86,7 +86,6 @@ export default function Home() {
               id="alem-titulo"
               eyebrow="Além do Programa SH2"
               title="O diagnóstico empresarial revela sinais em todas as áreas da empresa."
-              lead="Por isso, olhamos para ela por inteiro e conectamos cada desafio à sua solução."
               align="center"
             />
           </Reveal>

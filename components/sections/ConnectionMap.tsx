@@ -17,7 +17,7 @@ const sinais: { texto: string; frente: string }[] = [
   { texto: "Equipe desalinhada com a estratégia e uma marca pouco percebida no mercado", frente: "conexao" },
   { texto: "Processos manuais, retrabalho e pouca tecnologia", frente: "inova" },
   { texto: "Falhas de qualidade, desperdícios e baixa produtividade na operação", frente: "excelencia" },
-  { texto: "Espaços de trabalho que não favorecem o bem-estar nem a eficiência", frente: "espaco" },
+  { texto: "Falta de um espaço para o bem-estar da equipe e para os encontros da empresa", frente: "espaco" },
   { texto: "Falta de experiências que fortaleçam o vínculo com a equipe e com os clientes", frente: "turismo" },
 ];
 
