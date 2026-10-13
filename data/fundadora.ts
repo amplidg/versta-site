@@ -45,7 +45,7 @@ export const fundadora = {
   numeros: [
     { valor: "[X]", legenda: "anos de experiência" },
     { valor: "[X]", legenda: "empresas atendidas" },
-    { valor: "[X]", legenda: "[PREENCHER: outro número]" },
+    { valor: "[X]", legenda: "segmentos diferentes" },
   ] as Numero[],
 
   /**
