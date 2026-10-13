@@ -8,6 +8,8 @@
  *
  * Estilo: aquarela com textura de papel, tons de verde, pêssego e azul claro.
  */
+import { fundadora } from "@/data/fundadora";
+
 export type Tom = "amanhecer" | "floresta" | "lago" | "neblina" | "pessego";
 
 export type Imagem = {
@@ -80,6 +82,8 @@ export const imagens = {
   },
 
   /* ---------- Ainda pendentes (placeholders) ---------- */
+  /** Foto da fundadora: os dados ficam em data/fundadora.ts. */
+  fundadora: fundadora.foto,
   sh2Hero: {
     arquivo: "/images/sh2-hero-pessoas.webp",
     alt: "Cena em aquarela de pessoas em conversa acolhedora",

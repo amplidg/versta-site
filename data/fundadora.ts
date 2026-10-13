@@ -1,0 +1,67 @@
+import type { Imagem } from "@/data/imagens";
+
+/**
+ * Bloco "Quem conduz a Versta" da Home (components/sections/FounderBlock.tsx).
+ *
+ * TUDO o que aparece nesse bloco vem deste arquivo: para publicar as
+ * informações definitivas, basta trocar os textos [PREENCHER: ...] abaixo.
+ * Enquanto um campo estiver com [PREENCHER], o site o destaca visualmente.
+ */
+
+type Numero = {
+  /**
+   * Use um número de verdade (ex.: 15) para ativar a animação de contagem.
+   * Enquanto for texto (ex.: "[X]"), aparece exatamente como está.
+   */
+  valor: number | string;
+  /** Texto colado ao número, como "+" (opcional). */
+  sufixo?: string;
+  legenda: string;
+};
+
+type Marco = { ano: string; descricao: string };
+
+export const fundadora = {
+  nome: "[PREENCHER: nome completo]",
+  cargo: "Fundadora da Versta",
+
+  /** Frase da fundadora, sem aspas (o site desenha as aspas). */
+  citacao: "[PREENCHER: frase da fundadora]",
+
+  apresentacao: [
+    "[PREENCHER: parágrafo 1 sobre a trajetória]",
+    "[PREENCHER: parágrafo 2 sobre por que isso importa para o cliente]",
+  ],
+
+  formacoes: "[PREENCHER: formações]",
+
+  /**
+   * Foto: salve o arquivo em /public/images/fundadora.webp (retrato, na
+   * vertical, ~1200 px de largura) e mude `pronta` para true.
+   */
+  foto: {
+    arquivo: "/images/fundadora.webp",
+    alt: "Retrato da fundadora da Versta",
+    descricao: "Foto da fundadora (retrato, na vertical)",
+    tom: "pessego",
+    pronta: false,
+  } satisfies Imagem as Imagem,
+
+  /** O caminho em números: exatamente três itens. */
+  numeros: [
+    { valor: "[X]", legenda: "anos de experiência" },
+    { valor: "[X]", legenda: "empresas atendidas" },
+    { valor: "[X]", legenda: "[PREENCHER: outro número]" },
+  ] as Numero[],
+
+  /**
+   * Marcos da trajetória, do mais antigo ao mais recente (2 a 4 itens).
+   * O último marco, "Fundação da Versta", é fixo e usa `anoFundacao`.
+   */
+  marcos: [
+    { ano: "[PREENCHER: ano]", descricao: "[PREENCHER: marco 1]" },
+    { ano: "[PREENCHER: ano]", descricao: "[PREENCHER: marco 2]" },
+    { ano: "[PREENCHER: ano]", descricao: "[PREENCHER: marco 3]" },
+  ] as Marco[],
+  anoFundacao: "[PREENCHER: ano]",
+};

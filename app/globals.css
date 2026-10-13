@@ -354,6 +354,37 @@
   }
 }
 
+/* Marcos da trajetória (bloco da fundadora): a linha se desenha e os marcos
+   aparecem em sequência quando a trilha entra na tela (<InView>). Só com
+   JavaScript e movimento permitido; caso contrário, tudo já fica visível. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .trilha-marcos .trilha-linha {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1400ms var(--ease-calm);
+  }
+  .trilha-marcos .trilha-marco {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 600ms var(--ease-calm),
+      transform 600ms var(--ease-calm);
+    transition-delay: calc(200ms + var(--i, 0) * 260ms);
+  }
+  .trilha-marcos[data-inview] .trilha-linha {
+    clip-path: inset(0);
+  }
+  .trilha-marcos[data-inview] .trilha-marco {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* no computador a linha é horizontal: desenha da esquerda para a direita */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+  .trilha-marcos .trilha-linha {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
 @keyframes cloud-drift {
   from {
     transform: translate3d(calc(-1.6% * var(--side, 1)), 0.8%, 0);

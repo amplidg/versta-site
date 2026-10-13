@@ -7,6 +7,7 @@ import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { BenefitLayers } from "@/components/sections/BenefitLayers";
 import { ConnectionMap } from "@/components/sections/ConnectionMap";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { FounderBlock } from "@/components/sections/FounderBlock";
 import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
 import { OrgChart } from "@/components/sections/OrgChart";
@@ -154,6 +155,9 @@ export default function Home() {
           </Reveal>
         </Container>
       </Section>
+
+      {/* QUEM CONDUZ A VERSTA — fundadora (conteúdo em data/fundadora.ts) */}
+      <FounderBlock />
 
       {/* 4. DIAGNÓSTICO EMPRESARIAL (imagem 3) */}
       <SplitFeature
