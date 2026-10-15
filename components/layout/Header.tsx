@@ -154,7 +154,7 @@ function FrentesDropdown({ active }: { active: boolean }) {
           active ? "text-caramel-700" : "text-navy"
         }`}
       >
-        Consultoria
+        Soluções
         <ChevronDown
           aria-hidden="true"
           className={`size-4 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
@@ -249,7 +249,7 @@ function MobileMenu({
                   onClick={() => setFrentesOpen((v) => !v)}
                   className="flex w-full items-center justify-between py-4 font-display text-2xl font-semibold text-navy"
                 >
-                  Consultoria
+                  Soluções
                   <ChevronDown
                     aria-hidden="true"
                     className={`size-5 transition-transform ${frentesOpen ? "rotate-180" : ""}`}

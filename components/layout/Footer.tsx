@@ -46,7 +46,7 @@ export function Footer() {
 
         <nav aria-labelledby="rodape-frentes" className="lg:col-span-3">
           <h2 id="rodape-frentes" className="eyebrow mb-5 font-body text-peach-100">
-            Frentes de consultoria
+            Soluções
           </h2>
           <ul className="space-y-2.5 text-[0.9375rem]">
             {frentes.map((f) => (

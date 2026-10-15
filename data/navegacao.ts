@@ -1,11 +1,15 @@
 export type NavItem = { label: string; href: string };
 
-/** Menu principal. "Consultoria" recebe o dropdown das frentes no Header. */
+/**
+ * Menu principal (também usado no rodapé e no sitemap). "Soluções" recebe o
+ * dropdown das frentes no Header. Os rótulos seguem o organograma (pedido do
+ * Lucas, 15/10); os endereços /consultoria e /instituto não mudaram.
+ */
 export const navPrincipal: NavItem[] = [
   { label: "Sobre", href: "/sobre" },
-  { label: "Consultoria", href: "/consultoria" },
+  { label: "Soluções", href: "/consultoria" },
   { label: "Metodologia", href: "/metodologia" },
-  { label: "Instituto", href: "/instituto" },
+  { label: "Projetos Sociais", href: "/instituto" },
   { label: "Contato", href: "/contato" },
 ];
 
