@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Illustration } from "@/components/ui/Illustration";
-import { Container, Section } from "@/components/ui/Section";
+import { Container, Section, type SectionTone } from "@/components/ui/Section";
 import { Texto } from "@/components/ui/Texto";
 import type { ImagemKey } from "@/data/imagens";
 import { ctaDiagnostico } from "@/data/navegacao";
@@ -11,6 +11,8 @@ type Props = {
   text?: string;
   imagem?: ImagemKey;
   headingLevel?: "h2" | "h3";
+  /** Cor de fundo do bloco (padrão: verde menta). */
+  tone?: SectionTone;
 };
 
 /** Chamada final para o diagnóstico, em fundo pastel com ilustração. */
@@ -19,9 +21,10 @@ export function CtaBanner({
   text = "O primeiro passo é um diagnóstico. A partir dele, a Versta aponta as áreas que precisam se desenvolver e indica o caminho, com as soluções certas para cada uma.",
   imagem = "ctaHome",
   headingLevel: H = "h2",
+  tone = "mint",
 }: Props) {
   return (
-    <Section tone="mint" aria-labelledby="cta-titulo">
+    <Section tone={tone} aria-labelledby="cta-titulo">
       <Container>
         <div className="grid overflow-hidden rounded-card bg-offwhite/60 lg:grid-cols-2">
           <Reveal className="flex flex-col justify-center p-8 md:p-14">

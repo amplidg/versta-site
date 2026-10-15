@@ -5,6 +5,7 @@ export type SectionTone =
   | "peach"
   | "peach-strong"
   | "mist"
+  | "mist-strong"
   | "sage"
   | "sage-strong"
   | "mint"
@@ -17,6 +18,8 @@ const tones: Record<SectionTone, string> = {
   peach: "bg-peach-100 text-ink",
   "peach-strong": "bg-peach-200 text-ink",
   mist: "bg-mist/60 text-ink",
+  /** Azul claro oficial cheio (#9CCADC). */
+  "mist-strong": "bg-mist text-ink",
   sage: "bg-sage/45 text-ink",
   /** Verde sálvia oficial cheio (#9BBBAA): texto sempre em azul-marinho. */
   "sage-strong": "bg-sage text-navy",

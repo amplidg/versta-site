@@ -20,7 +20,7 @@ type Numero = {
 type Marco = { ano: string; descricao: string };
 
 export const fundadora = {
-  nome: "[PREENCHER: nome completo]",
+  nome: "Vivian Prá Philippi",
 
   apresentacao: [
     "[PREENCHER: parágrafo 1 sobre a trajetória]",

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowDown, ArrowRight, Layers } from "lucide-react";
+import { ArrowDown, Layers } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
@@ -8,11 +7,9 @@ import { BenefitLayers } from "@/components/sections/BenefitLayers";
 import { ConnectionMap } from "@/components/sections/ConnectionMap";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FounderBlock } from "@/components/sections/FounderBlock";
-import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
 import { OrgChart } from "@/components/sections/OrgChart";
 import { Sh2Highlight } from "@/components/sections/Sh2Highlight";
-import { SplitFeature } from "@/components/sections/SplitFeature";
 import { TestimonialsBlock } from "@/components/sections/TestimonialsBlock";
 import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
@@ -169,79 +166,8 @@ export default function Home() {
       {/* DEPOIMENTOS + CARTELA DE CLIENTES (conteúdo em data/depoimentos.ts) */}
       <TestimonialsBlock />
 
-      {/* 4. DIAGNÓSTICO EMPRESARIAL (imagem 3) */}
-      <SplitFeature
-        id="diagnostico-titulo"
-        tone="peach"
-        reverse
-        eyebrow="Diagnóstico empresarial"
-        title="Entendemos a geografia do mercado"
-        paragrafos={[
-          "Todo caminho começa pela leitura do terreno. A Versta analisa a empresa com rigor para identificar as dores e as áreas que precisam se desenvolver para crescer.",
-          "Análise, experiência e percepção se somam para reconhecer padrões e perceber sinais discretos antes que fiquem evidentes.",
-        ]}
-        imagem="diagnosticoEmpresarial"
-      >
-        <Button href={ctaDiagnostico.href} variant="primary" arrow>
-          {ctaDiagnostico.label}
-        </Button>
-      </SplitFeature>
-
-      {/* 5. CONEXÃO ENTRE DESAFIOS E SOLUÇÕES (imagem 4) */}
-      <SplitFeature
-        id="conexao-titulo"
-        eyebrow="Conexão"
-        title="Do desafio à solução certa"
-        paragrafos={[
-          "Com o diagnóstico em mãos, a Versta conecta cada necessidade a quem resolve, dentro do seu ecossistema de parceiros especializados.",
-          "Em vez de procurar sozinha, a empresa segue por um caminho indicado com segurança.",
-        ]}
-        imagem="conexao"
-      >
-        <Link
-          href="/consultoria"
-          className="group inline-flex items-center gap-2 font-semibold text-caramel-700 underline-offset-4 hover:underline"
-        >
-          Conheça as frentes
-          <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
-        </Link>
-      </SplitFeature>
-
-      {/* 6. ÁREAS DE ATUAÇÃO — FRENTES (imagem 6) */}
-      <Section aria-labelledby="frentes-titulo">
-        <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-            <Reveal from="left" className="lg:order-1 lg:col-span-6">
-              <Illustration
-                imagem="areasAtuacao"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="aspect-[16/9] w-full rounded-card"
-              />
-            </Reveal>
-            <Reveal delay={120} className="lg:order-2 lg:col-span-6">
-              <SectionHeading
-                id="frentes-titulo"
-                eyebrow="Áreas de atuação"
-                title="Nove frentes, um mesmo olhar"
-                lead="Da consultoria ambiental ao marketing, cada frente reúne soluções especializadas para uma área da empresa."
-              />
-              <Link
-                href="/consultoria"
-                className="group mt-8 inline-flex items-center gap-2 font-semibold text-caramel-700 underline-offset-4 hover:underline"
-              >
-                Ver todas as frentes
-                <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={1.75} />
-              </Link>
-            </Reveal>
-          </div>
-          <div className="mt-14 lg:mt-16">
-            <FrentesGrid />
-          </div>
-        </Container>
-      </Section>
-
-      {/* 7. CTA FINAL */}
-      <CtaBanner />
+      {/* CTA FINAL — em azul claro (pedido do Lucas, 15/10) */}
+      <CtaBanner tone="mist-strong" />
     </>
   );
 }
