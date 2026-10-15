@@ -131,7 +131,7 @@ export default function Home() {
               id="beneficios-titulo"
               eyebrow="Benefícios"
               title="Uma transformação que começa nas pessoas e chega ao mercado."
-              lead="Com o Programa SH2 e as nove frentes de solução, a Versta atua em todas as camadas da empresa. O cuidado com as pessoas fortalece a estrutura, e uma estrutura sólida muda a forma como a empresa é vista lá fora."
+              lead="A Versta atua em todas as camadas da empresa. O cuidado com as pessoas fortalece a estrutura, e uma estrutura sólida muda a forma como a empresa é vista lá fora."
               align="center"
             />
           </Reveal>
