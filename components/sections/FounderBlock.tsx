@@ -160,7 +160,7 @@ export function FounderBlock() {
 
         {/* 2. O caminho em números */}
         <Reveal className="mt-16 lg:mt-24">
-          <h3 className="eyebrow text-center text-navy">O caminho em números</h3>
+          <h3 className="eyebrow text-center text-navy">O trajeto até aqui</h3>
           <dl className="mt-8 grid divide-y divide-navy/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {fundadora.numeros.map((n) => (
               <div key={n.legenda} className="flex flex-col-reverse items-center gap-2 px-6 py-7 text-center sm:py-3">
