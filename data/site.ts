@@ -35,6 +35,12 @@ export const site = {
     estado: "SC",
     cep: "88701-000",
   },
+  /**
+   * Busca usada no mapa da página Contato e no link "Abrir no Google Maps".
+   * Com o nome do prédio, o Google acha o ponto exato; só pelo endereço ele
+   * caía no bairro e CEP errados.
+   */
+  mapaBusca: "ETR Business, Av. Marcolino Martins Cabral, 3108, Tubarão - SC",
   horarioEstruturado: { dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], turnos: [["08:00", "12:00"], ["13:30", "18:00"]] },
 
   redes: [

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/sections/PageHero";
@@ -14,6 +14,11 @@ export const metadata: Metadata = pageMetadata({
   description: "Fale com a Versta. Envie sua mensagem ou use os nossos canais de atendimento.",
   path: "/contato",
 });
+
+const busca = encodeURIComponent(site.mapaBusca);
+/** Mapa do Google incorporado (sem chave de API) e link para abrir no app. */
+const mapaEmbed = `https://www.google.com/maps?q=${busca}&output=embed`;
+const mapaLink = `https://www.google.com/maps/search/?api=1&query=${busca}`;
 
 export default function ContatoPage() {
   const canais = [
@@ -58,12 +63,50 @@ export default function ContatoPage() {
                   </div>
                 ))}
               </dl>
-              {/* TODO [PREENCHER]: incorporar mapa (Google Maps embed) quando o endereço estiver definido */}
             </Reveal>
           </div>
           <Reveal delay={150} className="rounded-card bg-offwhite p-6 md:p-10 lg:col-span-8">
             <h2 className="sr-only">Formulário de contato</h2>
             <ContactForm />
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* Mapa do endereço */}
+      <Section aria-labelledby="mapa-titulo">
+        <Container>
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading id="mapa-titulo" eyebrow="Como chegar" title="Onde estamos" />
+            <a
+              href={mapaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 font-semibold text-caramel-700 underline-offset-4 hover:underline"
+            >
+              Abrir no Google Maps
+              <ArrowUpRight
+                aria-hidden="true"
+                className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                strokeWidth={1.75}
+              />
+              <span className="sr-only"> (abre em nova aba)</span>
+            </a>
+          </Reveal>
+          <Reveal delay={120} className="mt-10">
+            <p className="mb-4 flex items-start gap-3 text-ink-muted">
+              <MapPin aria-hidden="true" className="mt-1 size-5 shrink-0 text-caramel-700" strokeWidth={1.5} />
+              {site.contato.endereco}, {site.contato.cidade}
+            </p>
+            <div className="overflow-hidden rounded-card border border-navy/10 bg-mist/40">
+              <iframe
+                src={mapaEmbed}
+                title={`Mapa: ${site.contato.endereco}, ${site.contato.cidade}`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="block h-[22rem] w-full border-0 md:h-[28rem]"
+                allowFullScreen
+              />
+            </div>
           </Reveal>
         </Container>
       </Section>
