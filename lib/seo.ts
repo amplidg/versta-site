@@ -48,7 +48,7 @@ export function pageMetadata({ title, description, path, noindex }: PageMeta): M
   };
 }
 
-/** JSON-LD schema.org Organization. Campos de contato ainda como placeholder. */
+/** JSON-LD schema.org Organization, com telefone, endereço e horário reais. */
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -59,21 +59,27 @@ export function organizationJsonLd() {
     url: SITE_URL,
     // TODO [PREENCHER]: trocar pelo arquivo oficial do logo (PNG/SVG) quando disponível
     logo: `${SITE_URL}/brand/versta-logo-vertical-azul.svg`,
-    email: site.contato.email,
-    telephone: site.contato.telefone,
+    telephone: site.contato.telefoneLink,
     address: {
       "@type": "PostalAddress",
-      streetAddress: site.contato.endereco,
-      addressLocality: site.contato.cidade,
+      streetAddress: site.enderecoEstruturado.rua,
+      addressLocality: site.enderecoEstruturado.cidade,
+      addressRegion: site.enderecoEstruturado.estado,
+      postalCode: site.enderecoEstruturado.cep,
       addressCountry: "BR",
     },
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "customer service",
-        telephone: site.contato.telefone,
-        email: site.contato.email,
+        telephone: site.contato.telefoneLink,
         availableLanguage: ["Portuguese"],
+        hoursAvailable: site.horarioEstruturado.turnos.map(([opens, closes]) => ({
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: site.horarioEstruturado.dias,
+          opens,
+          closes,
+        })),
       },
     ],
     // TODO [PREENCHER]: links oficiais das redes sociais

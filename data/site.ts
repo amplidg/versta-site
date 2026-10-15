@@ -16,14 +16,26 @@ export const site = {
     "A Versta diagnostica empresas, identifica as áreas que precisam se desenvolver para crescer e conecta cada uma às soluções especializadas do seu ecossistema de parceiros.",
   locale: "pt_BR",
 
+  // Contatos enviados pelo Lucas em 15/10/2026. Sem e-mail, por decisão dele.
   contato: {
-    telefone: "[PREENCHER: telefone]",
+    telefone: "(48) 9.9944-0674",
+    /** Mesmo telefone, no formato usado no link "ligar" (tel:). */
+    telefoneLink: "+5548999440674",
     whatsapp: "[PREENCHER: WhatsApp]",
-    email: "[PREENCHER: e-mail]",
-    endereco: "[PREENCHER: endereço completo]",
-    cidade: "[PREENCHER: cidade/UF]",
-    horario: "[PREENCHER: horário de atendimento]",
+    endereco: "Av. Marcolino Martins Cabral, 3108, ETR Business, sala 603 – Vila Moema",
+    cidade: "Tubarão – SC, 88701-000",
+    horario: "Segunda a sexta, das 8h às 12h e das 13h30 às 18h",
   },
+
+  /** O mesmo endereço e horário, separados para o Google (schema.org). */
+  enderecoEstruturado: {
+    rua: "Av. Marcolino Martins Cabral, 3108, ETR Business, sala 603",
+    bairro: "Vila Moema",
+    cidade: "Tubarão",
+    estado: "SC",
+    cep: "88701-000",
+  },
+  horarioEstruturado: { dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], turnos: [["08:00", "12:00"], ["13:30", "18:00"]] },
 
   redes: [
     { nome: "Instagram", url: "[PREENCHER: link do Instagram]" },

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Texto } from "@/components/ui/Texto";
 import { frentes } from "@/data/frentes";
@@ -8,10 +8,10 @@ import { isPlaceholder, site } from "@/data/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  // Sem e-mail, por decisão do Lucas (15/10).
   const contatos = [
-    { icon: Phone, label: "Telefone", value: site.contato.telefone },
-    { icon: Mail, label: "E-mail", value: site.contato.email },
-    { icon: MapPin, label: "Endereço", value: site.contato.endereco },
+    { icon: Phone, label: "Telefone", value: site.contato.telefone, href: `tel:${site.contato.telefoneLink}` },
+    { icon: MapPin, label: "Endereço", value: `${site.contato.endereco}, ${site.contato.cidade}` },
     { icon: Clock, label: "Horário", value: site.contato.horario },
   ];
 
@@ -65,12 +65,18 @@ export function Footer() {
         <div className="lg:col-span-3">
           <h2 className="eyebrow mb-5 font-body text-peach-100">Contato</h2>
           <ul className="space-y-3 text-[0.9375rem]">
-            {contatos.map(({ icon: Icon, label, value }) => (
+            {contatos.map(({ icon: Icon, label, value, href }) => (
               <li key={label} className="flex gap-3">
                 <Icon aria-hidden="true" className="mt-1 size-4 shrink-0 text-peach-100" strokeWidth={1.5} />
                 <span>
                   <span className="sr-only">{label}: </span>
-                  <Texto>{value}</Texto>
+                  {href ? (
+                    <a href={href} className="underline-offset-4 hover:underline">
+                      {value}
+                    </a>
+                  ) : (
+                    <Texto>{value}</Texto>
+                  )}
                 </span>
               </li>
             ))}
