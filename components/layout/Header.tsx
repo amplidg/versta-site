@@ -165,7 +165,7 @@ function FrentesDropdown({ active }: { active: boolean }) {
       <div
         id={panelId}
         hidden={!open}
-        className="absolute top-full left-1/2 w-[34rem] -translate-x-1/2 pt-3"
+        className="absolute top-full left-1/2 w-[40rem] -translate-x-1/2 pt-3"
       >
         <div className="rounded-card border border-navy/10 bg-offwhite p-3 shadow-[0_24px_60px_-24px_rgb(0_41_77/0.28)]">
           <Link
