@@ -160,7 +160,7 @@ export default function Home() {
       <TestimonialsBlock />
 
       {/* CTA FINAL — em azul claro (pedido do Lucas, 15/10) */}
-      <CtaBanner tone="mist-strong" />
+      <CtaBanner tone="mist-strong" title="Vamos entender os próximos passos da sua empresa?" />
     </>
   );
 }
