@@ -39,7 +39,7 @@ export function CtaBanner({
               <Texto>{text}</Texto>
             </p>
             <div className="mt-9">
-              <Button href={ctaDiagnostico.href} variant="accent" arrow>
+              <Button href={ctaDiagnostico.href} variant="primary" arrow>
                 {ctaDiagnostico.label}
               </Button>
             </div>
