@@ -131,9 +131,15 @@ export default function Home() {
               id="beneficios-titulo"
               eyebrow="Benefícios"
               title="Uma transformação que começa nas pessoas e chega ao mercado."
-              lead="A Versta atua em todas as camadas da empresa. O cuidado com as pessoas fortalece a estrutura, e uma estrutura sólida muda a forma como a empresa é vista lá fora."
               align="center"
             />
+            {/* subtítulo fora do SectionHeading: precisa de mais largura para
+                caber em duas linhas no computador (pedido do Lucas) */}
+            <p className="mx-auto mt-5 max-w-[50rem] text-center text-lead text-balance text-ink-muted">
+              A Versta atua em todas as camadas da empresa. O cuidado com as pessoas fortalece
+              <br className="hidden lg:block" /> a estrutura, e uma estrutura sólida muda a forma como a
+              empresa é vista lá fora.
+            </p>
           </Reveal>
           <Reveal delay={120} className="mt-8 lg:mt-9">
             <BenefitLayers />
