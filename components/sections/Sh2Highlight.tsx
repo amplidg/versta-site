@@ -48,11 +48,9 @@ export function Sh2Highlight() {
             A NR-1 mudou. Sua empresa já está preparada?
           </h2>
           <p className="mt-6 max-w-2xl text-lead text-offwhite/90">
-            Desde maio de 2026, cuidar dos riscos psicossociais passou a ser uma obrigação das
-            empresas, com fiscalização e possibilidade de multas. O Programa SH2 é a solução
-            inovadora da Versta que vai a fundo na nova NR-1. Une diagnóstico, cuidado com a saúde
-            mental e ações contínuas para trazer segurança à empresa e construir um ambiente de
-            pessoas em harmonia.
+            A NR-1 já exige que as empresas cuidem dos riscos psicossociais, com fiscalização e
+            multas. O Programa SH2 une diagnóstico, saúde mental e ações contínuas para sua empresa
+            cumprir a norma e cuidar das pessoas.
           </p>
 
           <ul className="mt-10 grid gap-7 sm:grid-cols-3 sm:gap-6">
