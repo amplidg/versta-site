@@ -2,14 +2,16 @@ export type NavItem = { label: string; href: string };
 
 /**
  * Menu principal (também usado no rodapé e no sitemap). "Soluções" recebe o
- * dropdown das frentes no Header. Os rótulos seguem o organograma (pedido do
- * Lucas, 15/10); os endereços /consultoria e /instituto não mudaram.
+ * dropdown das frentes no Header. Ordem e rótulos definidos pelo Lucas
+ * (16/10), na mesma linha do organograma; a página Metodologia saiu do menu
+ * (segue acessível pela Home e pela página do Programa SH2). Os endereços
+ * /consultoria e /instituto não mudaram.
  */
 export const navPrincipal: NavItem[] = [
   { label: "Sobre", href: "/sobre" },
-  { label: "Soluções", href: "/consultoria" },
-  { label: "Metodologia", href: "/metodologia" },
   { label: "Projetos Sociais", href: "/instituto" },
+  { label: "Soluções", href: "/consultoria" },
+  { label: "Programa SH2", href: "/metodologia/sh2" },
   { label: "Contato", href: "/contato" },
 ];
 

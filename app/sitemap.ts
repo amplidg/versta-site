@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
   // páginas fora do menu
-  const paginasExtras = ["/metodologia/sh2"].map((href) => ({
+  const paginasExtras = ["/metodologia"].map((href) => ({
     url: pageUrl(href),
     lastModified,
     changeFrequency: "monthly" as const,
