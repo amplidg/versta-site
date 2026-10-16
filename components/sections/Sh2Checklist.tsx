@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 /* Textos fornecidos pelo Lucas — não reescrever. */
 const perguntas = [
-  "Identificou os riscos psicossociais no PGR?",
+  "Mapeou os riscos psicossociais no seu Programa de Gerenciamento de Riscos (PGR)?",
   "Tem um plano de ação para lidar com esses riscos?",
   "Cuida da saúde mental das equipes de forma contínua?",
   "Consegue comprovar essas ações em uma fiscalização?",
