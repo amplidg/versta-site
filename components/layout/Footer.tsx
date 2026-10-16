@@ -34,7 +34,12 @@ export function Footer() {
             Mapa do site
           </h2>
           <ul className="space-y-2.5 text-[0.9375rem]">
-            {mapaDoSite.map((item) => (
+            {/* no rodapé, "Metodologia" aparece como "Programa SH2" (pedido do Lucas, 16/10) */}
+            {mapaDoSite
+              .map((item) =>
+                item.href === "/metodologia" ? { label: "Programa SH2", href: "/metodologia/sh2" } : item,
+              )
+              .map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-offwhite/90 transition-colors hover:text-peach-100">
                   {item.label}

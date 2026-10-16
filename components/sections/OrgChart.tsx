@@ -1,15 +1,15 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
-import { HandHeart, Handshake, Leaf, Lightbulb } from "lucide-react";
+import { HandHeart, Handshake, Leaf } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { frentes, type Frente } from "@/data/frentes";
 
 /**
  * Organograma da estrutura de atuação da Versta:
- *   VERSTA → Projetos Sociais · Metodologia (SH2) ·
- *            Soluções (9 frentes)
- * Os nomes dos ramos são os do organograma (definidos pelo Lucas); os links
- * levam a /instituto, /metodologia (e /metodologia/sh2) e /consultoria.
+ *   VERSTA → Projetos Sociais · Soluções (9 frentes) · Programa SH2
+ * Ordem, nomes e ícones definidos pelo Lucas (16/10): Soluções no centro,
+ * com a linha que desce até as frentes; o Programa SH2 no lugar da antiga
+ * "Metodologia". Os links levam a /instituto, /consultoria e /metodologia/sh2.
  * Usado na Home (bloco "Quem é a Versta") e na página Sobre.
  *
  * - Desktop (lg): árvore completa, com as 9 frentes lado a lado.
@@ -22,6 +22,8 @@ type Ramo = {
   nome: string;
   href: string;
   icone: LucideIcon;
+  /** Linha menor abaixo do nome (opcional). */
+  detalhe?: string;
   /** Cor do círculo do ícone (pastel da paleta). */
   tom: string;
   filho?: { nome: string; detalhe?: string; icone: LucideIcon; href: string };
@@ -31,14 +33,14 @@ type Ramo = {
 
 const ramos: Ramo[] = [
   { nome: "Projetos Sociais", href: "/instituto", icone: Leaf, tom: "bg-peach-100" },
-  {
-    nome: "Metodologia",
-    href: "/metodologia",
-    icone: Lightbulb,
-    tom: "bg-mist",
-    filho: { nome: "SH2", detalhe: "Ser Humano em Harmonia", icone: HandHeart, href: "/metodologia/sh2" },
-  },
   { nome: "Soluções", href: "/consultoria", icone: Handshake, tom: "bg-sage/60", frentes: true },
+  {
+    nome: "Programa SH2",
+    detalhe: "Ser Humano em Harmonia",
+    href: "/metodologia/sh2",
+    icone: HandHeart,
+    tom: "bg-mist",
+  },
 ];
 
 const linha = "bg-caramel";
@@ -94,8 +96,8 @@ function Desktop() {
                 <span aria-hidden="true" className="h-10" />
               </>
             )}
-            {/* Soluções: linha desce até a barra das frentes */}
-            {r.frentes && <span aria-hidden="true" className={`w-px flex-1 ${linha}`} />}
+            {/* Soluções (centro): linha desce até a barra das frentes */}
+            {r.frentes && <span aria-hidden="true" className={`h-12 w-px ${linha}`} />}
           </li>
         ))}
       </ul>
@@ -110,11 +112,18 @@ function Desktop() {
 function RamoCard({ ramo }: { ramo: Ramo }) {
   const Icon = ramo.icone;
   return (
-    <Link href={ramo.href} className={`${cardBase} flex w-full flex-col items-center gap-3 px-6 py-6 text-center`}>
+    // altura mínima igual para os três: o do Programa SH2 tem uma linha a mais
+    <Link
+      href={ramo.href}
+      className={`${cardBase} flex min-h-[10.5rem] w-full flex-col items-center justify-center gap-3 px-6 py-6 text-center`}
+    >
       <span className={`flex size-12 items-center justify-center rounded-full ${ramo.tom}`}>
         <Icon aria-hidden="true" className="size-6 text-caramel-700" strokeWidth={1.5} />
       </span>
-      <span className="font-display text-2xl font-semibold text-navy">{ramo.nome}</span>
+      <span className="leading-tight">
+        <span className="block font-display text-2xl font-semibold text-navy">{ramo.nome}</span>
+        {ramo.detalhe && <span className="mt-1.5 block text-sm text-ink-muted">{ramo.detalhe}</span>}
+      </span>
     </Link>
   );
 }
@@ -200,7 +209,10 @@ function Mobile() {
                 <span className={`flex size-10 shrink-0 items-center justify-center rounded-full ${r.tom}`}>
                   <Icon aria-hidden="true" className="size-5 text-caramel-700" strokeWidth={1.5} />
                 </span>
-                <span className="font-display text-xl font-semibold text-navy">{r.nome}</span>
+                <span className="leading-tight">
+                  <span className="block font-display text-xl font-semibold text-navy">{r.nome}</span>
+                  {r.detalhe && <span className="mt-0.5 block text-[0.8125rem] text-ink-muted">{r.detalhe}</span>}
+                </span>
               </Link>
 
               {/* filhos */}
