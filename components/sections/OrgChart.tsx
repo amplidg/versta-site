@@ -6,14 +6,14 @@ import { frentes, type Frente } from "@/data/frentes";
 
 /**
  * Organograma da estrutura de atuação da Versta:
- *   VERSTA → Projetos Sociais · Soluções (9 frentes) · Programa SH2
+ *   VERSTA → Projetos Sociais · Soluções (10 frentes) · Programa SH2
  * Ordem, nomes e ícones definidos pelo Lucas (16/10): Soluções no centro,
  * com a linha que desce até as frentes; o Programa SH2 no lugar da antiga
  * "Metodologia". Os links levam a /instituto, /consultoria e /metodologia/sh2.
  * Usado na Home (bloco "Quem é a Versta") e na página Sobre.
  *
- * - Desktop (lg): árvore completa, com as 9 frentes lado a lado.
- * - Tablet (md): mesma árvore, frentes em grade 3×3.
+ * - Telas largas (xl): árvore completa, com as 10 frentes lado a lado.
+ * - Tablet e notebook (md/lg): mesma árvore, frentes em duas linhas de 5.
  * - Celular: árvore vertical, com linha de conexão à esquerda.
  * - Estrutura em listas aninhadas; cada card leva à página correspondente.
  */
@@ -27,7 +27,7 @@ type Ramo = {
   /** Cor do círculo do ícone (pastel da paleta). */
   tom: string;
   filho?: { nome: string; detalhe?: string; icone: LucideIcon; href: string };
-  /** Ramo que se abre nas 9 frentes. */
+  /** Ramo que se abre nas frentes. */
   frentes?: boolean;
 };
 
@@ -142,19 +142,19 @@ function FilhoCard({ filho }: { filho: NonNullable<Ramo["filho"]> }) {
 function FrentesRow() {
   return (
     <div className="relative">
-      {/* barra horizontal: do centro da 1ª ao centro da 9ª frente (só lg; 9 colunas, gap 0.75rem) */}
+      {/* barra horizontal: do centro da 1ª ao centro da 10ª frente (só xl; 10 colunas, gap 0.75rem) */}
       <span
         aria-hidden="true"
-        className={`absolute top-0 hidden h-px lg:block ${linha}`}
-        style={{ left: "calc((100% - 6rem) / 18)", right: "calc((100% - 6rem) / 18)" }}
+        className={`absolute top-0 hidden h-px xl:block ${linha}`}
+        style={{ left: "calc((100% - 6.75rem) / 20)", right: "calc((100% - 6.75rem) / 20)" }}
       />
-      {/* tablet: linha de topo contínua ligando a grade */}
-      <span aria-hidden="true" className={`absolute top-0 right-0 left-0 h-px lg:hidden ${linha}`} />
-      <ul aria-label="Frentes de consultoria" className="grid grid-cols-3 gap-3 pt-6 lg:grid-cols-9 lg:pt-0">
+      {/* tablet e notebook: linha de topo contínua ligando a grade */}
+      <span aria-hidden="true" className={`absolute top-0 right-0 left-0 h-px xl:hidden ${linha}`} />
+      <ul aria-label="Frentes de consultoria" className="grid grid-cols-5 gap-3 pt-6 xl:grid-cols-10 xl:pt-0">
         {frentes.map((f) => (
           <li key={f.slug} className="flex flex-col items-center">
-            {/* haste com ponto até cada frente (só lg) */}
-            <span aria-hidden="true" className="hidden flex-col items-center lg:flex">
+            {/* haste com ponto até cada frente (só xl) */}
+            <span aria-hidden="true" className="hidden flex-col items-center xl:flex">
               <span className={`h-6 w-px ${linha}`} />
               <span className="-mt-1 size-2 rounded-full bg-caramel" />
               <span className="h-2" />

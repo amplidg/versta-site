@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Consultoria",
   description:
-    "Nove frentes de consultoria, da consultoria ambiental ao marketing. A Versta diagnostica sua empresa e conecta cada área à solução especializada certa.",
+    "Dez frentes de consultoria, da consultoria ambiental à assessoria financeira. A Versta diagnostica sua empresa e conecta cada área à solução especializada certa.",
   path: "/consultoria",
 });
 
@@ -22,7 +22,7 @@ export default function ConsultoriaPage() {
     <>
       <PageHero
         eyebrow="Consultoria"
-        title="Um diagnóstico, nove caminhos possíveis"
+        title="Um diagnóstico, dez caminhos possíveis"
         lead="A Versta funciona como um hub: analisa a empresa, aponta as áreas que precisam se desenvolver e conecta cada uma à solução especializada do seu ecossistema de parceiros."
         imagem="areasAtuacao"
       >
@@ -75,7 +75,7 @@ export default function ConsultoriaPage() {
             <SectionHeading
               id="frentes-titulo"
               eyebrow="As frentes"
-              title="Nove frentes de consultoria"
+              title="Dez frentes de consultoria"
               lead="Cada frente reúne soluções especializadas para uma área da empresa. Escolha uma para saber mais."
             />
           </Reveal>

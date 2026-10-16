@@ -16,13 +16,26 @@ const sinais: { texto: string; frente: string }[] = [
   { texto: "Clientes e parceiros cobrando práticas sustentáveis e de governança", frente: "esg" },
   { texto: "Equipe desalinhada com a estratégia e uma marca pouco percebida no mercado", frente: "conexao" },
   { texto: "Processos manuais, retrabalho e pouca tecnologia", frente: "inova" },
+  // sinal da Próspera: redigido por Claude (16/10), a confirmar com o Lucas
+  { texto: "Fluxo de caixa apertado, pouco controle financeiro e decisões sem números claros", frente: "prospera" },
   { texto: "Falhas de qualidade, desperdícios e baixa produtividade na operação", frente: "excelencia" },
   { texto: "Falta de um espaço para o bem-estar da equipe e para os encontros da empresa", frente: "espaco" },
   { texto: "Falta de experiências que fortaleçam o vínculo com a equipe e com os clientes", frente: "turismo" },
 ];
 
 /** Ordem da coluna de frentes: diferente da dos sinais, para as linhas se cruzarem de leve. */
-const ordemFrentes = ["semear", "cultura", "esg", "integra", "inova", "conexao", "espaco", "excelencia", "turismo"];
+const ordemFrentes = [
+  "semear",
+  "cultura",
+  "esg",
+  "integra",
+  "inova",
+  "conexao",
+  "espaco",
+  "prospera",
+  "excelencia",
+  "turismo",
+];
 
 function frentePorSlug(slug: string): Frente {
   const f = frentes.find((x) => x.slug === slug);

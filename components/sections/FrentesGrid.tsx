@@ -11,8 +11,11 @@ type Props = {
 };
 
 export function FrentesGrid({ itens = frentes, headingLevel = "h3" }: Props) {
+  // 3 colunas quando a conta fecha em 3 (ex.: 9 "outras frentes"); com 10
+  // frentes, 5 colunas, para não sobrar um card sozinho na última linha.
+  const colunas = itens.length % 3 !== 0 && itens.length % 5 === 0 ? "lg:grid-cols-5" : "lg:grid-cols-3";
   return (
-    <ul className="grid gap-px overflow-hidden rounded-card border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className={`grid gap-px overflow-hidden rounded-card border border-navy/10 bg-navy/10 sm:grid-cols-2 ${colunas}`}>
       {itens.map((f, i) => (
         <Reveal as="li" key={f.slug} from="fade" delay={(i % 3) * 90} className="bg-offwhite">
           <FrenteCard frente={f} headingLevel={headingLevel} />

@@ -8,11 +8,12 @@ import {
   Scale,
   Sprout,
   Target,
+  TrendingUp,
   Users,
 } from "lucide-react";
 
 /**
- * As 9 frentes de consultoria da Versta.
+ * As 10 frentes de consultoria da Versta (a 10ª, Próspera, entrou em 16/10).
  * As páginas /consultoria/[slug], os cards, o menu, o rodapé, o select dos
  * formulários e o sitemap são gerados a partir desta lista.
  */
@@ -44,6 +45,7 @@ function frente(
   nome: string,
   area: string,
   icone: LucideIcon,
+  textos: Partial<Pick<Frente, "descricaoCurta" | "descricaoLonga" | "dores">> = {},
 ): Frente {
   return {
     slug,
@@ -53,6 +55,7 @@ function frente(
     descricaoCurta: `${nome}: frente de ${area.toLowerCase()} do ecossistema Versta.`,
     descricaoLonga: longaPlaceholder(nome, area),
     dores: doresPlaceholder(nome),
+    ...textos,
   };
 }
 
@@ -66,6 +69,13 @@ export const frentes: Frente[] = [
   frente("excelencia", "Excelência", "Qualidade e Produção", BadgeCheck),
   frente("espaco", "Espaço", "Arquitetura Sustentável para Empresas", Building2),
   frente("integra", "Íntegra", "Estratégia Jurídica Sistêmica", Scale),
+  // Descrição a partir do que o Lucas explicou (16/10); o resto fica para ele preencher.
+  frente("prospera", "Próspera", "Assessoria Financeira e Contábil", TrendingUp, {
+    descricaoLonga: [
+      "A Próspera é a frente de assessoria financeira e contábil da Versta. Ela cuida da parte financeira e contábil das empresas, para que as decisões sejam tomadas com base em números claros e organizados.",
+      "[PREENCHER: serviços incluídos na assessoria, para quem ela é indicada e como funciona.]",
+    ],
+  }),
 ];
 
 export function getFrente(slug: string) {

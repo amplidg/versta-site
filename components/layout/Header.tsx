@@ -172,7 +172,7 @@ function FrentesDropdown({ active }: { active: boolean }) {
             href="/consultoria"
             className="mb-2 flex items-center justify-between rounded-button bg-peach-100 px-4 py-3 text-sm font-semibold text-navy transition-colors hover:bg-peach-200"
           >
-            Visão geral das 9 frentes
+            Visão geral das {frentes.length} frentes
             <span aria-hidden="true">→</span>
           </Link>
           <ul className="grid grid-cols-2 gap-0.5">

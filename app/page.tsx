@@ -72,7 +72,7 @@ export default function Home() {
       {/* PROGRAMA SH2 — destaque em azul-marinho, com checklist da NR-1 */}
       <Sh2Highlight />
 
-      {/* ALÉM DO PROGRAMA SH2 — sinais do diagnóstico ligados às nove frentes */}
+      {/* ALÉM DO PROGRAMA SH2 — sinais do diagnóstico ligados às dez frentes */}
       {/* fundo liso, sem manchas de luz (pedido do Lucas) */}
       <Section aria-labelledby="alem-titulo">
         <Container>
