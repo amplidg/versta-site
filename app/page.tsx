@@ -40,7 +40,7 @@ export default function Home() {
         logo={<Logo layout="vertical" className="w-[14rem] md:w-[18rem]" />}
       >
         <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 leading-[calc(1.1em-2px)] text-navy md:leading-[1.1]">
-          Para cada desafio, a Versta conecta sua empresa com a solução.
+          Guiamos empresas na construção de organizações mais humanas, sólidas e preparadas para o futuro.
         </h1>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Button href={ctaDiagnostico.href} variant="primary" arrow>
