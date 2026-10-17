@@ -22,7 +22,9 @@ export function TestimonialsBlock() {
           <SectionHeading
             id="depoimentos-titulo"
             eyebrow="Depoimentos"
-            title="Quem já percorreu esse caminho com a Versta"
+            // neutro de propósito: os depoimentos são de clientes da Semear, outra
+            // empresa da fundadora — a Versta ainda não atendeu clientes (16/10)
+            title="Empresas que já estão seguindo esse caminho"
             align="center"
           />
         </Reveal>
