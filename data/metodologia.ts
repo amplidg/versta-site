@@ -18,11 +18,11 @@ export const etapasMetodologia: Etapa[] = [
   {
     titulo: "Aplicação integrada",
     texto:
-      "Com o plano definido, as atividades começam na empresa. A Versta organiza agendas, profissionais e espaços para que tudo funcione como um só programa.",
+      "Com o plano definido, as atividades começam na empresa. A Versta organiza agendas, profissionais e espaços e acompanha cada etapa de perto.",
   },
   {
-    titulo: "Acompanhamento",
+    titulo: "Resultados",
     texto:
-      "Acompanhamos os resultados das soluções aplicadas e a evolução do ambiente de trabalho, e ajustamos o plano sempre que necessário.",
+      "Ao final de cada ciclo, entregamos um relatório com os resultados: o que está funcionando, o que precisa melhorar e os próximos passos para a empresa seguir evoluindo.",
   },
 ];
