@@ -1,32 +1,28 @@
-import { HeartHandshake, ShieldCheck, Users } from "lucide-react";
+import Image from "next/image";
 import { Reveal } from "@/components/motion/Reveal";
 import { Sh2Checklist } from "@/components/sections/Sh2Checklist";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { ctaDiagnostico } from "@/data/navegacao";
+import { asset } from "@/lib/paths";
 
-/* Textos fornecidos pelo Lucas — não reescrever. */
-const pilares = [
-  {
-    titulo: "Segurança",
-    texto: "Uma base técnica e legal para a adequação à NR-1.",
-    icone: ShieldCheck,
-  },
-  {
-    titulo: "Cuidado",
-    texto: "Saúde mental, corpo e bem-estar integrados em um só programa.",
-    icone: HeartHandshake,
-  },
-  {
-    titulo: "Harmonia",
-    texto: "Pessoas mais saudáveis, engajadas e uma cultura mais forte.",
-    icone: Users,
-  },
-];
+/*
+ * Imagem enviada pelo Lucas (17/10): equipe em reunião, com os três pilares
+ * (Segurança, Cuidado, Harmonia) já desenhados nela. Substituiu a lista de
+ * pilares com ícones. Como os textos estão na imagem, o alt os repete.
+ */
+const IMAGEM_PILARES = {
+  src: "/images/sh2-seguranca-cuidado-harmonia.webp",
+  largura: 1600,
+  altura: 900,
+  alt: "Ilustração em aquarela de uma equipe conversando em uma sala de reunião, com os três pilares do Programa SH2: Segurança — uma base técnica e legal para a adequação à NR-1; Cuidado — saúde mental, corpo e bem-estar integrados em um só programa; Harmonia — pessoas mais saudáveis, engajadas e uma cultura mais forte.",
+};
 
 /**
- * Bloco de destaque do Programa SH2 na Home: fundo azul-marinho, texto à
- * esquerda e checklist interativo da NR-1 à direita (empilhados no celular).
+ * Bloco de destaque do Programa SH2 na Home: fundo azul-marinho. À esquerda,
+ * texto e a imagem dos pilares; à direita, o checklist da NR-1 e os botões —
+ * os botões ficam embaixo do card para as duas colunas terminarem juntas.
+ * No celular: texto, imagem, checklist e botões, nessa ordem.
  */
 export function Sh2Highlight() {
   return (
@@ -38,7 +34,7 @@ export function Sh2Highlight() {
         <div className="absolute top-1/3 -right-24 size-72 rounded-full bg-green-900 opacity-30 blur-3xl" />
       </div>
 
-      <Container className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
+      <Container className="grid gap-12 lg:grid-cols-12 lg:gap-14">
         <Reveal className="lg:col-span-7">
           <p className="inline-block rounded-button bg-caramel-700 px-3.5 py-2 text-sm leading-snug font-semibold text-white">
             NR-1 · Fiscalização dos riscos psicossociais em vigor desde maio de 2026
@@ -53,22 +49,19 @@ export function Sh2Highlight() {
             cumprir a norma e cuidar das pessoas.
           </p>
 
-          <ul className="mt-10 grid gap-7 sm:grid-cols-3 sm:gap-6">
-            {pilares.map((p) => {
-              const Icon = p.icone;
-              return (
-                <li key={p.titulo} className="flex gap-4 sm:block">
-                  <Icon aria-hidden="true" className="size-7 shrink-0 text-caramel" strokeWidth={1.5} />
-                  <div>
-                    <h3 className="font-display text-xl font-bold text-offwhite sm:mt-4">{p.titulo}</h3>
-                    <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-mint">{p.texto}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+          <Image
+            src={asset(IMAGEM_PILARES.src)}
+            alt={IMAGEM_PILARES.alt}
+            width={IMAGEM_PILARES.largura}
+            height={IMAGEM_PILARES.altura}
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            className="mt-10 h-auto w-full rounded-card"
+          />
+        </Reveal>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+        <Reveal delay={150} className="flex flex-col gap-8 lg:col-span-5 lg:justify-between">
+          <Sh2Checklist />
+          <div className="flex flex-wrap gap-3">
             <Button href="/metodologia/sh2" variant="light" arrow>
               Conheça o Programa SH2
             </Button>
@@ -76,10 +69,6 @@ export function Sh2Highlight() {
               {ctaDiagnostico.label}
             </Button>
           </div>
-        </Reveal>
-
-        <Reveal delay={150} className="lg:col-span-5">
-          <Sh2Checklist />
         </Reveal>
       </Container>
     </Section>

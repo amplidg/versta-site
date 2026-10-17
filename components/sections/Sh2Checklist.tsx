@@ -36,17 +36,19 @@ export function Sh2Checklist() {
   }
 
   return (
-    <div className="rounded-xl bg-offwhite p-7 text-ink shadow-[0_30px_70px_-30px_rgb(0_0_0/0.55)] md:p-9">
+    // no computador o card estica até a altura da coluna da imagem; o espaço
+    // extra é dividido entre as perguntas (cada linha cresce por igual)
+    <div className="flex flex-col rounded-xl bg-offwhite p-7 text-ink shadow-[0_30px_70px_-30px_rgb(0_0_0/0.55)] md:p-9 lg:flex-1">
       <h3 className="text-h3 text-navy">Sua empresa já...</h3>
       <p className="mt-2 text-ink-muted">
         Responda e descubra em que ponto do caminho sua empresa está.
       </p>
 
-      <ol className="mt-6">
+      <ol className="mt-6 flex flex-col lg:flex-1">
         {perguntas.map((pergunta, i) => (
           <li
             key={pergunta}
-            className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 border-t border-navy/10 py-4"
+            className="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 border-t border-navy/10 py-4 lg:flex-1"
           >
             <p id={`sh2-pergunta-${i}`} className="min-w-48 flex-1 font-semibold text-navy">
               <span className="sr-only">Sua empresa já </span>
