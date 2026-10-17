@@ -6,7 +6,10 @@
  *
  * - Lista `depoimentos` vazia: o depoimento em destaque e a trilha de fotos
  *   não aparecem.
- * - Lista `clientes` vazia: a cartela de logos não aparece.
+ * - Cartela de logos dividida em duas listas (pedido do Lucas, 17/10):
+ *   `clientesSemear` (empresas atendidas pela Semear, outra empresa da
+ *   fundadora) e `clientesVersta`. Uma lista vazia esconde o seu lado; as
+ *   duas vazias escondem a cartela inteira.
  * - As duas vazias: o bloco inteiro não aparece.
  */
 
@@ -65,7 +68,18 @@ export const depoimentos: Depoimento[] = [
   },
 ];
 
-export const clientes: Cliente[] = [
+/** Empresas atendidas pela Semear (consultoria ambiental da fundadora). */
+export const clientesSemear: Cliente[] = [
+  { nome: "[PREENCHER: nome da empresa 1]", logo: "" },
+  { nome: "[PREENCHER: nome da empresa 2]", logo: "" },
+  { nome: "[PREENCHER: nome da empresa 3]", logo: "" },
+  { nome: "[PREENCHER: nome da empresa 4]", logo: "" },
+  { nome: "[PREENCHER: nome da empresa 5]", logo: "" },
+  { nome: "[PREENCHER: nome da empresa 6]", logo: "" },
+];
+
+/** Empresas atendidas pela Versta. */
+export const clientesVersta: Cliente[] = [
   { nome: "[PREENCHER: nome da empresa 1]", logo: "" },
   { nome: "[PREENCHER: nome da empresa 2]", logo: "" },
   { nome: "[PREENCHER: nome da empresa 3]", logo: "" },
