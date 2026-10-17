@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 /* Textos fornecidos pelo Lucas — não reescrever. */
 const perguntas = [
@@ -84,17 +83,10 @@ export function Sh2Checklist() {
                 ? "Sua empresa ainda tem pontos de atenção na NR-1. O Programa SH2 começa justamente por eles."
                 : "Ótimo caminho. O Programa SH2 pode ajudar a manter essas ações vivas e fortalecer o ambiente de trabalho."}
             </p>
-            <Link
-              href="/metodologia/sh2"
-              className="group mt-3 inline-flex items-center gap-2 font-semibold text-caramel-700 underline-offset-4 hover:underline"
-            >
+            {/* botão de verdade, em caramelo, para ficar claro que é clicável (pedido do Lucas) */}
+            <Button href="/metodologia/sh2" variant="accent" arrow className="mt-5">
               Conheça o Programa SH2
-              <ArrowRight
-                aria-hidden="true"
-                className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
-                strokeWidth={1.75}
-              />
-            </Link>
+            </Button>
           </div>
         )}
       </div>
