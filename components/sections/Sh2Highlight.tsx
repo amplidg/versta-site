@@ -41,10 +41,11 @@ export function Sh2Highlight() {
             NR-1 · Fiscalização dos riscos psicossociais em vigor desde maio de 2026
           </p>
           <p className="eyebrow mt-7 text-peach-100 max-lg:text-center">Programa SH2 · Ser Humano em Harmonia</p>
-          <h2 id="sh2-destaque-titulo" className="mt-4 text-h2 text-offwhite max-lg:text-center">
-            A NR-1 mudou. Sua empresa já está preparada?
+          <h2 id="sh2-destaque-titulo" className="mt-4 text-h2 text-offwhite max-lg:text-center max-lg:text-[length:min(var(--text-h2),calc(7.2vw_-_0.2rem))]">
+            {/* no celular, em duas linhas: a fonte encolhe só o necessário para a 1ª linha caber */}
+            A NR-1 mudou. Sua empresa<br className="lg:hidden" /> já está preparada?
           </h2>
-          <p className="mt-6 max-w-2xl text-lead text-offwhite/90">
+          <p className="mt-6 max-w-2xl text-lead text-offwhite/90 max-lg:text-justify">
             A NR-1 já exige que as empresas cuidem dos riscos psicossociais, com fiscalização e
             multas. O Programa SH2 une diagnóstico, saúde mental e ações contínuas para sua empresa
             cumprir a norma e cuidar das pessoas.
