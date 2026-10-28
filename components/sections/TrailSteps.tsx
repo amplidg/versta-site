@@ -19,14 +19,12 @@ export function TrailSteps({ etapas, onDark = false }: { etapas: Etapa[]; onDark
   const c = onDark
     ? {
         trail: "var(--color-peach-100)",
-        line: "border-peach-100/70",
         marker: "border-peach-100 bg-offwhite text-green-900",
         title: "text-peach-100",
         body: "text-offwhite",
       }
     : {
         trail: "var(--color-caramel)",
-        line: "border-caramel",
         marker: "border-caramel bg-offwhite text-caramel-700",
         title: "text-navy",
         body: "text-ink-muted",
@@ -63,12 +61,24 @@ export function TrailSteps({ etapas, onDark = false }: { etapas: Etapa[]; onDark
             delay={i * 120}
             className="relative flex gap-5 lg:flex-col lg:items-start lg:gap-6 lg:text-left"
           >
-            {/* Trilha vertical (mobile) */}
+            {/* Trilha vertical (mobile): mesmo traço da trilha do desktop. Antes era uma
+                borda pontilhada, que o celular arredondava para menos de 1px e sumia. */}
             {i < etapas.length - 1 && (
-              <span
+              <svg
                 aria-hidden="true"
-                className={`absolute top-14 bottom-[-2.5rem] left-7 border-l-[1.5px] border-dotted lg:hidden ${c.line}`}
-              />
+                className="absolute top-14 bottom-[-2.5rem] left-7 h-[calc(100%-3.5rem+2.5rem)] w-px -translate-x-1/2 overflow-visible lg:hidden"
+              >
+                <line
+                  x1="0.5"
+                  y1="6"
+                  x2="0.5"
+                  y2="100%"
+                  stroke={c.trail}
+                  strokeWidth="1.5"
+                  strokeDasharray="2 9"
+                  strokeLinecap="round"
+                />
+              </svg>
             )}
             <span
               aria-hidden="true"
