@@ -91,7 +91,7 @@ export function TrailSteps({ etapas, onDark = false }: { etapas: Etapa[]; onDark
               <h3 className={`text-h3 ${c.title}`}>
                 <Texto>{etapa.titulo}</Texto>
               </h3>
-              <p className={`mt-3 ${c.body}`}>
+              <p className={`mt-3 max-lg:text-justify ${c.body}`}>
                 <Texto>{etapa.texto}</Texto>
               </p>
             </div>
