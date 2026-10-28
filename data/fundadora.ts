@@ -23,8 +23,9 @@ export const fundadora = {
   nome: "Vivian Prá Philippi",
 
   apresentacao: [
-    "[PREENCHER: parágrafo 1 sobre a trajetória]",
-    "[PREENCHER: parágrafo 2 sobre por que isso importa para o cliente]",
+    // textos fornecidos pelo Lucas (28/10) — só pontuação ajustada
+    "Empresária com mais de 20 anos de trajetória, Vivian Prá Philippi fundou a Semear Soluções Ambientais, consultoria que acompanha empresas na gestão ambiental, e, mais recentemente, criou a House Business Coworking. Ao longo desse caminho, conviveu de perto com empresas de diferentes setores e conheceu, na prática, os desafios que vão muito além de uma única área.",
+    "Foi dessa vivência que nasceu a Versta, ao perceber que muitas empresas enfrentam desafios de liderança, processos, comunicação e cultura, mas nem sempre sabem por onde começar nem a quem recorrer. A Versta vem para ser a ponte entre os desafios empresariais e suas soluções.",
   ],
 
   /**
