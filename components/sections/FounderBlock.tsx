@@ -180,11 +180,11 @@ export function FounderBlock() {
         <div className="mt-16 lg:mt-24">
           <h3 className="eyebrow text-center text-navy">Marcos da trajetória</h3>
           <InView className="trilha-marcos relative mt-10">
-            {/* linha tracejada: vertical e no centro no celular (passa por trás dos textos, que
-                têm o fundo do bloco), horizontal no computador */}
+            {/* linha tracejada horizontal (computador); no celular, cada marco tem o seu
+                trecho até o próximo (ver abaixo) */}
             <span
               aria-hidden="true"
-              className="trilha-linha absolute top-5 bottom-5 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-caramel lg:top-5 lg:right-[calc(50%/var(--n))] lg:bottom-auto lg:left-[calc(50%/var(--n))] lg:translate-x-0 lg:border-t-2 lg:border-l-0"
+              className="trilha-linha absolute top-5 right-[calc(50%/var(--n))] left-[calc(50%/var(--n))] hidden border-t-2 border-dashed border-caramel lg:block"
               style={{ "--n": marcos.length } as React.CSSProperties}
             />
             <ol
@@ -194,11 +194,18 @@ export function FounderBlock() {
               {marcos.map((m, i) => (
                 <li
                   key={`${i}-${m.descricao}`}
-                  className="trilha-marco flex flex-col items-center text-center lg:gap-4"
+                  className="trilha-marco relative flex flex-col items-center gap-2 text-center lg:gap-4"
                   style={{ "--i": i } as React.CSSProperties}
                 >
+                  {/* celular: trilha centralizada, do texto deste marco até a próxima pedra */}
+                  {i < ultimo && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-full left-1/2 h-9 -translate-x-1/2 border-l-2 border-dashed border-caramel lg:hidden"
+                    />
+                  )}
                   <Pedra atual={i === ultimo} />
-                  <div className="relative rounded-button bg-sage px-3 py-2 lg:bg-transparent lg:p-0">
+                  <div>
                     <p className="font-display text-xl font-bold text-navy">
                       <Texto>{m.ano}</Texto>
                     </p>
