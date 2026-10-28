@@ -110,8 +110,8 @@ export function BenefitLayers() {
           <li key={camada.id}>
             {/* faixa na cor do anel correspondente */}
             <span aria-hidden="true" className="block h-1.5 rounded-full" style={{ background: camada.cor }} />
-            <h3 className="mt-6 text-h3 text-navy">{camada.nome}</h3>
-            <p className="mt-1.5 font-display text-lg text-ink-muted italic">{camada.frase}</p>
+            <h3 className="mt-6 text-h3 text-navy max-lg:text-center">{camada.nome}</h3>
+            <p className="mt-1.5 font-display text-lg text-ink-muted italic max-lg:text-center">{camada.frase}</p>
             <ul className="mt-6 space-y-3.5">
               {camada.beneficios.map((b) => (
                 <li key={b} className="flex gap-3.5 text-ink">
