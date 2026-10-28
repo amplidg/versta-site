@@ -45,7 +45,7 @@ export function Sh2Highlight() {
             {/* no celular, em duas linhas: a fonte encolhe só o necessário para a 1ª linha caber */}
             A NR-1 mudou. Sua empresa<br className="lg:hidden" /> já está preparada?
           </h2>
-          <p className="mt-6 max-w-2xl text-lead text-offwhite/90 max-lg:text-justify">
+          <p className="mt-6 max-w-2xl text-lead text-offwhite/90">
             A NR-1 já exige que as empresas cuidem dos riscos psicossociais, com fiscalização e
             multas. O Programa SH2 une diagnóstico, saúde mental e ações contínuas para sua empresa
             cumprir a norma e cuidar das pessoas.
