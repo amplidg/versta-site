@@ -147,7 +147,7 @@ export function FounderBlock() {
               <Texto>{fundadora.nome}</Texto>
             </h2>
 
-            <div className="mt-7 space-y-4 text-lead text-navy max-lg:text-center">
+            <div className="mt-7 space-y-4 text-lead text-navy">
               {fundadora.apresentacao.map((p) => (
                 <p key={p}>
                   <Texto>{p}</Texto>
