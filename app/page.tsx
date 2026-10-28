@@ -61,6 +61,7 @@ export default function Home() {
               id="oque-titulo"
               eyebrow="Quem é a Versta"
               title="Um hub entre a sua empresa e as soluções que ela precisa"
+              align="center"
             />
           </Reveal>
           <Reveal from="fade" delay={100} className="mt-14">
@@ -112,6 +113,7 @@ export default function Home() {
               id="como-titulo"
               eyebrow="Como a metodologia se aplica"
               title="Do diagnóstico à evolução contínua"
+              align="center"
             />
           </Reveal>
           <div className="mt-16 lg:mt-20">
