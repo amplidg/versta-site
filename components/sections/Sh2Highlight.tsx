@@ -36,11 +36,12 @@ export function Sh2Highlight() {
 
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-14">
         <Reveal className="lg:col-span-7">
-          <p className="inline-block rounded-button bg-caramel-700 px-3.5 py-2 text-sm leading-snug font-semibold text-white">
+          {/* no celular/tablet: selo, linha pequena, título e botões centralizados (pedido do Lucas, 28/10) */}
+          <p className="w-fit rounded-button bg-caramel-700 max-lg:mx-auto max-lg:text-center px-3.5 py-2 text-sm leading-snug font-semibold text-white">
             NR-1 · Fiscalização dos riscos psicossociais em vigor desde maio de 2026
           </p>
-          <p className="eyebrow mt-7 text-peach-100">Programa SH2 · Ser Humano em Harmonia</p>
-          <h2 id="sh2-destaque-titulo" className="mt-4 text-h2 text-offwhite">
+          <p className="eyebrow mt-7 text-peach-100 max-lg:text-center">Programa SH2 · Ser Humano em Harmonia</p>
+          <h2 id="sh2-destaque-titulo" className="mt-4 text-h2 text-offwhite max-lg:text-center">
             A NR-1 mudou. Sua empresa já está preparada?
           </h2>
           <p className="mt-6 max-w-2xl text-lead text-offwhite/90">
@@ -61,7 +62,7 @@ export function Sh2Highlight() {
 
         <Reveal delay={150} className="flex flex-col gap-8 lg:col-span-5 lg:justify-between">
           <Sh2Checklist />
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 max-lg:justify-center">
             <Button href="/metodologia/sh2" variant="light" arrow>
               Conheça o Programa SH2
             </Button>
