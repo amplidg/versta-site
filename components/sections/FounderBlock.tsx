@@ -139,15 +139,15 @@ export function FounderBlock() {
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">
-            <p className="eyebrow flex items-center gap-3 text-navy">
+            <p className="eyebrow flex items-center gap-3 text-navy max-lg:justify-center">
               <span aria-hidden="true" className="h-px w-8 bg-caramel" />
               Quem conduz a Versta
             </p>
-            <h2 id="fundadora-titulo" className="mt-4 text-h2 text-navy">
+            <h2 id="fundadora-titulo" className="mt-4 text-h2 text-navy max-lg:text-center">
               <Texto>{fundadora.nome}</Texto>
             </h2>
 
-            <div className="mt-7 space-y-4 text-lead text-navy">
+            <div className="mt-7 space-y-4 text-lead text-navy max-lg:text-center">
               {fundadora.apresentacao.map((p) => (
                 <p key={p}>
                   <Texto>{p}</Texto>
