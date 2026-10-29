@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# QR Codes do evento (uso temporário; não publicar)
+/qrcode-evento/
