@@ -65,7 +65,7 @@ export default function ConsultoriaPage() {
             />
           </Reveal>
           <div className="mt-14">
-            <FrentesGrid ancoras />
+            <FrentesGrid />
           </div>
         </Container>
       </Section>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useState, type CSSProperties } from "react";
 import { InView } from "@/components/motion/InView";
 import { H_DOG_PATH } from "@/components/brand/logoPaths";
@@ -8,8 +9,8 @@ import { frentes, type Frente } from "@/data/frentes";
 /*
  * Diagrama do hub (topo da página Soluções, pedido do Lucas em 29/10):
  * o diagnóstico no centro e as dez frentes em órbita, cada uma ligada a ele
- * por uma linha tracejada. Cada frente é um link para o card dela, mais
- * abaixo na mesma página (#semear, #esg…).
+ * por uma linha tracejada. Cada frente é um link para a página dela
+ * (/consultoria/semear…), como os cards.
  *
  * No computador/tablet: círculo. No celular (< 768px): selo "Diagnóstico" e
  * grade de 2 colunas com os mesmos links.
@@ -152,8 +153,8 @@ export function HubDiagram() {
                 }}
               >
                 <div className="hub-no" style={{ "--i": i } as CSSProperties}>
-                  <a
-                    href={`#${f.slug}`}
+                  <Link
+                    href={`/consultoria/${f.slug}`}
                     onMouseEnter={() => setAtivo(i)}
                     onMouseLeave={() => setAtivo(null)}
                     onFocus={() => setAtivo(i)}
@@ -182,7 +183,7 @@ export function HubDiagram() {
                       <span aria-hidden="true">{f.nome} · </span>
                       {rotulos[f.slug] ?? f.area}
                     </span>
-                  </a>
+                  </Link>
                 </div>
               </li>
             );
@@ -200,15 +201,15 @@ export function HubDiagram() {
         <ul className="grid grid-cols-2 gap-3">
           {frentes.map((f, i) => (
             <li key={f.slug}>
-              <a
-                href={`#${f.slug}`}
+              <Link
+                href={`/consultoria/${f.slug}`}
                 className="relative isolate flex h-full flex-col items-start gap-2 rounded-card p-4 text-navy"
               >
                 <Mancha id={id} i={i} retangular className="absolute inset-0 -z-10 size-full" />
                 <Icone frente={f} className="size-6" />
                 <span className="font-display text-lg leading-tight font-bold">{f.nome}</span>
                 <span className="text-sm leading-snug">{rotulos[f.slug] ?? f.area}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
