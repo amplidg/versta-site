@@ -60,7 +60,7 @@ export default function ConsultoriaPage() {
             <SectionHeading
               id="frentes-titulo"
               eyebrow="As frentes"
-              title="Dez frentes de consultoria"
+              title="Dez frentes de soluções"
               lead="Cada frente reúne soluções especializadas para uma área da empresa. Escolha uma para saber mais."
             />
           </Reveal>
