@@ -11,7 +11,7 @@ import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Consultoria",
+  title: "Soluções",
   description:
     "Dez frentes de consultoria, da consultoria ambiental à assessoria financeira. A Versta diagnostica sua empresa e conecta cada área à solução especializada certa.",
   path: "/consultoria",
@@ -21,8 +21,8 @@ export default function ConsultoriaPage() {
   return (
     <>
       <PageHero
-        eyebrow="Consultoria"
-        title="Um diagnóstico, dez caminhos possíveis"
+        eyebrow="Soluções"
+        title="Um diagnóstico, dez soluções possíveis"
         lead="A Versta funciona como um hub: analisa a empresa, aponta as áreas que precisam se desenvolver e conecta cada uma à solução especializada do seu ecossistema de parceiros."
         imagem="areasAtuacao"
       >
