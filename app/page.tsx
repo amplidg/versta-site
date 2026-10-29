@@ -30,6 +30,13 @@ export const metadata: Metadata = {
   title: { absolute: `${site.name} | ${site.tagline}` },
 };
 
+/**
+ * Depoimentos e cartela de clientes: escondidos por enquanto (pedido do Lucas,
+ * 29/10, para mostrar o site num evento — o conteúdo ainda não está pronto).
+ * Para voltar, é só trocar para true. Versão de antes no git: tag antes-do-evento.
+ */
+const MOSTRAR_DEPOIMENTOS = false;
+
 export default function Home() {
   return (
     <>
@@ -159,7 +166,7 @@ export default function Home() {
       <FounderBlock />
 
       {/* DEPOIMENTOS + CARTELA DE CLIENTES (conteúdo em data/depoimentos.ts) */}
-      <TestimonialsBlock />
+      {MOSTRAR_DEPOIMENTOS && <TestimonialsBlock />}
 
       {/* CTA FINAL — em azul claro (pedido do Lucas, 15/10) */}
       <CtaBanner tone="mist-strong" title="Vamos entender os próximos passos da sua empresa?" />
