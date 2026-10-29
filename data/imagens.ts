@@ -90,14 +90,6 @@ export const imagens = {
   },
 
   /* ---------- Ainda pendentes (placeholders) ---------- */
-  semearHero: {
-    // hero da página da Semear; quando o arquivo existir, mudar pronta para true
-    arquivo: "/images/semear-hero.webp",
-    alt: "Ilustração em aquarela de uma empresa integrada à natureza, com árvores, rio e mudas brotando",
-    descricao: "Empresa integrada à natureza: árvores, rio e mudas brotando",
-    tom: "floresta",
-    pronta: false,
-  },
   houseCoworking: {
     arquivo: "/images/sh2-house-coworking.webp",
     alt: "Ambiente da House Coworking",

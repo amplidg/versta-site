@@ -14,9 +14,9 @@ import {
   Sprout,
 } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
+import { FrenteEmblema } from "@/components/sections/FrenteEmblema";
 import { SemearSinais } from "@/components/sections/semear/SemearSinais";
 import { Button } from "@/components/ui/Button";
-import { Illustration } from "@/components/ui/Illustration";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { pageMetadata } from "@/lib/seo";
@@ -92,23 +92,9 @@ const custos: { titulo: string; texto: string; icone: LucideIcon }[] = [
 export default function SemearPage() {
   return (
     <>
-      {/* HERO — mesmo desenho do topo do Programa SH2: ilustração sem moldura,
-          com as bordas dissolvidas (classe hero-dissolve, em globals.css) */}
+      {/* HERO — texto à esquerda; à direita, o emblema da frente (no celular, em cima) */}
       <section aria-labelledby="page-title" className="relative isolate overflow-hidden">
-        <div className="hero-dissolve relative h-[300px] w-full overflow-hidden md:absolute md:inset-y-0 md:right-0 md:h-auto md:w-[52vw] lg:w-[56vw]">
-          {/* recuo de 6px nas bordas que se dissolvem (evita um fio de 1px na borda da máscara) */}
-          <div className="absolute inset-x-0 inset-y-1.5 md:left-1.5">
-            <Illustration
-              imagem="semearHero"
-              priority
-              legenda={false}
-              sizes="(min-width: 1024px) 56vw, (min-width: 768px) 52vw, 100vw"
-              className="size-full"
-            />
-          </div>
-        </div>
-
-        <Container className="relative z-10 grid pt-2 pb-16 md:grid-cols-12 md:pt-14 md:pb-24 lg:min-h-[40rem] lg:items-center">
+        <Container className="grid items-center gap-6 pt-6 pb-16 md:grid-cols-12 md:gap-8 md:pt-14 md:pb-24 lg:min-h-[40rem]">
           <Reveal className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
             <nav aria-label="Trilha de navegação" className="mb-6">
               <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted">
@@ -150,6 +136,16 @@ export default function SemearPage() {
               </Button>
             </div>
           </Reveal>
+          {/* depois do texto no código (leitores de tela leem o título antes);
+              no celular, aparece em cima */}
+          <div className="order-first flex justify-center md:order-none md:col-span-5 lg:col-span-6">
+            <FrenteEmblema
+              icon={Sprout}
+              color={["var(--color-sage)", "var(--color-mint)"]}
+              slug="semear"
+              className="w-[180px] md:w-full md:max-w-[22rem] lg:max-w-[30rem]"
+            />
+          </div>
         </Container>
       </section>
 
