@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
+import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FrentesGrid } from "@/components/sections/FrentesGrid";
 import { PageHero } from "@/components/sections/PageHero";
@@ -7,6 +8,7 @@ import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { etapasMetodologia } from "@/data/metodologia";
 import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
@@ -34,37 +36,21 @@ export default function ConsultoriaPage() {
         </Button>
       </PageHero>
 
-      <Section tone="peach" aria-labelledby="modelo-titulo">
+      {/* COMO A METODOLOGIA SE APLICA — mesmo bloco da Home (substituiu a trilha "O modelo", 29/10) */}
+      <Section id="como-funciona" tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
+        <ArrowsBackdrop />
         <Container>
           <Reveal>
             <SectionHeading
-              id="modelo-titulo"
-              eyebrow="O modelo"
-              title="Quem chega com um problema sai com um caminho"
-              lead="Nem sempre está claro por onde começar. Por isso, o trabalho parte sempre de um diagnóstico."
+              onDark
+              id="como-titulo"
+              eyebrow="Como a metodologia se aplica"
+              title="Do diagnóstico à evolução contínua"
+              align="center"
             />
           </Reveal>
-          <div className="mt-16">
-            <TrailSteps
-              etapas={[
-                {
-                  titulo: "A empresa chega",
-                  texto: "Com um problema, uma dúvida ou a vontade de crescer.",
-                },
-                {
-                  titulo: "A Versta analisa",
-                  texto: "Diagnostica a empresa e identifica as dores e as áreas a desenvolver.",
-                },
-                {
-                  titulo: "Aponta o caminho",
-                  texto: "Indica quais frentes respondem a cada necessidade.",
-                },
-                {
-                  titulo: "Conecta com quem resolve",
-                  texto: "Aproxima a empresa das soluções especializadas do ecossistema.",
-                },
-              ]}
-            />
+          <div className="mt-16 lg:mt-20">
+            <TrailSteps etapas={etapasMetodologia} onDark />
           </div>
         </Container>
       </Section>
