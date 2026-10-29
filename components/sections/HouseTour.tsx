@@ -58,11 +58,11 @@ export function HouseTour() {
         <Reveal className="lg:col-span-5">
           <SectionHeading
             id="house-titulo"
-            eyebrow="A House Coworking"
+            eyebrow="A House Business Coworking"
             title="Um espaço preparado para cuidar das pessoas"
           />
           <p className="mt-6 text-lead text-ink-muted">
-            Parte das atividades do Programa SH2 acontece na House Coworking, um espaço acolhedor
+            Parte das atividades do Programa SH2 acontece na House Business Coworking, um espaço acolhedor
             fora da rotina da empresa, com salas privativas, equipamentos e ambientes preparados
             para cuidar das pessoas e reunir equipes.
           </p>
