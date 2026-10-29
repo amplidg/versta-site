@@ -531,3 +531,19 @@
     transform: scale(2.4);
   }
 }
+
+/* Bloco da House Coworking (SH2): linha que se enche no cartão do grupo que
+   está aparecendo; quando termina, as fotos trocam (HouseTour.tsx). Fica fora
+   do bloco de movimento reduzido de propósito: é ela que marca o tempo da
+   troca; com movimento reduzido, a linha só fica invisível. */
+.house-progresso {
+  animation: house-progresso 8s linear both;
+}
+@keyframes house-progresso {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

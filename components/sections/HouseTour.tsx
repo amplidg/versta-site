@@ -1,10 +1,9 @@
 "use client";
 
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { useId, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Armchair, CalendarClock, DoorClosed, MonitorSmartphone, PartyPopper } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { fotosHouse, type FotoHouse, type GrupoHouse } from "@/data/house";
@@ -12,15 +11,17 @@ import { asset } from "@/lib/paths";
 
 /*
  * Bloco "A House Coworking" da página do Programa SH2 (especificação do
- * Lucas, 29/10): um pequeno tour pelo espaço. À esquerda, texto, abas e
- * recursos; à direita, mosaico com as fotos da aba ativa (troca em crossfade).
+ * Lucas, 29/10): um pequeno tour pelo espaço. À esquerda, texto, os dois usos
+ * do espaço e recursos; à direita, mosaico de fotos.
+ *
+ * Os mosaicos dos dois grupos se revezam sozinhos a cada 8 s, em loop, com
+ * troca suave (o Lucas preferiu isso às abas clicáveis, 29/10). O cartão do
+ * grupo que está aparecendo fica destacado, com uma linha que se enche até a
+ * próxima troca. Com o mouse sobre as fotos, o revezamento pausa.
  * As fotos, legendas e a ordem ficam em data/house.ts.
  */
 
-/** Site da House Coworking (abre em nova aba). Trocar quando houver o endereço. */
-const HOUSE_URL = "#";
-
-const abas: { grupo: GrupoHouse; titulo: string; texto: string }[] = [
+const grupos: { grupo: GrupoHouse; titulo: string; texto: string }[] = [
   {
     grupo: "colaboradores",
     titulo: "Para os colaboradores",
@@ -43,32 +44,17 @@ const recursos: { texto: string; icone: LucideIcon }[] = [
 
 export function HouseTour() {
   const id = useId().replace(/:/g, "");
-  const [ativa, setAtiva] = useState(0);
-  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const [ativo, setAtivo] = useState(0);
+  const [pausado, setPausado] = useState(false);
 
-  // setas, Home e End trocam de aba (padrão de abas acessíveis)
-  function teclado(e: KeyboardEvent<HTMLButtonElement>) {
-    const ultimo = abas.length - 1;
-    const destino =
-      e.key === "ArrowRight" || e.key === "ArrowDown"
-        ? ativa === ultimo ? 0 : ativa + 1
-        : e.key === "ArrowLeft" || e.key === "ArrowUp"
-          ? ativa === 0 ? ultimo : ativa - 1
-          : e.key === "Home"
-            ? 0
-            : e.key === "End"
-              ? ultimo
-              : null;
-    if (destino === null) return;
-    e.preventDefault();
-    setAtiva(destino);
-    tabsRef.current[destino]?.focus();
-  }
+  // a troca acontece quando a linha de progresso do cartão ativo termina
+  // (animação de 8 s em globals.css); assim a pausa vale para os dois
+  const avancar = () => setAtivo((a) => (a + 1) % grupos.length);
 
   return (
     <Section tone="peach" aria-labelledby="house-titulo" className="overflow-hidden">
       <Container className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
-        {/* TEXTO, ABAS E RECURSOS */}
+        {/* TEXTO, USOS E RECURSOS */}
         <Reveal className="lg:col-span-5">
           <SectionHeading
             id="house-titulo"
@@ -81,37 +67,37 @@ export function HouseTour() {
             para cuidar das pessoas e reunir equipes.
           </p>
 
-          <div role="tablist" aria-label="Usos da House Coworking" className="mt-8 grid gap-3 sm:grid-cols-2">
-            {abas.map((aba, i) => {
-              const selecionada = i === ativa;
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {grupos.map((g, i) => {
+              const destacado = i === ativo;
               return (
-                <button
-                  key={aba.grupo}
-                  ref={(el) => {
-                    tabsRef.current[i] = el;
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`${id}-aba-${aba.grupo}`}
-                  aria-selected={selecionada}
-                  aria-controls={`${id}-painel-${aba.grupo}`}
-                  tabIndex={selecionada ? 0 : -1}
-                  onClick={() => setAtiva(i)}
-                  onKeyDown={teclado}
-                  className={`flex flex-col justify-start rounded-card border px-4 py-3.5 text-left transition-colors duration-300 ease-[var(--ease-calm)] ${
-                    selecionada
-                      ? "border-navy bg-navy text-offwhite"
-                      : "border-navy/35 text-navy hover:border-navy hover:bg-navy/5"
+                <li
+                  key={g.grupo}
+                  className={`relative overflow-hidden rounded-card border px-4 py-3.5 transition-colors duration-700 ease-[var(--ease-calm)] ${
+                    destacado ? "border-navy bg-navy text-offwhite" : "border-navy/35 text-navy"
                   }`}
                 >
-                  <span className="block font-semibold">{aba.titulo}</span>
-                  <span className={`mt-1 block text-sm leading-snug ${selecionada ? "text-offwhite/85" : "text-ink-muted"}`}>
-                    {aba.texto}
+                  <span className="block font-semibold">{g.titulo}</span>
+                  <span
+                    className={`mt-1 block text-sm leading-snug transition-colors duration-700 ${
+                      destacado ? "text-offwhite/85" : "text-ink-muted"
+                    }`}
+                  >
+                    {g.texto}
                   </span>
-                </button>
+                  {destacado && (
+                    <span
+                      key={ativo}
+                      aria-hidden="true"
+                      onAnimationEnd={avancar}
+                      className="house-progresso absolute inset-x-0 bottom-0 h-[3px] origin-left bg-peach-200 motion-reduce:opacity-0"
+                      style={{ animationPlayState: pausado ? "paused" : "running" }}
+                    />
+                  )}
+                </li>
               );
             })}
-          </div>
+          </ul>
 
           <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-navy">
             {recursos.map(({ texto, icone: Icone }) => (
@@ -121,34 +107,29 @@ export function HouseTour() {
               </li>
             ))}
           </ul>
-
-          <div className="mt-9">
-            <Button href={HOUSE_URL} variant="outline" target="_blank" rel="noopener noreferrer">
-              Conhecer a House
-              <span className="sr-only"> (abre em nova aba)</span>
-            </Button>
-          </div>
         </Reveal>
 
         {/* MOSAICO DE FOTOS */}
         <Reveal from="fade" delay={150} className="relative lg:col-span-7">
           <ManchaAquarela id={id} />
-          <div className="relative grid aspect-[4/5] sm:aspect-[6/5] lg:aspect-square">
-            {abas.map((aba, i) => {
-              const selecionada = i === ativa;
+          <div
+            className="relative grid aspect-[4/5] sm:aspect-[6/5] lg:aspect-square"
+            onMouseEnter={() => setPausado(true)}
+            onMouseLeave={() => setPausado(false)}
+          >
+            {grupos.map((g, i) => {
+              const visivel = i === ativo;
               return (
                 <div
-                  key={aba.grupo}
-                  role="tabpanel"
-                  id={`${id}-painel-${aba.grupo}`}
-                  aria-labelledby={`${id}-aba-${aba.grupo}`}
-                  inert={!selecionada}
-                  className={`grid grid-cols-[1.2fr_1fr] auto-rows-fr gap-2.5 transition-opacity duration-[400ms] ease-[var(--ease-calm)] [grid-area:1/1] motion-reduce:transition-none sm:gap-3 ${
-                    selecionada ? "opacity-100" : "opacity-0"
+                  key={g.grupo}
+                  role="group"
+                  aria-label={`Fotos da House Coworking: ${g.titulo.toLowerCase()}`}
+                  className={`grid grid-cols-[1.2fr_1fr] auto-rows-fr gap-2.5 transition-opacity duration-1000 ease-[var(--ease-calm)] [grid-area:1/1] motion-reduce:transition-none sm:gap-3 ${
+                    visivel ? "z-10 opacity-100" : "opacity-0"
                   }`}
                 >
                   {fotosHouse
-                    .filter((f) => f.grupo === aba.grupo)
+                    .filter((f) => f.grupo === g.grupo)
                     .map((f) => (
                       <Foto key={f.arquivo} foto={f} />
                     ))}
