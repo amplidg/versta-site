@@ -314,34 +314,6 @@ export default function Sh2Page() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
         />
       </Section>
-
-      {/* ALÉM DO Programa SH2 */}
-      <Section tone="peach" aria-labelledby="alem-titulo">
-        <Container>
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <SectionHeading
-              id="alem-titulo"
-              eyebrow="Além do Programa SH2"
-              title="O começo de um caminho maior"
-              align="center"
-            />
-            <p className="mt-6 text-lead text-ink-muted">
-              O diagnóstico do Programa SH2 revela muito sobre a empresa. Muitas vezes, ele mostra outras
-              áreas que também precisam evoluir, como a liderança, a cultura, a comunicação, a
-              gestão de conflitos ou a segurança jurídica. Nesses casos, a Versta conecta a empresa
-              às soluções certas para cada desafio, com o mesmo cuidado e a mesma condução.
-            </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <Button href="/consultoria" variant="primary" arrow>
-                Conheça nossas soluções
-              </Button>
-              <Button href={ctaDiagnostico.href} variant="outline">
-                {ctaDiagnostico.label}
-              </Button>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
     </>
   );
 }
