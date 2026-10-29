@@ -13,15 +13,12 @@ import {
   Plus,
 } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { HouseTour } from "@/components/sections/HouseTour";
 import { Sh2Hero } from "@/components/sections/sh2-hero/Sh2Hero";
-import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { etapasMetodologia } from "@/data/metodologia";
 import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
@@ -254,24 +251,6 @@ export default function Sh2Page() {
 
       {/* A HOUSE COWORKING */}
       <HouseTour />
-
-      {/* COMO FUNCIONA */}
-      <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
-        <ArrowsBackdrop />
-        <Container>
-          <Reveal>
-            <SectionHeading
-              onDark
-              id="como-titulo"
-              eyebrow="Como funciona"
-              title="Como o Programa SH2 chega até a sua empresa"
-            />
-          </Reveal>
-          <div className="mt-16 lg:mt-20">
-            <TrailSteps etapas={etapasMetodologia} onDark />
-          </div>
-        </Container>
-      </Section>
 
       {/* RESULTADOS */}
       <Section aria-labelledby="resultados-titulo">
