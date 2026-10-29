@@ -40,13 +40,12 @@ const enquadramento = {
 const atraso = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
 type Props = {
-  breadcrumb: ReactNode;
   lead: string;
   /** Botões (primário e secundário). */
   children: ReactNode;
 };
 
-export function Sh2Hero({ breadcrumb, lead, children }: Props) {
+export function Sh2Hero({ lead, children }: Props) {
   const img = imagens.sh2Hero;
   return (
     <section aria-labelledby="page-title" className="relative isolate overflow-hidden">
@@ -73,10 +72,6 @@ export function Sh2Hero({ breadcrumb, lead, children }: Props) {
 
       <div className="container-site relative z-10 grid pt-2 pb-16 md:grid-cols-12 md:pt-14 md:pb-24 lg:min-h-[44rem] lg:items-center">
         <div className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
-          <div className="sh2-hero-entra" style={atraso(0)}>
-            {breadcrumb}
-          </div>
-
           {/* selo de urgência da NR-1 */}
           <p
             className="sh2-hero-entra mb-6 inline-flex items-center gap-2.5 rounded-[1.25rem] bg-peach-100 px-4 py-1.5 text-sm font-semibold text-navy max-md:gap-2 max-md:px-3 max-md:text-[0.78rem]"

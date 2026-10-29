@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   Apple,
@@ -7,7 +6,6 @@ import {
   Brain,
   Building2,
   Check,
-  ChevronRight,
   ClipboardCheck,
   Flower2,
   HeartHandshake,
@@ -182,15 +180,6 @@ export default function Sh2Page() {
     <>
       {/* HERO */}
       <Sh2Hero
-        breadcrumb={
-          <nav aria-label="Você está em" className="mb-6 flex items-center gap-1.5 text-sm text-ink-muted">
-            <Link href="/metodologia" className="underline-offset-4 hover:underline">
-              Metodologia
-            </Link>
-            <ChevronRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
-            <span aria-current="page">Programa SH2</span>
-          </nav>
-        }
         lead="Um programa completo que une diagnóstico, cuidado com a saúde mental e bem-estar no dia a dia, para que sua empresa cuide das pessoas e esteja preparada para a NR-1."
       >
         <Button href={ctaDiagnostico.href} variant="primary" arrow>
