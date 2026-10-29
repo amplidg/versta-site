@@ -15,8 +15,8 @@ import {
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { HouseTour } from "@/components/sections/HouseTour";
 import { Sh2Hero } from "@/components/sections/sh2-hero/Sh2Hero";
-import { SplitFeature } from "@/components/sections/SplitFeature";
 import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
@@ -253,16 +253,7 @@ export default function Sh2Page() {
       </Section>
 
       {/* A HOUSE COWORKING */}
-      <SplitFeature
-        id="house-titulo"
-        eyebrow="A House Coworking"
-        title="Um espaço preparado para cuidar das pessoas"
-        paragrafos={[
-          "Parte das atividades do Programa SH2 acontece na House Coworking, um espaço com salas privativas, equipamentos e ambientes preparados para atendimentos, práticas, treinamentos e encontros. Assim, os colaboradores têm um lugar acolhedor, fora da rotina da empresa, para cuidar de si. Os atendimentos são agendados com hora marcada, e várias atividades também podem ser feitas online.",
-        ]}
-        imagem="houseCoworking"
-        tone="mist"
-      />
+      <HouseTour />
 
       {/* COMO FUNCIONA */}
       <Section tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
