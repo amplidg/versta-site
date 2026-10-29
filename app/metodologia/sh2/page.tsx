@@ -17,7 +17,7 @@ import {
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
-import { PageHero } from "@/components/sections/PageHero";
+import { Sh2Hero } from "@/components/sections/sh2-hero/Sh2Hero";
 import { SplitFeature } from "@/components/sections/SplitFeature";
 import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
@@ -181,8 +181,8 @@ export default function Sh2Page() {
   return (
     <>
       {/* HERO */}
-      <PageHero
-        top={
+      <Sh2Hero
+        breadcrumb={
           <nav aria-label="Você está em" className="mb-6 flex items-center gap-1.5 text-sm text-ink-muted">
             <Link href="/metodologia" className="underline-offset-4 hover:underline">
               Metodologia
@@ -191,11 +191,7 @@ export default function Sh2Page() {
             <span aria-current="page">Programa SH2</span>
           </nav>
         }
-        eyebrow="Programa SH2"
-        title="Programa de saúde mental para empresas e adequação à NR-1"
-        headline="Programa SH2: Ser Humano em Harmonia"
         lead="Um programa completo que une diagnóstico, cuidado com a saúde mental e bem-estar no dia a dia, para que sua empresa cuide das pessoas e esteja preparada para a NR-1."
-        imagem="sh2Hero"
       >
         <Button href={ctaDiagnostico.href} variant="primary" arrow>
           {ctaDiagnostico.label}
@@ -203,7 +199,7 @@ export default function Sh2Page() {
         <Button href="#incluido" variant="outline">
           Ver o que está incluído
         </Button>
-      </PageHero>
+      </Sh2Hero>
 
       {/* O QUE É O Programa SH2 */}
       <Section tone="peach" aria-labelledby="oque-titulo">

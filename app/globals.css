@@ -467,3 +467,67 @@
     transform: none;
   }
 }
+
+/* Hero do Programa SH2: a ilustração se dissolve no fundo como aquarela no
+   papel (sem moldura). No celular, a borda de baixo se dissolve no texto (e a
+   de cima, de leve, no cabeçalho); a partir do tablet, a esquerda (mais
+   longa), a de cima e a de baixo. */
+.sh2-hero-midia {
+  /* sem repetir: com largura fracionada, a cópia vizinha deixava um fio na borda */
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 58%, transparent 100%);
+}
+@media (min-width: 48rem) {
+  .sh2-hero-midia {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 30%),
+      linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 30%),
+      linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+  }
+}
+
+/* Entrada no carregamento: a imagem surge devagar, com leve aproximação; o
+   texto entra em sequência. Com movimento reduzido, tudo já aparece pronto. */
+@media (prefers-reduced-motion: no-preference) {
+  .sh2-hero-img {
+    animation: sh2-hero-img 1200ms var(--ease-calm) both;
+  }
+  .sh2-hero-entra {
+    animation: sh2-hero-entra 800ms var(--ease-calm) both;
+    animation-delay: var(--d, 0ms);
+  }
+  .sh2-pulso {
+    animation: sh2-pulso 2s ease-in-out infinite;
+  }
+}
+@keyframes sh2-hero-img {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+}
+@keyframes sh2-hero-entra {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes sh2-pulso {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}

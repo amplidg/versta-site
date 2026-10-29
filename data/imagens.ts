@@ -80,14 +80,16 @@ export const imagens = {
     posicao: "center 70%",
   },
 
-  /* ---------- Ainda pendentes (placeholders) ---------- */
   sh2Hero: {
-    arquivo: "/images/sh2-hero-pessoas.webp",
-    alt: "Cena em aquarela de pessoas em conversa acolhedora",
-    descricao: "Cena humana em aquarela: pessoas, harmonia, acolhimento",
-    tom: "pessego",
-    pronta: false,
+    // hero da página do Programa SH2 (29/10); enquadramento em Sh2Hero.tsx
+    arquivo: "/images/sh2-hero-mulher-cao.webp",
+    alt: "Ilustração em aquarela de uma mulher e seu cão sentados no alto de uma montanha, olhando o horizonte ao amanhecer",
+    descricao: "Mulher e labrador no alto de uma montanha, em aquarela",
+    tom: "amanhecer",
+    pronta: true,
   },
+
+  /* ---------- Ainda pendentes (placeholders) ---------- */
   houseCoworking: {
     arquivo: "/images/sh2-house-coworking.webp",
     alt: "Ambiente da House Coworking",
