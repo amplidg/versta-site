@@ -190,34 +190,9 @@ export default function Sh2Page() {
         </Button>
       </Sh2Hero>
 
-      {/* O QUE É O Programa SH2 */}
-      <Section tone="peach" aria-labelledby="oque-titulo">
-        <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <SectionHeading
-              id="oque-titulo"
-              eyebrow="O que é o Programa SH2"
-              title="Tudo o que sua empresa precisa, reunido em um só lugar"
-            />
-          </Reveal>
-          <Reveal delay={120} className="space-y-5 text-lead text-ink-muted lg:col-span-7">
-            <p>
-              O Programa SH2 é o programa da Versta para empresas que querem cuidar da saúde mental dos
-              colaboradores com seriedade. Em vez de contratar e coordenar vários profissionais
-              separadamente, a empresa conta com uma única condução, que começa pelo diagnóstico
-              dos riscos psicossociais e se estende às ações que fazem diferença no dia a dia de
-              quem trabalha.
-            </p>
-            <p>
-              Tudo é organizado pela Versta: os profissionais, os espaços, os horários e o
-              acompanhamento.
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
-
       {/* O QUE ESTÁ DENTRO DO Programa SH2 */}
-      <Section id="incluido" aria-labelledby="incluido-titulo">
+      {/* mesmo fundo do topo: sem o respiro de cima, para não sobrar um vão */}
+      <Section id="incluido" aria-labelledby="incluido-titulo" className="pt-4 md:pt-6">
         <Container>
           <Reveal>
             <SectionHeading
