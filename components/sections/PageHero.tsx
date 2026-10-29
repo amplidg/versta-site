@@ -13,14 +13,16 @@ type Props = {
    */
   headline?: string;
   lead?: string;
-  imagem: ImagemKey;
+  imagem?: ImagemKey;
+  /** Conteúdo da coluna da direita no lugar da ilustração (ex.: diagrama do hub). */
+  aside?: ReactNode;
   children?: ReactNode;
   /** Conteúdo acima do eyebrow (ex.: breadcrumb). */
   top?: ReactNode;
 };
 
 /** Topo das páginas internas: texto à esquerda, ilustração à direita. */
-export function PageHero({ eyebrow, title, headline, lead, imagem, children, top }: Props) {
+export function PageHero({ eyebrow, title, headline, lead, imagem, aside, children, top }: Props) {
   return (
     <section aria-labelledby="page-title" className="pt-8 pb-16 md:pt-14 md:pb-24">
       <div className="container-site grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
@@ -55,12 +57,15 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, children, top
           {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
         </Reveal>
         <Reveal from="fade" delay={150} className="lg:col-span-6">
-          <Illustration
-            imagem={imagem}
-            priority
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="aspect-[16/10] w-full rounded-card"
-          />
+          {aside ??
+            (imagem && (
+              <Illustration
+                imagem={imagem}
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="aspect-[16/10] w-full rounded-card"
+              />
+            ))}
         </Reveal>
       </div>
     </section>

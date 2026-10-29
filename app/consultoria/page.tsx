@@ -3,6 +3,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FrentesGrid } from "@/components/sections/FrentesGrid";
+import { HubDiagram } from "@/components/sections/HubDiagram";
 import { PageHero } from "@/components/sections/PageHero";
 import { TrailSteps } from "@/components/sections/TrailSteps";
 import { Button } from "@/components/ui/Button";
@@ -26,13 +27,11 @@ export default function ConsultoriaPage() {
         eyebrow="Soluções"
         title="Um diagnóstico, dez soluções possíveis"
         lead="A Versta funciona como um hub: analisa a empresa, aponta as áreas que precisam se desenvolver e conecta cada uma à solução especializada do seu ecossistema de parceiros."
-        imagem="areasAtuacao"
+        // diagrama do hub no lugar da ilustração, que desceu para o bloco final (29/10)
+        aside={<HubDiagram />}
       >
         <Button href={ctaDiagnostico.href} variant="primary" arrow>
           {ctaDiagnostico.label}
-        </Button>
-        <Button href="#frentes" variant="outline">
-          Ver as frentes
         </Button>
       </PageHero>
 
@@ -66,12 +65,14 @@ export default function ConsultoriaPage() {
             />
           </Reveal>
           <div className="mt-14">
-            <FrentesGrid />
+            <FrentesGrid ancoras />
           </div>
         </Container>
       </Section>
 
+      {/* ilustração das áreas de atuação: saiu do topo da página em 29/10 */}
       <CtaBanner
+        imagem="areasAtuacao"
         title="Não sabe por qual frente começar?"
         text="É para isso que existe o diagnóstico. Ele mostra quais áreas precisam de atenção e qual caminho seguir."
       />

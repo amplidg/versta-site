@@ -441,3 +441,29 @@
     transform: translateX(24px);
   }
 }
+
+/* Diagrama do hub (página Soluções): ao entrar na tela (<InView>), as linhas
+   se desenham do centro para fora e as frentes aparecem uma a uma. Sem
+   JavaScript ou com movimento reduzido, tudo já aparece pronto. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .hub .hub-revelar {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 800ms var(--ease-calm);
+  }
+  .hub[data-inview] .hub-revelar {
+    stroke-dashoffset: 0;
+  }
+  .hub .hub-no {
+    opacity: 0;
+    transform: scale(0.9);
+    transition:
+      opacity 500ms var(--ease-calm),
+      transform 500ms var(--ease-calm);
+    transition-delay: calc(300ms + var(--i, 0) * 80ms);
+  }
+  .hub[data-inview] .hub-no {
+    opacity: 1;
+    transform: none;
+  }
+}
