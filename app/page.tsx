@@ -37,6 +37,13 @@ export const metadata: Metadata = {
  */
 const MOSTRAR_DEPOIMENTOS = false;
 
+/**
+ * Bloco da fundadora ("Quem conduz a Versta", com números e marcos):
+ * escondido por enquanto (pedido do Lucas, 29/10). Para voltar, trocar para
+ * true. Versão de antes no git: tag antes-de-esconder-fundadora.
+ */
+const MOSTRAR_FUNDADORA = false;
+
 export default function Home() {
   return (
     <>
@@ -163,7 +170,7 @@ export default function Home() {
       </Section>
 
       {/* QUEM CONDUZ A VERSTA — fundadora (conteúdo em data/fundadora.ts) */}
-      <FounderBlock />
+      {MOSTRAR_FUNDADORA && <FounderBlock />}
 
       {/* DEPOIMENTOS + CARTELA DE CLIENTES (conteúdo em data/depoimentos.ts) */}
       {MOSTRAR_DEPOIMENTOS && <TestimonialsBlock />}
