@@ -119,7 +119,8 @@ export default function EsgPage() {
       </Section>
 
       {/* SINAIS DE ALERTA */}
-      <Section tone="mint" aria-labelledby="sinais-titulo">
+      {/* azul claro da marca (pedido do Lucas, 03/11) */}
+      <Section tone="mist" aria-labelledby="sinais-titulo">
         <Container>
           <Reveal>
             <SectionHeading
