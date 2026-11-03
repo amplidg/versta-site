@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { AppWindow, ChartColumnIncreasing, Network, RefreshCw, ScanSearch, SlidersHorizontal, Sparkles, UserCheck, Workflow } from "lucide-react";
+import { Network, SlidersHorizontal, UserCheck, Workflow } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
 import { MotivosLista, type Motivo } from "@/components/sections/frente/MotivosLista";
-import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
 import { SinaisAlerta } from "@/components/sections/frente/SinaisAlerta";
 import { InovaComparador } from "@/components/sections/inova/InovaComparador";
 import { Container, Section } from "@/components/ui/Section";
@@ -31,39 +30,6 @@ const sinais = [
   "Há retrabalho frequente ou informações que se perdem entre as áreas.",
   "Os resultados só aparecem no fim do mês, e nem sempre são confiáveis.",
   "A empresa já tentou implantar um sistema que não deu certo.",
-];
-
-const servicos: Servico[] = [
-  {
-    titulo: "Diagnóstico de processos",
-    texto: "Mapeamos como a empresa funciona hoje e onde estão os gargalos.",
-    icone: ScanSearch,
-    fundo: "bg-mist/70",
-  },
-  {
-    titulo: "Redesenho de processos",
-    texto: "Simplificamos etapas, eliminamos retrabalho e definimos responsáveis.",
-    icone: RefreshCw,
-    fundo: "bg-mint",
-  },
-  {
-    titulo: "Automação e inteligência artificial",
-    texto: "Automatizamos tarefas repetitivas para a equipe focar no que importa.",
-    icone: Sparkles,
-    fundo: "bg-peach-100",
-  },
-  {
-    titulo: "Sistemas de gestão",
-    texto: "Escolhemos e implantamos o sistema certo, como ERP e CRM, integrado à rotina.",
-    icone: AppWindow,
-    fundo: "bg-sage/50",
-  },
-  {
-    titulo: "Indicadores e painéis",
-    texto: "Criamos painéis com os números da empresa atualizados para decidir melhor.",
-    icone: ChartColumnIncreasing,
-    fundo: "bg-peach-200/70",
-  },
 ];
 
 const principios: Motivo[] = [
@@ -137,16 +103,6 @@ export default function InovaPage() {
             />
           </Reveal>
           <InovaComparador />
-        </Container>
-      </Section>
-
-      {/* O QUE A INOVA FAZ */}
-      <Section tone="peach" aria-labelledby="faz-titulo">
-        <Container>
-          <Reveal>
-            <SectionHeading id="faz-titulo" title="O que a Inova faz" align="center" />
-          </Reveal>
-          <ServicosGrid servicos={servicos} />
         </Container>
       </Section>
 
