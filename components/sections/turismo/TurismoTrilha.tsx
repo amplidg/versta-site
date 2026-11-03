@@ -25,14 +25,17 @@ const paradas = [
     texto:
       "Desenhamos a experiência ideal para o grupo, o perfil e o orçamento.",
   },
+  // 3 e 4 reescritas a pedido do Lucas (03/11): a logística fica com parceiros
+  // e não há acompanhamento dos participantes durante a viagem
   {
-    titulo: "Organização",
-    texto: "Cuidamos de transporte, hospedagem, atividades e fornecedores.",
+    titulo: "Conexão",
+    texto:
+      "Conectamos a empresa a parceiros especializados, que cuidam da logística da viagem.",
   },
   {
-    titulo: "Experiência",
+    titulo: "Vivência",
     texto:
-      "Acompanhamos tudo de perto para que cada participante só precise aproveitar.",
+      "A equipe vive a viagem com tudo definido antes: destino, dinâmicas e o propósito de cada momento.",
   },
   {
     titulo: "Resultado",
