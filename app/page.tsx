@@ -30,19 +30,11 @@ export const metadata: Metadata = {
   title: { absolute: `${site.name} | ${site.tagline}` },
 };
 
-/**
- * Depoimentos e cartela de clientes: escondidos por enquanto (pedido do Lucas,
- * 29/10, para mostrar o site num evento — o conteúdo ainda não está pronto).
- * Para voltar, é só trocar para true. Versão de antes no git: tag antes-do-evento.
- */
-const MOSTRAR_DEPOIMENTOS = false;
+/** Depoimentos e cartela de clientes: false esconde o bloco (ficou escondido de 29/10 a 03/11). */
+const MOSTRAR_DEPOIMENTOS = true;
 
-/**
- * Bloco da fundadora ("Quem conduz a Versta", com números e marcos):
- * escondido por enquanto (pedido do Lucas, 29/10). Para voltar, trocar para
- * true. Versão de antes no git: tag antes-de-esconder-fundadora.
- */
-const MOSTRAR_FUNDADORA = false;
+/** Bloco da fundadora ("Quem conduz a Versta"): false esconde o bloco (ficou escondido de 29/10 a 03/11). */
+const MOSTRAR_FUNDADORA = true;
 
 export default function Home() {
   return (
