@@ -752,3 +752,61 @@
     transition-delay: calc(var(--i, 0) * 180ms + 120ms), 0ms, 0ms;
   }
 }
+
+/* Página do Turismo, "Do objetivo à experiência" (turismo/TurismoTrilha.tsx):
+   a trilha se desenha da esquerda para a direita (no celular, de cima para
+   baixo) e cada pin cai no lugar quando a trilha passa por ele (--t), com o
+   texto logo depois. Mouse/foco numa parada: o pin cresce e ganha anel
+   caramelo. Sem JavaScript ou com movimento reduzido, tudo já aparece pronto. */
+.turismo-parada:is(:hover, :focus-visible) .turismo-pin {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 4px var(--color-offwhite),
+    0 0 0 7px var(--color-caramel);
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .turismo-trilha .turismo-revelar {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+  }
+  .turismo-trilha[data-inview] .turismo-revelar {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 2500ms linear;
+  }
+  .turismo-trilha .turismo-linha-v {
+    clip-path: inset(0 0 100% 0);
+  }
+  .turismo-trilha[data-inview] .turismo-linha-v {
+    clip-path: inset(0);
+    transition: clip-path 2500ms linear;
+  }
+  .turismo-trilha .turismo-cai,
+  .turismo-trilha .turismo-destino,
+  .turismo-trilha .turismo-texto {
+    opacity: 0;
+  }
+  .turismo-trilha[data-inview] .turismo-cai,
+  .turismo-trilha[data-inview] .turismo-destino {
+    animation: turismo-cai 650ms var(--ease-calm) both;
+    animation-delay: var(--t, 0s);
+  }
+  .turismo-trilha[data-inview] .turismo-texto {
+    opacity: 1;
+    transition: opacity 600ms var(--ease-calm);
+    transition-delay: calc(var(--t, 0s) + 250ms);
+  }
+}
+@keyframes turismo-cai {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

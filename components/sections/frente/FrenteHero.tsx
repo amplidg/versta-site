@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { ChevronRight } from "lucide-react";
@@ -9,8 +10,8 @@ import { Container } from "@/components/ui/Section";
 /*
  * Topo das páginas próprias das frentes (padrão criado na Semear, 29/10):
  * trilha "Soluções > Frente", linha pequena, título, texto, selo discreto e
- * botão do pré-diagnóstico à esquerda; à direita, o emblema da frente (no
- * celular, em cima).
+ * botão do pré-diagnóstico (ou outros botões, via `botoes`) à esquerda; à
+ * direita, o emblema da frente (no celular, em cima).
  */
 
 type Props = {
@@ -23,9 +24,11 @@ type Props = {
   /** Ícone e cores da mancha do emblema ([tom mais forte, tom mais claro]). */
   emblema: { icone: LucideIcon; cores: [string, string] };
   prediagUrl: string;
+  /** Botões no lugar do padrão (só "Fazer o pré-diagnóstico"). */
+  botoes?: ReactNode;
 };
 
-export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, prediagUrl }: Props) {
+export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, prediagUrl, botoes }: Props) {
   const SeloIcone = selo.icone;
   return (
     <section aria-labelledby="page-title" className="relative isolate overflow-hidden">
@@ -59,9 +62,11 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
             {selo.texto}
           </p>
           <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap max-md:[&>*]:w-full">
-            <Button href={prediagUrl} variant="primary" arrow>
-              Fazer o pré-diagnóstico
-            </Button>
+            {botoes ?? (
+              <Button href={prediagUrl} variant="primary" arrow>
+                Fazer o pré-diagnóstico
+              </Button>
+            )}
           </div>
         </Reveal>
         {/* depois do texto no código (leitores de tela leem o título antes);
