@@ -9,7 +9,7 @@ import { clientesSemear } from "@/data/depoimentos";
 import { asset } from "@/lib/paths";
 
 /*
- * "Quem conduz a Semear" (página da Semear; o Lucas pediu um bloco sobre a
+ * "Quem está à frente desta solução" (página da Semear; o Lucas pediu um bloco sobre a
  * autoridade da Semear em 03/11, com liberdade de criação). Só usa o que já
  * está confirmado no site: a Semear Soluções Ambientais foi fundada por Vivian
  * Prá Philippi, acompanha empresas na gestão ambiental, mais de 20 anos de
@@ -106,13 +106,13 @@ export function SemearTrajetoria() {
               <SectionHeading
                 onDark
                 id="trajetoria-titulo"
-                eyebrow="Quem conduz a Semear"
-                title="Uma trajetória que cresce junto com as empresas que acompanha"
+                eyebrow="Quem está à frente desta solução"
+                title="Esta solução é conduzida pela Semear Soluções Ambientais"
               />
               <p className="mt-6 text-lead text-offwhite/85">
-                A frente Semear é conduzida pela Semear Soluções Ambientais, consultoria fundada por
-                Vivian Prá Philippi, que há mais de 20 anos acompanha empresas na gestão ambiental. Foi
-                dessa vivência, ao lado de empresas de diferentes setores, que nasceu a Versta.
+                A Semear Soluções Ambientais é uma consultoria fundada por Vivian Prá Philippi que, há
+                mais de 20 anos, acompanha empresas de diferentes setores na gestão ambiental, com uma
+                condução técnica, próxima e completa.
               </p>
             </Reveal>
 
