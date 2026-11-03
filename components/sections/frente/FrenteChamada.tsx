@@ -14,6 +14,7 @@ type Botao = { href: string; label: string; novaAba?: boolean };
 export function FrenteChamada({
   antes,
   destaque,
+  apoio,
   prediagUrl,
   botao,
   mancha = false,
@@ -23,13 +24,18 @@ export function FrenteChamada({
   antes: string;
   /** Final da frase, em destaque. */
   destaque: string;
+  /** Texto menor, abaixo da frase (opcional). */
+  apoio?: string;
   prediagUrl: string;
   /** Botão no lugar do padrão ("Fazer o pré-diagnóstico"). */
   botao?: Botao;
   mancha?: boolean;
   className?: string;
 }) {
-  const { href, label, novaAba } = botao ?? { href: prediagUrl, label: "Fazer o pré-diagnóstico" };
+  const { href, label, novaAba } = botao ?? {
+    href: prediagUrl,
+    label: "Fazer o pré-diagnóstico",
+  };
   return (
     <InView
       className={`frente-chamada relative isolate overflow-hidden rounded-card bg-navy px-7 py-10 text-offwhite shadow-[0_24px_50px_-28px_rgb(0_41_77/0.7)] sm:px-10 md:px-14 md:py-12 ${className}`}
@@ -41,42 +47,77 @@ export function FrenteChamada({
           className="pointer-events-none absolute -top-20 -right-16 -z-10 size-52 opacity-80 md:-top-24 md:size-64"
         >
           <defs>
-            <filter id="frente-chamada-f" x="-25%" y="-25%" width="150%" height="150%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="4" result="ruido" />
-              <feDisplacementMap in="SourceGraphic" in2="ruido" scale="16" xChannelSelector="R" yChannelSelector="G" result="borda" />
+            <filter
+              id="frente-chamada-f"
+              x="-25%"
+              y="-25%"
+              width="150%"
+              height="150%"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.03"
+                numOctaves="3"
+                seed="4"
+                result="ruido"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="ruido"
+                scale="16"
+                xChannelSelector="R"
+                yChannelSelector="G"
+                result="borda"
+              />
               <feGaussianBlur in="borda" stdDeviation="2.5" />
             </filter>
           </defs>
           <g filter="url(#frente-chamada-f)">
-            <ellipse cx="50" cy="50" rx="40" ry="34" fill="var(--color-peach-200)" />
-            <ellipse cx="40" cy="58" rx="22" ry="18" fill="var(--color-peach-100)" opacity="0.7" />
+            <ellipse
+              cx="50"
+              cy="50"
+              rx="40"
+              ry="34"
+              fill="var(--color-peach-200)"
+            />
+            <ellipse
+              cx="40"
+              cy="58"
+              rx="22"
+              ry="18"
+              fill="var(--color-peach-100)"
+              opacity="0.7"
+            />
           </g>
         </svg>
       )}
       <div className="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-        <p className="max-w-2xl font-display text-[clamp(1.625rem,1.2rem+1.6vw,2.5rem)] leading-tight font-bold">
-          {antes}{" "}
-          <span className="relative inline-block text-peach-200">
-            {destaque}
-            {/* sublinhado feito à mão */}
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 300 16"
-              preserveAspectRatio="none"
-              className="absolute -bottom-2 left-0 h-3 w-full overflow-visible"
-            >
-              <path
-                d="M3 11 C 60 4, 120 3, 180 7 S 270 12, 297 5"
-                fill="none"
-                stroke="var(--color-caramel)"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                pathLength={1}
-                className="frente-traco"
-              />
-            </svg>
-          </span>
-        </p>
+        <div className="max-w-2xl">
+          <p className="font-display text-[clamp(1.625rem,1.2rem+1.6vw,2.5rem)] leading-tight font-bold">
+            {antes}{" "}
+            <span className="relative inline-block text-peach-200">
+              {destaque}
+              {/* sublinhado feito à mão */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 16"
+                preserveAspectRatio="none"
+                className="absolute -bottom-2 left-0 h-3 w-full overflow-visible"
+              >
+                <path
+                  d="M3 11 C 60 4, 120 3, 180 7 S 270 12, 297 5"
+                  fill="none"
+                  stroke="var(--color-caramel)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  pathLength={1}
+                  className="frente-traco"
+                />
+              </svg>
+            </span>
+          </p>
+          {apoio && <p className="mt-5 text-lead text-offwhite/75">{apoio}</p>}
+        </div>
         <Button
           href={href}
           variant="light"

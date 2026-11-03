@@ -810,3 +810,89 @@
     transform: none;
   }
 }
+
+/* Página da Conexão, "A mesma mensagem, em duas direções"
+   (conexao/ConexaoOndas.tsx): o círculo da marca aparece, as ondas pulsam
+   devagar para os dois lados e os lados surgem em seguida. Mouse/foco num
+   lado: as ondas dele ficam mais fortes e o outro lado se apaga. Com
+   movimento reduzido, as ondas ficam paradas (só desenhadas). */
+.conexao-onda {
+  opacity: 0.55;
+  transform-box: view-box;
+  transform-origin: var(--cx) var(--cy);
+}
+.conexao-ondas,
+.conexao-lado {
+  transition:
+    opacity 400ms var(--ease-calm),
+    stroke-width 400ms var(--ease-calm);
+}
+/* o lado ativo vira variáveis no bloco (regras com :has() não podem ser
+   agrupadas: o CSS final as juntaria num :is(), que o navegador ignora) */
+.conexao:has(.conexao-lado-dentro:hover, .conexao-lado-dentro:focus-visible) {
+  --conexao-fora: 0.35;
+  --conexao-traco-dentro: 5;
+}
+.conexao:has(.conexao-lado-fora:hover, .conexao-lado-fora:focus-visible) {
+  --conexao-dentro: 0.35;
+  --conexao-traco-fora: 5;
+}
+.conexao-lado-dentro,
+.conexao-ondas-dentro {
+  opacity: var(--conexao-dentro, 1);
+}
+.conexao-lado-fora,
+.conexao-ondas-fora {
+  opacity: var(--conexao-fora, 1);
+}
+.conexao-ondas-dentro {
+  stroke-width: var(--conexao-traco-dentro, 3);
+}
+.conexao-ondas-fora {
+  stroke-width: var(--conexao-traco-fora, 3);
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .conexao .conexao-centro {
+    opacity: 0;
+    transform: scale(0.85);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .conexao[data-inview] .conexao-centro {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 600ms var(--ease-calm),
+      transform 600ms var(--ease-calm);
+  }
+  /* entrada por animação (não transição), para o destaque do hover não herdar o atraso */
+  .conexao:not([data-inview]) .conexao-lado {
+    opacity: 0;
+  }
+  .conexao[data-inview] .conexao-lado {
+    animation: conexao-lado 700ms var(--ease-calm) 700ms backwards;
+  }
+  .conexao[data-inview] .conexao-onda {
+    animation: conexao-onda 3s ease-out infinite;
+    animation-delay: calc(400ms + var(--k, 0) * 450ms);
+  }
+}
+@keyframes conexao-lado {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+@keyframes conexao-onda {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
