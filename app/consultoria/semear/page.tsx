@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { FrenteEmblema } from "@/components/sections/FrenteEmblema";
+import { SemearChamada } from "@/components/sections/semear/SemearChamada";
 import { SemearSinais } from "@/components/sections/semear/SemearSinais";
 import { SemearTrajetoria } from "@/components/sections/semear/SemearTrajetoria";
 import { Button } from "@/components/ui/Button";
@@ -210,12 +211,7 @@ export default function SemearPage() {
               </Reveal>
             ))}
           </ul>
-          <Reveal className="mt-14 flex flex-col items-center gap-6 border-t border-navy/10 pt-10 text-center">
-            <p className="text-lead text-navy">Com a Semear, sua empresa cuida disso antes que vire problema.</p>
-            <Button href={PREDIAG_URL} variant="primary" arrow>
-              Fazer o pré-diagnóstico
-            </Button>
-          </Reveal>
+          <SemearChamada prediagUrl={PREDIAG_URL} />
         </Container>
       </Section>
     </>

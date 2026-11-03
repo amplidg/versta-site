@@ -683,3 +683,17 @@
   -webkit-mask-repeat: repeat;
   mask-repeat: repeat;
 }
+
+/* Página da Semear, cartão de fechamento (SemearChamada.tsx): o sublinhado à
+   mão sob "antes que vire problema." se desenha ao entrar na tela. Sem
+   JavaScript ou com movimento reduzido, já aparece pronto. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .semear-chamada .semear-traco {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+  }
+  .semear-chamada[data-inview] .semear-traco {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 900ms var(--ease-calm) 350ms;
+  }
+}
