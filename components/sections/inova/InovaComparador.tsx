@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowLeftRight } from "lucide-react";
-import { CenaHoje, CenaInova } from "./InovaCenas";
+import { ArrowLeftRight } from "lucide-react";
+import { LadoHoje, LadoInova, ParesEmLista } from "./InovaCartoes";
 
 /*
  * Comparador "antes e depois" da página da Inova (especificação do Lucas,
- * 03/11). No computador, as duas cenas ocupam o mesmo espaço (16:7) e uma barra
- * caramelo arrastável revela uma ou outra. O controle é um <input type="range">
+ * 03/11). No computador, os dois lados (os mesmos 6 cartões, desarrumados e
+ * organizados — InovaCartoes.tsx) ocupam o mesmo espaço (16:7) e uma barra
+ * caramelo arrastável revela um ou outro. O controle é um <input type="range">
  * de verdade (invisível, por cima da cena), então funciona com mouse, toque e
  * setas do teclado. Na primeira vez que aparece na tela, a barra faz uma
  * pequena demonstração (30% → 70% → 50%), exceto com movimento reduzido ou se
- * a pessoa já mexeu. No celular/tablet, as cenas ficam empilhadas.
+ * a pessoa já mexeu. No celular/tablet, os 6 pares viram uma lista.
  */
 
 const DEMO: [number, number][] = [
@@ -78,9 +79,9 @@ export function InovaComparador() {
         ref={caixa}
         className="group relative mt-12 hidden aspect-[16/7] overflow-hidden rounded-card shadow-[0_24px_50px_-30px_rgb(0_41_77/0.5)] select-none lg:block"
       >
-        <CenaHoje formato="largo" className="absolute inset-0 size-full" />
+        <LadoHoje />
         <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
-          <CenaInova formato="largo" className="absolute inset-0 size-full" />
+          <LadoInova />
         </div>
 
         <span className="pointer-events-none absolute top-4 left-4 rounded-full bg-white/85 px-3.5 py-1 text-sm font-semibold text-ink-muted shadow-sm">
@@ -115,13 +116,9 @@ export function InovaComparador() {
         />
       </div>
 
-      {/* CELULAR / TABLET — cenas empilhadas */}
-      <div className="mx-auto mt-10 max-w-xl lg:hidden">
-        <p className="mb-2 text-sm font-semibold text-ink-muted">Hoje</p>
-        <CenaHoje formato="compacto" className="h-auto w-full rounded-card" />
-        <ArrowDown aria-hidden="true" className="mx-auto my-4 size-7 text-caramel" strokeWidth={1.75} />
-        <p className="mb-2 text-sm font-semibold text-navy">Com a Inova</p>
-        <CenaInova formato="compacto" className="h-auto w-full rounded-card" />
+      {/* CELULAR / TABLET — lista dos 6 pares */}
+      <div className="lg:hidden">
+        <ParesEmLista />
       </div>
     </>
   );
