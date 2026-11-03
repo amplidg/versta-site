@@ -626,28 +626,46 @@
   }
 }
 
-/* Página da Semear, "Quem conduz a Semear": os anéis de crescimento se
-   desenham do centro para fora ao entrar na tela; depois surge o "20+".
-   Sem JavaScript ou com movimento reduzido, tudo já aparece pronto. */
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-  .semear-aneis .semear-anel {
-    stroke-dasharray: 1 1;
-    stroke-dashoffset: 1;
+/* Página da Semear, bloco "Esta solução é conduzida pela Semear...": fotos do
+   trabalho de campo em loop (SemearTrajetoria.tsx). Cada trilho tem a lista
+   duas vezes e anda metade do caminho, então recomeça sem emenda. No
+   computador, duas colunas (uma sobe, outra desce); no celular, uma faixa
+   para o lado. Pausa com o mouse. Com movimento reduzido fica parado, e a
+   faixa do celular rola com o dedo. */
+.semear-fotos-v {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+}
+.semear-fotos-h {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .semear-fotos-v .semear-trilho {
+    animation: semear-sobe var(--dur, 45s) linear infinite;
   }
-  .semear-aneis[data-inview] .semear-anel {
-    stroke-dashoffset: 0;
-    transition: stroke-dashoffset 1100ms var(--ease-calm);
-    transition-delay: calc(var(--k, 0) * 70ms);
+  .semear-fotos-v .semear-desce .semear-trilho {
+    animation-direction: reverse;
   }
-  .semear-aneis .semear-miolo {
-    opacity: 0;
-    transform: scale(0.94);
+  .semear-fotos-h .semear-trilho {
+    animation: semear-corre var(--dur, 55s) linear infinite;
   }
-  .semear-aneis[data-inview] .semear-miolo {
-    opacity: 1;
-    transform: none;
-    transition:
-      opacity 800ms var(--ease-calm) 500ms,
-      transform 800ms var(--ease-calm) 500ms;
+  .semear-fotos:hover .semear-trilho {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .semear-fotos-h {
+    overflow-x: auto;
+  }
+}
+@keyframes semear-sobe {
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes semear-corre {
+  to {
+    transform: translateX(-50%);
   }
 }

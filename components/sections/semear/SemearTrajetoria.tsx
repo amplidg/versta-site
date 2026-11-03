@@ -1,29 +1,30 @@
 import type { CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import { CalendarCheck, Hourglass, Layers, Network } from "lucide-react";
-import { InView } from "@/components/motion/InView";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { clientesSemear } from "@/data/depoimentos";
+import { fotosSemear, type FotoSemear } from "@/data/semear";
 import { asset } from "@/lib/paths";
 
 /*
- * "Esta solução é conduzida pela Semear..." (página da Semear; o Lucas pediu um bloco sobre a
- * autoridade da Semear em 03/11, com liberdade de criação). Só usa o que já
- * está confirmado no site: a Semear Soluções Ambientais foi fundada por Vivian
- * Prá Philippi, acompanha empresas na gestão ambiental, mais de 20 anos de
- * experiência e os 5 serviços da página. Nenhum número novo.
+ * "Esta solução é conduzida pela Semear..." (página da Semear; o Lucas pediu um
+ * bloco sobre a autoridade da Semear em 03/11, com liberdade de criação). Só
+ * usa o que já está confirmado no site: a Semear Soluções Ambientais foi
+ * fundada por Vivian Prá Philippi, acompanha empresas na gestão ambiental, mais
+ * de 20 anos de experiência e os 5 serviços da página. Nenhum número novo.
  *
- * Visual: anéis de crescimento de uma árvore — um anel por ano (20), que se
- * desenham do centro para fora ao entrar na tela (CSS semear-anel, em
- * globals.css; parados e visíveis com movimento reduzido).
+ * Visual (03/11, pedido do Lucas): fotos reais do trabalho de campo passando
+ * em loop — no computador, duas colunas que sobem e descem em sentidos
+ * opostos; no celular/tablet, uma faixa que corre para o lado. Pausa com o
+ * mouse; com movimento reduzido fica parado (no celular, a faixa rola com o
+ * dedo). Símbolo da Semear (só o desenho, sem o nome) acima do título.
+ * Fotos e descrições em data/semear.ts; animação em globals.css (semear-*).
  *
  * Logos: aparecem sozinhos quando houver clientes da Semear com logo em
  * data/depoimentos.ts (`clientesSemear`); enquanto não houver, a faixa some.
  */
-
-const ANEIS = 20;
 
 const pilares: { titulo: string; texto: string; icone: LucideIcon }[] = [
   {
@@ -48,61 +49,93 @@ const pilares: { titulo: string; texto: string; icone: LucideIcon }[] = [
   },
 ];
 
-/**
- * Contorno de um anel: círculo levemente irregular, como na madeira. Todos
- * usam quase a mesma irregularidade (só escalada), para ficarem aninhados
- * sem se cruzar; o miolo (raio < 21) fica livre para o "20+".
- */
-function anel(k: number) {
-  const r = 21 + k * 1.35;
-  const cx = 50 + k * 0.06; // o miolo da árvore nunca fica bem no centro
-  const cy = 50 - k * 0.04;
-  const pontos: string[] = [];
-  for (let i = 0; i <= 96; i++) {
-    const t = (i / 96) * Math.PI * 2;
-    const raio = r * (1 + 0.03 * Math.sin(3 * t + 0.4 + k * 0.03) + 0.018 * Math.sin(5 * t + 1.1 + k * 0.02));
-    pontos.push(`${(cx + raio * Math.cos(t)).toFixed(2)} ${(cy + raio * Math.sin(t)).toFixed(2)}`);
-  }
-  return `M${pontos.join(" L")}Z`;
+// formatos alternados (retrato e quadrado) dão ritmo às colunas
+const formatos = ["aspect-[4/5]", "aspect-square"];
+
+/** Uma foto do loop. A segunda cópia da lista (para emendar o loop) não é lida. */
+function Foto({ foto, formato, copia, sizes }: { foto: FotoSemear; formato: string; copia: boolean; sizes: string }) {
+  const base = asset(`/images/semear/${foto.arquivo}`);
+  return (
+    <div className={`relative overflow-hidden rounded-[16px] bg-green-700/40 ${formato}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- site estático: srcset feito à mão */}
+      <img
+        src={`${base}.webp`}
+        srcSet={`${base}-640.webp 640w, ${base}.webp 1200w`}
+        sizes={sizes}
+        alt={copia ? "" : foto.alt}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 size-full object-cover"
+        style={{ objectPosition: foto.posicao }}
+      />
+    </div>
+  );
+}
+
+/** Lista repetida duas vezes: a animação anda metade do trilho e recomeça sem emenda. */
+function Trilho({
+  fotos,
+  inicio,
+  direcao,
+  item,
+  sizes,
+}: {
+  fotos: FotoSemear[];
+  inicio: number;
+  direcao: "vertical" | "horizontal";
+  item: string;
+  sizes: string;
+}) {
+  return (
+    <ul className={`semear-trilho flex ${direcao === "vertical" ? "flex-col" : "w-max flex-row items-center"}`}>
+      {[false, true].flatMap((copia) =>
+        fotos.map((f, i) => (
+          <li key={`${f.arquivo}-${copia}`} aria-hidden={copia || undefined} className={item}>
+            <Foto foto={f} formato={formatos[(i + inicio) % 2]} copia={copia} sizes={sizes} />
+          </li>
+        )),
+      )}
+    </ul>
+  );
 }
 
 export function SemearTrajetoria() {
   const logos = clientesSemear.filter((c) => c.logo && !c.nome.includes("[PREENCHER"));
+  const colunaA = fotosSemear.filter((_, i) => i % 2 === 0);
+  const colunaB = fotosSemear.filter((_, i) => i % 2 === 1);
 
   return (
     <Section tone="forest" aria-labelledby="trajetoria-titulo" className="overflow-hidden">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* anéis de crescimento */}
-          <InView className="semear-aneis relative mx-auto aspect-square w-full max-w-[17rem] sm:max-w-[22rem] lg:col-span-5 lg:max-w-[28rem]">
-            <svg aria-hidden="true" viewBox="0 0 100 100" className="absolute inset-0 size-full overflow-visible">
-              {Array.from({ length: ANEIS }, (_, k) => (
-                <path
-                  key={k}
-                  d={anel(k)}
-                  pathLength={1}
-                  fill="none"
-                  stroke={k === ANEIS - 1 ? "var(--color-caramel)" : "var(--color-mint)"}
-                  strokeOpacity={k === ANEIS - 1 ? 0.9 : 0.18 + (k % 4 === 0 ? 0.22 : 0.08)}
-                  strokeWidth={k === ANEIS - 1 ? 0.5 : k % 4 === 0 ? 0.4 : 0.25}
-                  className="semear-anel"
-                  style={{ "--k": k } as CSSProperties}
-                />
-              ))}
-            </svg>
-            <div className="semear-miolo absolute inset-0 flex flex-col items-center justify-center text-center">
-              <span className="font-display text-[clamp(3rem,2rem+4vw,4.75rem)] leading-none font-bold text-peach-100">
-                20+
-              </span>
-              <span className="mt-2 max-w-[7rem] text-xs leading-snug text-mint sm:max-w-[9rem] sm:text-sm">
-                anos de experiência em gestão ambiental
-              </span>
+          {/* FOTOS — computador: duas colunas em sentidos opostos */}
+          <div
+            role="group"
+            aria-label="Fotos da Semear em trabalho de campo"
+            className="semear-fotos semear-fotos-v relative hidden h-[40rem] grid-cols-2 gap-3 overflow-hidden lg:col-span-5 lg:grid"
+          >
+            <div style={{ "--dur": "46s" } as CSSProperties}>
+              <Trilho fotos={colunaA} inicio={0} direcao="vertical" item="pb-3" sizes="18vw" />
             </div>
-          </InView>
+            <div className="semear-desce" style={{ "--dur": "40s" } as CSSProperties}>
+              <Trilho fotos={colunaB} inicio={1} direcao="vertical" item="pb-3" sizes="18vw" />
+            </div>
+          </div>
 
           {/* texto e pilares */}
-          <div className="lg:col-span-7">
+          <div className="min-w-0 lg:col-span-7">
             <Reveal>
+              {/* símbolo da Semear (só o desenho; o nome está no título) */}
+              <span className="mb-6 flex size-16 items-center justify-center rounded-full bg-offwhite shadow-[0_10px_30px_-12px_rgb(0_0_0/0.45)]">
+                {/* eslint-disable-next-line @next/next/no-img-element -- símbolo pequeno, sem otimização */}
+                <img
+                  src={asset("/images/semear/semear-simbolo.png")}
+                  alt="Símbolo da Semear Soluções Ambientais"
+                  width={195}
+                  height={170}
+                  className="h-auto w-10"
+                />
+              </span>
               <SectionHeading
                 onDark
                 id="trajetoria-titulo"
@@ -114,6 +147,22 @@ export function SemearTrajetoria() {
                 próxima e completa.
               </p>
             </Reveal>
+
+            {/* FOTOS — celular/tablet: faixa que corre para o lado */}
+            <div
+              role="group"
+              aria-label="Fotos da Semear em trabalho de campo"
+              className="semear-fotos semear-fotos-h relative -mx-[var(--gutter)] mt-10 overflow-hidden lg:hidden"
+              style={{ "--dur": "55s" } as CSSProperties}
+            >
+              <Trilho
+                fotos={fotosSemear}
+                inicio={0}
+                direcao="horizontal"
+                item="w-44 shrink-0 pr-3 sm:w-56"
+                sizes="(min-width: 640px) 224px, 176px"
+              />
+            </div>
 
             <ul className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2">
               {pilares.map(({ titulo, texto, icone: Icone }, i) => (
