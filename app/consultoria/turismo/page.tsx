@@ -5,17 +5,16 @@ import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
 import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
 import { TurismoTrilha } from "@/components/sections/turismo/TurismoTrilha";
-import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PREDIAG_URL, WHATSAPP_URL } from "@/data/links";
+import { PREDIAG_URL } from "@/data/links";
 import { pageMetadata } from "@/lib/seo";
 
 /*
  * Página própria da frente Turismo (especificação e textos do Lucas, 03/11), no
- * padrão da Semear e da ESG (peças em components/sections/frente/). Aqui a ação
- * principal é "Planejar uma experiência" (WhatsApp, a pedido do Lucas); o
- * pré-diagnóstico fica como botão secundário no topo.
+ * padrão da Semear e da ESG (peças em components/sections/frente/). Como nas
+ * outras frentes, só botões de pré-diagnóstico (o Lucas tirou o "Planejar uma
+ * experiência" pelo WhatsApp, 03/11).
  */
 
 export const metadata: Metadata = pageMetadata({
@@ -96,17 +95,6 @@ export default function TurismoPage() {
         }}
         emblema={{ icone: Compass, cores: ["var(--color-peach-200)", "var(--color-peach-100)"] }}
         prediagUrl={PREDIAG_URL}
-        botoes={
-          <>
-            <Button href={WHATSAPP_URL} variant="primary" arrow target="_blank" rel="noopener noreferrer">
-              Planejar uma experiência
-              <span className="sr-only"> (abre em nova aba)</span>
-            </Button>
-            <Button href={PREDIAG_URL} variant="outline">
-              Fazer o pré-diagnóstico
-            </Button>
-          </>
-        }
       />
 
       {/* PARA QUE SERVE — mesmo fundo do topo, separado por uma linha fina */}
@@ -173,7 +161,6 @@ export default function TurismoPage() {
             antes="Qual experiência sua equipe"
             destaque="merece viver?"
             prediagUrl={PREDIAG_URL}
-            botao={{ href: WHATSAPP_URL, label: "Planejar uma experiência", novaAba: true }}
             mancha
             className="mt-20 md:mt-24"
           />

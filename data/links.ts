@@ -7,7 +7,7 @@
 export const PREDIAG_URL = "#";
 
 /**
- * WhatsApp. Hoje só no Turismo ("Planejar uma experiência"); na Semear e na
- * ESG o Lucas pediu (03/11) só botões de pré-diagnóstico.
+ * WhatsApp. Hoje sem uso: o Lucas quer as páginas das frentes focadas só no
+ * pré-diagnóstico (pedido de 03/11, repetido no Turismo).
  */
 export const WHATSAPP_URL = "#";
