@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CalendarDays, Compass, Gift, HeartHandshake, Luggage, Mountain, Plane, Trophy, Users } from "lucide-react";
+import { CalendarDays, Compass, HeartHandshake, Mountain, Plane, Trophy, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
@@ -20,7 +20,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Turismo de Experiência · Viagens Corporativas",
   description:
-    "Viagens de incentivo, vivências de integração, convenções e experiências com clientes planejadas de ponta a ponta. Experiências que aproximam pessoas e fortalecem a empresa.",
+    "Viagens de incentivo, vivências de integração e convenções para a equipe, planejadas de ponta a ponta. Experiências que aproximam pessoas e fortalecem a empresa.",
   path: "/consultoria/turismo",
 });
 
@@ -64,18 +64,6 @@ const experiencias: Servico[] = [
     icone: CalendarDays,
     fundo: "bg-peach-100",
   },
-  {
-    titulo: "Experiências com clientes",
-    texto: "Visitas, eventos e vivências exclusivas para estreitar o relacionamento.",
-    icone: Gift,
-    fundo: "bg-sage/50",
-  },
-  {
-    titulo: "Gestão completa",
-    texto: "Cuidamos de transporte, hospedagem, roteiro e fornecedores, sem tirar tempo da sua equipe.",
-    icone: Luggage,
-    fundo: "bg-peach-200/70",
-  },
 ];
 
 export default function TurismoPage() {
@@ -86,7 +74,7 @@ export default function TurismoPage() {
         slug="turismo"
         eyebrow="Turismo · Viagens e vivências corporativas"
         titulo="Experiências que aproximam pessoas e fortalecem a empresa"
-        texto="Viagens de incentivo, vivências de integração e encontros com clientes planejados de ponta a ponta, com um objetivo claro: transformar momentos fora da rotina em resultados para a empresa."
+        texto="Viagens de incentivo e vivências de integração para a equipe, planejadas de ponta a ponta, com um objetivo claro: transformar momentos fora da rotina em resultados para a empresa."
         selo={{
           texto: "Planejamento completo, do roteiro à volta para casa",
           icone: Compass,
@@ -108,7 +96,8 @@ export default function TurismoPage() {
       </Section>
 
       {/* EXPERIÊNCIAS QUE CRIAMOS */}
-      <Section tone="peach" aria-labelledby="experiencias-titulo">
+      {/* verde menta da marca (pedido do Lucas, 03/11) */}
+      <Section tone="mint" aria-labelledby="experiencias-titulo">
         <Container>
           <Reveal>
             <SectionHeading id="experiencias-titulo" title="Experiências que criamos" align="center" />
