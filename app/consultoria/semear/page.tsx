@@ -1,35 +1,23 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import {
-  CalendarCheck,
-  ChevronRight,
-  ClipboardList,
-  Coins,
-  FileBadge,
-  FileX,
-  Lock,
-  Recycle,
-  Scale,
-  Sprout,
-} from "lucide-react";
+import { CalendarCheck, ClipboardList, Coins, FileBadge, FileX, Lock, Recycle, Scale, Sprout } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { FrenteEmblema } from "@/components/sections/FrenteEmblema";
-import { SemearChamada } from "@/components/sections/semear/SemearChamada";
-import { SemearSinais } from "@/components/sections/semear/SemearSinais";
+import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
+import { FrenteHero } from "@/components/sections/frente/FrenteHero";
+import { MotivosLista, type Motivo } from "@/components/sections/frente/MotivosLista";
+import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
+import { SinaisAlerta } from "@/components/sections/frente/SinaisAlerta";
 import { SemearTrajetoria } from "@/components/sections/semear/SemearTrajetoria";
-import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PREDIAG_URL } from "@/data/links";
 import { pageMetadata } from "@/lib/seo";
 
 /*
  * Página própria da frente Semear (especificação e textos do Lucas, 29/10).
  * Substitui, só para a Semear, a página genérica de app/consultoria/[slug].
+ * As peças (topo, sinais, cards, motivos, fechamento) ficam em
+ * components/sections/frente/ e são as mesmas da página da ESG.
  */
-
-/** Link do pré-diagnóstico (o Lucas vai passar). */
-const PREDIAG_URL = "#";
 
 export const metadata: Metadata = pageMetadata({
   title: "Semear · Consultoria Ambiental",
@@ -38,7 +26,15 @@ export const metadata: Metadata = pageMetadata({
   path: "/consultoria/semear",
 });
 
-const servicos: { titulo: string; texto: string; icone: LucideIcon; fundo: string }[] = [
+const sinais = [
+  "A licença ambiental está perto de vencer, ou você não sabe quando vence.",
+  "Recebeu notificação, autuação ou exigência de um órgão ambiental.",
+  "Vai abrir, ampliar ou mudar a operação da empresa.",
+  "Clientes ou parceiros passaram a exigir comprovação ambiental.",
+  "Não tem como comprovar a destinação correta dos resíduos.",
+];
+
+const servicos: Servico[] = [
   {
     titulo: "Licenciamento ambiental",
     texto: "Conduzimos todo o processo para sua empresa obter e renovar as licenças e operar dentro da lei.",
@@ -71,7 +67,7 @@ const servicos: { titulo: string; texto: string; icone: LucideIcon; fundo: strin
   },
 ];
 
-const custos: { titulo: string; texto: string; icone: LucideIcon }[] = [
+const custos: Motivo[] = [
   {
     titulo: "Multas",
     texto: "As multas por infração ambiental podem chegar a R$ 50 milhões, segundo a legislação federal.",
@@ -92,58 +88,21 @@ const custos: { titulo: string; texto: string; icone: LucideIcon }[] = [
 export default function SemearPage() {
   return (
     <>
-      {/* HERO — texto à esquerda; à direita, o emblema da frente (no celular, em cima) */}
-      <section aria-labelledby="page-title" className="relative isolate overflow-hidden">
-        <Container className="grid items-center gap-6 pt-6 pb-16 md:grid-cols-12 md:gap-8 md:pt-14 md:pb-24 lg:min-h-[40rem]">
-          <Reveal className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
-            <nav aria-label="Trilha de navegação" className="mb-6">
-              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted">
-                <li className="flex items-center gap-1.5">
-                  <Link href="/consultoria" className="hover:text-navy hover:underline">
-                    Soluções
-                  </Link>
-                  <ChevronRight aria-hidden="true" className="size-3.5" />
-                </li>
-                <li aria-current="page" className="font-semibold text-navy">
-                  Semear
-                </li>
-              </ol>
-            </nav>
-            <p className="eyebrow mb-5 flex items-center gap-3 text-caramel-700">
-              <span aria-hidden="true" className="h-px w-8 bg-caramel" />
-              Semear · Consultoria ambiental
-            </p>
-            <h1 id="page-title" className="text-h1 text-balance text-navy">
-              Sua empresa em dia com o meio ambiente, sem sustos
-            </h1>
-            <p className="mt-6 max-w-xl text-lead text-ink-muted">
-              Licenças, controles e estudos ambientais conduzidos por quem acompanha empresas há mais
-              de 20 anos, para que sua operação siga segura, regular e preparada para o futuro.
-            </p>
-            <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy">
-              <span className="flex size-7 items-center justify-center rounded-full bg-mint">
-                <Sprout aria-hidden="true" className="size-4 text-green-900" strokeWidth={1.75} />
-              </span>
-              Mais de 20 anos de experiência em gestão ambiental
-            </p>
-            <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap max-md:[&>*]:w-full">
-              <Button href={PREDIAG_URL} variant="primary" arrow>
-                Fazer o pré-diagnóstico
-              </Button>
-            </div>
-          </Reveal>
-          {/* depois do texto no código (leitores de tela leem o título antes);
-              no celular, aparece em cima */}
-          <div className="order-first flex justify-center md:order-none md:col-span-5 lg:col-span-6">
-            <FrenteEmblema
-              icon={Sprout}
-              color={["var(--color-sage)", "var(--color-mint)"]}
-              slug="semear"
-              className="w-[180px] md:w-full md:max-w-[22rem] lg:max-w-[30rem]"
-            />
-          </div>
-        </Container>
-      </section>
+      <FrenteHero
+        nome="Semear"
+        slug="semear"
+        eyebrow="Semear · Consultoria ambiental"
+        titulo="Sua empresa em dia com o meio ambiente, sem sustos"
+        texto="Licenças, controles e estudos ambientais conduzidos por quem acompanha empresas há mais de 20 anos, para que sua operação siga segura, regular e preparada para o futuro."
+        selo={{
+          texto: "Mais de 20 anos de experiência em gestão ambiental",
+          icone: Sprout,
+          fundo: "bg-mint",
+          cor: "text-green-900",
+        }}
+        emblema={{ icone: Sprout, cores: ["var(--color-sage)", "var(--color-mint)"] }}
+        prediagUrl={PREDIAG_URL}
+      />
 
       {/* SINAIS DE ALERTA */}
       <Section tone="mint" aria-labelledby="sinais-titulo">
@@ -157,7 +116,11 @@ export default function SemearPage() {
             />
           </Reveal>
           <Reveal delay={120} className="mt-10">
-            <SemearSinais prediagUrl={PREDIAG_URL} />
+            <SinaisAlerta
+              sinais={sinais}
+              mensagem="Sua empresa tem sinais de atenção na área ambiental. Faça o pré-diagnóstico gratuito e descubra por onde começar."
+              prediagUrl={PREDIAG_URL}
+            />
           </Reveal>
         </Container>
       </Section>
@@ -168,26 +131,7 @@ export default function SemearPage() {
           <Reveal>
             <SectionHeading id="faz-titulo" title="O que a Semear faz" align="center" />
           </Reveal>
-          {/* 3 em cima e 2 embaixo, centralizados, no computador */}
-          <ul className="mt-12 flex flex-wrap justify-center gap-5">
-            {servicos.map(({ titulo, texto, icone: Icone, fundo }, i) => (
-              <Reveal
-                as="li"
-                key={titulo}
-                delay={i * 80}
-                className="w-full md:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
-              >
-                {/* o hover fica num elemento interno: o <Reveal> já usa a transição de transform */}
-                <div className="h-full rounded-card border border-navy/10 bg-white/70 p-7 transition-[transform,border-color,box-shadow] duration-300 ease-[var(--ease-calm)] hover:-translate-y-1 hover:border-caramel hover:shadow-[0_14px_30px_-18px_rgb(0_41_77/0.35)] motion-reduce:transition-none">
-                  <span className={`flex size-12 items-center justify-center rounded-full ${fundo}`}>
-                    <Icone aria-hidden="true" className="size-6 text-navy" strokeWidth={1.75} />
-                  </span>
-                  <h3 className="mt-5 text-h3 text-navy">{titulo}</h3>
-                  <p className="mt-2 text-ink-muted">{texto}</p>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+          <ServicosGrid servicos={servicos} />
         </Container>
       </Section>
 
@@ -200,18 +144,12 @@ export default function SemearPage() {
           <Reveal>
             <SectionHeading id="custo-titulo" title="O custo de não estar em dia" align="center" />
           </Reveal>
-          <ul className="mx-auto mt-12 grid max-w-5xl gap-10 md:grid-cols-3 md:gap-8">
-            {custos.map(({ titulo, texto, icone: Icone }, i) => (
-              <Reveal as="li" key={titulo} delay={i * 100} className="text-center">
-                <span className="mx-auto flex size-12 items-center justify-center rounded-full border border-caramel/60">
-                  <Icone aria-hidden="true" className="size-6 text-caramel-700" strokeWidth={1.5} />
-                </span>
-                <h3 className="mt-4 font-display text-xl font-bold text-navy">{titulo}</h3>
-                <p className="mx-auto mt-2 max-w-xs text-ink-muted">{texto}</p>
-              </Reveal>
-            ))}
-          </ul>
-          <SemearChamada prediagUrl={PREDIAG_URL} />
+          <MotivosLista itens={custos} />
+          <FrenteChamada
+            antes="Com a Semear, sua empresa cuida disso"
+            destaque="antes que vire problema."
+            prediagUrl={PREDIAG_URL}
+          />
         </Container>
       </Section>
     </>

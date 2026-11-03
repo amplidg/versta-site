@@ -4,21 +4,20 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
 /*
- * "Sua empresa precisa da Semear se..." (página da Semear, especificação do
- * Lucas, 29/10): checkboxes de verdade, estilizados como cards. Com 2 ou mais
- * marcados, aparece a faixa azul-marinho com o convite ao pré-diagnóstico.
- * Nada é salvo nem enviado.
+ * Lista de sinais de alerta das páginas das frentes (criada na Semear, 29/10):
+ * checkboxes de verdade, estilizados como cards. Com 2 ou mais marcados,
+ * aparece a faixa azul-marinho com o convite ao pré-diagnóstico. Nada é salvo
+ * nem enviado.
  */
 
-const sinais = [
-  "A licença ambiental está perto de vencer, ou você não sabe quando vence.",
-  "Recebeu notificação, autuação ou exigência de um órgão ambiental.",
-  "Vai abrir, ampliar ou mudar a operação da empresa.",
-  "Clientes ou parceiros passaram a exigir comprovação ambiental.",
-  "Não tem como comprovar a destinação correta dos resíduos.",
-];
+type Props = {
+  sinais: string[];
+  /** Texto da faixa que aparece com 2 ou mais sinais marcados. */
+  mensagem: string;
+  prediagUrl: string;
+};
 
-export function SemearSinais({ prediagUrl }: { prediagUrl: string }) {
+export function SinaisAlerta({ sinais, mensagem, prediagUrl }: Props) {
   const [marcados, setMarcados] = useState<boolean[]>(() => sinais.map(() => false));
   const total = marcados.filter(Boolean).length;
 
@@ -65,10 +64,9 @@ export function SemearSinais({ prediagUrl }: { prediagUrl: string }) {
       <div aria-live="polite" className="mt-6 min-h-6">
         {total === 1 && <p className="text-center text-sm text-ink-muted">Marque tudo o que se aplica.</p>}
         {total >= 2 && (
-          <div className="semear-alerta flex flex-col items-start gap-5 rounded-card bg-navy p-6 text-offwhite sm:flex-row sm:items-center sm:justify-between sm:p-7">
+          <div className="frente-alerta flex flex-col items-start gap-5 rounded-card bg-navy p-6 text-offwhite sm:flex-row sm:items-center sm:justify-between sm:p-7">
             <p className="text-[1.0625rem] leading-snug">
-              Sua empresa tem sinais de atenção na área ambiental. Faça o pré-diagnóstico gratuito e
-              descubra por onde começar.
+              {mensagem}
             </p>
             <Button href={prediagUrl} variant="light" arrow className="shrink-0 max-sm:w-full">
               Fazer o pré-diagnóstico

@@ -548,10 +548,10 @@
   }
 }
 
-/* Página da Semear: a faixa do pré-diagnóstico surge com fade e leve subida
-   quando 2 ou mais sinais são marcados (SemearSinais.tsx). */
+/* Páginas das frentes: a faixa do pré-diagnóstico surge com fade e leve subida
+   quando 2 ou mais sinais são marcados (frente/SinaisAlerta.tsx). */
 @media (prefers-reduced-motion: no-preference) {
-  .semear-alerta {
+  .frente-alerta {
     animation: sh2-hero-entra 600ms var(--ease-calm) both;
   }
 }
@@ -684,16 +684,71 @@
   mask-repeat: repeat;
 }
 
-/* Página da Semear, cartão de fechamento (SemearChamada.tsx): o sublinhado à
-   mão sob "antes que vire problema." se desenha ao entrar na tela. Sem
+/* Páginas das frentes, cartão de fechamento (frente/FrenteChamada.tsx): o
+   sublinhado à mão sob o final da frase se desenha ao entrar na tela. Sem
    JavaScript ou com movimento reduzido, já aparece pronto. */
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-  .semear-chamada .semear-traco {
+  .frente-chamada .frente-traco {
     stroke-dasharray: 1 1;
     stroke-dashoffset: 1;
   }
-  .semear-chamada[data-inview] .semear-traco {
+  .frente-chamada[data-inview] .frente-traco {
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 900ms var(--ease-calm) 350ms;
+  }
+}
+
+/* Página da ESG, "O que é ESG, na prática" (esg/EsgPratica.tsx): ao entrar na
+   tela, as letras surgem em sequência e as manchas se espalham. Com o mouse ou
+   o foco numa coluna, a letra sobe, a mancha fica mais forte e as outras
+   colunas ficam mais apagadas. Sem JavaScript ou com movimento reduzido, tudo
+   aparece pronto e sem movimento. */
+.esg-mancha {
+  opacity: 0.8;
+}
+.esg-pratica:has(.esg-coluna:hover, .esg-coluna:focus-visible) .esg-coluna:not(:hover, :focus-visible) {
+  opacity: 0.5;
+}
+.esg-coluna:is(:hover, :focus-visible) .esg-mancha {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .esg-coluna,
+  .esg-mancha,
+  .esg-letra {
+    transition:
+      opacity 400ms var(--ease-calm),
+      transform 400ms var(--ease-calm);
+  }
+  .esg-coluna:is(:hover, :focus-visible) .esg-letra {
+    transform: translateY(-8px);
+  }
+  .esg-coluna:is(:hover, :focus-visible) .esg-mancha {
+    transform: scale(1.06);
+  }
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .esg-pratica .esg-letra-caixa {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  .esg-pratica .esg-letra-caixa > .esg-mancha {
+    clip-path: circle(0% at 50% 50%);
+  }
+  .esg-pratica[data-inview] .esg-letra-caixa {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 700ms var(--ease-calm),
+      transform 700ms var(--ease-calm);
+    transition-delay: calc(var(--i, 0) * 180ms);
+  }
+  .esg-pratica[data-inview] .esg-letra-caixa > .esg-mancha {
+    clip-path: circle(75% at 50% 50%);
+    transition:
+      clip-path 1200ms var(--ease-calm),
+      opacity 400ms var(--ease-calm),
+      transform 400ms var(--ease-calm);
+    transition-delay: calc(var(--i, 0) * 180ms + 120ms), 0ms, 0ms;
   }
 }
