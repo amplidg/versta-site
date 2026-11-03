@@ -150,7 +150,6 @@ export default function TurismoPage() {
             antes="Qual experiência sua equipe"
             destaque="merece viver?"
             prediagUrl={PREDIAG_URL}
-            mancha
             className="mt-20 md:mt-24"
           />
         </Container>
