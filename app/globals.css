@@ -625,3 +625,29 @@
     transform: rotate(360deg);
   }
 }
+
+/* Página da Semear, "Quem conduz a Semear": os anéis de crescimento se
+   desenham do centro para fora ao entrar na tela; depois surge o "20+".
+   Sem JavaScript ou com movimento reduzido, tudo já aparece pronto. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .semear-aneis .semear-anel {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+  }
+  .semear-aneis[data-inview] .semear-anel {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1100ms var(--ease-calm);
+    transition-delay: calc(var(--k, 0) * 70ms);
+  }
+  .semear-aneis .semear-miolo {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  .semear-aneis[data-inview] .semear-miolo {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 800ms var(--ease-calm) 500ms,
+      transform 800ms var(--ease-calm) 500ms;
+  }
+}

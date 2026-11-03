@@ -16,6 +16,7 @@ import {
 import { Reveal } from "@/components/motion/Reveal";
 import { FrenteEmblema } from "@/components/sections/FrenteEmblema";
 import { SemearSinais } from "@/components/sections/semear/SemearSinais";
+import { SemearTrajetoria } from "@/components/sections/semear/SemearTrajetoria";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -188,6 +189,9 @@ export default function SemearPage() {
           </ul>
         </Container>
       </Section>
+
+      {/* QUEM CONDUZ A SEMEAR — trajetória e autoridade */}
+      <SemearTrajetoria />
 
       {/* O CUSTO DE NÃO ESTAR EM DIA */}
       <Section tone="peach" aria-labelledby="custo-titulo">
