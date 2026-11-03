@@ -669,3 +669,17 @@
     transform: translateX(-50%);
   }
 }
+
+/* Fundo do bloco da Semear: o símbolo repetido (o arquivo já tem respiro em
+   volta), em duas camadas deslocadas para formar uma grade em diagonal. A cor
+   e a transparência vêm do elemento (bg-mint, opacity). */
+.semear-padrao {
+  -webkit-mask-image: var(--padrao), var(--padrao);
+  mask-image: var(--padrao), var(--padrao);
+  -webkit-mask-size: 140px 140px;
+  mask-size: 140px 140px;
+  -webkit-mask-position: 0 0, 70px 70px;
+  mask-position: 0 0, 70px 70px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}

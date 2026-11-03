@@ -19,7 +19,8 @@ import { asset } from "@/lib/paths";
  * em loop — no computador, duas colunas que sobem e descem em sentidos
  * opostos; no celular/tablet, uma faixa que corre para o lado. Pausa com o
  * mouse; com movimento reduzido fica parado (no celular, a faixa rola com o
- * dedo). Símbolo da Semear (só o desenho, sem o nome) acima do título.
+ * dedo). Logo completo da Semear acima do título e, no fundo do bloco, o
+ * símbolo repetido em baixa opacidade (pedido do Lucas, 03/11).
  * Fotos e descrições em data/semear.ts; animação em globals.css (semear-*).
  *
  * Logos: aparecem sozinhos quando houver clientes da Semear com logo em
@@ -105,7 +106,13 @@ export function SemearTrajetoria() {
   const colunaB = fotosSemear.filter((_, i) => i % 2 === 1);
 
   return (
-    <Section tone="forest" aria-labelledby="trajetoria-titulo" className="overflow-hidden">
+    <Section tone="forest" aria-labelledby="trajetoria-titulo" className="relative isolate overflow-hidden">
+      {/* fundo: símbolo da Semear repetido, bem suave (CSS semear-padrao) */}
+      <div
+        aria-hidden="true"
+        className="semear-padrao pointer-events-none absolute inset-0 -z-10 bg-mint opacity-[0.07]"
+        style={{ "--padrao": `url(${asset("/images/semear/semear-simbolo-padrao.png")})` } as CSSProperties}
+      />
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* FOTOS — computador: duas colunas em sentidos opostos */}
@@ -125,15 +132,15 @@ export function SemearTrajetoria() {
           {/* texto e pilares */}
           <div className="min-w-0 lg:col-span-7">
             <Reveal>
-              {/* símbolo da Semear (só o desenho; o nome está no título) */}
-              <span className="mb-6 flex size-16 items-center justify-center rounded-full bg-offwhite shadow-[0_10px_30px_-12px_rgb(0_0_0/0.45)]">
-                {/* eslint-disable-next-line @next/next/no-img-element -- símbolo pequeno, sem otimização */}
+              {/* logo completo da Semear, sobre fundo claro (o verde do logo some no verde escuro) */}
+              <span className="mb-7 inline-flex rounded-card bg-offwhite px-5 py-4 shadow-[0_10px_30px_-12px_rgb(0_0_0/0.45)]">
+                {/* eslint-disable-next-line @next/next/no-img-element -- logo pequeno, sem otimização */}
                 <img
-                  src={asset("/images/semear/semear-simbolo.png")}
-                  alt="Símbolo da Semear Soluções Ambientais"
-                  width={195}
-                  height={170}
-                  className="h-auto w-10"
+                  src={asset("/images/semear/semear-logo.png")}
+                  alt="Semear Soluções Ambientais"
+                  width={615}
+                  height={177}
+                  className="h-auto w-44 sm:w-52"
                 />
               </span>
               <SectionHeading
