@@ -28,8 +28,6 @@ import { pageMetadata } from "@/lib/seo";
 
 /** Link do pré-diagnóstico (o Lucas vai passar). */
 const PREDIAG_URL = "#";
-/** Link do WhatsApp (o Lucas vai passar). Abre em nova aba. */
-const WHATSAPP_URL = "#";
 
 export const metadata: Metadata = pageMetadata({
   title: "Semear · Consultoria Ambiental",
@@ -130,10 +128,6 @@ export default function SemearPage() {
               <Button href={PREDIAG_URL} variant="primary" arrow>
                 Fazer o pré-diagnóstico
               </Button>
-              <Button href={WHATSAPP_URL} variant="outline" target="_blank" rel="noopener noreferrer">
-                Falar com um especialista
-                <span className="sr-only"> (abre em nova aba)</span>
-              </Button>
             </div>
           </Reveal>
           {/* depois do texto no código (leitores de tela leem o título antes);
@@ -214,9 +208,8 @@ export default function SemearPage() {
           </ul>
           <Reveal className="mt-14 flex flex-col items-center gap-6 border-t border-navy/10 pt-10 text-center">
             <p className="text-lead text-navy">Com a Semear, sua empresa cuida disso antes que vire problema.</p>
-            <Button href={WHATSAPP_URL} variant="primary" arrow target="_blank" rel="noopener noreferrer">
-              Falar com um especialista
-              <span className="sr-only"> (abre em nova aba)</span>
+            <Button href={PREDIAG_URL} variant="primary" arrow>
+              Fazer o pré-diagnóstico
             </Button>
           </Reveal>
         </Container>
