@@ -7,8 +7,8 @@
 export const PREDIAG_URL = "#";
 
 /**
- * WhatsApp. Hoje sem uso: o Lucas quer as páginas das frentes focadas só no
- * pré-diagnóstico (pedido de 03/11, repetido no Turismo).
+ * WhatsApp. Usado só na página Projetos Sociais (/instituto, 04/11): as
+ * páginas das frentes ficam só com o pré-diagnóstico (pedido do Lucas, 03/11).
  */
 export const WHATSAPP_URL = "#";
 

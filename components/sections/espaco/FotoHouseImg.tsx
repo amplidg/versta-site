@@ -19,6 +19,14 @@ function larguras(foto: FotoHouse): [number, number] {
   return foto.horizontal ? [800, 1200] : foto.destaque ? [600, 1200] : [600, 900];
 }
 
+/** Endereço e srcset de uma foto da House (usado também no visualizador). */
+export function fontesHouse(arquivo: string) {
+  const foto = fotoHouse(arquivo);
+  const base = asset(`/images/house/${foto.arquivo}`);
+  const [menor, maior] = larguras(foto);
+  return { src: `${base}.webp`, srcSet: `${base}-800.webp ${menor}w, ${base}.webp ${maior}w` };
+}
+
 export function FotoHouseImg({
   arquivo,
   sizes,

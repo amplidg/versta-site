@@ -1,64 +1,203 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Compass, Earth, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { PageHero } from "@/components/sections/PageHero";
+import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
+import { ProjetosHero } from "@/components/sections/projetos-sociais/ProjetosHero";
+import { ProjetosRealizados } from "@/components/sections/projetos-sociais/ProjetosRealizados";
+import { SementeImpacto } from "@/components/sections/projetos-sociais/SementeImpacto";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Texto } from "@/components/ui/Texto";
+import { causas } from "@/data/projetos-sociais";
+import { WHATSAPP_URL } from "@/data/links";
+import { asset } from "@/lib/paths";
 import { pageMetadata } from "@/lib/seo";
 
+/*
+ * Página Projetos Sociais (especificação e textos do Lucas, 04/11): o braço
+ * social da Versta. Não é uma das 10 frentes; o endereço continua /instituto
+ * (o mesmo do menu e do organograma da Home). Botões para o WhatsApp, como na
+ * especificação (WHATSAPP_URL em data/links.ts). Causas e projetos realizados
+ * em data/projetos-sociais.ts.
+ */
+
 export const metadata: Metadata = pageMetadata({
-  title: "Instituto",
-  description: "Conheça o Instituto da Versta e seus projetos sociais.",
+  title: "Projetos Sociais",
+  description:
+    "Projetos sociais construídos em parceria com empresas e seus colaboradores, para fazer a diferença na comunidade e desenvolver não apenas profissionais, mas seres humanos melhores.",
   path: "/instituto",
 });
 
-export default function InstitutoPage() {
+const novaAba = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+const ganhos = [
+  {
+    titulo: "Engajamento",
+    texto:
+      "Colaboradores mais envolvidos e com orgulho de fazer parte da empresa.",
+    icone: Users,
+    fundo: "bg-offwhite",
+  },
+  {
+    titulo: "Cultura de propósito",
+    texto: "Valores que saem do papel e se tornam atitudes reais.",
+    icone: Compass,
+    fundo: "bg-mist/70",
+  },
+  {
+    titulo: "Impacto social",
+    texto:
+      "Ações concretas que fortalecem o pilar social da agenda ESG da empresa.",
+    icone: Earth,
+    fundo: "bg-mint",
+  },
+];
+
+export default function ProjetosSociaisPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Instituto"
-        title="Projetos Sociais"
-        lead="[PREENCHER: frase de apresentação do Instituto.]"
-        imagem="institutoHero"
+      <ProjetosHero
+        titulo="Desenvolver não apenas profissionais, mas seres humanos melhores"
+        texto="Projetos sociais construídos em parceria com os clientes da Versta, que convidam as empresas e seus colaboradores a participar e a fazer a diferença na comunidade."
       >
-        <Button href="/contato" variant="primary" arrow>
-          Fale com o Instituto
+        <Button href={WHATSAPP_URL} variant="primary" arrow {...novaAba}>
+          Construir um projeto juntos
+          <span className="sr-only"> (abre em nova aba)</span>
         </Button>
-      </PageHero>
+        <Button href="#como-funciona" variant="outline">
+          Como funciona
+        </Button>
+      </ProjetosHero>
 
-      <Section tone="mist" aria-labelledby="instituto-titulo">
-        <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <SectionHeading id="instituto-titulo" eyebrow="Sobre o Instituto" title="O braço social da Versta" />
+      {/* DA SEMENTE AO IMPACTO */}
+      <Section
+        id="como-funciona"
+        aria-labelledby="impacto-titulo"
+        className="scroll-mt-20 overflow-hidden"
+      >
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="impacto-titulo"
+              title="Da semente ao impacto"
+              lead="Como nasce um projeto social com a Versta."
+              align="center"
+            />
           </Reveal>
-          <Reveal delay={120} className="space-y-5 text-lead text-ink-muted lg:col-span-7">
+          <SementeImpacto />
+        </Container>
+      </Section>
+
+      {/* CAUSAS */}
+      <Section tone="mint" aria-labelledby="causas-titulo">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="causas-titulo"
+              title="Causas que movem os projetos"
+              align="center"
+            />
+          </Reveal>
+          <ul className="mt-12 grid gap-6 md:grid-cols-3">
+            {causas.map((c, i) => (
+              <Reveal as="li" key={c.titulo} delay={i * 100}>
+                <div className="group h-full rounded-card border border-navy/10 bg-white/70 p-4 transition-[transform,box-shadow] duration-300 ease-[var(--ease-calm)] hover:-translate-y-1 hover:shadow-[0_18px_36px_-22px_rgb(0_41_77/0.4)] motion-reduce:transition-none">
+                  <div className="aspect-[4/3] overflow-hidden rounded-[16px] bg-mist/40">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- site estático */}
+                    <img
+                      src={asset(c.imagem)}
+                      alt={c.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="size-full object-cover transition-transform duration-700 ease-[var(--ease-calm)] group-hover:scale-[1.03] motion-reduce:transition-none"
+                    />
+                  </div>
+                  <h3 className="mt-5 px-2 text-h3 text-navy">{c.titulo}</h3>
+                  <p className="mt-2 px-2 pb-2 text-ink-muted">{c.texto}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      {/* O QUE A EMPRESA GANHA */}
+      <Section tone="peach" aria-labelledby="ganha-titulo">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="ganha-titulo"
+              title="Quando a empresa faz a diferença, ela também se transforma"
+              align="center"
+            />
+          </Reveal>
+          <ul className="mx-auto mt-12 grid max-w-5xl gap-10 md:grid-cols-3 md:gap-8">
+            {ganhos.map(({ titulo, texto, icone: Icone, fundo }, i) => (
+              <Reveal
+                as="li"
+                key={titulo}
+                delay={i * 100}
+                className="text-center"
+              >
+                <span
+                  className={`mx-auto flex size-14 items-center justify-center rounded-full ${fundo}`}
+                >
+                  <Icone
+                    aria-hidden="true"
+                    className="size-6 text-navy"
+                    strokeWidth={1.6}
+                  />
+                </span>
+                <h3 className="mt-4 font-display text-xl font-bold text-navy">
+                  {titulo}
+                </h3>
+                <p className="mx-auto mt-2 max-w-xs text-ink-muted">{texto}</p>
+              </Reveal>
+            ))}
+          </ul>
+          <Reveal className="mt-12 text-center text-ink-muted">
             <p>
-              <Texto>[PREENCHER: descrição do Instituto — missão, causas e públicos atendidos.]</Texto>
-            </p>
-            <p>
-              <Texto>[PREENCHER: lista ou resumo dos projetos sociais em andamento.]</Texto>
+              Saiba mais sobre as frentes{" "}
+              <Link
+                href="/consultoria/cultura"
+                className="font-semibold text-navy underline underline-offset-4 hover:text-caramel-700"
+              >
+                Cultura
+              </Link>{" "}
+              e{" "}
+              <Link
+                href="/consultoria/esg"
+                className="font-semibold text-navy underline underline-offset-4 hover:text-caramel-700"
+              >
+                ESG
+              </Link>
+              .
             </p>
           </Reveal>
         </Container>
       </Section>
 
-      <Section tone="navy" aria-labelledby="apoie-titulo">
-        <Container className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <Reveal>
-            <SectionHeading
-              id="apoie-titulo"
-              onDark
-              eyebrow="Participe"
-              title="Quer apoiar ou conhecer os projetos?"
-              lead="[PREENCHER: como empresas e pessoas podem apoiar o Instituto.]"
-            />
-          </Reveal>
-          <Reveal delay={120} className="shrink-0">
-            <Button href="/contato" variant="light" arrow>
-              Entrar em contato
-            </Button>
-          </Reveal>
+      {/* PROJETOS REALIZADOS (só aparece quando houver projetos) */}
+      <ProjetosRealizados />
+
+      {/* CHAMADA FINAL */}
+      <Section aria-label="Construir um projeto juntos">
+        <Container>
+          <FrenteChamada
+            antes="Que diferença sua empresa"
+            destaque="quer fazer?"
+            apoio="Conte para a Versta qual causa move sua empresa e vamos construir esse projeto juntos."
+            prediagUrl={WHATSAPP_URL}
+            botao={{
+              href: WHATSAPP_URL,
+              label: "Construir um projeto juntos",
+              novaAba: true,
+            }}
+            mancha
+            manchaTom="salvia"
+            className=""
+          />
         </Container>
       </Section>
     </>

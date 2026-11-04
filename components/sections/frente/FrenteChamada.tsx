@@ -18,6 +18,7 @@ export function FrenteChamada({
   prediagUrl,
   botao,
   mancha = false,
+  manchaTom = "pessego",
   className = "mt-16",
 }: {
   /** Início da frase. */
@@ -30,6 +31,8 @@ export function FrenteChamada({
   /** Botão no lugar do padrão ("Fazer o pré-diagnóstico"). */
   botao?: Botao;
   mancha?: boolean;
+  /** Cor da mancha: pêssego (padrão) ou verde-sálvia (Projetos Sociais). */
+  manchaTom?: "pessego" | "salvia";
   className?: string;
 }) {
   const { href, label, novaAba } = botao ?? {
@@ -78,14 +81,14 @@ export function FrenteChamada({
               cy="50"
               rx="40"
               ry="34"
-              fill="var(--color-peach-200)"
+              fill={manchaTom === "salvia" ? "var(--color-sage)" : "var(--color-peach-200)"}
             />
             <ellipse
               cx="40"
               cy="58"
               rx="22"
               ry="18"
-              fill="var(--color-peach-100)"
+              fill={manchaTom === "salvia" ? "var(--color-mint)" : "var(--color-peach-100)"}
               opacity="0.7"
             />
           </g>

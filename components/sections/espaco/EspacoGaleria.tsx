@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
-import { FotoHouseImg, fotoHouse } from "@/components/sections/espaco/FotoHouseImg";
+import { useRef, useState } from "react";
+import { Expand } from "lucide-react";
+import { FotoHouseImg, fontesHouse, fotoHouse } from "@/components/sections/espaco/FotoHouseImg";
+import { Lightbox, type FotoLightbox } from "@/components/ui/Lightbox";
 import { galeriaEspaco } from "@/data/espaco";
 
 /*
@@ -11,12 +12,16 @@ import { galeriaEspaco } from "@/data/espaco";
  * área externa numa célula larga e as outras em volta (posições em
  * `mosaico`). Hover/foco: zoom leve e o nome do ambiente sobre um gradiente.
  * Celular: carrossel com rolagem lateral (scroll-snap) e indicadores.
- * Clique/toque: abre o visualizador (dialog nativo: prende o foco, fecha com
- * Esc ou clicando fora; setas do teclado trocam a foto).
+ * Clique/toque: abre o visualizador (components/ui/Lightbox.tsx).
  * A ordem das fotos fica em data/espaco.ts (galeriaEspaco).
  */
 
 /** Lugar de cada foto no mosaico de 4 colunas × 3 linhas. */
+const fotosLightbox: FotoLightbox[] = galeriaEspaco.map((arquivo) => {
+  const foto = fotoHouse(arquivo);
+  return { ...fontesHouse(arquivo), alt: foto.alt, legenda: foto.legenda };
+});
+
 const mosaico: Record<string, string> = {
   "empresa-01-espaco-de-eventos": "md:col-span-2 md:row-span-2",
   "colaboradores-area-externa": "md:col-span-2",
@@ -24,25 +29,11 @@ const mosaico: Record<string, string> = {
 };
 
 export function EspacoGaleria() {
-  const dialogo = useRef<HTMLDialogElement>(null);
   const carrossel = useRef<HTMLUListElement>(null);
-  const gatilho = useRef<HTMLElement | null>(null);
   const [aberta, setAberta] = useState<number | null>(null);
   const [noCarrossel, setNoCarrossel] = useState(0);
   const total = galeriaEspaco.length;
 
-  const abrir = (i: number, el: HTMLElement) => {
-    gatilho.current = el;
-    setAberta(i);
-  };
-  const fechar = () => dialogo.current?.close();
-  const passar = (d: number) => setAberta((a) => (a === null ? a : (a + d + total) % total));
-
-  // abre o dialog quando há uma foto escolhida
-  useEffect(() => {
-    const d = dialogo.current;
-    if (aberta !== null && d && !d.open) d.showModal();
-  }, [aberta]);
 
   const posicaoCarrossel = () => {
     const c = carrossel.current;
@@ -59,8 +50,6 @@ export function EspacoGaleria() {
     const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     c.scrollTo({ left: item.offsetLeft - c.offsetLeft, behavior: reduzido ? "auto" : "smooth" });
   };
-
-  const atual = aberta === null ? null : fotoHouse(galeriaEspaco[aberta]);
 
   return (
     <>
@@ -80,7 +69,7 @@ export function EspacoGaleria() {
             >
               <button
                 type="button"
-                onClick={(e) => abrir(i, e.currentTarget)}
+                onClick={() => setAberta(i)}
                 aria-label={`Ampliar foto: ${foto.legenda}`}
                 className="group relative block aspect-[4/5] w-full overflow-hidden rounded-[16px] bg-mist/40 outline-none focus-visible:ring-4 focus-visible:ring-navy/60 md:aspect-auto md:size-full"
               >
@@ -129,83 +118,7 @@ export function EspacoGaleria() {
       </div>
 
       {/* VISUALIZADOR */}
-      <dialog
-        ref={dialogo}
-        aria-label="Fotos dos ambientes da House"
-        onClose={() => {
-          setAberta(null);
-          gatilho.current?.focus();
-        }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) fechar();
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") passar(1);
-          if (e.key === "ArrowLeft") passar(-1);
-        }}
-        className="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-navy/85 backdrop:backdrop-blur-sm"
-      >
-        {atual && aberta !== null && (
-          <div className="flex h-[100dvh] w-screen flex-col items-center justify-center gap-4 px-4 py-6 sm:px-20">
-            <figure className="flex max-h-full min-h-0 flex-col items-center">
-              <FotoHouseImg
-                key={atual.arquivo}
-                arquivo={atual.arquivo}
-                sizes="90vw"
-                carregarJa
-                className="espaco-lightbox-foto max-h-[calc(100dvh-9rem)] w-auto max-w-full rounded-[12px] object-contain shadow-2xl"
-              />
-              <figcaption className="mt-3 text-center text-offwhite" aria-live="polite">
-                <span className="font-semibold">{atual.legenda}</span>
-                <span className="ml-2 text-sm text-offwhite/70">
-                  {aberta + 1} de {total}
-                </span>
-              </figcaption>
-            </figure>
-            <div className="flex gap-3 sm:contents">
-              <BotaoVisualizador rotulo="Foto anterior" onClick={() => passar(-1)} lado="esquerda">
-                <ChevronLeft className="size-6" strokeWidth={1.75} />
-              </BotaoVisualizador>
-              <BotaoVisualizador rotulo="Próxima foto" onClick={() => passar(1)} lado="direita">
-                <ChevronRight className="size-6" strokeWidth={1.75} />
-              </BotaoVisualizador>
-            </div>
-            <button
-              type="button"
-              onClick={fechar}
-              aria-label="Fechar"
-              className="absolute top-4 right-4 flex size-11 items-center justify-center rounded-full bg-offwhite/15 text-offwhite transition-colors hover:bg-offwhite/30 focus-visible:ring-2 focus-visible:ring-offwhite outline-none"
-            >
-              <X aria-hidden="true" className="size-6" strokeWidth={1.75} />
-            </button>
-          </div>
-        )}
-      </dialog>
+      <Lightbox fotos={fotosLightbox} aberta={aberta} onMudar={setAberta} rotulo="Fotos dos ambientes da House" />
     </>
-  );
-}
-
-function BotaoVisualizador({
-  rotulo,
-  onClick,
-  lado,
-  children,
-}: {
-  rotulo: string;
-  onClick: () => void;
-  lado: "esquerda" | "direita";
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={rotulo}
-      className={`flex size-11 items-center justify-center rounded-full bg-offwhite/15 text-offwhite transition-colors outline-none hover:bg-offwhite/30 focus-visible:ring-2 focus-visible:ring-offwhite sm:absolute sm:top-1/2 sm:-translate-y-1/2 ${
-        lado === "esquerda" ? "sm:left-4" : "sm:right-4"
-      }`}
-    >
-      <span aria-hidden="true">{children}</span>
-    </button>
   );
 }

@@ -1095,3 +1095,87 @@
     animation: integra-passo 600ms var(--ease-calm) both;
   }
 }
+
+/* Página Projetos Sociais, "Da semente ao impacto"
+   (projetos-sociais/SementeImpacto.tsx): a linha tracejada se desenha e cada
+   etapa nasce em sequência (--i): a semente aparece, o broto sobe da terra, a
+   copa da árvore se abre; o texto vem logo depois. Com movimento reduzido,
+   tudo já aparece pronto. */
+.impacto-broto,
+.impacto-tronco {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.impacto-copa {
+  transform-box: fill-box;
+  transform-origin: 50% 80%;
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .impacto:not([data-inview]) .impacto-ilu,
+  .impacto:not([data-inview]) .impacto-texto {
+    opacity: 0;
+  }
+  .impacto[data-inview] .impacto-linha-h {
+    animation: impacto-linha-h 1.8s var(--ease-calm) both;
+  }
+  .impacto[data-inview] .impacto-linha-v {
+    animation: impacto-linha-v 1.8s var(--ease-calm) both;
+  }
+  .impacto[data-inview] .impacto-ilu {
+    animation: cultura-texto 600ms var(--ease-calm) both;
+    animation-delay: calc(var(--i, 0) * 600ms);
+  }
+  .impacto[data-inview] .impacto-semente {
+    animation: impacto-surge 700ms var(--ease-calm) both;
+    animation-delay: 200ms;
+  }
+  .impacto[data-inview] .impacto-broto {
+    animation: impacto-sobe 900ms var(--ease-calm) both;
+    animation-delay: 750ms;
+  }
+  .impacto[data-inview] .impacto-tronco {
+    animation: impacto-sobe 800ms var(--ease-calm) both;
+    animation-delay: 1300ms;
+  }
+  .impacto[data-inview] .impacto-copa {
+    animation: impacto-abre 900ms var(--ease-calm) both;
+    animation-delay: 1750ms;
+  }
+  .impacto[data-inview] .impacto-texto {
+    animation: integra-passo 600ms var(--ease-calm) both;
+    animation-delay: calc(var(--i, 0) * 600ms + 450ms);
+  }
+}
+@keyframes impacto-linha-h {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes impacto-linha-v {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes impacto-surge {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@keyframes impacto-sobe {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes impacto-abre {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
