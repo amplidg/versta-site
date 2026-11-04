@@ -975,3 +975,64 @@
     animation: cultura-texto 350ms var(--ease-calm) both;
   }
 }
+
+/* Página da Íntegra, "Dois caminhos para o mesmo conflito"
+   (integra/IntegraCaminhos.tsx): a cada situação, o conteúdo entra com um
+   fade; as linhas se desenham de cima para baixo (a da disputa mais lenta e
+   com paradas, a estratégica fluida) e as etapas aparecem conforme a linha
+   passa (--d = momento de cada uma). Com movimento reduzido, tudo direto. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .integra:not([data-inview]) .integra-painel {
+    opacity: 0;
+  }
+  .integra[data-inview] .integra-painel {
+    animation: cultura-texto 350ms var(--ease-calm) both;
+  }
+  .integra[data-inview] .integra-garfo {
+    animation: cultura-texto 700ms var(--ease-calm) 150ms both;
+  }
+  .integra[data-inview] .integra-linha-disputa {
+    animation: integra-hesita 2.6s linear 0.2s both;
+  }
+  .integra[data-inview] .integra-linha-estrategico {
+    animation: integra-flui 1.3s var(--ease-calm) 0.2s both;
+  }
+  .integra[data-inview] .integra-passo {
+    animation: integra-passo 500ms var(--ease-calm) both;
+    animation-delay: var(--d, 0s);
+  }
+}
+@keyframes integra-flui {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes integra-hesita {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  22% {
+    clip-path: inset(0 0 68% 0);
+  }
+  36% {
+    clip-path: inset(0 0 64% 0);
+  }
+  58% {
+    clip-path: inset(0 0 36% 0);
+  }
+  72% {
+    clip-path: inset(0 0 33% 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes integra-passo {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
