@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { InView } from "@/components/motion/InView";
 import { asset } from "@/lib/paths";
 
@@ -10,6 +10,12 @@ import { asset } from "@/lib/paths";
  * mostra o seu texto no painel ao lado (padrão: copa). Os nomes acima do texto
  * também trocam o conteúdo. Botões de verdade, navegáveis pelo teclado; o
  * painel é anunciado a leitores de tela. Animações em globals.css (cultura-*).
+ *
+ * Troca automática (pedido do Lucas, 04/11): a cada 7 s o próximo ponto
+ * (1 → 2 → 3 → 1…) fica ativo, para quem não percebeu que dá para clicar.
+ * Pausa com o mouse sobre o bloco ou com o foco do teclado dentro dele; um
+ * clique recomeça a contagem. O painel só é anunciado a leitores de tela depois
+ * que a pessoa interage (senão seria lido a cada troca).
  *
  * ILUSTRAÇÃO: quando existir public/images/cultura-arvore.webp, mude
  * IMAGEM_PRONTA para true. Enquanto isso, aparece a árvore desenhada em código.
@@ -61,23 +67,61 @@ const partes: Parte[] = [
 ];
 
 const PAINEL = "cultura-painel";
+const INTERVALO = 7000;
 
 /** Árvore provisória em SVG (raízes caramelo, tronco azul-marinho, copa em aquarela). */
 function ArvoreDesenhada({ ativa }: { ativa: Parte["chave"] }) {
-  const parte = (chave: Parte["chave"]) => `cultura-area ${ativa === chave ? "cultura-area-ativa" : ""}`;
+  const parte = (chave: Parte["chave"]) =>
+    `cultura-area ${ativa === chave ? "cultura-area-ativa" : ""}`;
   return (
-    <svg aria-hidden="true" viewBox="0 0 600 600" className="size-full overflow-visible">
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 600 600"
+      className="size-full overflow-visible"
+    >
       <defs>
-        <filter id="cultura-aquarela" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="9" result="ruido" />
-          <feDisplacementMap in="SourceGraphic" in2="ruido" scale="26" xChannelSelector="R" yChannelSelector="G" result="borda" />
+        <filter
+          id="cultura-aquarela"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.025"
+            numOctaves="3"
+            seed="9"
+            result="ruido"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="ruido"
+            scale="26"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="borda"
+          />
           <feGaussianBlur in="borda" stdDeviation="2" />
         </filter>
       </defs>
       {/* chão */}
-      <path d="M90 392 C 220 382, 380 384, 510 394" fill="none" stroke="var(--color-sage)" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      <path
+        d="M90 392 C 220 382, 380 384, 510 394"
+        fill="none"
+        stroke="var(--color-sage)"
+        strokeWidth="3"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
       {/* raízes */}
-      <g className={parte("raizes")} fill="none" stroke="var(--color-caramel)" strokeWidth="5" strokeLinecap="round">
+      <g
+        className={parte("raizes")}
+        fill="none"
+        stroke="var(--color-caramel)"
+        strokeWidth="5"
+        strokeLinecap="round"
+      >
         <path d="M290 392 C 280 440, 230 470, 180 520" />
         <path d="M296 395 C 300 450, 290 500, 300 560" />
         <path d="M306 392 C 330 440, 380 465, 430 515" />
@@ -96,10 +140,37 @@ function ArvoreDesenhada({ ativa }: { ativa: Parte["chave"] }) {
       {/* copa */}
       <g className={parte("copa")}>
         <g filter="url(#cultura-aquarela)">
-          <ellipse cx="300" cy="170" rx="200" ry="130" fill="var(--color-mint)" />
-          <ellipse cx="230" cy="195" rx="110" ry="80" fill="var(--color-sage)" opacity="0.55" />
-          <ellipse cx="370" cy="140" rx="120" ry="85" fill="var(--color-sage)" opacity="0.45" />
-          <ellipse cx="300" cy="105" rx="90" ry="60" fill="var(--color-mint)" opacity="0.9" />
+          <ellipse
+            cx="300"
+            cy="170"
+            rx="200"
+            ry="130"
+            fill="var(--color-mint)"
+          />
+          <ellipse
+            cx="230"
+            cy="195"
+            rx="110"
+            ry="80"
+            fill="var(--color-sage)"
+            opacity="0.55"
+          />
+          <ellipse
+            cx="370"
+            cy="140"
+            rx="120"
+            ry="85"
+            fill="var(--color-sage)"
+            opacity="0.45"
+          />
+          <ellipse
+            cx="300"
+            cy="105"
+            rx="90"
+            ry="60"
+            fill="var(--color-mint)"
+            opacity="0.9"
+          />
         </g>
         {[
           [210, 150],
@@ -110,7 +181,13 @@ function ArvoreDesenhada({ ativa }: { ativa: Parte["chave"] }) {
           [300, 120],
           [170, 210],
         ].map(([x, y]) => (
-          <circle key={`${x}-${y}`} cx={x} cy={y} r="9" fill="var(--color-peach-200)" />
+          <circle
+            key={`${x}-${y}`}
+            cx={x}
+            cy={y}
+            r="9"
+            fill="var(--color-peach-200)"
+          />
         ))}
       </g>
     </svg>
@@ -119,59 +196,51 @@ function ArvoreDesenhada({ ativa }: { ativa: Parte["chave"] }) {
 
 export function CulturaArvore() {
   const [ativa, setAtiva] = useState<Parte["chave"]>("copa");
+  const [pausado, setPausado] = useState(false);
+  const [interagiu, setInteragiu] = useState(false);
+
+  // avança sozinho; o temporizador recomeça a cada troca (inclusive por clique)
+  useEffect(() => {
+    if (pausado) return;
+    const t = window.setTimeout(() => {
+      setAtiva(
+        (a) =>
+          partes[(partes.findIndex((p) => p.chave === a) + 1) % partes.length]
+            .chave,
+      );
+    }, INTERVALO);
+    return () => window.clearTimeout(t);
+  }, [ativa, pausado]);
+
+  const escolher = (chave: Parte["chave"]) => {
+    setInteragiu(true);
+    setAtiva(chave);
+  };
   const atual = partes.find((p) => p.chave === ativa)!;
 
   return (
-    <InView className="cultura mt-12 grid items-center gap-10 md:mt-16 lg:grid-cols-12 lg:gap-14">
-      {/* ÁRVORE com os pontos */}
-      <div className="cultura-arvore relative mx-auto aspect-square h-80 max-w-full lg:col-span-7 lg:h-auto lg:w-full lg:max-w-[34rem]">
-        {IMAGEM_PRONTA ? (
-          // eslint-disable-next-line @next/next/no-img-element -- ilustração única, site estático
-          <img
-            src={asset(IMAGEM)}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="size-full object-contain"
-          />
-        ) : (
-          <ArvoreDesenhada ativa={ativa} />
-        )}
-        {partes.map((p, i) => {
-          const ativo = p.chave === ativa;
-          return (
-            <button
-              key={p.chave}
-              type="button"
-              aria-pressed={ativo}
-              aria-controls={PAINEL}
-              aria-label={`${i + 1}. ${p.nome} · ${p.titulo}`}
-              onClick={() => setAtiva(p.chave)}
-              className="cultura-ponto absolute -translate-x-1/2 -translate-y-1/2 rounded-full outline-none focus-visible:ring-4 focus-visible:ring-navy/50"
-              style={{ top: `${p.top}%`, left: `${p.left}%`, "--i": i } as CSSProperties}
-            >
-              <span className="cultura-ponto-entra relative flex">
-                <span
-                  aria-hidden="true"
-                  className={`cultura-pulso absolute inset-0 rounded-full ${ativo ? "bg-caramel/40" : "bg-navy/25"}`}
-                />
-                <span
-                  className={`relative flex items-center justify-center rounded-full font-display font-bold text-white shadow-[0_8px_18px_-8px_rgb(0_41_77/0.6)] transition-[width,height,background-color] duration-300 motion-reduce:transition-none ${
-                    ativo ? "size-12 bg-caramel text-lg" : "size-10 bg-navy text-base"
-                  }`}
-                >
-                  {i + 1}
-                </span>
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* PAINEL */}
-      <div className="lg:col-span-5">
-        <div className="flex gap-2" role="group" aria-label="Partes da árvore">
-          {partes.map((p) => {
+    <div
+      onMouseEnter={() => setPausado(true)}
+      onMouseLeave={() => setPausado(false)}
+      onFocus={() => setPausado(true)}
+      onBlur={() => setPausado(false)}
+    >
+      <InView className="cultura mt-12 grid items-center gap-10 md:mt-16 lg:grid-cols-12 lg:gap-14">
+        {/* ÁRVORE com os pontos */}
+        <div className="cultura-arvore relative mx-auto aspect-square h-80 max-w-full lg:col-span-7 lg:h-auto lg:w-full lg:max-w-[34rem]">
+          {IMAGEM_PRONTA ? (
+            // eslint-disable-next-line @next/next/no-img-element -- ilustração única, site estático
+            <img
+              src={asset(IMAGEM)}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="size-full object-contain"
+            />
+          ) : (
+            <ArvoreDesenhada ativa={ativa} />
+          )}
+          {partes.map((p, i) => {
             const ativo = p.chave === ativa;
             return (
               <button
@@ -179,24 +248,77 @@ export function CulturaArvore() {
                 type="button"
                 aria-pressed={ativo}
                 aria-controls={PAINEL}
-                onClick={() => setAtiva(p.chave)}
-                className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
-                  ativo ? "border-navy bg-navy text-offwhite" : "border-navy/25 text-navy hover:border-navy/60"
-                }`}
+                aria-label={`${i + 1}. ${p.nome} · ${p.titulo}`}
+                onClick={() => escolher(p.chave)}
+                className="cultura-ponto absolute -translate-x-1/2 -translate-y-1/2 rounded-full outline-none focus-visible:ring-4 focus-visible:ring-navy/50"
+                style={
+                  {
+                    top: `${p.top}%`,
+                    left: `${p.left}%`,
+                    "--i": i,
+                  } as CSSProperties
+                }
               >
-                {p.nome}
+                <span className="cultura-ponto-entra relative flex">
+                  <span
+                    aria-hidden="true"
+                    className={`cultura-pulso absolute inset-0 rounded-full ${ativo ? "bg-caramel/40" : "bg-navy/25"}`}
+                  />
+                  <span
+                    className={`relative flex items-center justify-center rounded-full font-display font-bold text-white shadow-[0_8px_18px_-8px_rgb(0_41_77/0.6)] transition-[width,height,background-color] duration-300 motion-reduce:transition-none ${
+                      ativo
+                        ? "size-12 bg-caramel text-lg"
+                        : "size-10 bg-navy text-base"
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
+                </span>
               </button>
             );
           })}
         </div>
-        <div id={PAINEL} aria-live="polite" className="mt-6 min-h-[12rem]">
-          <div key={atual.chave} className="cultura-texto">
-            <p className="eyebrow text-caramel-700">{atual.nome}</p>
-            <h3 className="mt-2 text-h3 text-navy">{atual.titulo}</h3>
-            <p className="mt-3 text-lead text-ink-muted">{atual.texto}</p>
+
+        {/* PAINEL */}
+        <div className="lg:col-span-5">
+          <div
+            className="flex gap-2"
+            role="group"
+            aria-label="Partes da árvore"
+          >
+            {partes.map((p) => {
+              const ativo = p.chave === ativa;
+              return (
+                <button
+                  key={p.chave}
+                  type="button"
+                  aria-pressed={ativo}
+                  aria-controls={PAINEL}
+                  onClick={() => escolher(p.chave)}
+                  className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 ${
+                    ativo
+                      ? "border-navy bg-navy text-offwhite"
+                      : "border-navy/25 text-navy hover:border-navy/60"
+                  }`}
+                >
+                  {p.nome}
+                </button>
+              );
+            })}
+          </div>
+          <div
+            id={PAINEL}
+            aria-live={interagiu ? "polite" : "off"}
+            className="mt-6 min-h-[12rem]"
+          >
+            <div key={atual.chave} className="cultura-texto">
+              <p className="eyebrow text-caramel-700">{atual.nome}</p>
+              <h3 className="mt-2 text-h3 text-navy">{atual.titulo}</h3>
+              <p className="mt-3 text-lead text-ink-muted">{atual.texto}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </InView>
+      </InView>
+    </div>
   );
 }
