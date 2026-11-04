@@ -77,12 +77,12 @@ export default function ExcelenciaPage() {
           fundo: "bg-peach-100",
           cor: "text-caramel-700",
         }}
-        emblema={{ icone: BadgeCheck, cores: ["var(--color-sky)", "var(--color-peach-100)"] }}
+        emblema={{ icone: BadgeCheck, cores: ["var(--color-sky)", "var(--color-mist)"] }}
         prediagUrl={PREDIAG_URL}
       />
 
-      {/* SINAIS DE ALERTA */}
-      <Section tone="mint" aria-labelledby="sinais-titulo">
+      {/* SINAIS DE ALERTA — azul claro da marca (pedido do Lucas, 04/11) */}
+      <Section tone="mist" aria-labelledby="sinais-titulo">
         <Container>
           <Reveal>
             <SectionHeading
