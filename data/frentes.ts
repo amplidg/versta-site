@@ -14,7 +14,7 @@ import {
 
 /**
  * As 10 frentes de consultoria da Versta (a 10ª, Próspera, entrou em 16/10).
- * As páginas /consultoria/[slug], os cards, o menu, o rodapé, o select dos
+ * Os cards, o menu, o rodapé, o select dos
  * formulários e o sitemap são gerados a partir desta lista.
  */
 export type Frente = {

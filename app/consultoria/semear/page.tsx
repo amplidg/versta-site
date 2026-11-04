@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/seo";
 
 /*
  * Página própria da frente Semear (especificação e textos do Lucas, 29/10).
- * Substitui, só para a Semear, a página genérica de app/consultoria/[slug].
+ * Foi a primeira página própria de uma frente (a página genérica saiu em 04/11).
  * As peças (topo, sinais, cards, motivos, fechamento) ficam em
  * components/sections/frente/ e são as mesmas da página da ESG.
  */

@@ -15,7 +15,7 @@ import { pageMetadata } from "@/lib/seo";
 /*
  * Página própria da frente ESG (especificação e textos do Lucas, 03/11), no
  * mesmo padrão da Semear (peças em components/sections/frente/). Substitui, só
- * para a ESG, a página genérica de app/consultoria/[slug].
+ * para a ESG, a antiga página genérica (apagada em 04/11).
  */
 
 export const metadata: Metadata = pageMetadata({
