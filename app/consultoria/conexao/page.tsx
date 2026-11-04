@@ -125,7 +125,7 @@ export default function ConexaoPage() {
       <Section tone="peach" aria-labelledby="faz-titulo">
         <Container>
           <Reveal>
-            <SectionHeading id="faz-titulo" title="O que a Conexão faz" align="center" />
+            <SectionHeading id="faz-titulo" title="O que entregamos" align="center" />
           </Reveal>
           <ServicosGrid servicos={servicos} />
         </Container>
