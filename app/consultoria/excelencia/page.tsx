@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BadgeCheck, Funnel, Gauge, ListChecks, Medal, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { ExcelenciaCalculadora } from "@/components/sections/excelencia/ExcelenciaCalculadora";
+import { ExcelenciaDomino } from "@/components/sections/excelencia/ExcelenciaDomino";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
 import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
@@ -12,7 +12,8 @@ import { PREDIAG_URL } from "@/data/links";
 import { pageMetadata } from "@/lib/seo";
 
 /*
- * Página própria da frente Excelência (especificação e textos do Lucas, 04/11),
+ * Página própria da frente Excelência (especificação e textos do Lucas, 04/11;
+ * a calculadora de horas foi trocada pelo efeito dominó na 2ª versão, 04/11),
  * no padrão das outras frentes (peças em components/sections/frente/), com as
  * regras do Lucas: só botões de pré-diagnóstico, cartão final sem mancha e os
  * títulos padrão "Sua empresa precisa dessa solução se..." e "O que entregamos".
@@ -21,7 +22,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Excelência · Qualidade e Produção",
   description:
-    "Padronização de processos, gestão da qualidade, indicadores de produtividade, redução de desperdícios e preparação para ISO 9001. Fazer certo da primeira vez, todas as vezes.",
+    "Padronização de processos, gestão da qualidade, indicadores de produtividade, redução de desperdícios e preparação para ISO 9001. Cada processo no lugar, cada entrega no padrão.",
   path: "/consultoria/excelencia",
 });
 
@@ -73,7 +74,7 @@ export default function ExcelenciaPage() {
         nome="Excelência"
         slug="excelencia"
         eyebrow="Excelência · Qualidade e produção"
-        titulo="Fazer certo da primeira vez, todas as vezes"
+        titulo="Cada processo no lugar, cada entrega no padrão"
         texto="Processos padronizados, qualidade medida e menos desperdício. A Versta estrutura a gestão da qualidade e da produção para sua empresa entregar mais, com menos erros e dentro do prazo."
         selo={{
           texto: "Qualidade, produtividade e certificação",
@@ -106,19 +107,19 @@ export default function ExcelenciaPage() {
         </Container>
       </Section>
 
-      {/* QUANTO CUSTA O RETRABALHO */}
-      <Section aria-labelledby="calculadora-titulo" className="overflow-hidden">
+      {/* O EFEITO DOMINÓ DO ERRO */}
+      <Section aria-labelledby="domino-titulo" className="overflow-hidden">
         <Container>
           <Reveal>
             <SectionHeading
-              id="calculadora-titulo"
-              title="Quanto tempo sua empresa perde corrigindo erros?"
-              lead="Faça uma estimativa rápida com os números da sua empresa."
+              id="domino-titulo"
+              title="Um erro pequeno nunca fica pequeno"
+              lead="Veja o que acontece quando uma falha escapa no começo do processo."
               align="center"
             />
           </Reveal>
           <Reveal delay={120}>
-            <ExcelenciaCalculadora prediagUrl={PREDIAG_URL} />
+            <ExcelenciaDomino prediagUrl={PREDIAG_URL} />
           </Reveal>
         </Container>
       </Section>
