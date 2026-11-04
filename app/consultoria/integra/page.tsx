@@ -49,8 +49,8 @@ export default function IntegraPage() {
         selo={{
           texto: "Prevenção e solução de conflitos",
           icone: Scale,
-          fundo: "bg-peach-100",
-          cor: "text-caramel-700",
+          fundo: "bg-mist/70",
+          cor: "text-navy",
         }}
         emblema={{
           icone: Scale,
@@ -99,8 +99,8 @@ export default function IntegraPage() {
             </p>
           </Reveal>
           <FrenteChamada
-            antes="Cada conflito pede um caminho."
-            destaque="A Íntegra mostra qual seguir."
+            antes="Cada conflito pede um"
+            destaque="caminho."
             prediagUrl={PREDIAG_URL}
             className="mt-12 md:mt-14"
           />
