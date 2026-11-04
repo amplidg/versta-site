@@ -122,11 +122,11 @@ export default function CulturaPage() {
         </Container>
       </Section>
 
-      {/* O QUE ENTREGAMOS */}
+      {/* O QUE ENTREGAMOS — título trocado pelo Lucas em 04/11 */}
       <Section tone="peach" aria-labelledby="faz-titulo">
         <Container>
           <Reveal>
-            <SectionHeading id="faz-titulo" title="O que entregamos" align="center" />
+            <SectionHeading id="faz-titulo" title="O que forma uma cultura forte" align="center" />
           </Reveal>
           <ServicosGrid servicos={servicos} />
         </Container>
