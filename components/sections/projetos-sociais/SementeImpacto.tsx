@@ -24,7 +24,7 @@ const etapas: {
     nome: "Semente",
     titulo: "A Versta apresenta os caminhos",
     texto:
-      "A Versta leva à empresa as possibilidades de causas e projetos sociais, e juntas escolhem o que faz sentido para a sua história e a sua comunidade.",
+      "Levamos à empresa projetos sociais que combinam com a sua história e a sua comunidade.",
     desenho: (
       <g className="impacto-semente">
         <ellipse
