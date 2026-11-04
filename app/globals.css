@@ -967,3 +967,11 @@
       transform 500ms var(--ease-calm);
   }
 }
+
+/* Página do Espaço, visualizador de fotos (espaco/EspacoGaleria.tsx): cada
+   foto entra com um fade curto; com movimento reduzido, troca direto. */
+@media (prefers-reduced-motion: no-preference) {
+  .espaco-lightbox-foto {
+    animation: cultura-texto 350ms var(--ease-calm) both;
+  }
+}
