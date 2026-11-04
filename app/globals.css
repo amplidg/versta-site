@@ -947,3 +947,23 @@
     opacity: 0;
   }
 }
+
+/* Página da Excelência, calendário do desperdício
+   (excelencia/ExcelenciaCalendario.tsx): cada dia perdido é pintado com uma
+   mancha caramelo que "se espalha" (escala + opacidade), um dia após o outro
+   (o atraso vem do componente). Com movimento reduzido, aparece direto. */
+.excelencia-dia {
+  opacity: 0;
+  transform: scale(0.4);
+}
+.excelencia-dia-pintado {
+  opacity: 0.75;
+  transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .excelencia-dia {
+    transition:
+      opacity 500ms var(--ease-calm),
+      transform 500ms var(--ease-calm);
+  }
+}

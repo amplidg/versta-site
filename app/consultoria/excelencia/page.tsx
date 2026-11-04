@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BadgeCheck, Funnel, Gauge, ListChecks, Medal, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { ExcelenciaDomino } from "@/components/sections/excelencia/ExcelenciaDomino";
+import { ExcelenciaCalendario } from "@/components/sections/excelencia/ExcelenciaCalendario";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
 import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
@@ -13,7 +13,8 @@ import { pageMetadata } from "@/lib/seo";
 
 /*
  * Página própria da frente Excelência (especificação e textos do Lucas, 04/11;
- * a calculadora de horas foi trocada pelo efeito dominó na 2ª versão, 04/11),
+ * o bloco interativo já foi calculadora e dominó; desde a 3ª versão, 04/11, é
+ * o calendário do desperdício),
  * no padrão das outras frentes (peças em components/sections/frente/), com as
  * regras do Lucas: só botões de pré-diagnóstico, cartão final sem mancha e os
  * títulos padrão "Sua empresa precisa dessa solução se..." e "O que entregamos".
@@ -107,19 +108,19 @@ export default function ExcelenciaPage() {
         </Container>
       </Section>
 
-      {/* O EFEITO DOMINÓ DO ERRO */}
-      <Section aria-labelledby="domino-titulo" className="overflow-hidden">
+      {/* O CALENDÁRIO DO DESPERDÍCIO */}
+      <Section aria-labelledby="calendario-titulo" className="overflow-hidden">
         <Container>
           <Reveal>
             <SectionHeading
-              id="domino-titulo"
-              title="Um erro pequeno nunca fica pequeno"
-              lead="Veja o que acontece quando uma falha escapa no começo do processo."
+              id="calendario-titulo"
+              title="Quantos dias por mês sua empresa trabalha só para corrigir?"
+              lead="Responda com que frequência estas situações acontecem e veja o resultado no calendário."
               align="center"
             />
           </Reveal>
           <Reveal delay={120}>
-            <ExcelenciaDomino prediagUrl={PREDIAG_URL} />
+            <ExcelenciaCalendario prediagUrl={PREDIAG_URL} />
           </Reveal>
         </Container>
       </Section>
