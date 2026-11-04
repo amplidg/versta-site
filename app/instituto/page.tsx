@@ -8,15 +8,14 @@ import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { causas } from "@/data/projetos-sociais";
-import { WHATSAPP_URL } from "@/data/links";
 import { asset } from "@/lib/paths";
 import { pageMetadata } from "@/lib/seo";
 
 /*
  * Página Projetos Sociais (especificação e textos do Lucas, 04/11): o braço
  * social da Versta. Não é uma das 10 frentes; o endereço continua /instituto
- * (o mesmo do menu e do organograma da Home). Botões para o WhatsApp, como na
- * especificação (WHATSAPP_URL em data/links.ts). Causas e projetos realizados
+ * (o mesmo do menu e do organograma da Home). No topo, só o botão "Como
+ * funciona" (o Lucas tirou o do WhatsApp, 04/11). Causas e projetos realizados
  * em data/projetos-sociais.ts.
  */
 
@@ -26,8 +25,6 @@ export const metadata: Metadata = pageMetadata({
     "Projetos sociais construídos em parceria com empresas e seus colaboradores, para fazer a diferença na comunidade e desenvolver não apenas profissionais, mas seres humanos melhores.",
   path: "/instituto",
 });
-
-const novaAba = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 const ganhos = [
   {
@@ -59,10 +56,6 @@ export default function ProjetosSociaisPage() {
         titulo="Desenvolver não apenas profissionais, mas seres humanos melhores"
         texto="Projetos sociais construídos em parceria com os clientes da Versta, que convidam as empresas e seus colaboradores a participar e a fazer a diferença na comunidade."
       >
-        <Button href={WHATSAPP_URL} variant="primary" arrow {...novaAba}>
-          Construir um projeto juntos
-          <span className="sr-only"> (abre em nova aba)</span>
-        </Button>
         <Button href="#como-funciona" variant="outline">
           Como funciona
         </Button>
