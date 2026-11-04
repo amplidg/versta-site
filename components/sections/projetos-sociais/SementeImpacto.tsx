@@ -22,9 +22,9 @@ const etapas: {
 }[] = [
   {
     nome: "Semente",
-    titulo: "A empresa escolhe uma causa",
+    titulo: "A Versta apresenta os caminhos",
     texto:
-      "Junto com a Versta, a empresa define a causa e o projeto que fazem sentido para sua história e sua comunidade.",
+      "A Versta leva à empresa as possibilidades de causas e projetos sociais, e juntas escolhem o que faz sentido para a sua história e a sua comunidade.",
     desenho: (
       <g className="impacto-semente">
         <ellipse
