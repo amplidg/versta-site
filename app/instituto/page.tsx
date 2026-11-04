@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Compass, Earth, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { ProjetosHero } from "@/components/sections/projetos-sociais/ProjetosHero";
 import { ProjetosRealizados } from "@/components/sections/projetos-sociais/ProjetosRealizados";
 import { SementeImpacto } from "@/components/sections/projetos-sociais/SementeImpacto";
@@ -160,26 +159,6 @@ export default function ProjetosSociaisPage() {
 
       {/* PROJETOS REALIZADOS (só aparece quando houver projetos) */}
       <ProjetosRealizados />
-
-      {/* CHAMADA FINAL */}
-      <Section aria-label="Construir um projeto juntos">
-        <Container>
-          <FrenteChamada
-            antes="Que diferença sua empresa"
-            destaque="quer fazer?"
-            apoio="Conte para a Versta qual causa move sua empresa e vamos construir esse projeto juntos."
-            prediagUrl={WHATSAPP_URL}
-            botao={{
-              href: WHATSAPP_URL,
-              label: "Construir um projeto juntos",
-              novaAba: true,
-            }}
-            mancha
-            manchaTom="salvia"
-            className=""
-          />
-        </Container>
-      </Section>
     </>
   );
 }
