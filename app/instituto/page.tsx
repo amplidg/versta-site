@@ -61,7 +61,7 @@ export default function ProjetosSociaisPage() {
         </Button>
       </ProjetosHero>
 
-      {/* DA SEMENTE AO IMPACTO */}
+      {/* COMO NASCE UM PROJETO (antes "Da semente ao impacto") */}
       <Section
         id="como-funciona"
         aria-labelledby="impacto-titulo"
@@ -71,8 +71,7 @@ export default function ProjetosSociaisPage() {
           <Reveal>
             <SectionHeading
               id="impacto-titulo"
-              title="Da semente ao impacto"
-              lead="Como nasce um projeto social com a Versta."
+              title="Como nasce um projeto social com a Versta"
               align="center"
             />
           </Reveal>
