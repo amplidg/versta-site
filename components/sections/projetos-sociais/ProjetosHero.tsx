@@ -61,7 +61,7 @@ function Selo({ className = "" }: { className?: string }) {
       className={`colagem-selo flex items-center gap-2.5 rounded-full bg-white px-4 py-2.5 text-sm leading-snug font-semibold text-navy shadow-[0_10px_24px_-12px_rgb(0_41_77/0.45)] ${className}`}
     >
       <Heart aria-hidden="true" className="size-4 shrink-0 fill-caramel/20 text-caramel" strokeWidth={2} />
-      Empresas e colaboradores fazendo a diferença juntos
+      Projetos que já fizeram a diferença
     </p>
   );
 }
