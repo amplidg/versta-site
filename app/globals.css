@@ -1179,3 +1179,40 @@
     transform: scale(0.6);
   }
 }
+
+/* Topo da página Projetos Sociais, colagem das três ilustrações
+   (projetos-sociais/ProjetosHero.tsx): cada quadro tem a sua rotação (--r).
+   Ao carregar, eles são "colocados sobre a mesa" em sequência (--d) e o selo
+   aparece por último; a animação usa fill "backwards" para o hover funcionar
+   depois. Hover: o quadro vem para a frente, endireita e cresce um pouco. */
+.colagem-quadro {
+  transform: rotate(var(--r, 0deg));
+  transition:
+    transform 450ms var(--ease-calm),
+    box-shadow 450ms var(--ease-calm);
+}
+.colagem-quadro:hover {
+  z-index: 10;
+  transform: rotate(calc(var(--r, 0deg) * 0.3)) scale(1.04);
+  box-shadow: 0 26px 48px -22px rgb(0 41 77 / 0.55);
+}
+@media (prefers-reduced-motion: reduce) {
+  .colagem-quadro {
+    transition: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .colagem-quadro {
+    animation: colagem-entra 750ms var(--ease-calm) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .colagem-selo {
+    animation: sh2-hero-entra 600ms var(--ease-calm) 1250ms backwards;
+  }
+}
+@keyframes colagem-entra {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(0deg);
+  }
+}

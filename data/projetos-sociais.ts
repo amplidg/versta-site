@@ -7,10 +7,20 @@
  * trocar, basta salvar as ilustrações definitivas por cima, com o mesmo nome.
  */
 
-/** Imagem do topo da página. */
-export const heroProjetos = {
-  arquivo: "/images/projetos-sociais/mural.webp",
-  alt: "Ilustração em aquarela de colaboradores pintando o mural de uma escola comunitária",
+/** Colagem do topo da página (três quadros sobrepostos, pedido do Lucas, 04/11). */
+export const colagemProjetos = {
+  mural: {
+    arquivo: "/images/projetos-sociais/mural.webp",
+    alt: "Ilustração em aquarela de colaboradores pintando o mural de uma escola comunitária",
+  },
+  plantio: {
+    arquivo: "/images/projetos-sociais/plantio.webp",
+    alt: "Ilustração em aquarela de voluntários plantando uma muda de árvore",
+  },
+  horta: {
+    arquivo: "/images/projetos-sociais/horta.webp",
+    alt: "Ilustração em aquarela de uma voluntária entregando uma cesta da horta comunitária a uma senhora",
+  },
 };
 
 /** Cards do bloco "Causas que movem os projetos". */
