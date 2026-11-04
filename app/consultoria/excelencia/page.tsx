@@ -125,7 +125,7 @@ export default function ExcelenciaPage() {
           <Reveal>
             <SectionHeading id="faz-titulo" title="Passos para a excelência" align="center" />
           </Reveal>
-          <ServicosGrid servicos={servicos} />
+          <ServicosGrid servicos={servicos} colunas={2} />
         </Container>
       </Section>
 
