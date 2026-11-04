@@ -144,7 +144,7 @@ export default function ProsperaPage() {
               align="center"
             />
           </Reveal>
-          <ServicosGrid servicos={servicos} />
+          <ServicosGrid servicos={servicos} colunas={2} />
         </Container>
       </Section>
 
