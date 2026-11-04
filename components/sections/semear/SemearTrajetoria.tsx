@@ -30,7 +30,7 @@ import { asset } from "@/lib/paths";
 const pilares: { titulo: string; texto: string; icone: LucideIcon }[] = [
   {
     titulo: "Experiência de campo",
-    texto: "Mais de 20 anos acompanhando empresas na gestão ambiental, em diferentes setores.",
+    texto: "Mais de 17 anos acompanhando empresas na gestão ambiental, em diferentes setores.",
     icone: Hourglass,
   },
   {
@@ -149,9 +149,8 @@ export function SemearTrajetoria() {
                 title="Esta solução é conduzida pela Semear Soluções Ambientais"
               />
               <p className="mt-6 text-lead text-offwhite/85">
-                Fundada por Vivian Prá Philippi, a Semear presta consultoria ambiental há mais de 20
-                anos. Nesse caminho, acompanha empresas de diferentes setores com uma condução técnica,
-                próxima e completa.
+                Com Vivian Prá Philippi à frente, a Semear presta consultoria ambiental e acompanha
+                empresas de diferentes setores com uma condução técnica, próxima e completa.
               </p>
             </Reveal>
 
