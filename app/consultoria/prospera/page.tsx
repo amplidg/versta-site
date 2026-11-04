@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  ArrowLeftRight,
   BadgePercent,
   Calculator,
   FileChartColumn,
@@ -52,13 +51,6 @@ const servicos: Servico[] = [
     fundo: "bg-mint",
   },
   {
-    titulo: "Fluxo de caixa",
-    texto:
-      "Controle diário do caixa, com previsão das próximas semanas e meses.",
-    icone: ArrowLeftRight,
-    fundo: "bg-peach-100",
-  },
-  {
     titulo: "Custos e margens",
     texto:
       "Calculamos o custo e a margem de cada produto ou serviço para precificar com segurança.",
@@ -107,7 +99,7 @@ export default function ProsperaPage() {
         slug="prospera"
         eyebrow="Próspera · Assessoria financeira e contábil"
         titulo="Números claros para decisões seguras"
-        texto="Fluxo de caixa organizado, margens conhecidas, impostos revisados e relatórios que fazem sentido. A Próspera coloca as finanças da sua empresa em ordem para você decidir com segurança."
+        texto="Fluxo de caixa organizado, margens conhecidas, impostos revisados e relatórios que fazem sentido. Colocamos as finanças da sua empresa em ordem para você decidir com segurança."
         selo={{
           texto: "Financeiro e contábil lado a lado",
           icone: TrendingUp,
