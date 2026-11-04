@@ -140,7 +140,7 @@ export default function ProsperaPage() {
           <Reveal>
             <SectionHeading
               id="faz-titulo"
-              title="O que entregamos"
+              title="Sua empresa em ordem"
               align="center"
             />
           </Reveal>
