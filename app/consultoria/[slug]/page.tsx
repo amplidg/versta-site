@@ -17,7 +17,7 @@ import { pageMetadata } from "@/lib/seo";
 export const dynamicParams = false;
 
 /** Frentes que têm página própria (app/consultoria/<slug>/page.tsx) ficam de fora. */
-const comPaginaPropria = ["semear", "esg", "turismo", "inova", "conexao"];
+const comPaginaPropria = ["semear", "esg", "turismo", "inova", "conexao", "cultura"];
 
 export function generateStaticParams() {
   return frentes.filter((f) => !comPaginaPropria.includes(f.slug)).map((f) => ({ slug: f.slug }));
