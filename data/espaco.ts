@@ -1,17 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import {
-  Armchair,
-  Coffee,
-  DoorClosed,
-  HeartHandshake,
-  Leaf,
-  PartyPopper,
-  Presentation,
-  Snowflake,
-  Trees,
-  Users,
-  Wifi,
-} from "lucide-react";
+import { HeartHandshake, Leaf, Presentation, Users } from "lucide-react";
 
 /**
  * Conteúdo da página do Espaço · House Business Coworking
@@ -47,12 +35,15 @@ export const ocasioes: Ocasiao[] = [
     descricao: "Equipamentos de relaxamento e espaços tranquilos para a equipe desacelerar e recarregar.",
     itens: ["Equipamentos de relaxamento", "Área externa com jardim", "Práticas como yoga e meditação"],
   },
+  // "Treinamentos e palestras" e "Eventos e confraternizações" viraram uma só
+  // ocasião a pedido do Lucas (04/11): os dois usos se repetiam.
   {
-    nome: "Treinamentos e palestras",
+    nome: "Treinamentos e eventos",
     icone: Presentation,
     fotos: ["empresa-01-espaco-de-eventos", "empresa-coffee-break"],
-    descricao: "Um ambiente inspirador para capacitar a equipe e desenvolver lideranças.",
-    itens: ["Espaço para grupos", "Estrutura para apresentações", "Coffee break"],
+    descricao:
+      "Um ambiente inspirador para capacitar a equipe, desenvolver lideranças, celebrar conquistas e receber convidados.",
+    itens: ["Espaço para grupos e eventos", "Estrutura para apresentações", "Coffee break e área externa"],
   },
   {
     nome: "Reuniões",
@@ -61,13 +52,6 @@ export const ocasioes: Ocasiao[] = [
     descricao:
       "Salas equipadas para reuniões estratégicas, com clientes ou com a equipe, longe das interrupções do dia a dia.",
     itens: ["Mesa para grupos", "Ambiente climatizado", "Coffee break opcional"],
-  },
-  {
-    nome: "Eventos e confraternizações",
-    icone: PartyPopper,
-    fotos: ["empresa-01-espaco-de-eventos", "empresa-coffee-break"],
-    descricao: "Um espaço versátil para celebrar conquistas, integrar equipes e receber convidados.",
-    itens: ["Espaço de eventos", "Área de coffee break", "Área externa"],
   },
 ];
 
@@ -83,16 +67,4 @@ export const galeriaEspaco: string[] = [
   "colaboradores-sala-privativa",
   "colaboradores-area-externa",
   "empresa-coffee-break",
-];
-
-/** Itens do bloco "Estrutura pensada para o bem-estar". */
-export const comodidades: { rotulo: string; icone: LucideIcon }[] = [
-  { rotulo: "Salas privativas", icone: DoorClosed },
-  { rotulo: "Equipamentos de relaxamento", icone: Armchair },
-  { rotulo: "Espaço de eventos", icone: PartyPopper },
-  { rotulo: "Sala de reuniões", icone: Users },
-  { rotulo: "Coffee break", icone: Coffee },
-  { rotulo: "Área externa com jardim", icone: Trees },
-  { rotulo: "Ambientes climatizados", icone: Snowflake },
-  { rotulo: "Wi-Fi", icone: Wifi },
 ];

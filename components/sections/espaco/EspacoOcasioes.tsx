@@ -12,10 +12,11 @@ import { ocasioes } from "@/data/espaco";
  * movimento reduzido). Os painéis ficam empilhados no mesmo lugar, para a
  * altura não pular; os escondidos ficam "inert".
  *
- * Como na árvore da Cultura (pedido do Lucas, 04/11), as ocasiões avançam
- * sozinhas a cada 7 s, para quem não percebeu que dá para escolher; pausa com
- * o mouse ou o foco dentro do bloco, e um clique recomeça a contagem. O painel
- * só é anunciado a leitores de tela depois que a pessoa interage.
+ * As ocasiões rodam sozinhas, em loop, a cada 7 s (pedido do Lucas, 04/11).
+ * Um clique troca na hora e recomeça a contagem. Não pausa com o mouse (como
+ * no tour da House, o Lucas quer ver a troca acontecer); só pausa enquanto
+ * alguém navega pelas abas com o teclado. O painel só é anunciado a leitores
+ * de tela depois que a pessoa interage.
  *
  * As ocasiões (nome, ícone, fotos, descrição e itens) ficam em data/espaco.ts.
  */
@@ -72,9 +73,7 @@ export function EspacoOcasioes() {
   return (
     <div
       className="mt-10 md:mt-12"
-      onMouseEnter={() => setPausado(true)}
-      onMouseLeave={() => setPausado(false)}
-      onFocus={() => setPausado(true)}
+      onFocus={(e) => setPausado(e.target.matches(":focus-visible"))}
       onBlur={() => setPausado(false)}
     >
       {/* OCASIÕES */}

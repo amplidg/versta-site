@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Texto } from "@/components/ui/Texto";
-import { comodidades } from "@/data/espaco";
 import { HOUSE_ENDERECO, HOUSE_MAPS_URL, HOUSE_URL, PREDIAG_URL } from "@/data/links";
 import { pageMetadata } from "@/lib/seo";
 
@@ -20,7 +19,8 @@ import { pageMetadata } from "@/lib/seo";
  * especificação pedia "Agendar uma visita" pelo WhatsApp) e o cartão azul
  * final fica sem mancha. Ficam os links internos para o SH2, o mapa e, quando
  * existir, o site da House (data/links.ts).
- * Conteúdo editável (ocasiões, ordem da galeria e comodidades) em data/espaco.ts.
+ * Conteúdo editável (ocasiões e ordem da galeria) em data/espaco.ts. O bloco
+ * "Estrutura pensada para o bem-estar" saiu a pedido do Lucas (04/11).
  */
 
 export const metadata: Metadata = pageMetadata({
@@ -29,9 +29,6 @@ export const metadata: Metadata = pageMetadata({
     "Salas para terapias e atendimentos, relaxamento, treinamentos, reuniões e eventos corporativos. Conheça a House Business Coworking, o espaço da Versta e do Programa SH2.",
   path: "/consultoria/espaco",
 });
-
-/** Fundos pastel alternados dos ícones das comodidades. */
-const fundos = ["bg-mint", "bg-offwhite", "bg-mist/70", "bg-sage/50"];
 
 const novaAba = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -50,7 +47,7 @@ export default function EspacoPage() {
           fundo: "bg-mist/70",
           cor: "text-navy",
         }}
-        emblema={{ icone: Building2, cores: ["var(--color-mist)", "var(--color-mint)"] }}
+        emblema={{ icone: Building2, cores: ["var(--color-peach-200)", "var(--color-peach-100)"] }}
         prediagUrl={PREDIAG_URL}
       />
 
@@ -84,31 +81,6 @@ export default function EspacoPage() {
           </Reveal>
           <Reveal delay={120}>
             <EspacoGaleria />
-          </Reveal>
-        </Container>
-      </Section>
-
-      {/* ESTRUTURA E COMODIDADES */}
-      <Section tone="peach" aria-labelledby="estrutura-titulo">
-        <Container>
-          <Reveal>
-            <SectionHeading id="estrutura-titulo" title="Estrutura pensada para o bem-estar" align="center" />
-          </Reveal>
-          <Reveal delay={120}>
-            <ul className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-x-4 gap-y-8 md:mt-12 md:grid-cols-4 md:gap-y-10">
-              {comodidades.map(({ rotulo, icone: Icone }, i) => (
-                <li key={rotulo} className="flex flex-col items-center gap-3 text-center">
-                  <span
-                    className={`flex size-14 items-center justify-center rounded-full ${fundos[i % fundos.length]} ring-1 ring-navy/5`}
-                  >
-                    <Icone aria-hidden="true" className="size-6 text-navy" strokeWidth={1.6} />
-                  </span>
-                  <span className="max-w-[12rem] text-[0.9375rem] leading-snug font-semibold text-navy">
-                    {rotulo}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </Container>
       </Section>
