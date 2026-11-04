@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Compass, Earth, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
@@ -43,7 +42,7 @@ const ganhos = [
     titulo: "Cultura de propósito",
     texto: "Valores que saem do papel e se tornam atitudes reais.",
     icone: Compass,
-    fundo: "bg-mist/70",
+    fundo: "bg-peach-100",
   },
   {
     titulo: "Impacto social",
@@ -123,7 +122,7 @@ export default function ProjetosSociaisPage() {
       </Section>
 
       {/* O QUE A EMPRESA GANHA */}
-      <Section tone="peach" aria-labelledby="ganha-titulo">
+      <Section tone="mist" aria-labelledby="ganha-titulo">
         <Container>
           <Reveal>
             <SectionHeading
@@ -156,25 +155,6 @@ export default function ProjetosSociaisPage() {
               </Reveal>
             ))}
           </ul>
-          <Reveal className="mt-12 text-center text-ink-muted">
-            <p>
-              Saiba mais sobre as frentes{" "}
-              <Link
-                href="/consultoria/cultura"
-                className="font-semibold text-navy underline underline-offset-4 hover:text-caramel-700"
-              >
-                Cultura
-              </Link>{" "}
-              e{" "}
-              <Link
-                href="/consultoria/esg"
-                className="font-semibold text-navy underline underline-offset-4 hover:text-caramel-700"
-              >
-                ESG
-              </Link>
-              .
-            </p>
-          </Reveal>
         </Container>
       </Section>
 
