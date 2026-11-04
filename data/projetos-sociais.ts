@@ -2,52 +2,68 @@
  * Conteúdo da página Projetos Sociais (/instituto, especificação e textos do
  * Lucas, 04/11).
  *
- * IMAGENS: ficam em public/images/projetos-sociais/. Hoje mural.webp,
- * plantio.webp e horta.webp são imagens provisórias (manchas de cor); para
- * trocar, basta salvar as ilustrações definitivas por cima, com o mesmo nome.
+ * FOTOS (04/11): fotos reais de ações sociais enviadas pelo Lucas (pasta
+ * "Desktop/Materiais Vídeo Versta/Imagens 3/Vídeos animados/Cenas 17 e 18"),
+ * convertidas para public/images/projetos-sociais/. Para trocar uma foto,
+ * salve o arquivo novo nessa pasta e mude o nome aqui. `posicao` diz qual parte
+ * da foto fica visível no recorte (horizontal vertical).
  */
 
-/** Colagem do topo da página (três quadros sobrepostos, pedido do Lucas, 04/11). */
-export const colagemProjetos = {
-  mural: {
-    arquivo: "/images/projetos-sociais/mural.webp",
-    alt: "Ilustração em aquarela de colaboradores pintando o mural de uma escola comunitária",
-  },
-  plantio: {
-    arquivo: "/images/projetos-sociais/plantio.webp",
-    alt: "Ilustração em aquarela de voluntários plantando uma muda de árvore",
-  },
-  horta: {
-    arquivo: "/images/projetos-sociais/horta.webp",
-    alt: "Ilustração em aquarela de uma voluntária entregando uma cesta da horta comunitária a uma senhora",
-  },
-};
+type Foto = { arquivo: string; alt: string; posicao?: string };
 
-/** Cards do bloco "Causas que movem os projetos". */
-export const causas: {
-  titulo: string;
-  imagem: string;
-  alt: string;
-  texto: string;
-}[] = [
+const fotos = {
+  cadernos: {
+    arquivo: "/images/projetos-sociais/cadernos-fraternos.webp",
+    alt: "Crianças de uma comunidade, ao ar livre, mostrando os cadernos recebidos na ação Cadernos Fraternos",
+    posicao: "50% 55%",
+  },
+  maisRosaGrupo: {
+    arquivo: "/images/projetos-sociais/mais-rosa-grupo.webp",
+    alt: "Participantes vestidas de rosa reunidas na ação Mais Rosa",
+    posicao: "50% 40%",
+  },
+  maisRosaAbraco: {
+    arquivo: "/images/projetos-sociais/mais-rosa-abraco.webp",
+    alt: "Grupo de mulheres vestidas de rosa abraçadas em roda, num jardim, durante a ação Mais Rosa",
+    posicao: "50% 58%",
+  },
+  nucleo: {
+    arquivo: "/images/projetos-sociais/nucleo-sustentabilidade.webp",
+    alt: "Participantes reunidos em grupo num encontro do Núcleo de Sustentabilidade",
+    posicao: "50% 68%",
+  },
+  coleta: {
+    arquivo: "/images/projetos-sociais/coleta-seletiva.webp",
+    alt: "Lixeiras coloridas de coleta seletiva, para metal e plástico",
+    posicao: "50% 82%",
+  },
+} satisfies Record<string, Foto>;
+
+/** Colagem do topo da página (três quadros sobrepostos, pedido do Lucas, 04/11). */
+export const colagemProjetos: { centro: Foto; esquerda: Foto; direita: Foto } =
+  {
+    centro: fotos.cadernos,
+    esquerda: fotos.maisRosaGrupo,
+    direita: fotos.nucleo,
+  };
+
+/** Cards do bloco "Causas que transformam pessoas e empresas". */
+export const causas: { titulo: string; foto: Foto; texto: string }[] = [
   {
     titulo: "Meio ambiente",
-    imagem: "/images/projetos-sociais/plantio.webp",
-    alt: "Ilustração em aquarela de voluntários plantando uma muda de árvore",
+    foto: fotos.coleta,
     texto:
       "Plantio de árvores, recuperação de áreas verdes e educação ambiental.",
   },
   {
     titulo: "Comunidade",
-    imagem: "/images/projetos-sociais/mural.webp",
-    alt: "Ilustração em aquarela de colaboradores pintando o mural de uma escola comunitária",
+    foto: fotos.cadernos,
     texto:
       "Ações em escolas, espaços comunitários e projetos que aproximam a empresa de quem está ao redor.",
   },
   {
     titulo: "Solidariedade",
-    imagem: "/images/projetos-sociais/horta.webp",
-    alt: "Ilustração em aquarela de uma voluntária entregando uma cesta da horta comunitária a uma senhora",
+    foto: fotos.maisRosaAbraco,
     texto:
       "Hortas comunitárias, arrecadações e iniciativas que cuidam de quem mais precisa.",
   },

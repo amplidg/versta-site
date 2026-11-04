@@ -96,8 +96,9 @@ export default function ProjetosSociaisPage() {
                   <div className="aspect-[4/3] overflow-hidden rounded-[16px] bg-mist/40">
                     {/* eslint-disable-next-line @next/next/no-img-element -- site estático */}
                     <img
-                      src={asset(c.imagem)}
-                      alt={c.alt}
+                      src={asset(c.foto.arquivo)}
+                      alt={c.foto.alt}
+                      style={{ objectPosition: c.foto.posicao ?? "center" }}
                       loading="lazy"
                       decoding="async"
                       className="size-full object-cover transition-transform duration-700 ease-[var(--ease-calm)] group-hover:scale-[1.03] motion-reduce:transition-none"
