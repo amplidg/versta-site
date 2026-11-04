@@ -91,7 +91,7 @@ export default function ConexaoPage() {
           <Reveal>
             <SectionHeading
               id="sinais-titulo"
-              title="Sua empresa precisa de Conexão se..."
+              title="Sua empresa precisa dessa solução se..."
               lead="Marque o que acontece hoje na sua empresa."
               align="center"
             />
