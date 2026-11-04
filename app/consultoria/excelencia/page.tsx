@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Funnel, Gauge, ListChecks, Medal, ShieldCheck } from "lucide-react";
+import { BadgeCheck, Funnel, Gauge, ListChecks, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { ExcelenciaCalendario } from "@/components/sections/excelencia/ExcelenciaCalendario";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
@@ -59,12 +59,6 @@ const servicos: Servico[] = [
     texto: "Identificamos e eliminamos perdas de tempo, material e retrabalho.",
     icone: Funnel,
     fundo: "bg-sage/50",
-  },
-  {
-    titulo: "Preparação para certificação",
-    texto: "Preparamos a empresa para conquistar certificações como a ISO 9001.",
-    icone: Medal,
-    fundo: "bg-peach-200/70",
   },
 ];
 
