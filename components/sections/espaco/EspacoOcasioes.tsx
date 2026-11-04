@@ -104,7 +104,7 @@ export function EspacoOcasioes() {
                 aria-controls={`${id}-painel-${i}`}
                 tabIndex={selecionada ? 0 : -1}
                 onClick={() => escolher(i)}
-                className={`flex shrink-0 snap-start items-center gap-2.5 rounded-full border px-5 py-3 text-[0.9375rem] font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:ring-offset-mint md:px-6 md:py-3.5 ${
+                className={`flex shrink-0 snap-start items-center gap-2.5 rounded-full border px-5 py-3 text-[0.9375rem] font-semibold whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 focus-visible:ring-offset-peach-100 md:px-6 md:py-3.5 ${
                   selecionada
                     ? "border-navy bg-navy text-offwhite"
                     : "border-navy/25 bg-white/55 text-navy hover:border-navy/60"
@@ -150,7 +150,7 @@ export function EspacoOcasioes() {
                   />
                 </div>
                 {segunda && (
-                  <div className="absolute -right-6 -bottom-8 hidden aspect-[3/4] w-[34%] overflow-hidden rounded-[14px] border-4 border-mint bg-mist/40 shadow-[0_18px_36px_-16px_rgb(0_41_77/0.55)] md:block">
+                  <div className="absolute -right-6 -bottom-8 hidden aspect-[3/4] w-[34%] overflow-hidden rounded-[14px] border-4 border-peach-100 bg-mist/40 shadow-[0_18px_36px_-16px_rgb(0_41_77/0.55)] md:block">
                     <FotoHouseImg
                       arquivo={segunda}
                       sizes="(min-width: 1280px) 220px, 18vw"

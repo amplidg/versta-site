@@ -52,7 +52,7 @@ export default function EspacoPage() {
       />
 
       {/* OCASIÕES */}
-      <Section tone="mint" aria-labelledby="ocasioes-titulo" className="overflow-hidden">
+      <Section tone="peach" aria-labelledby="ocasioes-titulo" className="overflow-hidden">
         <Container>
           <Reveal>
             <SectionHeading
