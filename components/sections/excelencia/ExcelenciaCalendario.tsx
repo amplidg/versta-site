@@ -11,29 +11,30 @@ import { Button } from "@/components/ui/Button";
  * calculadora e dos dominós). Quatro perguntas de frequência (grupos de rádio
  * de verdade) e um calendário de 22 dias úteis em que os dias perdidos são
  * pintados com uma mancha caramelo. Nada é salvo nem enviado.
- * Premissas do cálculo em PREMISSAS (fácil de editar). Animação de "tinta se
+ * Cálculo (regra do Lucas, 04/11): cada resposta soma direto um número de dias
+ * perdidos no mês (DIAS_POR_RESPOSTA, vezes o peso da pergunta), até o limite
+ * de 22 dias úteis; uma linha do calendário é uma semana. Animação de "tinta se
  * espalhando" em globals.css (excelencia-dia-*); com movimento reduzido, tudo
  * muda direto.
  */
 
-const PREMISSAS = {
-  /** Ocorrências por semana conforme a resposta. */
-  frequencias: [
-    { rotulo: "Nunca", porSemana: 0 },
-    { rotulo: "Às vezes", porSemana: 2 },
-    { rotulo: "Com frequência", porSemana: 5 },
-    { rotulo: "Todo dia", porSemana: 12 },
-  ],
-  semanasPorMes: 4.33,
-  horasPorDia: 8,
-  diasUteisNoMes: 22,
-};
+/** Dias de trabalho perdidos por mês conforme a resposta (fácil de editar). */
+const DIAS_POR_RESPOSTA = { nunca: 0, asVezes: 1, comFrequencia: 3, todoDia: 5 };
+const DIAS_UTEIS_NO_MES = 22;
 
-const perguntas: { texto: string; horasPorOcorrencia: number; icone: LucideIcon }[] = [
-  { texto: "Um trabalho precisa ser refeito.", horasPorOcorrencia: 2, icone: RefreshCcw },
-  { texto: "Alguém fica parado esperando uma informação ou aprovação.", horasPorOcorrencia: 1, icone: Hourglass },
-  { texto: "Alguém perde tempo procurando um arquivo, material ou informação.", horasPorOcorrencia: 0.5, icone: Search },
-  { texto: "Um erro chega ao cliente e precisa ser corrigido.", horasPorOcorrencia: 3, icone: TriangleAlert },
+const frequencias: { rotulo: string; chave: keyof typeof DIAS_POR_RESPOSTA }[] = [
+  { rotulo: "Nunca", chave: "nunca" },
+  { rotulo: "Às vezes", chave: "asVezes" },
+  { rotulo: "Com frequência", chave: "comFrequencia" },
+  { rotulo: "Todo dia", chave: "todoDia" },
+];
+
+/** O peso multiplica os dias de cada pergunta (hoje todos iguais a 1). */
+const perguntas: { texto: string; peso: number; icone: LucideIcon }[] = [
+  { texto: "Um trabalho precisa ser refeito.", peso: 1, icone: RefreshCcw },
+  { texto: "Alguém fica parado esperando uma informação ou aprovação.", peso: 1, icone: Hourglass },
+  { texto: "Alguém perde tempo procurando um arquivo, material ou informação.", peso: 1, icone: Search },
+  { texto: "Um erro chega ao cliente e precisa ser corrigido.", peso: 1, icone: TriangleAlert },
 ];
 
 const SEMANA = ["S", "T", "Q", "Q", "S"];
@@ -65,15 +66,12 @@ export function ExcelenciaCalendario({ prediagUrl }: { prediagUrl: string }) {
   const [verConta, setVerConta] = useState(false);
 
   const respondidas = respostas.filter((r) => r !== null).length;
-  const algumaPerda = respostas.some((r) => r !== null && r > 0);
-  const horasMes =
-    perguntas.reduce((soma, p, i) => {
-      const r = respostas[i];
-      return soma + (r === null ? 0 : PREMISSAS.frequencias[r].porSemana * p.horasPorOcorrencia);
-    }, 0) * PREMISSAS.semanasPorMes;
-  const dias = algumaPerda ? Math.max(1, Math.round(horasMes / PREMISSAS.horasPorDia)) : 0;
-  const pintados = Math.min(dias, PREMISSAS.diasUteisNoMes);
-  const excedente = dias - PREMISSAS.diasUteisNoMes;
+  const soma = perguntas.reduce((total, p, i) => {
+    const r = respostas[i];
+    return total + (r === null ? 0 : DIAS_POR_RESPOSTA[frequencias[r].chave] * p.peso);
+  }, 0);
+  const dias = Math.min(DIAS_UTEIS_NO_MES, Math.round(soma));
+  const pintados = dias;
 
   // os dias recém-pintados entram um após o outro, a partir de quantos já
   // estavam pintados antes (guardado no estado, como manda o React)
@@ -125,7 +123,7 @@ export function ExcelenciaCalendario({ prediagUrl }: { prediagUrl: string }) {
                 <span className="pt-1.5">{texto}</span>
               </legend>
               <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {PREMISSAS.frequencias.map((f, k) => (
+                {frequencias.map((f, k) => (
                   <label
                     key={f.rotulo}
                     className="relative flex cursor-pointer items-center justify-center rounded-button border border-navy/20 bg-white px-2 py-2.5 text-center text-sm font-semibold text-navy transition-colors duration-200 hover:border-navy/50 has-checked:border-navy has-checked:bg-navy has-checked:text-offwhite has-focus-visible:ring-2 has-focus-visible:ring-navy has-focus-visible:ring-offset-2"
@@ -150,21 +148,16 @@ export function ExcelenciaCalendario({ prediagUrl }: { prediagUrl: string }) {
         <div className="flex flex-col bg-mint/50 p-6 sm:p-10 lg:col-span-5">
           <div
             role="img"
-            aria-label={`Calendário de ${PREMISSAS.diasUteisNoMes} dias úteis, com ${pintados} ${pintados === 1 ? "dia marcado" : "dias marcados"} como perdidos${excedente > 0 ? ` e mais ${excedente} além do mês` : ""}.`}
+            aria-label={`Calendário de ${DIAS_UTEIS_NO_MES} dias úteis, com ${pintados} ${pintados === 1 ? "dia marcado" : "dias marcados"} como perdidos.`}
             className="relative mx-auto w-full max-w-sm rounded-card border border-navy/15 bg-[#f7f3ea] p-4"
           >
-            {excedente > 0 && (
-              <span className="absolute -top-3 -right-3 rounded-full bg-caramel px-3 py-1 text-sm font-bold text-white shadow">
-                +{excedente} {excedente === 1 ? "dia" : "dias"}
-              </span>
-            )}
             <div className="grid grid-cols-5 gap-2">
               {SEMANA.map((d, k) => (
                 <span key={SEMANA_NOMES[k]} aria-hidden="true" className="text-center text-xs font-semibold text-ink-muted">
                   {d}
                 </span>
               ))}
-              {Array.from({ length: PREMISSAS.diasUteisNoMes }, (_, i) => {
+              {Array.from({ length: DIAS_UTEIS_NO_MES }, (_, i) => {
                 const pintado = i < pintados;
                 const atraso = pintado ? Math.max(0, i - jaPintados) * 70 : 0;
                 return (
@@ -235,9 +228,9 @@ export function ExcelenciaCalendario({ prediagUrl }: { prediagUrl: string }) {
             </button>
             {verConta && (
               <p id="excelencia-conta" className="mt-2 text-xs leading-relaxed text-ink-muted">
-                Estimativa simples: consideramos “Às vezes” como 2 vezes por semana, “Com frequência” como 5 e “Todo
-                dia” como 12. Cada retrabalho custa cerca de 2 horas, cada espera 1 hora, cada busca 30 minutos e cada
-                erro corrigido com o cliente 3 horas. Um dia de trabalho equivale a 8 horas.
+                Estimativa simples, a partir das suas respostas: cada situação que acontece “Às vezes” representa cerca
+                de 1 dia de trabalho perdido por mês; “Com frequência”, cerca de 3 dias; e “Todo dia”, cerca de 5 dias,
+                uma semana inteira. O total é a soma das quatro situações.
               </p>
             )}
           </div>
