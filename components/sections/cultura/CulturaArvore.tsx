@@ -7,7 +7,7 @@ import { asset } from "@/lib/paths";
 /*
  * "Como uma cultura forte se forma" (página da Cultura, especificação do Lucas,
  * 03/11): uma árvore com três pontos clicáveis — raízes, tronco e copa. Cada um
- * mostra o seu texto no painel ao lado (padrão: copa). Os nomes acima do texto
+ * mostra o seu texto no painel ao lado (começa nas raízes, pedido do Lucas). Os nomes acima do texto
  * também trocam o conteúdo. Botões de verdade, navegáveis pelo teclado; o
  * painel é anunciado a leitores de tela. Animações em globals.css (cultura-*).
  *
@@ -195,7 +195,7 @@ function ArvoreDesenhada({ ativa }: { ativa: Parte["chave"] }) {
 }
 
 export function CulturaArvore() {
-  const [ativa, setAtiva] = useState<Parte["chave"]>("copa");
+  const [ativa, setAtiva] = useState<Parte["chave"]>("raizes");
   const [pausado, setPausado] = useState(false);
   const [interagiu, setInteragiu] = useState(false);
 
