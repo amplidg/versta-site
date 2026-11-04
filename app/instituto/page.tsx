@@ -95,7 +95,7 @@ export default function ProjetosSociaisPage() {
           <Reveal>
             <SectionHeading
               id="causas-titulo"
-              title="Causas que movem os projetos"
+              title="Causas que transformam pessoas e empresas"
               align="center"
             />
           </Reveal>
