@@ -2,13 +2,9 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Manifesto } from "@/components/sections/Manifesto";
-import { OrgChart } from "@/components/sections/OrgChart";
-import { PageHero } from "@/components/sections/PageHero";
-import { Button } from "@/components/ui/Button";
 import { Illustration } from "@/components/ui/Illustration";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ctaDiagnostico } from "@/data/navegacao";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -33,28 +29,21 @@ const formaDeAtuar = [
   },
 ];
 
+/* Em 06/11 o Lucas tirou o topo ("Experiência acumulada ao longo da jornada")
+   e o organograma ("Como a Versta se organiza"). O "Versta" do bloco "O nome"
+   passou a ser o título principal (h1) da página. */
+
 export default function SobrePage() {
   return (
     <>
-      <PageHero
-        eyebrow="Sobre a Versta"
-        title="Experiência acumulada ao longo da jornada"
-        lead="A Versta diagnostica empresas, identifica o que precisa se desenvolver para crescer e as conecta às soluções especializadas do seu ecossistema de parceiros."
-        imagem="quemEVersta"
-      >
-        <Button href={ctaDiagnostico.href} variant="primary" arrow>
-          {ctaDiagnostico.label}
-        </Button>
-      </PageHero>
-
       {/* O nome */}
       <Section tone="forest" aria-labelledby="nome-titulo">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <p className="eyebrow text-peach-100">O nome</p>
-            <h2 id="nome-titulo" className="mt-4 font-display text-[clamp(3.5rem,2rem+6vw,6rem)] leading-none font-bold text-peach-100">
+            <h1 id="nome-titulo" className="mt-4 font-display text-[clamp(3.5rem,2rem+6vw,6rem)] leading-none font-bold text-peach-100">
               Versta
-            </h2>
+            </h1>
           </Reveal>
           <Reveal delay={120} className="space-y-5 text-lead text-offwhite lg:col-span-7 lg:col-start-6">
             <p>
@@ -106,24 +95,6 @@ export default function SobrePage() {
               </Reveal>
             ))}
           </ul>
-        </Container>
-      </Section>
-
-      {/* Estrutura de atuação */}
-      <Section tone="peach" aria-labelledby="estrutura-titulo">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              id="estrutura-titulo"
-              eyebrow="Estrutura"
-              title="Como a Versta se organiza"
-              lead="A atuação se divide em três frentes: o Instituto, os Projetos e a Consultoria."
-              align="center"
-            />
-          </Reveal>
-          <Reveal delay={120} className="mt-14">
-            <OrgChart />
-          </Reveal>
         </Container>
       </Section>
 
