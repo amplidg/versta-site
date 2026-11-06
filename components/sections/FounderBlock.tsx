@@ -17,7 +17,11 @@ const CURVAS = Array.from({ length: 6 }, (_, k) => {
   const base = 150 + k * 22;
   const pontos = Array.from({ length: 72 }, (_, j) => {
     const t = (j / 72) * Math.PI * 2;
-    const r = base * (1 + 0.11 * Math.sin(3 * t + k * 0.55) + 0.06 * Math.sin(5 * t + 1.3 + k * 0.3));
+    const r =
+      base *
+      (1 +
+        0.11 * Math.sin(3 * t + k * 0.55) +
+        0.06 * Math.sin(5 * t + 1.3 + k * 0.3));
     const x = 250 + k * 5 + r * Math.cos(t);
     const y = 300 - k * 4 + r * 1.18 * Math.sin(t);
     return `${x.toFixed(1)} ${y.toFixed(1)}`;
@@ -33,7 +37,12 @@ function CurvasDeNivel() {
       className="pointer-events-none absolute -inset-x-[22%] -inset-y-[14%] -z-20 h-[128%] w-[144%] overflow-visible"
       fill="none"
     >
-      <g stroke="var(--color-navy)" strokeWidth="1.25" opacity="0.13" strokeLinejoin="round">
+      <g
+        stroke="var(--color-navy)"
+        strokeWidth="1.25"
+        opacity="0.13"
+        strokeLinejoin="round"
+      >
         {CURVAS.map((d) => (
           <path key={d} d={d} />
         ))}
@@ -58,6 +67,13 @@ function Pedra({ atual = false }: { atual?: boolean }) {
 }
 
 /**
+ * "O caminho até aqui" (números) e "Marcos da trajetória": false esconde as
+ * duas partes e deixa só a apresentação (foto, nome e texto). Escondidas a
+ * pedido do Lucas em 06/11; para voltar, troque para true.
+ */
+const MOSTRAR_TRAJETORIA = false;
+
+/**
  * Apresentação da fundadora (Home): do mais pessoal ao mais concreto —
  * apresentação, números e marcos da trajetória, estes como uma trilha de
  * marcos de pedra (o sentido do nome Versta).
@@ -73,9 +89,16 @@ export function FounderBlock() {
   const ultimo = marcos.length - 1;
 
   return (
-    <Section tone="sage-strong" aria-labelledby="fundadora-titulo" className="relative isolate overflow-hidden">
+    <Section
+      tone="sage-strong"
+      aria-labelledby="fundadora-titulo"
+      className="relative isolate overflow-hidden"
+    >
       {/* textura sutil de aquarela nas bordas (decorativa) */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
         <div className="absolute -top-40 -left-40 size-[36rem] rounded-full bg-mint opacity-45 blur-3xl" />
         <div className="absolute -right-48 -bottom-48 size-[40rem] rounded-full bg-peach-100 opacity-35 blur-3xl" />
       </div>
@@ -91,12 +114,18 @@ export function FounderBlock() {
               {/* recorte da foto (coordenadas de 0 a 1, relativas à caixa) */}
               <svg aria-hidden="true" width="0" height="0" className="absolute">
                 <defs>
-                  <clipPath id="seixo-fundadora" clipPathUnits="objectBoundingBox">
+                  <clipPath
+                    id="seixo-fundadora"
+                    clipPathUnits="objectBoundingBox"
+                  >
                     <path d={seixo(1, 1)} />
                   </clipPath>
                 </defs>
               </svg>
-              <div className="relative aspect-[4/5] bg-offwhite" style={{ clipPath: "url(#seixo-fundadora)" }}>
+              <div
+                className="relative aspect-[4/5] bg-offwhite"
+                style={{ clipPath: "url(#seixo-fundadora)" }}
+              >
                 {fundadora.foto.pronta ? (
                   <Image
                     src={asset(fundadora.foto.arquivo)}
@@ -107,9 +136,15 @@ export function FounderBlock() {
                   />
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 text-center">
-                    <User aria-hidden="true" className="size-16 text-green-700" strokeWidth={1.25} />
+                    <User
+                      aria-hidden="true"
+                      className="size-16 text-green-700"
+                      strokeWidth={1.25}
+                    />
                     <p className="text-sm">
-                      <mark className="todo-mark">[PREENCHER: foto da fundadora]</mark>
+                      <mark className="todo-mark">
+                        [PREENCHER: foto da fundadora]
+                      </mark>
                     </p>
                   </div>
                 )}
@@ -143,7 +178,10 @@ export function FounderBlock() {
               <span aria-hidden="true" className="h-px w-8 bg-caramel" />
               Quem conduz a Versta
             </p>
-            <h2 id="fundadora-titulo" className="mt-4 text-h2 text-navy max-lg:text-center">
+            <h2
+              id="fundadora-titulo"
+              className="mt-4 text-h2 text-navy max-lg:text-center"
+            >
               <Texto>{fundadora.nome}</Texto>
             </h2>
 
@@ -154,70 +192,84 @@ export function FounderBlock() {
                 </p>
               ))}
             </div>
-
           </Reveal>
         </div>
 
-        {/* 2. O caminho até aqui (números) */}
-        <Reveal className="mt-16 lg:mt-24">
-          <h3 className="eyebrow text-center text-navy">O caminho até aqui</h3>
-          <dl className="mt-8 grid divide-y divide-navy/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {fundadora.numeros.map((n) => (
-              <div key={n.legenda} className="flex flex-col-reverse items-center gap-2 px-6 py-7 text-center sm:py-3">
-                <dt className="text-navy">
-                  <Texto>{n.legenda}</Texto>
-                </dt>
-                <dd className="font-display text-[clamp(2.75rem,2rem+3vw,4.25rem)] leading-none font-bold text-navy">
-                  {typeof n.valor === "number" ? <CountUp valor={n.valor} /> : n.valor}
-                  {n.sufixo}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-
-        {/* 3. Marcos da trajetória */}
-        <div className="mt-16 lg:mt-24">
-          <h3 className="eyebrow text-center text-navy">Marcos da trajetória</h3>
-          <InView className="trilha-marcos relative mt-10">
-            {/* linha tracejada horizontal (computador); no celular, cada marco tem o seu
-                trecho até o próximo (ver abaixo) */}
-            <span
-              aria-hidden="true"
-              className="trilha-linha absolute top-5 right-[calc(50%/var(--n))] left-[calc(50%/var(--n))] hidden border-t-2 border-dashed border-caramel lg:block"
-              style={{ "--n": marcos.length } as React.CSSProperties}
-            />
-            <ol
-              className="relative grid gap-9 lg:grid-cols-[repeat(var(--n),minmax(0,1fr))] lg:gap-6"
-              style={{ "--n": marcos.length } as React.CSSProperties}
-            >
-              {marcos.map((m, i) => (
-                <li
-                  key={`${i}-${m.descricao}`}
-                  className="trilha-marco relative flex flex-col items-center gap-2 text-center lg:gap-4"
-                  style={{ "--i": i } as React.CSSProperties}
-                >
-                  {/* celular: trilha centralizada, do texto deste marco até a próxima pedra */}
-                  {i < ultimo && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-full left-1/2 h-9 -translate-x-1/2 border-l-2 border-dashed border-caramel lg:hidden"
-                    />
-                  )}
-                  <Pedra atual={i === ultimo} />
-                  <div>
-                    <p className="font-display text-xl font-bold text-navy">
-                      <Texto>{m.ano}</Texto>
-                    </p>
-                    <p className="mt-1 text-navy">
-                      <Texto>{m.descricao}</Texto>
-                    </p>
+        {MOSTRAR_TRAJETORIA && (
+          <>
+            {/* 2. O caminho até aqui (números) */}
+            <Reveal className="mt-16 lg:mt-24">
+              <h3 className="eyebrow text-center text-navy">
+                O caminho até aqui
+              </h3>
+              <dl className="mt-8 grid divide-y divide-navy/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                {fundadora.numeros.map((n) => (
+                  <div
+                    key={n.legenda}
+                    className="flex flex-col-reverse items-center gap-2 px-6 py-7 text-center sm:py-3"
+                  >
+                    <dt className="text-navy">
+                      <Texto>{n.legenda}</Texto>
+                    </dt>
+                    <dd className="font-display text-[clamp(2.75rem,2rem+3vw,4.25rem)] leading-none font-bold text-navy">
+                      {typeof n.valor === "number" ? (
+                        <CountUp valor={n.valor} />
+                      ) : (
+                        n.valor
+                      )}
+                      {n.sufixo}
+                    </dd>
                   </div>
-                </li>
-              ))}
-            </ol>
-          </InView>
-        </div>
+                ))}
+              </dl>
+            </Reveal>
+
+            {/* 3. Marcos da trajetória */}
+            <div className="mt-16 lg:mt-24">
+              <h3 className="eyebrow text-center text-navy">
+                Marcos da trajetória
+              </h3>
+              <InView className="trilha-marcos relative mt-10">
+                {/* linha tracejada horizontal (computador); no celular, cada marco tem o seu
+                trecho até o próximo (ver abaixo) */}
+                <span
+                  aria-hidden="true"
+                  className="trilha-linha absolute top-5 right-[calc(50%/var(--n))] left-[calc(50%/var(--n))] hidden border-t-2 border-dashed border-caramel lg:block"
+                  style={{ "--n": marcos.length } as React.CSSProperties}
+                />
+                <ol
+                  className="relative grid gap-9 lg:grid-cols-[repeat(var(--n),minmax(0,1fr))] lg:gap-6"
+                  style={{ "--n": marcos.length } as React.CSSProperties}
+                >
+                  {marcos.map((m, i) => (
+                    <li
+                      key={`${i}-${m.descricao}`}
+                      className="trilha-marco relative flex flex-col items-center gap-2 text-center lg:gap-4"
+                      style={{ "--i": i } as React.CSSProperties}
+                    >
+                      {/* celular: trilha centralizada, do texto deste marco até a próxima pedra */}
+                      {i < ultimo && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute top-full left-1/2 h-9 -translate-x-1/2 border-l-2 border-dashed border-caramel lg:hidden"
+                        />
+                      )}
+                      <Pedra atual={i === ultimo} />
+                      <div>
+                        <p className="font-display text-xl font-bold text-navy">
+                          <Texto>{m.ano}</Texto>
+                        </p>
+                        <p className="mt-1 text-navy">
+                          <Texto>{m.descricao}</Texto>
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </InView>
+            </div>
+          </>
+        )}
       </Container>
     </Section>
   );

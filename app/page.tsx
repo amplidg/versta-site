@@ -30,8 +30,11 @@ export const metadata: Metadata = {
   title: { absolute: `${site.name} | ${site.tagline}` },
 };
 
-/** Depoimentos e cartela de clientes: false esconde o bloco (ficou escondido de 29/10 a 03/11). */
-const MOSTRAR_DEPOIMENTOS = true;
+/**
+ * Depoimentos e cartela de clientes: false esconde o bloco (ficou escondido de
+ * 29/10 a 03/11 e de novo desde 06/11, a pedido do Lucas). Para voltar: true.
+ */
+const MOSTRAR_DEPOIMENTOS = false;
 
 /** Bloco da fundadora ("Quem conduz a Versta"): false esconde o bloco (ficou escondido de 29/10 a 03/11). */
 const MOSTRAR_FUNDADORA = true;
