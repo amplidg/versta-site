@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowsBackdrop } from "@/components/sections/ArrowsBackdrop";
 import { CtaBanner } from "@/components/sections/CtaBanner";
-import { FrentesGrid } from "@/components/sections/FrentesGrid";
+import { ConnectionMap } from "@/components/sections/ConnectionMap";
 import { HubDiagram } from "@/components/sections/HubDiagram";
 import { PageHero } from "@/components/sections/PageHero";
 import { TrailSteps } from "@/components/sections/TrailSteps";
@@ -54,6 +54,8 @@ export default function ConsultoriaPage() {
         </Container>
       </Section>
 
+      {/* AS FRENTES — o mapa de sinais × frentes da Home no lugar da grade de
+          quadrados (pedido do Lucas, 06/11) */}
       <Section id="frentes" aria-labelledby="frentes-titulo">
         <Container>
           <Reveal>
@@ -62,11 +64,12 @@ export default function ConsultoriaPage() {
               eyebrow="As frentes"
               title="Dez frentes de soluções"
               lead="Cada frente reúne soluções especializadas para uma área da empresa. Escolha uma para saber mais."
+              align="center"
             />
           </Reveal>
-          <div className="mt-14">
-            <FrentesGrid />
-          </div>
+          <Reveal delay={120} className="mt-14">
+            <ConnectionMap />
+          </Reveal>
         </Container>
       </Section>
 
