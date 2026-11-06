@@ -44,9 +44,9 @@ export function Header() {
             : "bg-offwhite/0"
         }`}
       />
-      <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-6">
+      <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-4 xl:gap-6">
         <Link href="/" className="shrink-0 rounded-sm">
-          <Logo className="w-40 md:w-44" />
+          <Logo className="w-40 md:w-44 lg:w-36 xl:w-44" />
           <span className="sr-only"> — página inicial</span>
         </Link>
 
@@ -62,7 +62,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     aria-current={isActive(pathname, item.href) ? "page" : undefined}
-                    className="relative block px-3.5 py-2 text-[0.9375rem] font-medium text-navy transition-colors hover:text-caramel-700 aria-[current=page]:text-caramel-700"
+                    className="relative block px-2.5 py-2 whitespace-nowrap xl:px-3.5 text-[0.9375rem] font-medium text-navy transition-colors hover:text-caramel-700 aria-[current=page]:text-caramel-700"
                   >
                     {item.label}
                   </Link>
@@ -74,7 +74,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <div className="hidden sm:block">
-            <Button href={ctaDiagnostico.href} variant="primary" className="px-5! py-2.5!">
+            <Button href={ctaDiagnostico.href} variant="primary" className="px-5! py-2.5! whitespace-nowrap">
               {ctaDiagnostico.label}
             </Button>
           </div>
@@ -150,7 +150,7 @@ function FrentesDropdown({ active }: { active: boolean }) {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1 px-3.5 py-2 text-[0.9375rem] font-medium transition-colors hover:text-caramel-700 ${
+        className={`flex items-center gap-1 px-2.5 py-2 whitespace-nowrap xl:px-3.5 text-[0.9375rem] font-medium transition-colors hover:text-caramel-700 ${
           active ? "text-caramel-700" : "text-navy"
         }`}
       >
