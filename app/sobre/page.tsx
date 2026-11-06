@@ -54,11 +54,11 @@ export default function SobrePage() {
       {/* O símbolo */}
       <Manifesto />
 
-      {/* Forma de atuar (do foco ao horizonte, 06/11; sem a imagem, a pedido do Lucas) */}
+      {/* Forma de atuar (do foco ao horizonte, 06/11; sem a imagem; texto da esquerda centralizado na altura dos cartões, pedido do Lucas) */}
       <Section aria-labelledby="atuar-titulo">
-        <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <Container className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="lg:col-span-5">
-            <Reveal className="lg:sticky lg:top-28">
+            <Reveal>
               <SectionHeading
                 id="atuar-titulo"
                 eyebrow="Forma de atuar"
@@ -67,7 +67,7 @@ export default function SobrePage() {
               />
             </Reveal>
           </div>
-          <div className="lg:col-span-7 lg:pt-8">
+          <div className="lg:col-span-7">
             <FormaDeAtuar />
           </div>
         </Container>
