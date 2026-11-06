@@ -1216,3 +1216,104 @@
     transform: translateY(18px) rotate(0deg);
   }
 }
+
+/* Página Sobre, "Forma de atuar" (sobre/FormaDeAtuar.tsx): a lupa percorre
+   o mapa e para no ponto, que acende; a linha desce pelo conector até o
+   segundo cartão e se abre em quatro trilhas até pontos novos. O estado
+   normal (sem animação) já é o final: assim, com movimento reduzido ou sem
+   JavaScript, tudo aparece desenhado. */
+.atuar-lupa {
+  transform: translate(70px, 69px);
+}
+.atuar-conector {
+  background: repeating-linear-gradient(to bottom, var(--color-caramel) 0 5px, transparent 5px 11px);
+}
+.atuar-trilha {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .atuar:not([data-inview]) .atuar-lupa,
+  .atuar:not([data-inview]) .atuar-ponto,
+  .atuar:not([data-inview]) .atuar-destino,
+  .atuar:not([data-inview]) .atuar-horizonte {
+    opacity: 0;
+  }
+  .atuar:not([data-inview]) .atuar-saida,
+  .atuar:not([data-inview]) .atuar-conector,
+  .atuar:not([data-inview]) .atuar-chegada {
+    clip-path: inset(0 0 100% 0);
+  }
+  .atuar:not([data-inview]) .atuar-trilha {
+    stroke-dashoffset: 1;
+  }
+  .atuar[data-inview] .atuar-lupa {
+    animation: atuar-lupa 2.2s var(--ease-calm) both;
+  }
+  .atuar[data-inview] .atuar-ponto {
+    animation: impacto-abre 500ms var(--ease-calm) 2s both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .atuar[data-inview] .atuar-pulso {
+    animation: atuar-pulso 2.4s ease-out 2.5s infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .atuar[data-inview] .atuar-saida {
+    animation: impacto-linha-v 500ms linear 2.4s both;
+  }
+  .atuar[data-inview] .atuar-conector {
+    animation: impacto-linha-v 450ms linear 2.85s both;
+  }
+  .atuar[data-inview] .atuar-chegada {
+    animation: impacto-linha-v 350ms linear 3.25s both;
+  }
+  .atuar[data-inview] .atuar-horizonte {
+    animation: cultura-texto 1.2s var(--ease-calm) 3.2s both;
+  }
+  .atuar[data-inview] .atuar-trilha {
+    animation: atuar-trilha 900ms var(--ease-calm) both;
+    animation-delay: calc(3.55s + var(--i, 0) * 150ms);
+  }
+  .atuar[data-inview] .atuar-destino {
+    animation: impacto-abre 400ms var(--ease-calm) both;
+    animation-delay: calc(4.3s + var(--i, 0) * 150ms);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+@keyframes atuar-lupa {
+  0% {
+    opacity: 0;
+    transform: translate(26px, 104px);
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    transform: translate(104px, 42px);
+  }
+  75% {
+    transform: translate(56px, 52px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(70px, 69px);
+  }
+}
+@keyframes atuar-pulso {
+  0% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+@keyframes atuar-trilha {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
