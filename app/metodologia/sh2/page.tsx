@@ -262,12 +262,16 @@ export default function Sh2Page() {
               id="resultados-titulo"
               eyebrow="Resultados"
               title="A transformação que o Programa SH2 gera na sua empresa"
+              align="centro-celular"
             />
           </Reveal>
           <Reveal delay={120}>
             <ul className="mt-12 grid gap-x-12 md:grid-cols-2 lg:mt-16">
               {resultados.map((r) => (
-                <li key={r} className="flex gap-4 border-t border-navy/10 py-5 text-lead text-ink">
+                <li
+                  key={r}
+                  className="flex gap-4 border-t border-navy/10 py-5 text-lead text-ink max-md:flex-col max-md:items-center max-md:gap-3 max-md:text-center"
+                >
                   <span className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-mint">
                     <Check aria-hidden="true" className="size-4 text-green-900" strokeWidth={2} />
                   </span>
@@ -293,19 +297,20 @@ export default function Sh2Page() {
               id="faq-titulo"
               eyebrow="Perguntas frequentes"
               title="Perguntas frequentes sobre o Programa SH2"
+              align="centro-celular"
             />
           </Reveal>
           <Reveal delay={120} className="lg:col-span-8">
             <div className="border-b border-navy/15">
               {perguntas.map((p) => (
                 <details key={p.pergunta} className="group border-t border-navy/15">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 max-md:flex-col max-md:items-center max-md:gap-4 max-md:text-center [&::-webkit-details-marker]:hidden">
                     <h3 className="text-h3 text-navy">{p.pergunta}</h3>
                     <span className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-full border border-navy/25 text-navy transition-transform duration-300 group-open:rotate-45">
                       <Plus aria-hidden="true" className="size-4" strokeWidth={1.75} />
                     </span>
                   </summary>
-                  <p className="max-w-2xl pb-7 text-lead text-ink-muted">{p.resposta}</p>
+                  <p className="max-w-2xl pb-7 text-lead text-ink-muted max-md:text-center">{p.resposta}</p>
                 </details>
               ))}
             </div>

@@ -60,8 +60,10 @@ export function HouseTour() {
             id="house-titulo"
             eyebrow="A House Business Coworking"
             title="Um espaço preparado para cuidar das pessoas"
+            // centralizado no celular (pedido do Lucas, 07/11)
+            align="centro-celular"
           />
-          <p className="mt-6 text-lead text-ink-muted">
+          <p className="mt-6 text-lead text-ink-muted max-md:text-center">
             Parte das atividades do Programa SH2 acontece na House Business Coworking, um espaço acolhedor
             fora da rotina da empresa, com salas privativas, equipamentos e ambientes preparados
             para cuidar das pessoas e reunir equipes.
@@ -73,7 +75,7 @@ export function HouseTour() {
               return (
                 <li
                   key={g.grupo}
-                  className={`relative overflow-hidden rounded-card border px-4 py-3.5 transition-colors duration-700 ease-[var(--ease-calm)] ${
+                  className={`relative overflow-hidden rounded-card border px-4 py-3.5 max-md:text-center transition-colors duration-700 ease-[var(--ease-calm)] ${
                     destacado ? "border-navy bg-navy text-offwhite" : "border-navy/35 text-navy"
                   }`}
                 >
@@ -99,7 +101,7 @@ export function HouseTour() {
             })}
           </ul>
 
-          <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-navy">
+          <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-navy max-md:justify-center">
             {recursos.map(({ texto, icone: Icone }) => (
               <li key={texto} className="flex items-center gap-2">
                 <Icone aria-hidden="true" className="size-[18px] shrink-0 text-caramel-700" strokeWidth={1.75} />

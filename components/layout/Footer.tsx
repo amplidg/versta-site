@@ -19,12 +19,13 @@ export function Footer() {
   return (
     <footer className="on-dark bg-navy text-offwhite">
       <div className="container-site grid gap-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-4">
+        {/* no celular, logo e frase centralizados (pedido do Lucas, 07/11) */}
+        <div className="max-md:text-center lg:col-span-4">
           <Link href="/" className="inline-block rounded-sm">
             <Logo tone="branca" tagline className="w-64" />
             <span className="sr-only"> — página inicial</span>
           </Link>
-          <p className="mt-6 max-w-xs text-[0.9375rem] leading-relaxed text-mist">
+          <p className="mt-6 max-w-xs text-[0.9375rem] leading-relaxed text-mist max-md:mx-auto">
             Diagnóstico e conexão com soluções especializadas para empresas que
             querem crescer com direção.
           </p>
