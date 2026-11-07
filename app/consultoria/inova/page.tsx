@@ -20,7 +20,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Inova · Tecnologia e Inovação para Empresas",
   description:
-    "Diagnóstico e redesenho de processos, automação, inteligência artificial, sistemas de gestão e indicadores. Processos mais ágeis e eficientes, do tamanho da sua empresa.",
+    "Redesenho de processos, automação, inteligência artificial, sistemas de gestão e indicadores. Processos mais ágeis e eficientes, do tamanho da sua empresa.",
   path: "/consultoria/inova",
 });
 

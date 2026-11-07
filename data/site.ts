@@ -13,7 +13,7 @@ export const site = {
   name: "Versta",
   tagline: "Análise, Experiência e Percepção",
   description:
-    "A Versta diagnostica empresas, identifica as áreas que precisam se desenvolver para crescer e conecta cada uma às soluções especializadas do seu ecossistema de parceiros.",
+    "A Versta diagnostica empresas, identifica as áreas que precisam se desenvolver e conecta cada uma às soluções especializadas do seu ecossistema de parceiros.",
   locale: "pt_BR",
 
   // Contatos enviados pelo Lucas em 15/10/2026. Sem e-mail, por decisão dele.

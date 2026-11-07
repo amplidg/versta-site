@@ -23,7 +23,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Excelência · Qualidade e Produção",
   description:
-    "Padronização de processos, gestão da qualidade, indicadores de produtividade, redução de desperdícios e preparação para ISO 9001. Cada processo no lugar, cada entrega no padrão.",
+    "Processos padronizados, gestão da qualidade, indicadores e menos desperdício, com preparação para a ISO 9001. Cada processo no lugar, cada entrega no padrão.",
   path: "/consultoria/excelencia",
 });
 

@@ -25,7 +25,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Espaço · Arquitetura Sustentável para Empresas",
   description:
-    "Reformas e novos ambientes com arquitetura sustentável: eficiência de energia e água, conforto, bem-estar e projetos de acordo com a legislação. Ambientes que cuidam das pessoas e do planeta.",
+    "Reformas e novos ambientes com arquitetura sustentável: menos gasto com energia e água, mais conforto para a equipe e projetos de acordo com a legislação.",
   path: "/consultoria/espaco",
 });
 

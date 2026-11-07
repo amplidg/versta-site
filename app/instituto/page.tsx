@@ -22,7 +22,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Projetos Sociais",
   description:
-    "Projetos sociais construídos em parceria com empresas e seus colaboradores, para fazer a diferença na comunidade e desenvolver não apenas profissionais, mas seres humanos melhores.",
+    "Projetos sociais construídos com empresas e colaboradores para fazer a diferença na comunidade e desenvolver não só profissionais, mas seres humanos melhores.",
   path: "/instituto",
 });
 

@@ -25,7 +25,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Programa SH2: saúde mental para empresas e adequação à NR-1",
   description:
-    "O Programa SH2 (Ser Humano em Harmonia), da Versta, une diagnóstico, cuidado com a saúde mental e bem-estar no dia a dia, para que a empresa cuide das pessoas e esteja preparada para a NR-1.",
+    "Programa SH2 (Ser Humano em Harmonia): diagnóstico, saúde mental e bem-estar no dia a dia, para a empresa cuidar das pessoas e se preparar para a NR-1.",
   path: "/metodologia/sh2",
 });
 
