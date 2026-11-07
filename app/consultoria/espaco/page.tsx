@@ -93,7 +93,7 @@ export default function EspacoPage() {
         slug="espaco"
         eyebrow="Espaço · Arquitetura sustentável"
         titulo="Ambientes que cuidam das pessoas e do planeta"
-        texto="Reformas e novos ambientes projetados com arquitetura sustentável: mais conforto para a equipe, menos gasto com energia e água, e tudo de acordo com a legislação."
+        texto="Reformas e novos ambientes projetados com arquitetura sustentável."
         selo={{
           texto: "Projetos sustentáveis para empresas",
           icone: Building2,
