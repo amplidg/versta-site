@@ -15,6 +15,13 @@ import { breadcrumbJsonLd } from "@/lib/seo";
  * direita, o emblema da frente (no celular, em cima).
  */
 
+/**
+ * Selo pequeno abaixo do texto (ex.: "Mais de 20 anos de experiência…").
+ * Escondido nas 10 frentes desde 07/11, a pedido do Lucas; os textos continuam
+ * em cada página. Para voltar: true.
+ */
+const MOSTRAR_SELO = false;
+
 type Props = {
   nome: string;
   slug: string;
@@ -29,10 +36,23 @@ type Props = {
   botoes?: ReactNode;
 };
 
-export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, prediagUrl, botoes }: Props) {
+export function FrenteHero({
+  nome,
+  slug,
+  eyebrow,
+  titulo,
+  texto,
+  selo,
+  emblema,
+  prediagUrl,
+  botoes,
+}: Props) {
   const SeloIcone = selo.icone;
   return (
-    <section aria-labelledby="page-title" className="relative isolate overflow-hidden">
+    <section
+      aria-labelledby="page-title"
+      className="relative isolate overflow-hidden"
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -53,7 +73,10 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
           <nav aria-label="Trilha de navegação" className="mb-6">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted max-md:justify-center">
               <li className="flex items-center gap-1.5">
-                <Link href="/consultoria" className="hover:text-navy hover:underline">
+                <Link
+                  href="/consultoria"
+                  className="hover:text-navy hover:underline"
+                >
                   Soluções
                 </Link>
                 <ChevronRight aria-hidden="true" className="size-3.5" />
@@ -81,15 +104,30 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
           />
         </div>
 
-        <Reveal delay={100} className="md:col-span-7 md:row-start-2 md:mt-6 md:pr-6 lg:col-span-6 lg:pr-0">
-          <p className="max-w-xl text-lead text-ink-muted max-md:mx-auto">{texto}</p>
-          <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy max-md:flex max-md:flex-col">
-            <span className={`flex size-7 shrink-0 items-center justify-center rounded-full ${selo.fundo}`}>
-              <SeloIcone aria-hidden="true" className={`size-4 ${selo.cor}`} strokeWidth={1.75} />
-            </span>
-            {/* no celular, em duas linhas equilibradas (pedido do Lucas, 07/11) */}
-            <span className="max-md:max-w-[16rem] max-md:text-balance">{selo.texto}</span>
+        <Reveal
+          delay={100}
+          className="md:col-span-7 md:row-start-2 md:mt-6 md:pr-6 lg:col-span-6 lg:pr-0"
+        >
+          <p className="max-w-xl text-lead text-ink-muted max-md:mx-auto">
+            {texto}
           </p>
+          {MOSTRAR_SELO && (
+            <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy max-md:flex max-md:flex-col">
+              <span
+                className={`flex size-7 shrink-0 items-center justify-center rounded-full ${selo.fundo}`}
+              >
+                <SeloIcone
+                  aria-hidden="true"
+                  className={`size-4 ${selo.cor}`}
+                  strokeWidth={1.75}
+                />
+              </span>
+              {/* no celular, em duas linhas equilibradas (pedido do Lucas, 07/11) */}
+              <span className="max-md:max-w-[16rem] max-md:text-balance">
+                {selo.texto}
+              </span>
+            </p>
+          )}
         </Reveal>
 
         <Reveal
