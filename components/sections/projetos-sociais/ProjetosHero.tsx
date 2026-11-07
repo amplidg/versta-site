@@ -173,13 +173,14 @@ export function ProjetosHero({
           tablet/computador, a colagem ocupa a coluna da direita e o botão
           fica abaixo do texto. */}
       <div className="container-site grid gap-10 pt-6 pb-16 md:grid-cols-12 md:gap-x-8 md:gap-y-9 md:pt-14 md:pb-24 lg:min-h-[40rem]">
-        <div className="md:col-span-7 md:self-end md:pr-6 lg:col-span-6 lg:pr-0">
+        {/* no celular, texto centralizado (pedido do Lucas, 07/11) */}
+        <div className="max-md:text-center md:col-span-7 md:self-end md:pr-6 lg:col-span-6 lg:pr-0">
           <nav
             aria-label="Trilha de navegação"
             className="sh2-hero-entra mb-6"
             style={atraso(60)}
           >
-            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted">
+            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted max-md:justify-center">
               <li className="flex items-center gap-1.5">
                 <Link href="/" className="hover:text-navy hover:underline">
                   Início
@@ -192,7 +193,7 @@ export function ProjetosHero({
             </ol>
           </nav>
           <p
-            className="sh2-hero-entra eyebrow mb-5 flex items-center gap-3 text-caramel-700"
+            className="sh2-hero-entra eyebrow mb-5 flex items-center gap-3 text-caramel-700 max-md:justify-center"
             style={atraso(120)}
           >
             <span aria-hidden="true" className="h-px w-8 bg-caramel" />
@@ -206,7 +207,7 @@ export function ProjetosHero({
             {titulo}
           </h1>
           <p
-            className="sh2-hero-entra mt-6 max-w-xl text-lead text-ink-muted"
+            className="sh2-hero-entra mt-6 max-w-xl text-lead text-ink-muted max-md:mx-auto"
             style={atraso(320)}
           >
             {texto}
