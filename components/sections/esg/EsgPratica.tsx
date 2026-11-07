@@ -47,7 +47,7 @@ export function EsgPratica() {
           className="esg-coluna rounded-card outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
           style={{ "--i": i } as CSSProperties}
         >
-          <div className="flex items-center gap-5 md:flex-col md:gap-4">
+          <div className="flex flex-col items-center gap-3 md:gap-4">
             {/* letra sobre a mancha */}
             <div className="esg-letra-caixa relative flex size-24 shrink-0 items-center justify-center md:size-56">
               <svg
@@ -75,15 +75,15 @@ export function EsgPratica() {
                 {letra}
               </span>
             </div>
-            <h3 id={`esg-${letra}`} className="font-display text-h3 font-bold text-navy md:text-center">
+            <h3 id={`esg-${letra}`} className="text-center font-display text-h3 font-bold text-navy">
               <span className="sr-only">{letra} · </span>
               {nome}
             </h3>
           </div>
           <ul className="mt-5 space-y-2.5 md:mx-auto md:max-w-[17rem]">
             {exemplos.map((ex) => (
-              <li key={ex} className="flex gap-3 text-ink-muted">
-                <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-caramel" />
+              <li key={ex} className="flex gap-3 text-ink-muted max-md:justify-center max-md:text-center">
+                <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-caramel max-md:hidden" />
                 {ex}
               </li>
             ))}
