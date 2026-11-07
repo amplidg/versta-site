@@ -67,7 +67,7 @@ export const frentes: Frente[] = [
   frente("conexao", "Conexão", "Marketing e Endomarketing", Target),
   frente("cultura", "Cultura", "RH e Pessoas", Users),
   frente("excelencia", "Excelência", "Qualidade e Produção", BadgeCheck),
-  frente("espaco", "Espaço", "House Business Coworking", Building2),
+  frente("espaco", "Espaço", "Arquitetura Sustentável para Empresas", Building2),
   frente("integra", "Íntegra", "Estratégia Jurídica Sistêmica", Scale),
   // Descrição a partir do que o Lucas explicou (16/10); o resto fica para ele preencher.
   frente("prospera", "Próspera", "Assessoria Financeira e Contábil", TrendingUp, {

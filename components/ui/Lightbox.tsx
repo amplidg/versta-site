@@ -4,8 +4,8 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 /*
- * Visualizador de fotos ampliadas (criado na galeria do Espaço, 04/11; usado
- * também nos Projetos Sociais). É um <dialog> nativo: prende o foco, fecha com
+ * Visualizador de fotos ampliadas (criado em 04/11 para a antiga galeria da
+ * House; hoje usado nos Projetos Sociais). É um <dialog> nativo: prende o foco, fecha com
  * Esc, no X ou clicando fora; as setas do teclado e os botões trocam a foto.
  * Ao fechar, o foco volta para o que estava focado antes de abrir.
  * Quem usa controla qual foto está aberta (`aberta`, ou null = fechado).

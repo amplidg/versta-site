@@ -1317,3 +1317,38 @@
     stroke-dashoffset: 1;
   }
 }
+
+/* ---------- Espaço: planta sustentável (EspacoPlanta.tsx, 07/11) ---------- */
+.planta-papel {
+  background-color: #fbf8f1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+.planta-rotulo {
+  font-family: var(--font-body), system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .planta-camada {
+    transition: opacity 600ms var(--ease-calm);
+  }
+  .planta-mascara {
+    transition: stroke-dashoffset 1400ms var(--ease-calm);
+  }
+  .planta-vento {
+    animation: planta-vento 1.6s linear infinite;
+  }
+  .planta-texto {
+    animation: planta-texto 450ms var(--ease-calm) both;
+  }
+}
+@keyframes planta-vento {
+  to {
+    stroke-dashoffset: -42;
+  }
+}
+@keyframes planta-texto {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

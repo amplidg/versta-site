@@ -12,17 +12,3 @@ export const PREDIAG_URL = "#";
  */
 export const WHATSAPP_URL = "#";
 
-/*
- * House Business Coworking (página do Espaço, /consultoria/espaco). O Lucas
- * vai passar os dados. Enquanto HOUSE_URL for "#", o link "Site da House" não
- * aparece; o endereço com [PREENCHER] fica destacado na página.
- */
-
-/** Site ou Instagram da House. */
-export const HOUSE_URL = "#";
-
-/** Endereço da House, como deve aparecer na página. */
-export const HOUSE_ENDERECO = "[PREENCHER: endereço da House]";
-
-/** Link do Google Maps para o endereço da House. */
-export const HOUSE_MAPS_URL = "#";

@@ -1,36 +1,89 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Building2, MapPin } from "lucide-react";
+import { Building2, Droplets, Earth, FileCheck2, Hammer, PiggyBank, Ruler, Sun, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { EspacoGaleria } from "@/components/sections/espaco/EspacoGaleria";
-import { EspacoOcasioes } from "@/components/sections/espaco/EspacoOcasioes";
+import { EspacoPlanta } from "@/components/sections/espaco/EspacoPlanta";
+import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
-import { Button } from "@/components/ui/Button";
+import { MotivosLista, type Motivo } from "@/components/sections/frente/MotivosLista";
+import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
+import { SinaisAlerta } from "@/components/sections/frente/SinaisAlerta";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Texto } from "@/components/ui/Texto";
-import { HOUSE_ENDERECO, HOUSE_MAPS_URL, HOUSE_URL, PREDIAG_URL } from "@/data/links";
+import { PREDIAG_URL } from "@/data/links";
 import { pageMetadata } from "@/lib/seo";
 
 /*
- * Página própria da frente Espaço · House Business Coworking (especificação e
- * textos do Lucas, 04/11), no padrão das outras frentes. Seguindo a regra do
- * Lucas para as páginas das frentes, só há botões de pré-diagnóstico (a
- * especificação pedia "Agendar uma visita" pelo WhatsApp) e o cartão azul
- * final fica sem mancha. Ficam os links internos para o SH2, o mapa e, quando
- * existir, o site da House (data/links.ts).
- * Conteúdo editável (ocasiões e ordem da galeria) em data/espaco.ts. O bloco
- * "Estrutura pensada para o bem-estar" saiu a pedido do Lucas (04/11).
+ * Página própria da frente Espaço · Arquitetura Sustentável (especificação e
+ * textos do Lucas, 07/11). Substitui a versão de 04/11, feita por engano como
+ * página da House Business Coworking: a frente Espaço é a arquitetura
+ * sustentável para reformas e novos ambientes das empresas clientes.
+ * Regras do Lucas para as frentes: só botões de pré-diagnóstico (a
+ * especificação trazia "Falar com um especialista" pelo WhatsApp), cartão
+ * final sem mancha e os títulos padrão "Sua empresa precisa dessa solução
+ * se..." e "O que entregamos". Camadas da planta em data/espaco.ts.
  */
 
 export const metadata: Metadata = pageMetadata({
-  title: "Espaço · House Business Coworking",
+  title: "Espaço · Arquitetura Sustentável para Empresas",
   description:
-    "Salas para terapias e atendimentos, relaxamento, treinamentos, reuniões e eventos corporativos. Conheça a House Business Coworking, o espaço da Versta e do Programa SH2.",
+    "Reformas e novos ambientes com arquitetura sustentável: eficiência de energia e água, conforto, bem-estar e projetos de acordo com a legislação. Ambientes que cuidam das pessoas e do planeta.",
   path: "/consultoria/espaco",
 });
 
-const novaAba = { target: "_blank", rel: "noopener noreferrer" } as const;
+const sinais = [
+  "A empresa vai reformar, ampliar ou mudar de espaço.",
+  "O ambiente atual não atende mais ao trabalho e à equipe.",
+  "Os colaboradores reclamam de calor, frio, barulho, pouca luz ou desconforto.",
+  "As contas de energia e água são altas ou difíceis de controlar.",
+  "O espaço não transmite a imagem que a empresa quer passar.",
+];
+
+const servicos: Servico[] = [
+  {
+    titulo: "Reformas sustentáveis",
+    texto: "Transformamos o espaço atual da empresa com soluções que reduzem impacto e custo.",
+    icone: Hammer,
+    fundo: "bg-mint",
+  },
+  {
+    titulo: "Novos ambientes",
+    texto: "Projetos de novos espaços pensados desde o início para serem eficientes e confortáveis.",
+    icone: Ruler,
+    fundo: "bg-peach-100",
+  },
+  {
+    titulo: "Eficiência de energia e água",
+    texto: "Soluções para reduzir o consumo e o gasto com energia e água.",
+    icone: Droplets,
+    fundo: "bg-mist/70",
+  },
+  {
+    titulo: "Conforto e bem-estar",
+    texto: "Iluminação, ventilação, acústica e ergonomia a favor de quem trabalha no espaço.",
+    icone: Sun,
+    fundo: "bg-sage/50",
+  },
+  {
+    titulo: "Projetos dentro da lei",
+    texto: "Projetos de acordo com a legislação e as normas, incluindo acessibilidade e aprovações necessárias.",
+    icone: FileCheck2,
+    fundo: "bg-peach-200/70",
+  },
+];
+
+const motivos: Motivo[] = [
+  { titulo: "Economia", texto: "Menos gasto com energia, água e manutenção ao longo dos anos.", icone: PiggyBank },
+  { titulo: "Pessoas", texto: "Ambientes mais confortáveis e saudáveis para a equipe.", icone: Users },
+  {
+    titulo: "Imagem e ESG",
+    texto: "Um espaço que mostra, na prática, o compromisso da empresa com o meio ambiente.",
+    icone: Earth,
+  },
+];
+
+const linkInterno =
+  "font-semibold text-navy underline decoration-caramel/60 underline-offset-4 hover:decoration-caramel";
 
 export default function EspacoPage() {
   return (
@@ -38,115 +91,92 @@ export default function EspacoPage() {
       <FrenteHero
         nome="Espaço"
         slug="espaco"
-        eyebrow="Espaço · House Business Coworking"
-        titulo="Um lugar fora da rotina para cuidar, aprender e celebrar"
-        texto="A House Business Coworking é o espaço da Versta para terapias, relaxamento, treinamentos, reuniões e eventos. Ambientes acolhedores e preparados para receber sua equipe com conforto, e que fazem parte do Programa SH2."
+        eyebrow="Espaço · Arquitetura sustentável"
+        titulo="Ambientes que cuidam das pessoas e do planeta"
+        texto="Reformas e novos ambientes projetados com arquitetura sustentável: mais conforto para a equipe, menos gasto com energia e água, e tudo de acordo com a legislação."
         selo={{
-          texto: "Incluído no Programa SH2",
+          texto: "Projetos sustentáveis para empresas",
           icone: Building2,
-          fundo: "bg-mist/70",
-          cor: "text-navy",
+          fundo: "bg-mint",
+          cor: "text-green-900",
         }}
-        emblema={{ icone: Building2, cores: ["var(--color-peach-200)", "var(--color-peach-100)"] }}
+        emblema={{ icone: Building2, cores: ["var(--color-sage)", "var(--color-mint)"] }}
         prediagUrl={PREDIAG_URL}
       />
 
-      {/* OCASIÕES */}
-      <Section tone="peach" aria-labelledby="ocasioes-titulo" className="overflow-hidden">
+      {/* SINAIS DE ALERTA */}
+      <Section tone="mint" aria-labelledby="sinais-titulo">
         <Container>
           <Reveal>
             <SectionHeading
-              id="ocasioes-titulo"
-              title="Para que sua empresa precisa do espaço?"
-              lead="Escolha uma ocasião e veja como a House recebe sua equipe."
+              id="sinais-titulo"
+              title="Sua empresa precisa dessa solução se..."
+              lead="Marque o que acontece hoje na sua empresa."
+              align="center"
+            />
+          </Reveal>
+          <Reveal delay={120} className="mt-10">
+            <SinaisAlerta
+              sinais={sinais}
+              mensagem="Seu espaço pode trabalhar a favor da empresa, das pessoas e do meio ambiente. Faça o pré-diagnóstico gratuito e descubra por onde começar."
+              prediagUrl={PREDIAG_URL}
+            />
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* A PLANTA SUSTENTÁVEL */}
+      <Section aria-labelledby="planta-titulo" className="overflow-hidden">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              id="planta-titulo"
+              title="O que torna um espaço sustentável"
+              lead="Ligue as camadas e veja o que muda no ambiente."
               align="center"
             />
           </Reveal>
           <Reveal delay={120}>
-            <EspacoOcasioes />
-          </Reveal>
-          <div className="mt-14 flex justify-center md:mt-16">
-            <Button href={PREDIAG_URL} variant="primary" arrow className="max-sm:w-full">
-              Fazer o pré-diagnóstico
-            </Button>
-          </div>
-        </Container>
-      </Section>
-
-      {/* AMBIENTES */}
-      <Section aria-labelledby="ambientes-titulo" id="ambientes" className="overflow-hidden">
-        <Container>
-          <Reveal>
-            <SectionHeading id="ambientes-titulo" title="Conheça os ambientes" align="center" />
-          </Reveal>
-          <Reveal delay={120}>
-            <EspacoGaleria />
+            <EspacoPlanta />
           </Reveal>
         </Container>
       </Section>
 
-      {/* PARTE DO PROGRAMA SH2 */}
-      <Section aria-labelledby="visita-titulo">
+      {/* O QUE ENTREGAMOS */}
+      <Section tone="peach" aria-labelledby="faz-titulo">
         <Container>
           <Reveal>
-            <div className="grid gap-10 rounded-card bg-navy px-7 py-10 text-offwhite shadow-[0_24px_50px_-28px_rgb(0_41_77/0.7)] sm:px-10 md:px-14 md:py-12 lg:grid-cols-12 lg:items-center lg:gap-14">
-              <div className="lg:col-span-8">
-                <h2
-                  id="visita-titulo"
-                  className="font-display text-[clamp(1.625rem,1.2rem+1.6vw,2.5rem)] leading-tight font-bold"
-                >
-                  Venha conhecer a House pessoalmente.
-                </h2>
-                <p className="mt-5 max-w-2xl text-lead text-offwhite/75">
-                  As empresas que contratam o Programa SH2 contam com a House para atendimentos, práticas de
-                  bem-estar, treinamentos e encontros. Agende uma visita e conheça o espaço.
-                </p>
-                <div className="mt-8 flex flex-col gap-x-7 gap-y-5 sm:flex-row sm:flex-wrap sm:items-center">
-                  <Button href={PREDIAG_URL} variant="light" arrow className="max-sm:w-full">
-                    Fazer o pré-diagnóstico
-                  </Button>
-                  <Link
-                    href="/metodologia/sh2"
-                    className="font-semibold text-offwhite underline decoration-peach-200/70 underline-offset-4 hover:decoration-peach-200"
-                  >
-                    Conhecer o Programa SH2
-                  </Link>
-                  {HOUSE_URL !== "#" && (
-                    <a
-                      href={HOUSE_URL}
-                      {...novaAba}
-                      className="inline-flex items-center gap-1 text-sm text-offwhite/75 underline underline-offset-4 hover:text-offwhite"
-                    >
-                      Site da House
-                      <ArrowUpRight aria-hidden="true" className="size-3.5" />
-                      <span className="sr-only"> (abre em nova aba)</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 border-t border-offwhite/15 pt-8 lg:col-span-4 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-offwhite/10">
-                  <MapPin aria-hidden="true" className="size-5 text-peach-200" strokeWidth={1.75} />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold tracking-wide text-offwhite/60 uppercase">Endereço</p>
-                  <address className="mt-1 text-offwhite not-italic">
-                    <Texto>{HOUSE_ENDERECO}</Texto>
-                  </address>
-                  <a
-                    href={HOUSE_MAPS_URL}
-                    {...novaAba}
-                    className="mt-3 inline-flex items-center gap-1 font-semibold text-offwhite underline decoration-peach-200/70 underline-offset-4 hover:decoration-peach-200"
-                  >
-                    Ver no mapa
-                    <ArrowUpRight aria-hidden="true" className="size-4" />
-                    <span className="sr-only"> (abre em nova aba)</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+            <SectionHeading id="faz-titulo" title="O que entregamos" align="center" />
           </Reveal>
+          <ServicosGrid servicos={servicos} />
+        </Container>
+      </Section>
+
+      {/* POR QUE CONSTRUIR SUSTENTÁVEL */}
+      <Section aria-labelledby="porque-titulo">
+        <Container>
+          <Reveal>
+            <SectionHeading id="porque-titulo" title="Por que construir sustentável" align="center" />
+          </Reveal>
+          <MotivosLista itens={motivos} />
+          <Reveal>
+            <p className="mt-12 text-center text-ink-muted">
+              O Espaço conversa com as frentes{" "}
+              <Link href="/consultoria/semear" className={linkInterno}>
+                Semear
+              </Link>{" "}
+              e{" "}
+              <Link href="/consultoria/esg" className={linkInterno}>
+                ESG
+              </Link>
+              .
+            </p>
+          </Reveal>
+          <FrenteChamada
+            antes="Antes da obra começar,"
+            destaque="a sustentabilidade já pode estar no projeto."
+            prediagUrl={PREDIAG_URL}
+          />
         </Container>
       </Section>
     </>
