@@ -71,7 +71,8 @@ export function Sh2Hero({ lead, children }: Props) {
       </div>
 
       <div className="container-site relative z-10 grid pt-2 pb-16 md:grid-cols-12 md:pt-14 md:pb-24 lg:min-h-[44rem] lg:items-center">
-        <div className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
+        {/* no celular, selo, título e texto centralizados (pedido do Lucas, 07/11) */}
+        <div className="max-md:text-center md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
           {/* selo de urgência da NR-1 */}
           <p
             className="sh2-hero-entra mb-6 inline-flex items-center gap-2.5 rounded-[1.25rem] bg-peach-100 px-4 py-1.5 text-sm font-semibold text-navy max-md:gap-2 max-md:px-3 max-md:text-[0.78rem]"
@@ -92,7 +93,7 @@ export function Sh2Hero({ lead, children }: Props) {
             </span>
           </h1>
 
-          <p className="sh2-hero-entra mt-6 max-w-xl text-lead text-ink-muted" style={atraso(320)}>
+          <p className="sh2-hero-entra mt-6 max-w-xl text-lead text-ink-muted max-md:mx-auto" style={atraso(320)}>
             {lead}
           </p>
 
@@ -106,7 +107,7 @@ export function Sh2Hero({ lead, children }: Props) {
 
           {/* três pilares */}
           <ul
-            className="sh2-hero-entra mt-12 grid gap-5 border-t border-[#e2dccf] pt-8 lg:grid-cols-3 lg:gap-6"
+            className="sh2-hero-entra mt-12 grid gap-5 border-t border-[#e2dccf] pt-8 text-left lg:grid-cols-3 lg:gap-6"
             style={atraso(560)}
           >
             {pilares.map(({ titulo, texto, icone: Icone, fundo }) => (
