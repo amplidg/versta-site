@@ -45,10 +45,13 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
           ).replace(/</g, "\\u003c"),
         }}
       />
-      <Container className="grid items-center gap-6 pt-6 pb-16 md:grid-cols-12 md:gap-8 md:pt-14 md:pb-24 lg:min-h-[40rem]">
-        <Reveal className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
+      {/* Celular (pedido do Lucas, 07/11): tudo centralizado, na ordem título,
+          emblema, texto, selo e botão. Tablet/computador: texto, selo e botão
+          à esquerda e o emblema à direita, ocupando as três linhas. */}
+      <Container className="grid gap-7 pt-6 pb-16 max-md:text-center md:grid-cols-12 md:gap-x-8 md:gap-y-0 md:pt-14 md:pb-24 lg:min-h-[40rem] lg:content-center">
+        <Reveal className="md:col-span-7 md:row-start-1 md:pr-6 lg:col-span-6 lg:pr-0">
           <nav aria-label="Trilha de navegação" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted">
+            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted max-md:justify-center">
               <li className="flex items-center gap-1.5">
                 <Link href="/consultoria" className="hover:text-navy hover:underline">
                   Soluções
@@ -60,31 +63,16 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
               </li>
             </ol>
           </nav>
-          <p className="eyebrow mb-5 flex items-center gap-3 text-caramel-700">
+          <p className="eyebrow mb-5 flex items-center gap-3 text-caramel-700 max-md:justify-center">
             <span aria-hidden="true" className="h-px w-8 bg-caramel" />
             {eyebrow}
           </p>
           <h1 id="page-title" className="text-h1 text-balance text-navy">
             {titulo}
           </h1>
-          <p className="mt-6 max-w-xl text-lead text-ink-muted">{texto}</p>
-          <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy">
-            <span className={`flex size-7 shrink-0 items-center justify-center rounded-full ${selo.fundo}`}>
-              <SeloIcone aria-hidden="true" className={`size-4 ${selo.cor}`} strokeWidth={1.75} />
-            </span>
-            {selo.texto}
-          </p>
-          <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap max-md:[&>*]:w-full">
-            {botoes ?? (
-              <Button href={prediagUrl} variant="primary" arrow>
-                Fazer o pré-diagnóstico
-              </Button>
-            )}
-          </div>
         </Reveal>
-        {/* depois do texto no código (leitores de tela leem o título antes);
-            no celular, aparece em cima */}
-        <div className="order-first flex justify-center md:order-none md:col-span-5 lg:col-span-6">
+
+        <div className="flex justify-center md:col-span-5 md:col-start-8 md:row-span-3 md:row-start-1 md:self-center lg:col-span-6 lg:col-start-7">
           <FrenteEmblema
             icon={emblema.icone}
             color={emblema.cores}
@@ -92,6 +80,27 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
             className="w-[180px] md:w-full md:max-w-[22rem] lg:max-w-[30rem]"
           />
         </div>
+
+        <Reveal delay={100} className="md:col-span-7 md:row-start-2 md:mt-6 md:pr-6 lg:col-span-6 lg:pr-0">
+          <p className="max-w-xl text-lead text-ink-muted max-md:mx-auto">{texto}</p>
+          <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy max-md:flex max-md:flex-col">
+            <span className={`flex size-7 shrink-0 items-center justify-center rounded-full ${selo.fundo}`}>
+              <SeloIcone aria-hidden="true" className={`size-4 ${selo.cor}`} strokeWidth={1.75} />
+            </span>
+            {selo.texto}
+          </p>
+        </Reveal>
+
+        <Reveal
+          delay={160}
+          className="flex flex-col gap-3 md:col-span-7 md:row-start-3 md:mt-8 md:flex-row md:flex-wrap md:self-start lg:col-span-6 max-md:[&>*]:w-full"
+        >
+          {botoes ?? (
+            <Button href={prediagUrl} variant="primary" arrow>
+              Fazer o pré-diagnóstico
+            </Button>
+          )}
+        </Reveal>
       </Container>
     </section>
   );
