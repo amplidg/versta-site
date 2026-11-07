@@ -87,7 +87,8 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
             <span className={`flex size-7 shrink-0 items-center justify-center rounded-full ${selo.fundo}`}>
               <SeloIcone aria-hidden="true" className={`size-4 ${selo.cor}`} strokeWidth={1.75} />
             </span>
-            {selo.texto}
+            {/* no celular, em duas linhas equilibradas (pedido do Lucas, 07/11) */}
+            <span className="max-md:max-w-[16rem] max-md:text-balance">{selo.texto}</span>
           </p>
         </Reveal>
 
