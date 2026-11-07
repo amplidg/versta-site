@@ -131,7 +131,8 @@ export function SemearTrajetoria() {
 
           {/* texto e pilares */}
           <div className="min-w-0 lg:col-span-7">
-            <Reveal>
+            {/* no celular/tablet, logo, título e texto centralizados (pedido do Lucas, 07/11) */}
+            <Reveal className="max-lg:text-center">
               {/* logo completo da Semear, sobre fundo claro (o verde do logo some no verde escuro) */}
               <span className="mb-7 inline-flex rounded-card bg-offwhite px-5 py-4 shadow-[0_10px_30px_-12px_rgb(0_0_0/0.45)]">
                 {/* eslint-disable-next-line @next/next/no-img-element -- logo pequeno, sem otimização */}
