@@ -25,15 +25,22 @@ type Props = {
    * botões continuam abaixo do texto. Pedido do Lucas para Soluções, 07/11.
    */
   botoesNoFim?: boolean;
+  /** Texto e botões centralizados no celular/tablet (Soluções, 07/11). */
+  centroNoCelular?: boolean;
 };
 
 /** Topo das páginas internas: texto à esquerda, ilustração à direita. */
-export function PageHero({ eyebrow, title, headline, lead, imagem, aside, children, top, botoesNoFim }: Props) {
-  const botoes = children && <div className="flex flex-wrap gap-3">{children}</div>;
+export function PageHero({ eyebrow, title, headline, lead, imagem, aside, children, top, botoesNoFim, centroNoCelular }: Props) {
+  const c = centroNoCelular;
+  const botoes = children && (
+    <div className={`flex flex-wrap gap-3 ${c ? "max-lg:justify-center" : ""}`}>{children}</div>
+  );
   return (
     <section aria-labelledby="page-title" className="pt-8 pb-16 md:pt-14 md:pb-24">
       <div className="container-site grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-        <Reveal className={botoesNoFim ? "lg:col-span-6 lg:row-start-1 lg:self-end" : "lg:col-span-6"}>
+        <Reveal
+          className={`${botoesNoFim ? "lg:col-span-6 lg:row-start-1 lg:self-end" : "lg:col-span-6"} ${c ? "max-lg:text-center" : ""}`}
+        >
           {top}
           {headline ? (
             <>
@@ -47,7 +54,7 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
             </>
           ) : (
             <>
-              <p className="eyebrow mb-5 flex items-center gap-3 text-caramel-700">
+              <p className={`eyebrow mb-5 flex items-center gap-3 text-caramel-700 ${c ? "max-lg:justify-center" : ""}`}>
                 <span aria-hidden="true" className="h-px w-8 bg-caramel" />
                 {eyebrow}
               </p>
@@ -57,7 +64,7 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
             </>
           )}
           {lead && (
-            <p className="mt-6 max-w-xl text-lead text-ink-muted">
+            <p className={`mt-6 max-w-xl text-lead text-ink-muted ${c ? "max-lg:mx-auto" : ""}`}>
               <Texto>{lead}</Texto>
             </p>
           )}

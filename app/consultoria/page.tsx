@@ -31,6 +31,7 @@ export default function ConsultoriaPage() {
         aside={<HubDiagram />}
         // no celular, o botão vem depois das frentes (pedido do Lucas, 07/11)
         botoesNoFim
+        centroNoCelular
       >
         <Button href={ctaDiagnostico.href} variant="primary" arrow>
           {ctaDiagnostico.label}
