@@ -235,7 +235,9 @@ function Caminho({
   const tempos = TEMPOS[tipo];
   return (
     <div>
-      <h3 className="flex items-center gap-3 md:flex-col md:gap-2.5 md:text-center">
+      {/* no celular, tudo centralizado (pedido do Lucas, 07/11): ícone em cima,
+          etapas com o ponto em cima e um trecho do caminho entre elas */}
+      <h3 className="flex flex-col items-center gap-2.5 text-center">
         <span
           className={`flex size-12 shrink-0 items-center justify-center rounded-full ${
             disputa
@@ -260,7 +262,7 @@ function Caminho({
         {/* a linha do caminho */}
         <span
           aria-hidden="true"
-          className={`integra-linha ${disputa ? "integra-linha-disputa" : "integra-linha-estrategico"} absolute top-[13px] bottom-[15px] left-0 w-5`}
+          className={`integra-linha ${disputa ? "integra-linha-disputa" : "integra-linha-estrategico"} absolute top-[13px] bottom-[15px] left-0 w-5 max-md:hidden`}
         >
           {disputa ? (
             <svg
@@ -283,16 +285,26 @@ function Caminho({
           )}
         </span>
 
-        <ol className="space-y-7 pl-10">
+        <ol className="max-md:text-center md:space-y-7 md:pl-10">
           {etapas.map((etapa, i) => (
             <li
               key={etapa}
-              className="integra-passo relative"
+              className="integra-passo relative max-md:flex max-md:flex-col max-md:items-center"
               style={{ "--d": `${tempos.etapas[i]}s` } as CSSProperties}
             >
+              {i > 0 && (
+                <span
+                  aria-hidden="true"
+                  className={`my-1.5 h-6 md:hidden ${
+                    disputa
+                      ? "border-l-2 border-dashed border-[#b9a596]"
+                      : "w-[3px] rounded-full bg-gradient-to-b from-sage to-navy"
+                  }`}
+                />
+              )}
               <span
                 aria-hidden="true"
-                className={`absolute top-[0.45rem] -left-[36px] size-3 rounded-full ${
+                className={`mb-2 block size-3 rounded-full md:absolute md:top-[0.45rem] md:-left-[36px] md:mb-0 ${
                   disputa
                     ? "border-2 border-[#b9a596] bg-offwhite"
                     : "bg-navy ring-4 ring-sage/40"
@@ -312,7 +324,7 @@ function Caminho({
       </div>
 
       <div
-        className={`integra-passo relative mt-8 rounded-card p-5 md:p-6 ${
+        className={`integra-passo relative mt-8 rounded-card p-5 max-md:text-center md:p-6 ${
           disputa
             ? "border border-dashed border-[#c8bdb3] bg-[#f3efea]"
             : "border-2 border-caramel bg-white shadow-[0_18px_36px_-24px_rgb(0_41_77/0.45)]"
