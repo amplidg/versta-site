@@ -135,7 +135,8 @@ export default function CulturaPage() {
       {/* CULTURA E SAÚDE MENTAL */}
       <Section tone="mist" aria-labelledby="sh2-titulo">
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* no celular/tablet, centralizado (pedido do Lucas, 07/11) */}
+          <div className="grid items-center gap-10 max-lg:text-center lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-7">
               <SectionHeading id="sh2-titulo" title="Cultura e saúde mental caminham juntas" />
               <p className="mt-6 text-lead text-ink-muted">
