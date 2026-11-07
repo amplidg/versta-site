@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, Droplets, Earth, FileCheck2, Hammer, PiggyBank, Ruler, Sun, Users } from "lucide-react";
+import { Building2, Earth, PiggyBank, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EspacoPlanta } from "@/components/sections/espaco/EspacoPlanta";
 import { FrenteChamada } from "@/components/sections/frente/FrenteChamada";
 import { FrenteHero } from "@/components/sections/frente/FrenteHero";
 import { MotivosLista, type Motivo } from "@/components/sections/frente/MotivosLista";
-import { ServicosGrid, type Servico } from "@/components/sections/frente/ServicosGrid";
 import { SinaisAlerta } from "@/components/sections/frente/SinaisAlerta";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -21,7 +20,7 @@ import { pageMetadata } from "@/lib/seo";
  * Regras do Lucas para as frentes: só botões de pré-diagnóstico (a
  * especificação trazia "Falar com um especialista" pelo WhatsApp), cartão
  * final sem mancha e os títulos padrão "Sua empresa precisa dessa solução
- * se..." e "O que entregamos". Camadas da planta em data/espaco.ts.
+ * se..." (o bloco "O que entregamos" saiu a pedido do Lucas, 07/11). Camadas da planta em data/espaco.ts.
  */
 
 export const metadata: Metadata = pageMetadata({
@@ -37,39 +36,6 @@ const sinais = [
   "Os colaboradores reclamam de calor, frio, barulho, pouca luz ou desconforto.",
   "As contas de energia e água são altas ou difíceis de controlar.",
   "O espaço não transmite a imagem que a empresa quer passar.",
-];
-
-const servicos: Servico[] = [
-  {
-    titulo: "Reformas sustentáveis",
-    texto: "Transformamos o espaço atual da empresa com soluções que reduzem impacto e custo.",
-    icone: Hammer,
-    fundo: "bg-mint",
-  },
-  {
-    titulo: "Novos ambientes",
-    texto: "Projetos de novos espaços pensados desde o início para serem eficientes e confortáveis.",
-    icone: Ruler,
-    fundo: "bg-peach-100",
-  },
-  {
-    titulo: "Eficiência de energia e água",
-    texto: "Soluções para reduzir o consumo e o gasto com energia e água.",
-    icone: Droplets,
-    fundo: "bg-mist/70",
-  },
-  {
-    titulo: "Conforto e bem-estar",
-    texto: "Iluminação, ventilação, acústica e ergonomia a favor de quem trabalha no espaço.",
-    icone: Sun,
-    fundo: "bg-sage/50",
-  },
-  {
-    titulo: "Projetos dentro da lei",
-    texto: "Projetos de acordo com a legislação e as normas, incluindo acessibilidade e aprovações necessárias.",
-    icone: FileCheck2,
-    fundo: "bg-peach-200/70",
-  },
 ];
 
 const motivos: Motivo[] = [
@@ -139,16 +105,6 @@ export default function EspacoPage() {
           <Reveal delay={120}>
             <EspacoPlanta />
           </Reveal>
-        </Container>
-      </Section>
-
-      {/* O QUE ENTREGAMOS */}
-      <Section tone="peach" aria-labelledby="faz-titulo">
-        <Container>
-          <Reveal>
-            <SectionHeading id="faz-titulo" title="O que entregamos" align="center" />
-          </Reveal>
-          <ServicosGrid servicos={servicos} />
         </Container>
       </Section>
 
