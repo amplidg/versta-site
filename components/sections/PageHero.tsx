@@ -19,14 +19,21 @@ type Props = {
   children?: ReactNode;
   /** Conteúdo acima do eyebrow (ex.: breadcrumb). */
   top?: ReactNode;
+  /**
+   * Botões depois do conteúdo da direita quando as colunas se empilham
+   * (celular/tablet): título e texto, diagrama, botões. No computador, os
+   * botões continuam abaixo do texto. Pedido do Lucas para Soluções, 07/11.
+   */
+  botoesNoFim?: boolean;
 };
 
 /** Topo das páginas internas: texto à esquerda, ilustração à direita. */
-export function PageHero({ eyebrow, title, headline, lead, imagem, aside, children, top }: Props) {
+export function PageHero({ eyebrow, title, headline, lead, imagem, aside, children, top, botoesNoFim }: Props) {
+  const botoes = children && <div className="flex flex-wrap gap-3">{children}</div>;
   return (
     <section aria-labelledby="page-title" className="pt-8 pb-16 md:pt-14 md:pb-24">
       <div className="container-site grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-        <Reveal className="lg:col-span-6">
+        <Reveal className={botoesNoFim ? "lg:col-span-6 lg:row-start-1 lg:self-end" : "lg:col-span-6"}>
           {top}
           {headline ? (
             <>
@@ -54,9 +61,13 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
               <Texto>{lead}</Texto>
             </p>
           )}
-          {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
+          {!botoesNoFim && botoes && <div className="mt-9">{botoes}</div>}
         </Reveal>
-        <Reveal from="fade" delay={150} className="lg:col-span-6">
+        <Reveal
+          from="fade"
+          delay={150}
+          className={botoesNoFim ? "lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1" : "lg:col-span-6"}
+        >
           {aside ??
             (imagem && (
               <Illustration
@@ -67,6 +78,11 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
               />
             ))}
         </Reveal>
+        {botoesNoFim && botoes && (
+          <Reveal delay={200} className="lg:col-span-6 lg:row-start-2 lg:-mt-5 lg:self-start">
+            {botoes}
+          </Reveal>
+        )}
       </div>
     </section>
   );

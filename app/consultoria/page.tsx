@@ -29,6 +29,8 @@ export default function ConsultoriaPage() {
         lead="A Versta funciona como um hub: analisa a empresa, aponta as áreas que precisam se desenvolver e conecta cada uma à solução especializada do seu ecossistema de parceiros."
         // diagrama do hub no lugar da ilustração, que desceu para o bloco final (29/10)
         aside={<HubDiagram />}
+        // no celular, o botão vem depois das frentes (pedido do Lucas, 07/11)
+        botoesNoFim
       >
         <Button href={ctaDiagnostico.href} variant="primary" arrow>
           {ctaDiagnostico.label}
