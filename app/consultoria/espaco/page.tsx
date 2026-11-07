@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Building2, Earth, PiggyBank, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EspacoPlanta } from "@/components/sections/espaco/EspacoPlanta";
@@ -47,9 +46,6 @@ const motivos: Motivo[] = [
     icone: Earth,
   },
 ];
-
-const linkInterno =
-  "font-semibold text-navy underline decoration-caramel/60 underline-offset-4 hover:decoration-caramel";
 
 export default function EspacoPage() {
   return (
@@ -115,19 +111,6 @@ export default function EspacoPage() {
             <SectionHeading id="porque-titulo" title="Por que construir sustentável" align="center" />
           </Reveal>
           <MotivosLista itens={motivos} />
-          <Reveal>
-            <p className="mt-12 text-center text-ink-muted">
-              O Espaço conversa com as frentes{" "}
-              <Link href="/consultoria/semear" className={linkInterno}>
-                Semear
-              </Link>{" "}
-              e{" "}
-              <Link href="/consultoria/esg" className={linkInterno}>
-                ESG
-              </Link>
-              .
-            </p>
-          </Reveal>
           <FrenteChamada
             antes="Antes da obra começar,"
             destaque="a sustentabilidade já pode estar no projeto."
