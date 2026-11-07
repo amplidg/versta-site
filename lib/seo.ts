@@ -19,16 +19,19 @@ type PageMeta = {
   /** Caminho da página, ex.: "/sobre". */
   path: string;
   noindex?: boolean;
+  /** Título já completo (Home): não acrescenta "| Versta". */
+  tituloCompleto?: boolean;
 };
 
 /** Metadata padrão de cada página: title, description, canonical e Open Graph. */
-export function pageMetadata({ title, description, path, noindex }: PageMeta): Metadata {
+export function pageMetadata({ title, description, path, noindex, tituloCompleto }: PageMeta): Metadata {
+  const tituloSocial = tituloCompleto ? title : `${title} | ${site.name}`;
   return {
-    title,
+    title: tituloCompleto ? { absolute: title } : title,
     description,
     alternates: { canonical: pageUrl(path) },
     openGraph: {
-      title: `${title} | ${site.name}`,
+      title: tituloSocial,
       description,
       url: pageUrl(path),
       siteName: site.name,
@@ -40,7 +43,7 @@ export function pageMetadata({ title, description, path, noindex }: PageMeta): M
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${site.name}`,
+      title: tituloSocial,
       description,
       images: [OG_IMAGE],
     },
@@ -84,5 +87,19 @@ export function organizationJsonLd() {
     ],
     // TODO [PREENCHER]: links oficiais das redes sociais
     sameAs: site.redes.map((r) => r.url).filter((u) => u.startsWith("http")),
+  };
+}
+
+/** JSON-LD schema.org BreadcrumbList: Início > … > página atual. */
+export function breadcrumbJsonLd(itens: { nome: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: itens.map(({ nome, path }, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: nome,
+      item: pageUrl(path),
+    })),
   };
 }

@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { FrenteEmblema } from "@/components/sections/FrenteEmblema";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 /*
  * Topo das páginas próprias das frentes (padrão criado na Semear, 29/10):
@@ -32,6 +33,18 @@ export function FrenteHero({ nome, slug, eyebrow, titulo, texto, selo, emblema, 
   const SeloIcone = selo.icone;
   return (
     <section aria-labelledby="page-title" className="relative isolate overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { nome: "Início", path: "/" },
+              { nome: "Soluções", path: "/consultoria" },
+              { nome, path: `/consultoria/${slug}` },
+            ]),
+          ).replace(/</g, "\\u003c"),
+        }}
+      />
       <Container className="grid items-center gap-6 pt-6 pb-16 md:grid-cols-12 md:gap-8 md:pt-14 md:pb-24 lg:min-h-[40rem]">
         <Reveal className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
           <nav aria-label="Trilha de navegação" className="mb-6">

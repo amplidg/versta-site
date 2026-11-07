@@ -46,10 +46,12 @@ export default function ContatoPage() {
             <Reveal delay={120}>
               <dl className="mt-10 space-y-6">
                 {canais.map(({ icon: Icon, label, value, href }) => (
-                  <div key={label} className="flex gap-4">
-                    <Icon aria-hidden="true" className="mt-1 size-5 shrink-0 text-caramel-700" strokeWidth={1.5} />
-                    <div>
-                      <dt className="text-sm font-semibold tracking-wide text-navy uppercase">{label}</dt>
+                  <div key={label} className="relative pl-9">
+                    {/* o ícone fica dentro do <dt>: um <dl> só aceita <dt> e <dd> nos grupos */}
+                    <dt className="text-sm font-semibold tracking-wide text-navy uppercase">
+                      <Icon aria-hidden="true" className="absolute top-1 left-0 size-5 text-caramel-700" strokeWidth={1.5} />
+                      {label}
+                    </dt>
                       <dd className="mt-1 text-ink-muted">
                         {href ? (
                           <a href={href} className="underline-offset-4 hover:text-navy hover:underline">
@@ -59,7 +61,6 @@ export default function ContatoPage() {
                           <Texto>{value}</Texto>
                         )}
                       </dd>
-                    </div>
                   </div>
                 ))}
               </dl>

@@ -21,14 +21,12 @@ import { ctaDiagnostico } from "@/data/navegacao";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    title: `${site.name} | ${site.tagline}`,
-    description: site.description,
-    path: "/",
-  }),
-  title: { absolute: `${site.name} | ${site.tagline}` },
-};
+export const metadata: Metadata = pageMetadata({
+  title: `${site.name} | ${site.tagline}`,
+  description: site.description,
+  path: "/",
+  tituloCompleto: true,
+});
 
 /**
  * Depoimentos e cartela de clientes: false esconde o bloco (ficou escondido de
