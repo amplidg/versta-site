@@ -15,7 +15,8 @@ import { asset } from "@/lib/paths";
  * mural) e o selo aparece por último; no hover, o quadro vem para a frente,
  * endireita e cresce um pouco. CSS em globals.css (colagem-*). Com movimento
  * reduzido, tudo já aparece no lugar. Texto: classes sh2-hero-entra.
- * No celular, a colagem vai para cima do texto e o selo fica abaixo dela.
+ * No celular (pedido do Lucas, 07/11): título e texto primeiro, depois a
+ * colagem com o selo encostado embaixo das fotos e, por último, o botão.
  */
 
 const atraso = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
@@ -146,12 +147,10 @@ function Colagem() {
           </figure>
         ))}
 
-        {/* selo sobre a borda inferior esquerda do quadro central (tablet/computador) */}
-        <Selo className="absolute top-[72%] left-[8%] z-[4] hidden max-w-[17rem] md:flex lg:max-w-[19rem]" />
+        {/* selo: no celular, encostado embaixo das fotos, por cima só da borda;
+            no tablet/computador, sobre a borda inferior esquerda do quadro central */}
+        <Selo className="absolute bottom-[7%] left-1/2 z-[4] w-max -translate-x-1/2 md:top-[72%] md:bottom-auto md:left-[8%] md:w-auto md:max-w-[17rem] md:translate-x-0 lg:max-w-[19rem]" />
       </div>
-
-      {/* no celular, o selo fica abaixo da colagem */}
-      <Selo className="relative mx-auto mt-4 w-fit md:hidden" />
     </div>
   );
 }
@@ -170,8 +169,11 @@ export function ProjetosHero({
       aria-labelledby="page-title"
       className="relative isolate overflow-hidden"
     >
-      <div className="container-site grid items-center gap-10 pt-6 pb-16 md:grid-cols-12 md:gap-8 md:pt-14 md:pb-24 lg:min-h-[40rem]">
-        <div className="md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
+      {/* ordem no código = ordem no celular: texto, colagem, botão. No
+          tablet/computador, a colagem ocupa a coluna da direita e o botão
+          fica abaixo do texto. */}
+      <div className="container-site grid gap-10 pt-6 pb-16 md:grid-cols-12 md:gap-x-8 md:gap-y-9 md:pt-14 md:pb-24 lg:min-h-[40rem]">
+        <div className="md:col-span-7 md:self-end md:pr-6 lg:col-span-6 lg:pr-0">
           <nav
             aria-label="Trilha de navegação"
             className="sh2-hero-entra mb-6"
@@ -209,17 +211,17 @@ export function ProjetosHero({
           >
             {texto}
           </p>
-          <div
-            className="sh2-hero-entra mt-9 flex flex-col gap-3 md:flex-row md:flex-wrap max-md:[&>*]:w-full"
-            style={atraso(440)}
-          >
-            {children}
-          </div>
         </div>
 
-        {/* colagem: depois do texto no código; no celular, aparece em cima */}
-        <div className="order-first md:order-none md:col-span-5 lg:col-span-6 lg:pl-6">
+        <div className="md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1 md:self-center lg:col-span-6 lg:col-start-7 lg:pl-6">
           <Colagem />
+        </div>
+
+        <div
+          className="sh2-hero-entra -mt-6 flex flex-col gap-3 md:col-span-7 md:row-start-2 md:mt-0 md:flex-row md:flex-wrap md:self-start lg:col-span-6 max-md:[&>*]:w-full"
+          style={atraso(440)}
+        >
+          {children}
         </div>
       </div>
     </section>
