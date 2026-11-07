@@ -27,7 +27,7 @@ const rotulos: Record<string, string> = {
   conexao: "Marketing e endomarketing",
   cultura: "RH e pessoas",
   excelencia: "Qualidade e produção",
-  espaco: "Arquitetura sustentável para empresas",
+  espaco: "Arquitetura sustentável",
   integra: "Estratégia jurídica",
   prospera: "Financeiro e contábil",
 };
