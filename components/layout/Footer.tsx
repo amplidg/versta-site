@@ -8,6 +8,7 @@ import { isPlaceholder, site } from "@/data/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const redesProntas = site.redes.filter((rede) => !isPlaceholder(rede.url));
   // Sem e-mail, por decisão do Lucas (15/10).
   const contatos = [
     { icon: Phone, label: "Telefone", value: site.contato.telefone, href: `tel:${site.contato.telefoneLink}` },
@@ -82,22 +83,21 @@ export function Footer() {
             ))}
           </ul>
 
-          <h2 className="eyebrow mt-8 mb-4 font-body text-peach-100">Redes</h2>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
-            {site.redes.map((rede) => (
-              <li key={rede.nome}>
-                {isPlaceholder(rede.url) ? (
-                  <span>
-                    {rede.nome}: <Texto>{rede.url}</Texto>
-                  </span>
-                ) : (
-                  <a href={rede.url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
-                    {rede.nome}
-                  </a>
-                )}
-              </li>
-            ))}
-          </ul>
+          {/* Redes: só aparecem quando o link for real (Lucas, 07/11 — tirou os [PREENCHER]). */}
+          {redesProntas.length > 0 && (
+            <>
+              <h2 className="eyebrow mt-8 mb-4 font-body text-peach-100">Redes</h2>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
+                {redesProntas.map((rede) => (
+                  <li key={rede.nome}>
+                    <a href={rede.url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+                      {rede.nome}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
 
