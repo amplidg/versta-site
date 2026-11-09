@@ -33,7 +33,7 @@ export const fundadora = {
    * vertical, ~1200 px de largura) e mude `pronta` para true.
    */
   foto: {
-    arquivo: "/images/fundadora.webp",
+    arquivo: "/images/fundadora-vivian.webp",
     /** Descrição da foto para leitores de tela. */
     alt: "Vivian Prá Philippi, de vestido vermelho, segurando uma caneta",
     pronta: true,
