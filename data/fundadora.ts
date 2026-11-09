@@ -35,8 +35,8 @@ export const fundadora = {
   foto: {
     arquivo: "/images/fundadora.webp",
     /** Descrição da foto para leitores de tela. */
-    alt: "Retrato da fundadora da Versta",
-    pronta: false,
+    alt: "Vivian Prá Philippi, de vestido vermelho, segurando uma caneta",
+    pronta: true,
   },
 
   /** O caminho em números: exatamente três itens. */
