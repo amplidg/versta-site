@@ -1,3 +1,4 @@
+import { DIAGNOSTICO_WHATSAPP_URL } from "@/data/links";
 export type NavItem = { label: string; href: string };
 
 /**
@@ -19,7 +20,9 @@ export const navPrincipal: NavItem[] = [
 
 export const ctaDiagnostico: NavItem = {
   label: "Solicitar diagnóstico",
-  href: "/diagnostico",
+  // desde 10/11 leva para o WhatsApp (pedido do Lucas); a página
+  // /diagnostico, com o formulário, segue no ar, mas sem link
+  href: DIAGNOSTICO_WHATSAPP_URL,
 };
 
 /** Mapa do site usado no rodapé e no sitemap.xml. */

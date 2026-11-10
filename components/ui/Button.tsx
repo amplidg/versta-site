@@ -57,6 +57,15 @@ export function Button(props: AsLink | AsButton) {
   if (props.href !== undefined) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { variant: _v, arrow: _a, className: _c, children: _ch, ...rest } = props;
+    // link externo (ex.: WhatsApp do diagnóstico): abre em nova aba
+    if (props.href.startsWith("http")) {
+      return (
+        <a href={props.href} target="_blank" rel="noopener noreferrer" className={classes}>
+          {content}
+          <span className="sr-only"> (abre em nova aba)</span>
+        </a>
+      );
+    }
     return (
       <Link {...rest} className={classes}>
         {content}

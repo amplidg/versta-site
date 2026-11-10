@@ -38,9 +38,21 @@ export function Footer() {
           <ul className="space-y-2.5 text-[0.9375rem]">
             {mapaDoSite.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-offwhite/90 transition-colors hover:text-peach-100">
-                  {item.label}
-                </Link>
+                {item.href.startsWith("http") ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-offwhite/90 transition-colors hover:text-peach-100"
+                  >
+                    {item.label}
+                    <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+                  </a>
+                ) : (
+                  <Link href={item.href} className="text-offwhite/90 transition-colors hover:text-peach-100">
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
