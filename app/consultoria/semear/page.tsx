@@ -22,7 +22,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Semear · Consultoria Ambiental",
   description:
-    "Licenciamento, gestão e controle ambiental com mais de 20 anos de experiência. Sua empresa em dia com o meio ambiente, sem sustos.",
+    "Licenciamento, gestão e controle ambiental com mais de 17 anos de experiência. Sua empresa em dia com o meio ambiente, sem sustos.",
   path: "/consultoria/semear",
 });
 
@@ -93,9 +93,9 @@ export default function SemearPage() {
         slug="semear"
         eyebrow="Semear · Consultoria ambiental"
         titulo="Sua empresa em dia com o meio ambiente, sem sustos"
-        texto="Licenças, controles e estudos ambientais conduzidos por quem acompanha empresas há mais de 20 anos, para que sua operação siga segura, regular e preparada para o futuro."
+        texto="Licenças, controles e estudos ambientais conduzidos por quem acompanha empresas há mais de 17 anos, para que sua operação siga segura, regular e preparada para o futuro."
         selo={{
-          texto: "Mais de 20 anos de experiência em gestão ambiental",
+          texto: "Mais de 17 anos de experiência em gestão ambiental",
           icone: Sprout,
           fundo: "bg-mint",
           cor: "text-green-900",

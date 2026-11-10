@@ -13,7 +13,7 @@ import { asset } from "@/lib/paths";
  * bloco sobre a autoridade da Semear em 03/11, com liberdade de criação). Só
  * usa o que já está confirmado no site: a Semear Soluções Ambientais foi
  * fundada por Vivian Prá Philippi, acompanha empresas na gestão ambiental, mais
- * de 20 anos de experiência e os 5 serviços da página. Nenhum número novo.
+ * de 17 anos de experiência (era 20 até 10/11) e os 5 serviços da página. Nenhum número novo.
  *
  * Visual (03/11, pedido do Lucas): fotos reais do trabalho de campo passando
  * em loop — no computador, duas colunas que sobem e descem em sentidos
