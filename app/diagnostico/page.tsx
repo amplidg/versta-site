@@ -12,6 +12,9 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Solicite um diagnóstico da sua empresa. A Versta identifica as áreas que precisam se desenvolver e indica o caminho, conectando você às soluções certas.",
   path: "/diagnostico",
+  // fora do Google desde 10/11: nenhum botão leva mais para cá (o diagnóstico
+  // é pedido pelo WhatsApp) e a página ainda tem textos [PREENCHER]
+  noindex: true,
 });
 
 const passos = [

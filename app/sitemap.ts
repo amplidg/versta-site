@@ -8,7 +8,9 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const paginas = mapaDoSite.map((item) => ({
+  // só páginas do próprio site: o "Solicitar diagnóstico" leva ao WhatsApp
+  // desde 10/11 e não entra no mapa
+  const paginas = mapaDoSite.filter((item) => item.href.startsWith("/")).map((item) => ({
     url: pageUrl(item.href),
     lastModified,
     changeFrequency: "monthly" as const,

@@ -69,7 +69,7 @@ export function FrenteHero({
           emblema, texto, selo e botão. Tablet/computador: texto, selo e botão
           à esquerda e o emblema à direita, ocupando as três linhas. */}
       <Container className="grid gap-7 pt-6 pb-16 max-md:text-center md:grid-cols-12 md:gap-x-8 md:gap-y-0 md:pt-14 md:pb-24 lg:min-h-[40rem] lg:content-center">
-        <Reveal className="md:col-span-7 md:row-start-1 md:pr-6 lg:col-span-6 lg:pr-0">
+        <Reveal noTopo className="md:col-span-7 md:row-start-1 md:pr-6 lg:col-span-6 lg:pr-0">
           <nav aria-label="Trilha de navegação" className="mb-6">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ink-muted max-md:justify-center">
               <li className="flex items-center gap-1.5">
@@ -104,7 +104,7 @@ export function FrenteHero({
           />
         </div>
 
-        <Reveal
+        <Reveal noTopo
           delay={100}
           className="md:col-span-7 md:row-start-2 md:mt-6 md:pr-6 lg:col-span-6 lg:pr-0"
         >
@@ -130,7 +130,7 @@ export function FrenteHero({
           )}
         </Reveal>
 
-        <Reveal
+        <Reveal noTopo
           delay={160}
           className="flex flex-col gap-3 md:col-span-7 md:row-start-3 md:mt-8 md:flex-row md:flex-wrap md:self-start lg:col-span-6 max-md:[&>*]:w-full"
         >

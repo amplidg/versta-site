@@ -11,7 +11,8 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contato",
-  description: "Fale com a Versta. Envie sua mensagem ou use os nossos canais de atendimento.",
+  description:
+    "Fale com a Versta pelo telefone e WhatsApp (48) 99170-1463 ou envie sua mensagem. Atendimento de segunda a sexta, em Tubarão – SC.",
   path: "/contato",
 });
 

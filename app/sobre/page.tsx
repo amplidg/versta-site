@@ -24,7 +24,7 @@ export default function SobrePage() {
       {/* O nome */}
       <Section tone="forest" aria-labelledby="nome-titulo">
         <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-4">
+          <Reveal noTopo className="lg:col-span-4">
             <p className="eyebrow text-peach-100">O nome</p>
             <h1
               id="nome-titulo"

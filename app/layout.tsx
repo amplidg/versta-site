@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Sans_3, STIX_Two_Text } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -12,19 +12,27 @@ import { SITE_URL, site } from "@/data/site";
  *   títulos → STIX Two Text | textos → Source Sans 3
  * Para trocar, altere aqui; os tokens --font-display/--font-body
  * em globals.css apontam para estas variáveis.
+ *
+ * Desde 10/11 os arquivos ficam no próprio site (app/fonts/, versões
+ * "variáveis" com todos os pesos, só caracteres latinos — inclui acentos do
+ * português; licença SIL OFL, pacotes @fontsource-variable). Antes vinham do
+ * Google Fonts na hora da publicação, e a publicação falhou algumas vezes
+ * quando o GitHub não conseguia baixá-las.
  */
-const display = STIX_Two_Text({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+const display = localFont({
+  src: "./fonts/stix-two-text.woff2",
+  weight: "400 700",
   variable: "--font-stix",
   display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
-const body = Source_Sans_3({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const body = localFont({
+  src: "./fonts/source-sans-3.woff2",
+  weight: "200 900",
   variable: "--font-source-sans",
   display: "swap",
+  fallback: ["Segoe UI", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {

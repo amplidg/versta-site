@@ -38,7 +38,7 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
   return (
     <section aria-labelledby="page-title" className="pt-8 pb-16 md:pt-14 md:pb-24">
       <div className="container-site grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-        <Reveal
+        <Reveal noTopo
           className={`${botoesNoFim ? "lg:col-span-6 lg:row-start-1 lg:self-end" : "lg:col-span-6"} ${c ? "max-lg:text-center" : ""}`}
         >
           {top}
@@ -70,7 +70,7 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
           )}
           {!botoesNoFim && botoes && <div className="mt-9">{botoes}</div>}
         </Reveal>
-        <Reveal
+        <Reveal noTopo
           from="fade"
           delay={150}
           className={botoesNoFim ? "lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1" : "lg:col-span-6"}
@@ -86,7 +86,7 @@ export function PageHero({ eyebrow, title, headline, lead, imagem, aside, childr
             ))}
         </Reveal>
         {botoesNoFim && botoes && (
-          <Reveal delay={200} className="lg:col-span-6 lg:row-start-2 lg:-mt-5 lg:self-start">
+          <Reveal noTopo delay={200} className="lg:col-span-6 lg:row-start-2 lg:-mt-5 lg:self-start">
             {botoes}
           </Reveal>
         )}
