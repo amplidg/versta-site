@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, MapPin, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/sections/PageHero";
@@ -22,8 +22,7 @@ const mapaLink = `https://www.google.com/maps/search/?api=1&query=${busca}`;
 
 export default function ContatoPage() {
   const canais = [
-    { icon: Phone, label: "Telefone", value: site.contato.telefone, href: `tel:${site.contato.telefoneLink}` },
-    { icon: MessageCircle, label: "WhatsApp", value: site.contato.whatsapp },
+    { icon: MessageCircle, label: "Telefone e WhatsApp", value: site.contato.telefone, href: site.contato.whatsappLink },
     { icon: MapPin, label: "Endereço", value: `${site.contato.endereco}, ${site.contato.cidade}` },
     { icon: Clock, label: "Horário", value: site.contato.horario },
   ];
@@ -54,8 +53,14 @@ export default function ContatoPage() {
                     </dt>
                       <dd className="mt-1 text-ink-muted">
                         {href ? (
-                          <a href={href} className="underline-offset-4 hover:text-navy hover:underline">
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline-offset-4 hover:text-navy hover:underline"
+                          >
                             {value}
+                            <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
                           </a>
                         ) : (
                           <Texto>{value}</Texto>

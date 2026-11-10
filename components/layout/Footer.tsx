@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { Texto } from "@/components/ui/Texto";
 import { frentes } from "@/data/frentes";
@@ -11,7 +11,7 @@ export function Footer() {
   const redesProntas = site.redes.filter((rede) => !isPlaceholder(rede.url));
   // Sem e-mail, por decisão do Lucas (15/10).
   const contatos = [
-    { icon: Phone, label: "Telefone", value: site.contato.telefone, href: `tel:${site.contato.telefoneLink}` },
+    { icon: MessageCircle, label: "Telefone e WhatsApp", value: site.contato.telefone, href: site.contato.whatsappLink },
     { icon: MapPin, label: "Endereço", value: `${site.contato.endereco}, ${site.contato.cidade}` },
     { icon: Clock, label: "Horário", value: site.contato.horario },
   ];
@@ -73,8 +73,9 @@ export function Footer() {
                 <span>
                   <span className="sr-only">{label}: </span>
                   {href ? (
-                    <a href={href} className="underline-offset-4 hover:underline">
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
                       {value}
+                      <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
                     </a>
                   ) : (
                     <Texto>{value}</Texto>

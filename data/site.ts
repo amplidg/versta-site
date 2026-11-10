@@ -17,11 +17,14 @@ export const site = {
   locale: "pt_BR",
 
   // Contatos enviados pelo Lucas em 15/10/2026. Sem e-mail, por decisão dele.
+  // Telefone trocado em 10/11: o número é também o WhatsApp, e clicar nele
+  // abre a conversa no WhatsApp (pedido do Lucas).
   contato: {
-    telefone: "(48) 9.9944-0674",
-    /** Mesmo telefone, no formato usado no link "ligar" (tel:). */
-    telefoneLink: "+5548999440674",
-    whatsapp: "[PREENCHER: WhatsApp]",
+    telefone: "(48) 99170-1463",
+    /** Mesmo telefone, no formato internacional (dados para o Google). */
+    telefoneLink: "+5548991701463",
+    /** Link que abre a conversa no WhatsApp com esse número. */
+    whatsappLink: "https://wa.me/5548991701463",
     endereco: "Av. Marcolino Martins Cabral, 3108, ETR Business, sala 603 – Vila Moema",
     cidade: "Tubarão – SC, 88701-000",
     horario: "Segunda a sexta, das 8h às 12h e das 13h30 às 18h",
