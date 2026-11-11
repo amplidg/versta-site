@@ -83,7 +83,7 @@ export default function Home() {
           background={
             <Illustration
               imagem="heroHome"
-              // sem prioridade (11/11): fica atrás das nuvens ao abrir; as nuvens baixam antes
+              priority
               className="absolute! inset-0 -z-10"
             />
           }
