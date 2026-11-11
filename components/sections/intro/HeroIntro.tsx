@@ -24,7 +24,7 @@ import { CLOUD_ASPECT, drawCloud } from "./clouds";
  *
  * Desde 11/11 (pedido do Lucas, para o celular ficar mais leve) as nuvens são
  * imagens prontas: o mesmo desenho de clouds.ts, salvo em WebP em
- * public/images/nuvens/ (nuvem-<semente>.webp, 1200 px, e -640.webp para o
+ * public/images/nuvens/ (nuvem-<semente>.webp, 1200 px, e -480.webp para o
  * celular). Antes, o celular desenhava as nuvens ao abrir a página. Para voltar
  * a desenhar por código: deixar a lista vazia.
  */
@@ -245,13 +245,15 @@ export function HeroIntro({ background, logo, children, labelledBy }: Props) {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={asset(`${CLOUD_IMAGES[i]}.webp`)}
-                  srcSet={`${asset(`${CLOUD_IMAGES[i]}-640.webp`)} 640w, ${asset(`${CLOUD_IMAGES[i]}.webp`)} 1200w`}
-                  // no celular a nuvem é desfocada: 640 px bastam, mesmo em telas de alta densidade
-                  sizes={`(max-width: 767px) 200px, ${c.w}vw`}
+                  srcSet={`${asset(`${CLOUD_IMAGES[i]}-480.webp`)} 480w, ${asset(`${CLOUD_IMAGES[i]}.webp`)} 1200w`}
+                  // no celular a nuvem é desfocada: 480 px bastam, mesmo em telas de alta densidade
+                  sizes={`(max-width: 767px) 160px, ${c.w}vw`}
                   width={1200}
                   height={522}
                   alt=""
                   decoding="async"
+                  // são a primeira coisa que aparece: baixar antes do resto
+                  fetchPriority="high"
                   className="intro-cloud-art"
                   data-ready=""
                   style={{ animationDuration: `${c.drift}s`, animationDelay: `-${c.seed % c.drift}s` }}
