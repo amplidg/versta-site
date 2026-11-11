@@ -76,9 +76,9 @@ export default function ConsultoriaPage() {
         </Container>
       </Section>
 
-      {/* ilustração das áreas de atuação: saiu do topo da página em 29/10 */}
+      {/* chamada final com a mesma foto das outras páginas (11/11, pedido do Lucas);
+          antes, a ilustração das áreas de atuação (imagem "areasAtuacao") */}
       <CtaBanner
-        imagem="areasAtuacao"
         title="Não sabe por qual frente começar?"
         text="É para isso que existe o diagnóstico. Ele mostra quais áreas precisam de atenção e qual caminho seguir."
       />
