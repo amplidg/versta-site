@@ -1,3 +1,4 @@
+import { IMAGEM_CTA_FINAL } from "@/data/imagens";
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
 import { Compass, Layers, Map, Repeat, Search, ShieldCheck } from "lucide-react";
@@ -216,7 +217,7 @@ export default function MetodologiaPage() {
               </div>
             </Reveal>
             <Illustration
-              imagem="ctaHome"
+              imagem={IMAGEM_CTA_FINAL}
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="min-h-72 lg:min-h-[28rem]"
             />

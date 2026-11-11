@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Illustration } from "@/components/ui/Illustration";
 import { Container, Section, type SectionTone } from "@/components/ui/Section";
 import { Texto } from "@/components/ui/Texto";
-import type { ImagemKey } from "@/data/imagens";
+import { IMAGEM_CTA_FINAL, type ImagemKey } from "@/data/imagens";
 import { ctaDiagnostico } from "@/data/navegacao";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 export function CtaBanner({
   title = "Vamos entender o seu terreno?",
   text = "O primeiro passo é um diagnóstico. A partir dele, a Versta aponta as áreas que precisam se desenvolver e indica o caminho, com as soluções certas para cada uma.",
-  imagem = "ctaHome",
+  imagem = IMAGEM_CTA_FINAL,
   headingLevel: H = "h2",
   tone = "mint",
 }: Props) {

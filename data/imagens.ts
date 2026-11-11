@@ -79,6 +79,16 @@ export const imagens = {
     pronta: true,
     posicao: "center 70%",
   },
+  // Teste do Lucas (11/11): a fundadora pintando aquarela no lugar da mulher
+  // com o cão nas chamadas finais. A imagem antiga (ctaHome) fica guardada.
+  ctaVivian: {
+    arquivo: "/images/cta-vivian-aquarela.webp",
+    alt: "Vivian Prá Philippi, fundadora da Versta, pintando uma aquarela à mesa de trabalho",
+    descricao: "Chamada final: a fundadora pintando aquarela",
+    tom: "amanhecer",
+    pronta: true,
+    posicao: "54% 40%",
+  },
 
   sh2Hero: {
     // hero da página do Programa SH2 (29/10); enquadramento em Sh2Hero.tsx
@@ -128,3 +138,10 @@ export const imagens = {
 } satisfies Record<string, Imagem>;
 
 export type ImagemKey = keyof typeof imagens;
+
+/**
+ * Imagem das chamadas finais de todas as páginas (CtaBanner e o bloco final da
+ * Metodologia). Desde 11/11, em teste, a foto da Vivian pintando aquarela.
+ * Para voltar à mulher com o cão em aquarela, troque por "ctaHome".
+ */
+export const IMAGEM_CTA_FINAL: ImagemKey = "ctaVivian";
