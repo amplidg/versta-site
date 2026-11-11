@@ -7,6 +7,8 @@ type Props = {
   lead?: string;
   /** Nível do título. Cada página deve ter um único h1. */
   as?: "h1" | "h2" | "h3";
+  /** Tamanho visual, quando deve ser diferente da tag (ex.: h1 com cara de h2). */
+  tamanho?: "h1" | "h2" | "h3";
   id?: string;
   /** "centro-celular": centralizado no celular, à esquerda a partir do tablet. */
   align?: "left" | "center" | "centro-celular";
@@ -21,6 +23,7 @@ export function SectionHeading({
   title,
   lead,
   as: Tag = "h2",
+  tamanho,
   id,
   align = "left",
   onDark = false,
@@ -29,7 +32,8 @@ export function SectionHeading({
 }: Props) {
   const center = align === "center";
   const cc = align === "centro-celular";
-  const size = Tag === "h1" ? "text-h1" : Tag === "h2" ? "text-h2" : "text-h3";
+  const nivel = tamanho ?? Tag;
+  const size = nivel === "h1" ? "text-h1" : nivel === "h2" ? "text-h2" : "text-h3";
   return (
     <div
       className={`${center ? "mx-auto text-center" : ""} ${cc ? "max-md:mx-auto max-md:text-center" : ""} max-w-3xl ${className}`}

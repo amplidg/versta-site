@@ -106,6 +106,8 @@ export function ContactForm({ submitLabel = "Enviar mensagem", defaultArea = "" 
       <Field id={campo("area")} label="Área de interesse" className="sm:col-span-2">
         <select id={campo("area")} name="area" defaultValue={defaultArea || "ainda-nao-sei"} className={`${inputBase} appearance-none bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2216%22%20height=%2216%22%20fill=%22none%22%20stroke=%22%23003462%22%20stroke-width=%221.5%22%3E%3Cpath%20d=%22m4%206%204%204%204-4%22/%3E%3C/svg%3E')] bg-[length:16px] bg-[right_1rem_center] bg-no-repeat pr-10`}>
           <option value="ainda-nao-sei">Ainda não sei</option>
+          {/* pedido do Lucas, 11/11 */}
+          <option value="programa-sh2">Programa SH2</option>
           {frentes.map((f) => (
             <option key={f.slug} value={f.slug}>
               {f.nome} — {f.area}

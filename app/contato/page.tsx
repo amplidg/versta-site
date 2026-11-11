@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ArrowUpRight, Clock, MapPin, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { PageHero } from "@/components/sections/PageHero";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Texto } from "@/components/ui/Texto";
@@ -30,18 +29,14 @@ export default function ContatoPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Contato"
-        title="Vamos conversar"
-        lead="Envie sua mensagem pelo formulário ou use um dos canais abaixo."
-        imagem="contatoHero"
-      />
-
-      <Section tone="peach" aria-labelledby="canais-titulo">
+      {/* O topo "Vamos conversar" saiu a pedido do Lucas (11/11): a página
+          começa nos canais, que ganharam o título principal (h1) e o fundo
+          azul claro da marca. */}
+      <Section tone="mist" aria-labelledby="canais-titulo">
         <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
-              <SectionHeading id="canais-titulo" eyebrow="Canais" title="Onde encontrar a Versta" />
+              <SectionHeading as="h1" tamanho="h2" id="canais-titulo" eyebrow="Canais" title="Onde encontrar a Versta" />
             </Reveal>
             <Reveal delay={120}>
               <dl className="mt-10 space-y-6">
