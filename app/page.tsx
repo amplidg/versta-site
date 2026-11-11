@@ -106,8 +106,8 @@ export default function Home() {
         </HeroIntro>
       )}
 
-      {/* MANIFESTO — o vídeo completo, para dar play (pedido do Lucas, 11/11) */}
-      <Section aria-labelledby="manifesto-titulo">
+      {/* MANIFESTO — o vídeo completo, para dar play (pedido do Lucas, 11/11); metade do respiro de baixo e, no bloco seguinte, metade do de cima, para os dois ficarem próximos */}
+      <Section aria-labelledby="manifesto-titulo" className="pb-[calc(var(--section-y)/2)]">
         <Container>
           <Reveal>
             <SectionHeading id="manifesto-titulo" title="Assista ao manifesto" align="center" />
@@ -122,7 +122,7 @@ export default function Home() {
       {/* sem texto após o organograma: metade do respiro de baixo, para aproximar do próximo bloco */}
       <Section
         aria-labelledby="oque-titulo"
-        className="pb-[calc(var(--section-y)/2)]"
+        className="pt-[calc(var(--section-y)/2)] pb-[calc(var(--section-y)/2)]"
       >
         <Container>
           <Reveal>
