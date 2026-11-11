@@ -9,9 +9,9 @@ import { asset } from "@/lib/paths";
  * nuvens (que segue guardada em components/sections/intro/HeroIntro.tsx;
  * interruptor HERO_COM_VIDEO em app/page.tsx).
  *
- * - Fundo: os 12 primeiros segundos do "Versta Manifesto", sem som, em loop,
- *   escurecidos por um véu azul-marinho (a partir dos 12 s o vídeo tem
- *   legendas gravadas). Versão leve no celular. Enquanto carrega, ou com
+ * - Fundo: os 18 primeiros segundos do "Versta Manifesto" (eram 12 até 11/11), sem som, em loop,
+ *   escurecidos por um véu azul-marinho (de 12 a 18 s aparecem as legendas
+ *   gravadas do vídeo; o Lucas preferiu o trecho maior). Versão leve no celular. Enquanto carrega, ou com
  *   "reduzir movimento", fica a imagem de capa parada.
  * - "Assistir ao manifesto": o logo, a headline e os botões somem e o vídeo
  *   completo (com som e controles) toca do início. Fechar (X ou Esc) ou o
@@ -20,8 +20,8 @@ import { asset } from "@/lib/paths";
  * Arquivos em public/videos/ (originais na pasta do projeto).
  */
 
-const FUNDO_GRANDE = "/videos/hero-fundo-1600.mp4";
-const FUNDO_LEVE = "/videos/hero-fundo-854.mp4";
+const FUNDO_GRANDE = "/videos/hero-fundo-18s-1600.mp4";
+const FUNDO_LEVE = "/videos/hero-fundo-18s-854.mp4";
 const COMPLETO = "/videos/versta-manifesto-1080.mp4";
 const CAPA = "/images/hero-video-capa.webp";
 
