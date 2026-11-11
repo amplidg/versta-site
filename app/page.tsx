@@ -8,6 +8,7 @@ import { ConnectionMap } from "@/components/sections/ConnectionMap";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FounderBlock } from "@/components/sections/FounderBlock";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
+import { HeroVideo } from "@/components/sections/HeroVideo";
 import { OrgChart } from "@/components/sections/OrgChart";
 import { Sh2Highlight } from "@/components/sections/Sh2Highlight";
 import { TestimonialsBlock } from "@/components/sections/TestimonialsBlock";
@@ -34,34 +35,81 @@ export const metadata: Metadata = pageMetadata({
  */
 const MOSTRAR_DEPOIMENTOS = false;
 
+/**
+ * Hero com vídeo do manifesto (11/11, pedido do Lucas). false volta à hero
+ * anterior: intro com nuvens que se abrem ao rolar + ilustração da trilha,
+ * com logo e headline em azul-marinho (guardada a pedido dele).
+ */
+const HERO_COM_VIDEO = true;
+
 /** Bloco da fundadora ("Quem conduz a Versta"): false esconde o bloco (ficou escondido de 29/10 a 03/11). */
 const MOSTRAR_FUNDADORA = true;
 
 export default function Home() {
   return (
     <>
-      {/* 1. HERO com intro (nuvens abrindo ao rolar) */}
-      <HeroIntro
-        labelledBy="home-titulo"
-        background={<Illustration imagem="heroHome" priority className="absolute! inset-0 -z-10" />}
-        logo={<Logo layout="vertical" className="w-[14rem] md:w-[18rem]" />}
-      >
-        <h1 id="home-titulo" className="mt-10 max-w-4xl text-h1 leading-[calc(1.1em-2px)] text-navy md:leading-[1.1]">
-          Para cada desafio, a Versta conecta sua empresa com a solução.
-        </h1>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Button href={ctaDiagnostico.href} variant="primary" arrow>
-            {ctaDiagnostico.label}
-          </Button>
-          <Button href="/consultoria" variant="outline">
-            Conheça as frentes
-          </Button>
-        </div>
-      </HeroIntro>
+      {/* 1. HERO: vídeo do manifesto ou, guardada, a intro com nuvens */}
+      {HERO_COM_VIDEO ? (
+        <HeroVideo
+          labelledBy="home-titulo"
+          logo={
+            <Logo
+              layout="vertical"
+              tone="branca"
+              className="w-[12rem] md:w-[16rem]"
+            />
+          }
+        >
+          <h1
+            id="home-titulo"
+            className="mt-9 max-w-4xl text-h1 leading-[calc(1.1em-2px)] text-offwhite [text-shadow:0_2px_24px_rgb(0_41_77/0.45)] md:leading-[1.1]"
+          >
+            Para cada desafio, a Versta conecta sua empresa com a solução.
+          </h1>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Button href={ctaDiagnostico.href} variant="light" arrow>
+              {ctaDiagnostico.label}
+            </Button>
+            <Button href="/consultoria" variant="outline-light">
+              Conheça as frentes
+            </Button>
+          </div>
+        </HeroVideo>
+      ) : (
+        <HeroIntro
+          labelledBy="home-titulo"
+          background={
+            <Illustration
+              imagem="heroHome"
+              priority
+              className="absolute! inset-0 -z-10"
+            />
+          }
+          logo={<Logo layout="vertical" className="w-[14rem] md:w-[18rem]" />}
+        >
+          <h1
+            id="home-titulo"
+            className="mt-10 max-w-4xl text-h1 leading-[calc(1.1em-2px)] text-navy md:leading-[1.1]"
+          >
+            Para cada desafio, a Versta conecta sua empresa com a solução.
+          </h1>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Button href={ctaDiagnostico.href} variant="primary" arrow>
+              {ctaDiagnostico.label}
+            </Button>
+            <Button href="/consultoria" variant="outline">
+              Conheça as frentes
+            </Button>
+          </div>
+        </HeroIntro>
+      )}
 
       {/* 2. QUEM É A VERSTA — título, organograma e texto */}
       {/* sem texto após o organograma: metade do respiro de baixo, para aproximar do próximo bloco */}
-      <Section aria-labelledby="oque-titulo" className="pb-[calc(var(--section-y)/2)]">
+      <Section
+        aria-labelledby="oque-titulo"
+        className="pb-[calc(var(--section-y)/2)]"
+      >
         <Container>
           <Reveal>
             <SectionHeading
@@ -102,7 +150,11 @@ export default function Home() {
             <div className="mt-8">
               <Button href="#como-funciona" variant="outline">
                 Veja como funciona
-                <ArrowDown aria-hidden="true" className="size-4" strokeWidth={1.75} />
+                <ArrowDown
+                  aria-hidden="true"
+                  className="size-4"
+                  strokeWidth={1.75}
+                />
               </Button>
             </div>
           </Reveal>
@@ -110,7 +162,12 @@ export default function Home() {
       </Section>
 
       {/* 3. COMO A METODOLOGIA SE APLICA — mesmo bloco da página Metodologia */}
-      <Section id="como-funciona" tone="forest" aria-labelledby="como-titulo" className="relative isolate overflow-hidden">
+      <Section
+        id="como-funciona"
+        tone="forest"
+        aria-labelledby="como-titulo"
+        className="relative isolate overflow-hidden"
+      >
         {/* flechas de crescimento compondo todo o fundo do bloco */}
         <ArrowsBackdrop />
         <Container>
@@ -148,10 +205,17 @@ export default function Home() {
             delay={120}
             className="mt-12 flex flex-col gap-6 rounded-card bg-mint p-7 md:flex-row md:items-center md:gap-8 md:px-9 lg:mt-16"
           >
-            <Layers aria-hidden="true" className="size-9 shrink-0 text-caramel" strokeWidth={1.5} />
+            <Layers
+              aria-hidden="true"
+              className="size-9 shrink-0 text-caramel"
+              strokeWidth={1.5}
+            />
             <p className="flex-1 text-lead text-ink">
-              <strong className="font-semibold text-navy">Gestão simplificada.</strong> Todas as ações
-              reunidas em uma só condução, sem precisar contratar e coordenar vários fornecedores.
+              <strong className="font-semibold text-navy">
+                Gestão simplificada.
+              </strong>{" "}
+              Todas as ações reunidas em uma só condução, sem precisar contratar
+              e coordenar vários fornecedores.
             </p>
             <div className="shrink-0">
               <Button href={ctaDiagnostico.href} variant="primary" arrow>
@@ -169,7 +233,10 @@ export default function Home() {
       {MOSTRAR_DEPOIMENTOS && <TestimonialsBlock />}
 
       {/* CTA FINAL — em azul claro (pedido do Lucas, 15/10) */}
-      <CtaBanner tone="mist-strong" title="Vamos entender os próximos passos da sua empresa?" />
+      <CtaBanner
+        tone="mist-strong"
+        title="Vamos entender os próximos passos da sua empresa?"
+      />
     </>
   );
 }

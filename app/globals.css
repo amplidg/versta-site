@@ -1352,3 +1352,23 @@
     transform: translateY(6px);
   }
 }
+
+/* Hero com vídeo da Home (HeroVideo.tsx, 11/11): ao assistir com som, o
+   conteúdo some e o player aparece; ao fechar, volta o fundo mudo. */
+.hero-video-player {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms var(--ease-calm), visibility 0s linear 500ms;
+}
+.hero-video[data-assistindo] .hero-video-player {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 500ms var(--ease-calm), visibility 0s;
+}
+.hero-video-conteudo {
+  transition: opacity 400ms var(--ease-calm), transform 400ms var(--ease-calm);
+}
+.hero-video[data-assistindo] .hero-video-conteudo {
+  opacity: 0;
+  transform: translateY(8px);
+}
