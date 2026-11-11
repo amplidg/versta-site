@@ -9,6 +9,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { FounderBlock } from "@/components/sections/FounderBlock";
 import { HeroIntro } from "@/components/sections/intro/HeroIntro";
 import { HeroVideo } from "@/components/sections/HeroVideo";
+import { ManifestoVideo } from "@/components/sections/ManifestoVideo";
 import { OrgChart } from "@/components/sections/OrgChart";
 import { Sh2Highlight } from "@/components/sections/Sh2Highlight";
 import { TestimonialsBlock } from "@/components/sections/TestimonialsBlock";
@@ -36,11 +37,12 @@ export const metadata: Metadata = pageMetadata({
 const MOSTRAR_DEPOIMENTOS = false;
 
 /**
- * Hero com vídeo do manifesto (11/11, pedido do Lucas). false volta à hero
- * anterior: intro com nuvens que se abrem ao rolar + ilustração da trilha,
- * com logo e headline em azul-marinho (guardada a pedido dele).
+ * Hero com vídeo do manifesto de fundo (no ar só em 11/11, pedido do Lucas).
+ * false = hero com nuvens + ilustração da trilha, logo e headline em
+ * azul-marinho (voltou em 11/11, a pedido dele; o vídeo foi para o bloco
+ * "Assista ao manifesto", logo abaixo). A hero com vídeo segue guardada.
  */
-const HERO_COM_VIDEO = true;
+const HERO_COM_VIDEO = false;
 
 /** Bloco da fundadora ("Quem conduz a Versta"): false esconde o bloco (ficou escondido de 29/10 a 03/11). */
 const MOSTRAR_FUNDADORA = true;
@@ -103,6 +105,18 @@ export default function Home() {
           </div>
         </HeroIntro>
       )}
+
+      {/* MANIFESTO — o vídeo completo, para dar play (pedido do Lucas, 11/11) */}
+      <Section aria-labelledby="manifesto-titulo">
+        <Container>
+          <Reveal>
+            <SectionHeading id="manifesto-titulo" title="Assista ao manifesto" align="center" />
+          </Reveal>
+          <Reveal delay={100} className="mx-auto mt-10 max-w-5xl md:mt-12">
+            <ManifestoVideo />
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* 2. QUEM É A VERSTA — título, organograma e texto */}
       {/* sem texto após o organograma: metade do respiro de baixo, para aproximar do próximo bloco */}
