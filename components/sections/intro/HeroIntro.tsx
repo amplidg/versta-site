@@ -21,8 +21,17 @@ import { CLOUD_ASPECT, drawCloud } from "./clouds";
  * PNG/WebP com fundo transparente em /public/images/nuvens/ e liste aqui,
  * na mesma ordem de CLOUDS. Com a lista vazia, as nuvens são geradas
  * por código (clouds.ts).
+ *
+ * Desde 11/11 (pedido do Lucas, para o celular ficar mais leve) as nuvens são
+ * imagens prontas: o mesmo desenho de clouds.ts, salvo em WebP em
+ * public/images/nuvens/ (nuvem-<semente>.webp, 1200 px, e -640.webp para o
+ * celular). Antes, o celular desenhava as nuvens ao abrir a página. Para voltar
+ * a desenhar por código: deixar a lista vazia.
  */
-const CLOUD_IMAGES: string[] = [];
+const USAR_NUVENS_PRONTAS = true;
+const CLOUD_IMAGES: string[] = USAR_NUVENS_PRONTAS
+  ? [11, 23, 37, 41, 53, 67, 79, 83].map((s) => `/images/nuvens/nuvem-${s}`)
+  : [];
 
 type Cloud = {
   side: -1 | 1; // para onde a nuvem sai: esquerda (-1) ou direita (1)
@@ -96,7 +105,9 @@ export function HeroIntro({ background, logo, children, labelledBy }: Props) {
       typeof OffscreenCanvas !== "undefined" &&
       "transferToImageBitmap" in OffscreenCanvas.prototype;
 
-    if (canUseWorker) {
+    if (canvases.length === 0) {
+      // nuvens em imagem: nada para desenhar
+    } else if (canUseWorker) {
       worker = new Worker(new URL("./clouds.worker.ts", import.meta.url));
       worker.onmessage = (e: MessageEvent<{ id: number; bitmap: ImageBitmap }>) => {
         const { id, bitmap } = e.data;
@@ -233,8 +244,14 @@ export function HeroIntro({ background, logo, children, labelledBy }: Props) {
               {CLOUD_IMAGES[i] ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={asset(CLOUD_IMAGES[i])}
+                  src={asset(`${CLOUD_IMAGES[i]}.webp`)}
+                  srcSet={`${asset(`${CLOUD_IMAGES[i]}-640.webp`)} 640w, ${asset(`${CLOUD_IMAGES[i]}.webp`)} 1200w`}
+                  // no celular a nuvem é desfocada: 640 px bastam, mesmo em telas de alta densidade
+                  sizes={`(max-width: 767px) 200px, ${c.w}vw`}
+                  width={1200}
+                  height={522}
                   alt=""
+                  decoding="async"
                   className="intro-cloud-art"
                   data-ready=""
                   style={{ animationDuration: `${c.drift}s`, animationDelay: `-${c.seed % c.drift}s` }}

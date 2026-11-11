@@ -205,7 +205,11 @@ export function HubDiagram() {
                 href={`/consultoria/${f.slug}`}
                 className="relative isolate flex h-full flex-col items-start gap-2 rounded-card p-4 text-navy"
               >
-                <Mancha id={id} i={i} retangular className="absolute inset-0 -z-10 size-full" />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 -z-10 bg-[length:100%_100%] bg-no-repeat"
+                  style={{ backgroundImage: manchaImagem(i) }}
+                />
                 <Icone frente={f} className="size-6" />
                 <span className="font-display text-lg leading-tight font-bold">{f.nome}</span>
                 <span className="text-sm leading-snug">{rotulos[f.slug] ?? f.area}</span>
@@ -274,6 +278,26 @@ function Mancha({
       {children}
     </span>
   );
+}
+
+/**
+ * A mesma mancha retangular, como imagem pronta (para os cartões do celular,
+ * 11/11): o navegador desenha o filtro de aquarela uma vez e guarda, em vez de
+ * redesenhar a cada movimento da página.
+ */
+const coresHex = ["#fcdac4", "#d6e9df", "#9ccadc", "#fac6ab", "#9bbbaa"]; // mesmas de `cores`
+function manchaImagem(i: number) {
+  const cor = coresHex[i % coresHex.length];
+  const seed = [3, 11, 27][i % 3];
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" overflow="visible">` +
+    `<filter id="f" x="-15%" y="-15%" width="130%" height="130%">` +
+    `<feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="${seed}" result="r"/>` +
+    `<feDisplacementMap in="SourceGraphic" in2="r" scale="9" xChannelSelector="R" yChannelSelector="G" result="b"/>` +
+    `<feGaussianBlur in="b" stdDeviation="0.8"/></filter>` +
+    `<g filter="url(#f)"><rect x="3" y="4" width="94" height="92" rx="14" fill="${cor}" opacity="0.6"/>` +
+    `<rect x="6" y="2" width="90" height="94" rx="18" fill="${cor}" opacity="0.35"/></g></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 }
 
 /** Três variações de borda irregular (o ruído muda com a semente). */

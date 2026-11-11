@@ -73,6 +73,8 @@ export function ConnectionMap() {
     if (!area) return;
 
     const medir = () => {
+      // no celular/tablet o mapa fica escondido: nem mede (evita recalcular o layout à toa)
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
       const caixa = area.getBoundingClientRect();
       if (caixa.width === 0) return; // escondida (celular)
       const centro = (el: HTMLElement | null) => {
