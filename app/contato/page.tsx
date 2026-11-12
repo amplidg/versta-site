@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { Container, Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Texto } from "@/components/ui/Texto";
+import { RedesSociais, redesProntas } from "@/components/ui/RedesSociais";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -65,6 +66,12 @@ export default function ContatoPage() {
                   </div>
                 ))}
               </dl>
+              {redesProntas().length > 0 && (
+                <div className="mt-8 border-t border-navy/10 pt-6">
+                  <p className="mb-3 text-sm font-semibold tracking-wide text-navy uppercase">Redes sociais</p>
+                  <RedesSociais tom="claro" />
+                </div>
+              )}
             </Reveal>
           </div>
           <Reveal delay={150} className="rounded-card bg-offwhite p-6 md:p-10 lg:col-span-8">

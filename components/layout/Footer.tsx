@@ -4,11 +4,12 @@ import { Logo } from "@/components/brand/Logo";
 import { Texto } from "@/components/ui/Texto";
 import { frentes } from "@/data/frentes";
 import { mapaDoSite } from "@/data/navegacao";
-import { isPlaceholder, site } from "@/data/site";
+import { site } from "@/data/site";
+import { RedesSociais, redesProntas } from "@/components/ui/RedesSociais";
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const redesProntas = site.redes.filter((rede) => !isPlaceholder(rede.url));
+  const temRedes = redesProntas().length > 0;
   // Sem e-mail, por decisão do Lucas (15/10).
   const contatos = [
     { icon: MessageCircle, label: "Telefone e WhatsApp", value: site.contato.telefone, href: site.contato.whatsappLink },
@@ -93,19 +94,11 @@ export function Footer() {
             ))}
           </ul>
 
-          {/* Redes: só aparecem quando o link for real (Lucas, 07/11 — tirou os [PREENCHER]). */}
-          {redesProntas.length > 0 && (
+          {/* Redes: ícones clicáveis (Lucas, 12/11); só aparecem com link real. */}
+          {temRedes && (
             <>
-              <h2 className="eyebrow mt-8 mb-4 font-body text-peach-100">Redes</h2>
-              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
-                {redesProntas.map((rede) => (
-                  <li key={rede.nome}>
-                    <a href={rede.url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
-                      {rede.nome}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <h2 className="eyebrow mt-8 mb-4 font-body text-peach-100">Redes sociais</h2>
+              <RedesSociais tom="escuro" />
             </>
           )}
         </div>

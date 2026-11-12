@@ -46,9 +46,11 @@ export const site = {
   mapaBusca: "ETR Business, Av. Marcolino Martins Cabral, 3108, Tubarão - SC",
   horarioEstruturado: { dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], turnos: [["08:00", "12:00"], ["13:30", "18:00"]] },
 
+  // Links enviados pelo Lucas em 12/11.
+
   redes: [
-    { nome: "Instagram", url: "[PREENCHER: link do Instagram]" },
-    { nome: "LinkedIn", url: "[PREENCHER: link do LinkedIn]" },
+    { nome: "Instagram", url: "https://www.instagram.com/verstahub/" },
+    { nome: "LinkedIn", url: "https://www.linkedin.com/in/versta-solu%C3%A7%C3%B5es-para-empresas-52226144b/" },
   ],
 } as const;
 
