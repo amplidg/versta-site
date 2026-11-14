@@ -1,0 +1,17 @@
+# Teste temporário: descobre a pasta do site no FTP da Hostinger (apagar depois).
+name: Teste FTP Hostinger
+on: workflow_dispatch
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Listar pastas
+        env:
+          H: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "== raiz (FTPS)"; curl -s --ssl-reqd --max-time 30 --user "$U:$P" "ftp://$H/" || echo "FTPS falhou: $?"
+          echo "== raiz (FTP)"; curl -s --max-time 30 --user "$U:$P" "ftp://$H/" || echo "FTP falhou: $?"
+          echo "== public_html"; curl -s --ssl-reqd --max-time 30 --user "$U:$P" "ftp://$H/public_html/" | head -40
+          echo "== domains/versta.com.br/public_html"; curl -s --ssl-reqd --max-time 30 --user "$U:$P" "ftp://$H/domains/versta.com.br/public_html/" | head -40
