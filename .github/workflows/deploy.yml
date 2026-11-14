@@ -1,6 +1,9 @@
-# Publica o site no GitHub Pages a cada push na branch main.
-# URL: https://<usuario>.github.io/<repositorio>/
-name: Publicar no GitHub Pages
+# Desde 14/11/2026 o site oficial está em https://versta.com.br (Hostinger).
+# O GitHub Pages (amplidg.github.io/versta-site) só redireciona cada página
+# para o mesmo endereço no domínio novo (scripts/redirect-site.mjs).
+# Para voltar a publicar o site completo aqui, restaure os passos de build
+# do commit anterior a esta mudança.
+name: Redirecionar GitHub Pages para versta.com.br
 
 on:
   push:
@@ -22,27 +25,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
+      - uses: actions/configure-pages@v5
 
-      - id: pages
-        uses: actions/configure-pages@v5
-
-      - run: npm ci
-
-      - name: Build estático
-        run: npm run build
-        env:
-          # subpasta e endereço público do site no GitHub Pages
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
-          NEXT_TELEMETRY_DISABLED: 1
+      - name: Páginas de redirecionamento
+        run: node scripts/redirect-site.mjs
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: redirect-out
 
   deploy:
     needs: build

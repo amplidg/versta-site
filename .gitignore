@@ -42,3 +42,4 @@ next-env.d.ts
 
 # QR Codes do evento (uso temporário; não publicar)
 /qrcode-evento/
+/redirect-out
