@@ -41,7 +41,8 @@ jobs:
 
       # FTPS com lftp: o servidor da Hostinger exige reaproveitar a sessão TLS
       # na conexão de dados, o que o lftp faz (a FTP-Deploy-Action dava erro 425).
-      # Envia tudo; em _next/ apaga também os arquivos que não existem mais.
+      # Envia tudo e apaga do servidor o que não existe mais no site (página
+      # removida, arquivos antigos de _next/), menos .well-known e .ftpquota.
       - name: Enviar para a Hostinger
         env:
           H: ${{ secrets.FTP_SERVER }}
@@ -55,7 +56,6 @@ jobs:
           set net:max-retries 3
           set net:timeout 30
           set cmd:fail-exit true
-          mirror -R --parallel=6 --exclude-glob _next/ ./out/ domains/versta.com.br/public_html/
-          mirror -R --parallel=6 --delete ./out/_next/ domains/versta.com.br/public_html/_next/
+          mirror -R --parallel=6 --delete --exclude-glob .well-known/ --exclude-glob .ftpquota ./out/ domains/versta.com.br/public_html/
           bye
           FIM
