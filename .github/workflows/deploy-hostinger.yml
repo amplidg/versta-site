@@ -1,0 +1,48 @@
+# Publica o site oficial (https://versta.com.br) na Hostinger a cada push na
+# branch main: monta o site para o domínio, junta o .htaccess (hostinger/) e
+# envia por FTP criptografado só o que mudou para a public_html.
+# Segredos no GitHub: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD (14/11/2026).
+name: Publicar em versta.com.br (Hostinger)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: hostinger
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build estático para versta.com.br
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+          NEXT_PUBLIC_SITE_URL: https://versta.com.br
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Configuração do servidor (.htaccess)
+        run: cp hostinger/.htaccess out/.htaccess
+
+      - name: Enviar para a Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: loose
+          local-dir: ./out/
+          server-dir: domains/versta.com.br/public_html/
