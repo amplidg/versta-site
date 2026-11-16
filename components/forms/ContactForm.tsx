@@ -2,9 +2,44 @@
 
 import { Suspense, useId, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { CircleCheck, Send } from "lucide-react";
+import { ArrowUpRight, CircleCheck, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { frentes } from "@/data/frentes";
+import { site } from "@/data/site";
+
+/*
+ * Envio pelo WhatsApp (pedido do Lucas, 16/11): ao enviar, o formulário abre a
+ * conversa com a Versta numa nova aba, com tudo o que a pessoa preencheu já
+ * escrito; ela só confirma o envio no WhatsApp. Para trocar por e-mail no
+ * futuro, basta mudar o que acontece em onSubmit.
+ */
+
+/** Nome legível de cada opção de "Área de interesse". */
+function nomeDaArea(valor: string) {
+  if (valor === "ainda-nao-sei") return "Ainda não sei";
+  if (valor === "programa-sh2") return "Programa SH2";
+  const f = frentes.find((x) => x.slug === valor);
+  return f ? `${f.nome} (${f.area})` : valor;
+}
+
+/** Link do WhatsApp da Versta com a mensagem montada a partir do formulário. */
+function linkDoWhatsapp(data: FormData) {
+  const v = (nome: string) => String(data.get(nome) ?? "").trim();
+  const opcional = (rotulo: string, nome: string) => (v(nome) ? [`*${rotulo}:* ${v(nome)}`] : []);
+  const texto = [
+    "Olá! Vim pelo site da *Versta* e gostaria de conversar.",
+    "",
+    `*Nome:* ${v("nome")}`,
+    ...opcional("Empresa", "empresa"),
+    `*E-mail:* ${v("email")}`,
+    ...opcional("Telefone", "telefone"),
+    `*Área de interesse:* ${nomeDaArea(v("area"))}`,
+    "",
+    "*Mensagem:*",
+    v("mensagem"),
+  ].join("\n");
+  return `${site.contato.whatsappLink}?text=${encodeURIComponent(texto)}`;
+}
 
 type Props = {
   /** Texto do botão de envio. */
@@ -29,13 +64,13 @@ function validar(data: FormData): Erros {
   return erros;
 }
 
-export function ContactForm({ submitLabel = "Enviar mensagem", defaultArea = "" }: Props) {
+export function ContactForm({ submitLabel = "Enviar pelo WhatsApp", defaultArea = "" }: Props) {
   const id = useId();
   const [erros, setErros] = useState<Erros>({});
-  const [enviado, setEnviado] = useState(false);
-  const [enviando, setEnviando] = useState(false);
+  /** Link do WhatsApp da última mensagem enviada (para abrir de novo). */
+  const [enviado, setEnviado] = useState<string | null>(null);
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -47,14 +82,11 @@ export function ContactForm({ submitLabel = "Enviar mensagem", defaultArea = "" 
       return;
     }
 
-    setEnviando(true);
-    // TODO: integrar o envio do formulário.
-    // Opções: Route Handler em app/api/contato/route.ts enviando e-mail
-    // (ex.: Resend, SMTP), ou serviço externo (Formspree, RD Station, CRM).
-    // Payload: Object.fromEntries(data) → { nome, empresa, email, telefone, area, mensagem }
-    await new Promise((r) => setTimeout(r, 600));
-    setEnviando(false);
-    setEnviado(true);
+    // Abre já, no próprio clique, para o navegador não bloquear a nova aba.
+    const link = linkDoWhatsapp(data);
+    const aba = window.open(link, "_blank", "noopener");
+    if (!aba) window.location.href = link;
+    setEnviado(link);
     form.reset();
   }
 
@@ -62,19 +94,25 @@ export function ContactForm({ submitLabel = "Enviar mensagem", defaultArea = "" 
     return (
       <div role="status" className="rounded-card bg-sage/35 p-8 md:p-10">
         <CircleCheck aria-hidden="true" className="size-8 text-green-900" strokeWidth={1.5} />
-        <p className="mt-4 font-display text-2xl font-semibold text-navy">Mensagem registrada</p>
+        <p className="mt-4 font-display text-2xl font-semibold text-navy">Falta só confirmar no WhatsApp</p>
         <p className="mt-2 text-ink-muted">
-          Obrigado pelo contato. Em breve a equipe da Versta retorna para
-          conversar sobre os próximos passos.
+          Sua mensagem abriu no WhatsApp da Versta, já escrita. Toque em enviar
+          por lá para ela chegar até nós. Obrigado pelo contato!
         </p>
-        <p className="mt-4 text-sm">
-          <mark className="todo-mark">
-            [PREENCHER: envio ainda não integrado — esta mensagem é apenas visual]
-          </mark>
-        </p>
+        <a
+          href={enviado}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex items-center gap-2 font-semibold text-navy underline underline-offset-4 hover:text-caramel-700"
+        >
+          O WhatsApp não abriu? Abrir de novo
+          <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
+          <span className="sr-only"> (nova aba)</span>
+        </a>
+        <br />
         <button
           type="button"
-          onClick={() => setEnviado(false)}
+          onClick={() => setEnviado(null)}
           className="mt-6 text-sm font-semibold text-caramel-700 underline underline-offset-4"
         >
           Enviar outra mensagem
@@ -121,11 +159,12 @@ export function ContactForm({ submitLabel = "Enviar mensagem", defaultArea = "" 
 
       <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-ink-muted">
-          <span aria-hidden="true" className="text-caramel-700">*</span> Campos obrigatórios
+          <span aria-hidden="true" className="text-caramel-700">*</span> Campos obrigatórios.
+          {" "}A mensagem abre no WhatsApp da Versta, pronta para enviar.
         </p>
-        <Button type="submit" variant="primary" disabled={enviando}>
-          {enviando ? "Enviando…" : submitLabel}
-          <Send aria-hidden="true" className="size-4" strokeWidth={1.5} />
+        <Button type="submit" variant="primary" className="shrink-0">
+          {submitLabel}
+          <MessageCircle aria-hidden="true" className="size-4" strokeWidth={1.5} />
         </Button>
       </div>
     </form>
