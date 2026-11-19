@@ -50,7 +50,7 @@ export const site = {
 
   redes: [
     { nome: "Instagram", url: "https://www.instagram.com/verstahub/" },
-    { nome: "LinkedIn", url: "https://www.linkedin.com/in/versta-solu%C3%A7%C3%B5es-para-empresas-52226144b/" },
+    { nome: "LinkedIn", url: "https://www.linkedin.com/in/vivianpraphilippi-623b28449/" },
   ],
 } as const;
 
