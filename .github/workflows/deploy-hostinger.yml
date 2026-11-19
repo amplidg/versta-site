@@ -36,6 +36,24 @@ jobs:
       - name: Configuração do servidor (.htaccess)
         run: cp hostinger/.htaccess out/.htaccess
 
+      - name: Conferir o envio do formulário (PHP)
+        run: php -l public/contato-envio.php
+
+      # Senha da caixa contato@versta.com.br (segredo SMTP_PASSWORD), usada pelo
+      # contato-envio.php. Vai para domains/versta.com.br/privado/, fora da
+      # pasta pública: ninguém consegue abrir pelo navegador.
+      - name: Configuração do e-mail do formulário
+        env:
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          mkdir -p privado
+          if [ -n "$SMTP_PASSWORD" ]; then
+            php -r '$c = ["usuario" => "contato@versta.com.br", "senha" => getenv("SMTP_PASSWORD"), "destino" => ["contato@versta.com.br"]]; file_put_contents("privado/contato-config.php", "<?php" . PHP_EOL . "return " . var_export($c, true) . ";" . PHP_EOL);'
+            php -l privado/contato-config.php
+          else
+            echo "::warning::Segredo SMTP_PASSWORD não definido: o formulário não envia e-mail."
+          fi
+
       - name: Instalar lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
@@ -57,5 +75,7 @@ jobs:
           set net:timeout 30
           set cmd:fail-exit true
           mirror -R --parallel=6 --delete --exclude-glob .well-known/ --exclude-glob .ftpquota ./out/ domains/versta.com.br/public_html/
+          mkdir -p -f domains/versta.com.br/privado
+          mirror -R --no-perms ./privado/ domains/versta.com.br/privado/
           bye
           FIM

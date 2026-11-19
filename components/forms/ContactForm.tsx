@@ -1,18 +1,20 @@
 "use client";
 
-import { Suspense, useId, useState, type FormEvent } from "react";
+import { Suspense, useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { ArrowUpRight, CircleCheck, MessageCircle } from "lucide-react";
+import { ArrowUpRight, CircleAlert, CircleCheck, Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { frentes } from "@/data/frentes";
 import { site } from "@/data/site";
+import { asset } from "@/lib/paths";
 
 /*
- * Envio pelo WhatsApp (pedido do Lucas, 16/11): ao enviar, o formulário abre a
- * conversa com a Versta numa nova aba, com tudo o que a pessoa preencheu já
- * escrito; ela só confirma o envio no WhatsApp. Para trocar por e-mail no
- * futuro, basta mudar o que acontece em onSubmit.
+ * Envio por e-mail (pedido do Lucas, 19/11): o formulário manda os dados para
+ * public/contato-envio.php, que envia um e-mail para contato@versta.com.br
+ * pelo SMTP da Hostinger. Se o envio falhar, a pessoa pode mandar a mesma
+ * mensagem pelo WhatsApp (de 16/11 a 19/11 o formulário só abria o WhatsApp).
  */
+const ENVIO_URL = "/contato-envio.php";
 
 /** Nome legível de cada opção de "Área de interesse". */
 function nomeDaArea(valor: string) {
@@ -64,13 +66,20 @@ function validar(data: FormData): Erros {
   return erros;
 }
 
-export function ContactForm({ submitLabel = "Enviar pelo WhatsApp", defaultArea = "" }: Props) {
+export function ContactForm({ submitLabel = "Enviar mensagem", defaultArea = "" }: Props) {
   const id = useId();
   const [erros, setErros] = useState<Erros>({});
-  /** Link do WhatsApp da última mensagem enviada (para abrir de novo). */
-  const [enviado, setEnviado] = useState<string | null>(null);
+  const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  /** Quando o envio falha: link do WhatsApp com a mesma mensagem. */
+  const [falha, setFalha] = useState<string | null>(null);
+  /** Hora em que o formulário apareceu (antispam: robôs enviam na hora). */
+  const inicio = useRef(0);
+  useEffect(() => {
+    inicio.current = Date.now();
+  }, []);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -82,37 +91,47 @@ export function ContactForm({ submitLabel = "Enviar pelo WhatsApp", defaultArea 
       return;
     }
 
-    // Abre já, no próprio clique, para o navegador não bloquear a nova aba.
-    const link = linkDoWhatsapp(data);
-    const aba = window.open(link, "_blank", "noopener");
-    if (!aba) window.location.href = link;
-    setEnviado(link);
-    form.reset();
+    setEnviando(true);
+    setFalha(null);
+    const v = (nome: string) => String(data.get(nome) ?? "").trim();
+    try {
+      const resp = await fetch(asset(ENVIO_URL), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: v("nome"),
+          empresa: v("empresa"),
+          email: v("email"),
+          telefone: v("telefone"),
+          area: nomeDaArea(v("area")),
+          mensagem: v("mensagem"),
+          site_web: v("site_web"),
+          tempo: Date.now() - inicio.current,
+        }),
+      });
+      const json = await resp.json().catch(() => null);
+      if (!resp.ok || !json?.ok) throw new Error("envio");
+      setEnviado(true);
+      form.reset();
+    } catch {
+      setFalha(linkDoWhatsapp(data));
+    } finally {
+      setEnviando(false);
+    }
   }
 
   if (enviado) {
     return (
       <div role="status" className="rounded-card bg-sage/35 p-8 md:p-10">
         <CircleCheck aria-hidden="true" className="size-8 text-green-900" strokeWidth={1.5} />
-        <p className="mt-4 font-display text-2xl font-semibold text-navy">Falta só confirmar no WhatsApp</p>
+        <p className="mt-4 font-display text-2xl font-semibold text-navy">Mensagem enviada</p>
         <p className="mt-2 text-ink-muted">
-          Sua mensagem abriu no WhatsApp da Versta, já escrita. Toque em enviar
-          por lá para ela chegar até nós. Obrigado pelo contato!
+          Obrigado pelo contato. Em breve a equipe da Versta retorna para
+          conversar sobre os próximos passos.
         </p>
-        <a
-          href={enviado}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-2 font-semibold text-navy underline underline-offset-4 hover:text-caramel-700"
-        >
-          O WhatsApp não abriu? Abrir de novo
-          <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
-          <span className="sr-only"> (nova aba)</span>
-        </a>
-        <br />
         <button
           type="button"
-          onClick={() => setEnviado(null)}
+          onClick={() => setEnviado(false)}
           className="mt-6 text-sm font-semibold text-caramel-700 underline underline-offset-4"
         >
           Enviar outra mensagem
@@ -129,6 +148,11 @@ export function ContactForm({ submitLabel = "Enviar pelo WhatsApp", defaultArea 
 
   return (
     <form noValidate onSubmit={onSubmit} className="grid gap-6 sm:grid-cols-2">
+      {/* antispam: campo invisível que só robôs preenchem */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor={campo("site_web")}>Não preencha este campo</label>
+        <input id={campo("site_web")} name="site_web" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <Field id={campo("nome")} label="Nome" required erro={erros.nome}>
         <input id={campo("nome")} name="nome" type="text" autoComplete="name" required className={inputBase} {...erroProps("nome")} />
       </Field>
@@ -159,14 +183,33 @@ export function ContactForm({ submitLabel = "Enviar pelo WhatsApp", defaultArea 
 
       <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-ink-muted">
-          <span aria-hidden="true" className="text-caramel-700">*</span> Campos obrigatórios.
-          {" "}A mensagem abre no WhatsApp da Versta, pronta para enviar.
+          <span aria-hidden="true" className="text-caramel-700">*</span> Campos obrigatórios
         </p>
-        <Button type="submit" variant="primary" className="shrink-0">
-          {submitLabel}
-          <MessageCircle aria-hidden="true" className="size-4" strokeWidth={1.5} />
+        <Button type="submit" variant="primary" className="shrink-0" disabled={enviando}>
+          {enviando ? "Enviando…" : submitLabel}
+          <Send aria-hidden="true" className="size-4" strokeWidth={1.5} />
         </Button>
       </div>
+
+      {falha && (
+        <div role="alert" className="flex gap-3 rounded-card bg-peach-100 p-5 text-navy sm:col-span-2">
+          <CircleAlert aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-caramel-700" strokeWidth={1.75} />
+          <p>
+            Não foi possível enviar agora. Tente de novo em instantes ou{" "}
+            <a
+              href={falha}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold underline underline-offset-4 hover:text-caramel-700"
+            >
+              envie a mesma mensagem pelo WhatsApp
+              <ArrowUpRight aria-hidden="true" className="size-4" strokeWidth={1.75} />
+              <span className="sr-only"> (nova aba)</span>
+            </a>
+            .
+          </p>
+        </div>
+      )}
     </form>
   );
 }
