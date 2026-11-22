@@ -191,23 +191,24 @@ export default function MetodologiaPage() {
       </Section>
 
       {/* SH2, A APLICAÇÃO DA METODOLOGIA */}
+      {/* no celular/tablet, centralizado e sem o tracinho, como a chamada final (pedido do Lucas, 22/11) */}
       <Section tone="mint" aria-labelledby="sh2-titulo">
         <Container>
           <div className="grid overflow-hidden rounded-card bg-offwhite/60 lg:grid-cols-2">
             <Reveal className="flex flex-col justify-center p-8 md:p-14">
-              <p className="eyebrow mb-4 flex items-center gap-3 text-caramel-700">
-                <span aria-hidden="true" className="h-px w-8 bg-caramel" />
+              <p className="eyebrow mb-4 flex items-center gap-3 text-caramel-700 max-lg:justify-center max-lg:text-center">
+                <span aria-hidden="true" className="h-px w-8 bg-caramel max-lg:hidden" />
                 A aplicação da metodologia
               </p>
-              <h2 id="sh2-titulo" className="text-h2 text-navy">
+              <h2 id="sh2-titulo" className="text-h2 text-navy max-lg:text-center">
                 SH2: Ser Humano em Harmonia
               </h2>
-              <p className="mt-5 max-w-lg text-lead text-ink-muted">
+              <p className="mt-5 max-w-lg max-lg:mx-auto max-lg:text-center text-lead text-ink-muted">
                 O SH2 é a forma como colocamos essa metodologia em prática dentro das empresas. Ele
                 reúne, em um só programa, as ações e os profissionais necessários para cuidar da
                 saúde mental dos colaboradores e apoiar a empresa na conformidade com a NR-1.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-9 flex flex-wrap gap-3 max-lg:justify-center">
                 <Button href="/metodologia/sh2" variant="accent" arrow>
                   Conheça o SH2
                 </Button>

@@ -17,7 +17,7 @@ type Props = {
 
 /**
  * Chamada final para o diagnóstico, em fundo pastel com ilustração.
- * No celular/tablet, parágrafo centralizado como o título (pedido do Lucas, 22/11).
+ * No celular/tablet, tudo centralizado e sem o tracinho (pedidos do Lucas, 22/11).
  */
 export function CtaBanner({
   title = "Vamos entender o seu terreno?",
@@ -32,7 +32,7 @@ export function CtaBanner({
         <div className="grid overflow-hidden rounded-card bg-offwhite/60 lg:grid-cols-2">
           <Reveal className="flex flex-col justify-center p-8 md:p-14">
             <p className="eyebrow mb-4 flex items-center gap-3 text-caramel-700 max-lg:justify-center">
-              <span aria-hidden="true" className="h-px w-8 bg-caramel" />
+              <span aria-hidden="true" className="h-px w-8 bg-caramel max-lg:hidden" />
               Diagnóstico
             </p>
             <H id="cta-titulo" className="text-h2 text-navy max-lg:text-center">
