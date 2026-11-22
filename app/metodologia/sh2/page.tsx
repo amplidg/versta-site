@@ -33,6 +33,18 @@ export const metadata: Metadata = pageMetadata({
 
 type Item = string | { texto: string; sub: string[] };
 
+/** "NR-01" nunca se parte no hífen no fim da linha. */
+const comNrInteira = (texto: string) =>
+  texto.split(/(NR-01)/).map((parte, i) =>
+    parte === "NR-01" ? (
+      <span key={i} className="whitespace-nowrap">
+        {parte}
+      </span>
+    ) : (
+      parte
+    ),
+  );
+
 const areas: { titulo: string; descricao: string; icone: LucideIcon; itens: Item[] }[] = [
   {
     titulo: "Base técnica e legal",
@@ -201,7 +213,8 @@ export default function Sh2Page() {
               lead="O Programa SH2 é organizado em oito áreas que se complementam. Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
             />
           </Reveal>
-          {/* uma área por linha: nome e descrição à esquerda, itens à direita */}
+          {/* uma área por linha: nome e descrição à esquerda, itens à direita. No celular,
+              tudo centralizado, com ícone e check em cima (pedido do Lucas, 22/11). */}
           <ul className="mt-12 border-b border-navy/15 lg:mt-14">
             {areas.map((area) => {
               const Icon = area.icone;
@@ -211,27 +224,29 @@ export default function Sh2Page() {
                   key={area.titulo}
                   className="grid gap-5 border-t border-navy/15 py-7 lg:grid-cols-12 lg:gap-10 lg:py-8"
                 >
-                  <div className="flex items-start gap-4 lg:col-span-5">
+                  <div className="flex items-start gap-4 max-md:flex-col max-md:items-center max-md:text-center lg:col-span-5">
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-mint">
                       <Icon aria-hidden="true" className="size-5 text-caramel-700" strokeWidth={1.5} />
                     </span>
                     <div>
                       <h3 className="font-display text-xl leading-snug font-bold text-navy">{area.titulo}</h3>
-                      <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-muted">{area.descricao}</p>
+                      <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-muted max-md:text-balance">
+                        {area.descricao}
+                      </p>
                     </div>
                   </div>
-                  <ul className="grid content-start gap-x-8 gap-y-2.5 pl-14 text-[0.9375rem] leading-snug text-ink sm:grid-cols-2 lg:col-span-7 lg:pt-1.5 lg:pl-0">
+                  <ul className="grid content-start gap-x-8 gap-y-2.5 text-[0.9375rem] leading-snug text-ink max-md:gap-y-4 max-md:text-center max-md:text-balance md:grid-cols-2 md:pl-14 lg:col-span-7 lg:pt-1.5 lg:pl-0">
                     {area.itens.map((item) => {
                       const texto = typeof item === "string" ? item : item.texto;
                       return (
-                        <li key={texto} className="flex gap-2.5">
+                        <li key={texto} className="flex gap-2.5 max-md:flex-col max-md:items-center max-md:gap-1">
                           <Check
                             aria-hidden="true"
                             className="mt-[0.2em] size-4 shrink-0 text-green-900"
                             strokeWidth={2}
                           />
                           <div>
-                            {texto}
+                            {comNrInteira(texto)}
                             {typeof item !== "string" && (
                               <ul className="mt-1.5 space-y-1 text-ink-muted">
                                 {item.sub.map((sub) => (
