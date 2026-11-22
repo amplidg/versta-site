@@ -208,8 +208,9 @@ export default function Sh2Page() {
               id="incluido-titulo"
               eyebrow="O que está dentro do Programa SH2"
               title="O que está incluído no Programa SH2"
-              // centralizado no celular (pedido do Lucas, 07/11)
-              align="centro-celular"
+              // centralizado em todas as telas (pedidos do Lucas, 07/11 e 22/11); no celular, sem tracinho
+              align="center"
+              semTracoNoCelular
               lead="O Programa SH2 é organizado em oito áreas que se complementam. Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
             />
           </Reveal>

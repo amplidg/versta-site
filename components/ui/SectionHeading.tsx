@@ -12,6 +12,8 @@ type Props = {
   id?: string;
   /** "centro-celular": centralizado no celular, à esquerda a partir do tablet. */
   align?: "left" | "center" | "centro-celular";
+  /** Esconde o tracinho da linha pequena no celular ("centro-celular" já esconde). */
+  semTracoNoCelular?: boolean;
   /** Aplica cores para fundos escuros. */
   onDark?: boolean;
   children?: ReactNode;
@@ -26,6 +28,7 @@ export function SectionHeading({
   tamanho,
   id,
   align = "left",
+  semTracoNoCelular = false,
   onDark = false,
   children,
   className = "",
@@ -46,7 +49,7 @@ export function SectionHeading({
         >
           <span
             aria-hidden="true"
-            className={`h-px w-8 shrink-0 ${cc ? "max-md:hidden" : ""} ${onDark ? "bg-peach-100/70" : "bg-caramel"}`}
+            className={`h-px w-8 shrink-0 ${cc || semTracoNoCelular ? "max-md:hidden" : ""} ${onDark ? "bg-peach-100/70" : "bg-caramel"}`}
           />
           {eyebrow}
         </p>
