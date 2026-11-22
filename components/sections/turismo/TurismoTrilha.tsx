@@ -18,7 +18,7 @@ const paradas = [
   {
     titulo: "Objetivo",
     texto:
-      "Entendemos o que a empresa quer alcançar: integrar, reconhecer ou fidelizar.",
+      "Entendemos o que a empresa quer alcançar: integrar, reconhecer ou engajar.",
   },
   {
     titulo: "Roteiro",

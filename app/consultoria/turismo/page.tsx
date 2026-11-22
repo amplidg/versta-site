@@ -14,13 +14,14 @@ import { pageMetadata } from "@/lib/seo";
  * Página própria da frente Turismo (especificação e textos do Lucas, 03/11), no
  * padrão da Semear e da ESG (peças em components/sections/frente/). Como nas
  * outras frentes, só botões de pré-diagnóstico (o Lucas tirou o "Planejar uma
- * experiência" pelo WhatsApp, 03/11).
+ * experiência" pelo WhatsApp, 03/11). Textos ajustados ao foco na equipe e à
+ * logística com parceiros (sugestão de Claude aprovada pelo Lucas, 22/11).
  */
 
 export const metadata: Metadata = pageMetadata({
   title: "Turismo de Experiência · Viagens Corporativas",
   description:
-    "Viagens de incentivo, vivências de integração e convenções para a equipe, planejadas de ponta a ponta. Experiências que aproximam pessoas e fortalecem a empresa.",
+    "Viagens de incentivo, vivências de integração e convenções para a equipe, planejadas a partir do que a empresa quer alcançar.",
   path: "/consultoria/turismo",
 });
 
@@ -38,8 +39,8 @@ const propositos: Servico[] = [
     fundo: "bg-peach-100",
   },
   {
-    titulo: "Fidelizar",
-    texto: "Criar momentos marcantes com clientes e parceiros, que fortalecem a relação.",
+    titulo: "Engajar",
+    texto: "Criar momentos marcantes, que fortalecem o vínculo da equipe com a empresa.",
     icone: HeartHandshake,
     fundo: "bg-mist/70",
   },
@@ -48,7 +49,7 @@ const propositos: Servico[] = [
 const experiencias: Servico[] = [
   {
     titulo: "Viagens de incentivo",
-    texto: "Viagens de premiação para equipes e parceiros que bateram metas.",
+    texto: "Viagens de premiação para equipes que bateram metas.",
     icone: Plane,
     fundo: "bg-mist/70",
   },
@@ -60,7 +61,7 @@ const experiencias: Servico[] = [
   },
   {
     titulo: "Encontros e convenções",
-    texto: "Eventos corporativos, convenções e reuniões fora da empresa, com toda a estrutura.",
+    texto: "Convenções e reuniões da equipe fora da empresa, com objetivo e dinâmicas definidos.",
     icone: CalendarDays,
     fundo: "bg-peach-100",
   },
@@ -74,7 +75,7 @@ export default function TurismoPage() {
         slug="turismo"
         eyebrow="Turismo · Viagens e vivências corporativas"
         titulo="Experiências que aproximam pessoas e fortalecem a empresa"
-        texto="Viagens de incentivo e vivências de integração para a equipe, planejadas de ponta a ponta, com um objetivo claro: transformar momentos fora da rotina em resultados para a empresa."
+        texto="Viagens de incentivo e vivências de integração para a equipe, planejadas a partir do que a empresa quer alcançar, para transformar momentos fora da rotina em resultados."
         selo={{
           texto: "Planejamento completo, do roteiro à volta para casa",
           icone: Compass,
