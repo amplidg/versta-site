@@ -46,6 +46,19 @@ const RAIO_ORBITA = 38; // centro de cada frente
 const RAIO_CENTRO = 15; // círculo do diagnóstico
 const RAIO_FRENTE = 7.5; // mancha de cada frente
 
+/**
+ * Até onde vai cada linha. Nas três de cima o nome fica entre a mancha e o
+ * centro, então a linha para antes do texto (pedido do Lucas, 22/11): a do topo
+ * (Semear) e as duas vizinhas, com o mesmo comprimento entre si por simetria
+ * (Próspera encostava; ESG acompanha). Se a ordem ou os nomes das frentes
+ * mudarem, conferir de novo.
+ */
+function fimDaLinha(i: number, total: number) {
+  if (i === 0) return 24.1;
+  if (i === 1 || i === total - 1) return 26.3;
+  return RAIO_ORBITA - RAIO_FRENTE - 0.6;
+}
+
 function posicao(i: number, total: number) {
   const ang = (-90 + (360 / total) * i) * (Math.PI / 180);
   return { cos: Math.cos(ang), sin: Math.sin(ang) };
@@ -97,11 +110,12 @@ export function HubDiagram() {
           <g mask={`url(#${id}-m)`}>
             {frentes.map((f, i) => {
               const { cos, sin } = posicao(i, total);
+              const fim = fimDaLinha(i, total);
               const coords = {
                 x1: 50 + cos * (RAIO_CENTRO + 0.6),
                 y1: 50 + sin * (RAIO_CENTRO + 0.6),
-                x2: 50 + cos * (RAIO_ORBITA - RAIO_FRENTE - 0.6),
-                y2: 50 + sin * (RAIO_ORBITA - RAIO_FRENTE - 0.6),
+                x2: 50 + cos * fim,
+                y2: 50 + sin * fim,
               };
               return (
                 <g key={f.slug}>
