@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { ChevronRight } from "lucide-react";
@@ -27,6 +27,13 @@ type Props = {
   slug: string;
   eyebrow: string;
   titulo: string;
+  /**
+   * Quebras fixas do título no celular (pedido do Lucas, 22/11, na Semear): as
+   * mesmas palavras de `titulo`, linha a linha. `larguraEm` é a largura da
+   * linha mais longa, em "em", com uma folga pequena: a fonte encolhe só o
+   * necessário para ela caber.
+   */
+  tituloCelular?: { linhas: string[]; larguraEm: number };
   texto: string;
   selo: { texto: string; icone: LucideIcon; fundo: string; cor: string };
   /** Ícone e cores da mancha do emblema ([tom mais forte, tom mais claro]). */
@@ -41,6 +48,7 @@ export function FrenteHero({
   slug,
   eyebrow,
   titulo,
+  tituloCelular,
   texto,
   selo,
   emblema,
@@ -91,8 +99,25 @@ export function FrenteHero({
             <span aria-hidden="true" className="h-px w-8 bg-caramel max-md:hidden" />
             {eyebrow}
           </p>
-          <h1 id="page-title" className="text-h1 text-balance text-navy">
-            {titulo}
+          <h1
+            id="page-title"
+            className={`text-h1 text-balance text-navy ${tituloCelular ? "max-sm:@container" : ""}`}
+          >
+            {tituloCelular ? (
+              <span
+                className="max-sm:block max-sm:text-[length:min(1em,calc(100cqi/var(--linha-em)))]"
+                style={{ "--linha-em": tituloCelular.larguraEm } as CSSProperties}
+              >
+                {tituloCelular.linhas.map((linha, i) => (
+                  <Fragment key={linha}>
+                    {i > 0 && " "}
+                    <span className="max-sm:block">{linha}</span>
+                  </Fragment>
+                ))}
+              </span>
+            ) : (
+              titulo
+            )}
           </h1>
         </Reveal>
 

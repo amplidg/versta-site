@@ -93,6 +93,7 @@ export default function SemearPage() {
         slug="semear"
         eyebrow="Semear · Consultoria ambiental"
         titulo="Sua empresa em dia com o meio ambiente, sem sustos"
+        tituloCelular={{ linhas: ["Sua empresa em dia", "com o meio ambiente,", "sem sustos"], larguraEm: 10.4 }}
         texto="Licenças, controles e estudos ambientais conduzidos por quem acompanha empresas há mais de 17 anos, para que sua operação siga segura, regular e preparada para o futuro."
         selo={{
           texto: "Mais de 17 anos de experiência em gestão ambiental",
