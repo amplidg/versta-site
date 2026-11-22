@@ -19,8 +19,9 @@ const sinais: { texto: string; frente: string }[] = [
   // sinal da Próspera: redigido por Claude (16/10), a confirmar com o Lucas
   { texto: "Fluxo de caixa apertado, pouco controle financeiro e decisões sem números claros", frente: "prospera" },
   { texto: "Falhas de qualidade, desperdícios e baixa produtividade na operação", frente: "excelencia" },
-  { texto: "Falta de um espaço para o bem-estar da equipe e para os encontros da empresa", frente: "espaco" },
-  { texto: "Falta de experiências que fortaleçam o vínculo com a equipe e com os clientes", frente: "turismo" },
+  // sinais de Espaço e Turismo: redigidos por Claude a pedido do Lucas (22/11)
+  { texto: "Reformas ou novos ambientes sem projeto sustentável e adequado à legislação", frente: "espaco" },
+  { texto: "Falta de viagens e vivências que fortaleçam o vínculo entre as pessoas da equipe", frente: "turismo" },
 ];
 
 /** Ordem da coluna de frentes: diferente da dos sinais, para as linhas se cruzarem de leve. */
