@@ -12,7 +12,9 @@ import { Sh2HeroVideo } from "./Sh2HeroVideo";
  * Topo da página do Programa SH2 (especificação do Lucas, 29/10).
  * Texto à esquerda; à direita, a ilustração da mulher com o cão sangrando até
  * a borda da janela, com as bordas dissolvidas no fundo (máscara no CSS,
- * classe sh2-hero-midia). No celular (< 768px) a imagem vai para o topo.
+ * classe sh2-hero-midia). No celular (< 768px) a imagem vai para o topo e o
+ * conteúdo sobe 64px sobre o degradê dela, com o selo na altura da lombar da
+ * mulher e do cão (pedido do Lucas, 22/11; não subir mais: cobre o cão).
  * Entrada suave no carregamento (classes sh2-hero-*, em globals.css), que
  * respeita prefers-reduced-motion.
  *
@@ -70,7 +72,7 @@ export function Sh2Hero({ lead, children }: Props) {
         </div>
       </div>
 
-      <div className="container-site relative z-10 grid pt-2 pb-16 md:grid-cols-12 md:pt-14 md:pb-24 lg:min-h-[44rem] lg:items-center">
+      <div className="container-site relative z-10 grid pt-2 pb-16 max-md:-mt-16 md:grid-cols-12 md:pt-14 md:pb-24 lg:min-h-[44rem] lg:items-center">
         {/* no celular, selo, título e texto centralizados (pedido do Lucas, 07/11) */}
         <div className="max-md:text-center md:col-span-7 md:pr-6 lg:col-span-6 lg:pr-0">
           {/* selo de urgência da NR-1 */}
