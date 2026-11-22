@@ -258,7 +258,8 @@ export function ConnectionMap() {
 
       {/* ---------- Celular e tablet: acordeão, sem linhas ---------- */}
       <div className="lg:hidden">
-        <div className="flex items-center gap-3">
+        {/* cão em cima e título centralizado (pedido do Lucas, 22/11) */}
+        <div className="flex flex-col items-center gap-3 text-center">
           <DogSymbol className="w-10" />
           <p className="eyebrow text-caramel-700">O que o diagnóstico pode revelar</p>
         </div>
