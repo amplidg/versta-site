@@ -63,11 +63,9 @@ export function HouseTour() {
             // centralizado no celular (pedido do Lucas, 07/11)
             align="centro-celular"
           />
-          {/* no celular, linhas equilibradas e "reunir equipes" sempre junto (pedido do Lucas, 22/11) */}
-          <p className="mt-6 text-lead text-ink-muted max-md:text-center max-md:text-balance">
-            Parte das atividades do Programa SH2 acontece na House Business Coworking, um espaço acolhedor
-            fora da rotina da empresa, com salas privativas, equipamentos e ambientes preparados
-            para cuidar das pessoas e <span className="max-md:whitespace-nowrap">reunir equipes.</span>
+          {/* texto encurtado pelo Lucas (22/11), em todas as telas; linhas equilibradas */}
+          <p className="mt-6 text-lead text-balance text-ink-muted max-md:text-center">
+            Parte das atividades do Programa SH2 acontece na House Business Coworking.
           </p>
 
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
