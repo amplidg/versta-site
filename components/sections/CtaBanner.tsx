@@ -15,7 +15,10 @@ type Props = {
   tone?: SectionTone;
 };
 
-/** Chamada final para o diagnóstico, em fundo pastel com ilustração. */
+/**
+ * Chamada final para o diagnóstico, em fundo pastel com ilustração.
+ * No celular/tablet, parágrafo centralizado como o título (pedido do Lucas, 22/11).
+ */
 export function CtaBanner({
   title = "Vamos entender o seu terreno?",
   text = "O primeiro passo é um diagnóstico. A partir dele, a Versta aponta as áreas que precisam se desenvolver e indica o caminho, com as soluções certas para cada uma.",
@@ -35,7 +38,7 @@ export function CtaBanner({
             <H id="cta-titulo" className="text-h2 text-navy max-lg:text-center">
               <Texto>{title}</Texto>
             </H>
-            <p className="mt-5 max-w-lg text-lead text-ink-muted">
+            <p className="mt-5 max-w-lg max-lg:mx-auto max-lg:text-center text-lead text-ink-muted">
               <Texto>{text}</Texto>
             </p>
             <div className="mt-9 max-lg:text-center">
