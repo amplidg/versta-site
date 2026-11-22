@@ -35,6 +35,8 @@ type Props = {
    */
   tituloCelular?: { linhas: string[]; larguraEm: number };
   texto: string;
+  /** Linhas do texto com larguras parecidas no celular (pedido do Lucas, 22/11, na Íntegra). */
+  textoEquilibrado?: boolean;
   selo: { texto: string; icone: LucideIcon; fundo: string; cor: string };
   /** Ícone e cores da mancha do emblema ([tom mais forte, tom mais claro]). */
   emblema: { icone: LucideIcon; cores: [string, string] };
@@ -50,6 +52,7 @@ export function FrenteHero({
   titulo,
   tituloCelular,
   texto,
+  textoEquilibrado = false,
   selo,
   emblema,
   prediagUrl,
@@ -134,7 +137,9 @@ export function FrenteHero({
           delay={100}
           className="md:col-span-7 md:row-start-2 md:mt-6 md:pr-6 lg:col-span-6 lg:pr-0"
         >
-          <p className="max-w-xl text-lead text-ink-muted max-md:mx-auto">
+          <p
+            className={`max-w-xl text-lead text-ink-muted max-md:mx-auto ${textoEquilibrado ? "max-md:text-balance" : ""}`}
+          >
             {texto}
           </p>
           {MOSTRAR_SELO && (

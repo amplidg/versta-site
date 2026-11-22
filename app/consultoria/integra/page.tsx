@@ -46,6 +46,7 @@ export default function IntegraPage() {
         eyebrow="Íntegra · Estratégia jurídica sistêmica"
         titulo="Segurança jurídica que protege o negócio e as relações"
         texto="Contratos, rotinas trabalhistas, proteção de dados e solução de conflitos com um olhar sistêmico: prevenir problemas, resolver com diálogo sempre que possível e proteger o que a empresa construiu."
+        textoEquilibrado
         selo={{
           texto: "Prevenção e solução de conflitos",
           icone: Scale,
