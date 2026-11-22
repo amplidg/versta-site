@@ -211,7 +211,8 @@ export default function Sh2Page() {
               // centralizado em todas as telas (pedidos do Lucas, 07/11 e 22/11); no celular, sem tracinho
               align="center"
               semTracoNoCelular
-              lead="O Programa SH2 é organizado em oito áreas que se complementam. Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
+              // texto encurtado pelo Lucas (22/11), em todas as telas
+              lead="Cada empresa recebe um plano de acordo com a sua realidade e as suas necessidades."
             />
           </Reveal>
           {/* uma área por linha: nome e descrição à esquerda, itens à direita. No celular,
