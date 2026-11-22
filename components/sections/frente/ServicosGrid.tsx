@@ -4,7 +4,8 @@ import { Reveal } from "@/components/motion/Reveal";
 /*
  * Cards de serviços das páginas das frentes (padrão da Semear, 29/10): ícone em
  * círculo pastel, título e uma frase; 3 em cima e 2 embaixo, centralizados, no
- * computador; 2 por linha no tablet; 1 no celular. Hover discreto, sem links.
+ * computador; 2 por linha no tablet; 1 no celular, com o ícone centralizado
+ * (pedido do Lucas, 22/11). Hover discreto, sem links.
  */
 
 export type Servico = { titulo: string; texto: string; icone: LucideIcon; fundo: string };
@@ -25,7 +26,7 @@ export function ServicosGrid({ servicos, colunas = 3 }: { servicos: Servico[]; c
         >
           {/* o hover fica num elemento interno: o <Reveal> já usa a transição de transform */}
           <div className="h-full rounded-card border border-navy/10 bg-white/70 p-7 transition-[transform,border-color,box-shadow] duration-300 ease-[var(--ease-calm)] hover:-translate-y-1 hover:border-caramel hover:shadow-[0_14px_30px_-18px_rgb(0_41_77/0.35)] motion-reduce:transition-none">
-            <span className={`flex size-12 items-center justify-center rounded-full ${fundo}`}>
+            <span className={`flex size-12 max-md:mx-auto items-center justify-center rounded-full ${fundo}`}>
               <Icone aria-hidden="true" className="size-6 text-navy" strokeWidth={1.75} />
             </span>
             <h3 className="mt-5 text-h3 text-navy">{titulo}</h3>
