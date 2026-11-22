@@ -87,7 +87,8 @@ export function FrenteHero({
             </ol>
           </nav>
           <p className="eyebrow mb-5 flex items-center gap-3 text-caramel-700 max-md:justify-center">
-            <span aria-hidden="true" className="h-px w-8 bg-caramel" />
+            {/* no celular, sem o tracinho, para a linha ficar no centro (pedido do Lucas, 22/11) */}
+            <span aria-hidden="true" className="h-px w-8 bg-caramel max-md:hidden" />
             {eyebrow}
           </p>
           <h1 id="page-title" className="text-h1 text-balance text-navy">
