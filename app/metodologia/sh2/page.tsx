@@ -278,8 +278,11 @@ export default function Sh2Page() {
             <SectionHeading
               id="resultados-titulo"
               eyebrow="Resultados"
-              title="A transformação que o Programa SH2 gera na sua empresa"
-              align="centro-celular"
+              // centralizado em todas as telas (pedido do Lucas, 22/11); espaço fixo para
+              // "Programa SH2" não se partir entre duas linhas
+              title={"A transformação que o Programa SH2 gera na sua empresa"}
+              align="center"
+              semTracoNoCelular
             />
           </Reveal>
           <Reveal delay={120}>
