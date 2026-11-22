@@ -151,7 +151,11 @@ export default function CulturaPage() {
                   Programa SH2
                   <span className="mt-1 block text-lg text-peach-200">Ser Humano em Harmonia</span>
                 </p>
-                <p className="mt-4 text-offwhite/80">Saúde mental no trabalho e adequação à NR-1</p>
+                {/* no celular, em duas linhas equilibradas (pedido do Lucas, 22/11) */}
+                <p className="mt-4 text-offwhite/80">
+                  <span className="max-sm:block">Saúde mental no trabalho</span>{" "}
+                  <span className="max-sm:block">e adequação à NR-1</span>
+                </p>
                 <Button href="/metodologia/sh2" variant="light" arrow className="mt-7 max-sm:w-full">
                   Conhecer o Programa SH2
                 </Button>
