@@ -9,7 +9,12 @@
  * - `destaque`: a foto grande, à esquerda, ocupando duas linhas (uma por aba).
  * - `horizontal`: foto deitada; ocupa a largura toda, embaixo.
  * - `posicao`: qual parte da foto fica visível no recorte (horizontal vertical).
+ * - `trocas`: outras fotos que se revezam no mesmo espaço do mosaico (22/11,
+ *   pedido do Lucas): um espaço troca por vez, a cada 3 s, enquanto o grupo
+ *   está aparecendo. Originais em "Imagens/House - novas (22-11)".
  */
+
+export type TrocaHouse = { arquivo: string; legenda: string; alt: string; posicao?: string };
 
 export type GrupoHouse = "colaboradores" | "empresa";
 
@@ -21,6 +26,7 @@ export type FotoHouse = {
   destaque?: boolean;
   horizontal?: boolean;
   posicao?: string;
+  trocas?: TrocaHouse[];
 };
 
 export const fotosHouse: FotoHouse[] = [
@@ -32,6 +38,14 @@ export const fotosHouse: FotoHouse[] = [
     alt: "Sala de atendimento da House Coworking",
     destaque: true,
     posicao: "50% 60%",
+    trocas: [
+      {
+        arquivo: "colaboradores-espaco-de-relaxamento",
+        legenda: "Espaço de relaxamento",
+        alt: "Espaço de relaxamento da House Coworking, com poltrona, massageador para as costas e massageador para os pés",
+        posicao: "45% 60%",
+      },
+    ],
   },
   {
     grupo: "colaboradores",
@@ -39,6 +53,14 @@ export const fotosHouse: FotoHouse[] = [
     legenda: "Sala de terapia",
     alt: "Sala de terapia da House Coworking",
     posicao: "60% 62%",
+    trocas: [
+      {
+        arquivo: "colaboradores-sala-de-terapia-maca",
+        legenda: "Sala de terapia",
+        alt: "Sala de terapia da House Coworking, com maca, quadros e planta",
+        posicao: "55% 62%",
+      },
+    ],
   },
   {
     grupo: "colaboradores",
@@ -54,6 +76,20 @@ export const fotosHouse: FotoHouse[] = [
     alt: "Área externa da House Coworking",
     horizontal: true,
     posicao: "50% 60%",
+    trocas: [
+      {
+        arquivo: "colaboradores-area-externa-caminho",
+        legenda: "Área externa",
+        alt: "Caminho de pedriscos com tocos de madeira no jardim da House Coworking",
+        posicao: "50% 55%",
+      },
+      {
+        arquivo: "colaboradores-area-externa-bobinas",
+        legenda: "Área externa",
+        alt: "Bobinas de madeira e gramado na área externa da House Coworking",
+        posicao: "50% 55%",
+      },
+    ],
   },
 
   // Aba "Para a empresa"

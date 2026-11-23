@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Armchair, CalendarClock, DoorClosed, MonitorSmartphone, PartyPopper } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
@@ -19,7 +19,16 @@ import { asset } from "@/lib/paths";
  * grupo que está aparecendo fica destacado, com uma linha que se enche até a
  * próxima troca. Com o mouse sobre as fotos, o revezamento pausa.
  * As fotos, legendas e a ordem ficam em data/house.ts.
+ *
+ * Dentro do mosaico, os espaços que têm fotos extras (`trocas` em
+ * data/house.ts) trocam de foto um de cada vez, a cada 3 s, enquanto o grupo
+ * está aparecendo (22/11, pedido do Lucas). Por isso "Para os colaboradores"
+ * fica 12 s na tela; "Para a empresa" segue com 8 s. Pausa junto com o resto e
+ * não roda com movimento reduzido.
  */
+
+const TROCA_MS = 3000;
+const DURACAO_GRUPO: Record<GrupoHouse, string> = { colaboradores: "12s", empresa: "8s" };
 
 const grupos: { grupo: GrupoHouse; titulo: string; texto: string }[] = [
   {
@@ -46,6 +55,23 @@ export function HouseTour() {
   const id = useId().replace(/:/g, "");
   const [ativo, setAtivo] = useState(0);
   const [pausado, setPausado] = useState(false);
+  // qual foto cada espaço com trocas está mostrando (chave: arquivo principal)
+  const [variante, setVariante] = useState<Record<string, number>>({});
+  const tique = useRef(0);
+
+  useEffect(() => {
+    const grupo = grupos[ativo].grupo;
+    const espacos = fotosHouse.filter((f) => f.grupo === grupo && f.trocas?.length);
+    if (!espacos.length || pausado) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      const foto = espacos[tique.current % espacos.length];
+      tique.current += 1;
+      const total = 1 + (foto.trocas?.length ?? 0);
+      setVariante((v) => ({ ...v, [foto.arquivo]: ((v[foto.arquivo] ?? 0) + 1) % total }));
+    }, TROCA_MS);
+    return () => window.clearInterval(timer);
+  }, [ativo, pausado]);
 
   // a troca acontece quando a linha de progresso do cartão ativo termina
   // (animação de 8 s em globals.css); assim a pausa vale para os dois
@@ -92,7 +118,7 @@ export function HouseTour() {
                       aria-hidden="true"
                       onAnimationEnd={avancar}
                       className="house-progresso absolute inset-x-0 bottom-0 h-[3px] origin-left bg-peach-200 motion-reduce:opacity-0"
-                      style={{ animationPlayState: pausado ? "paused" : "running" }}
+                      style={{ animationPlayState: pausado ? "paused" : "running", animationDuration: DURACAO_GRUPO[g.grupo] }}
                     />
                   )}
                 </li>
@@ -132,7 +158,7 @@ export function HouseTour() {
                   {fotosHouse
                     .filter((f) => f.grupo === g.grupo)
                     .map((f) => (
-                      <Foto key={f.arquivo} foto={f} />
+                      <Foto key={f.arquivo} foto={f} indice={variante[f.arquivo] ?? 0} />
                     ))}
                 </div>
               );
@@ -144,9 +170,13 @@ export function HouseTour() {
   );
 }
 
-/** Uma foto do mosaico, com legenda e zoom leve no hover. */
-function Foto({ foto }: { foto: FotoHouse }) {
-  const base = asset(`/images/house/${foto.arquivo}`);
+/**
+ * Um espaço do mosaico, com legenda e zoom leve no hover. Se tiver `trocas`,
+ * as fotos ficam empilhadas e só a da vez aparece, com troca suave.
+ */
+function Foto({ foto, indice }: { foto: FotoHouse; indice: number }) {
+  const variantes = [foto, ...(foto.trocas ?? [])];
+  const atual = variantes[indice] ?? foto;
   // larguras reais dos arquivos (ver data/house.ts)
   const [menor, maior] = foto.horizontal ? [800, 1200] : foto.destaque ? [600, 1200] : [600, 900];
   const sizes = foto.horizontal
@@ -161,22 +191,32 @@ function Foto({ foto }: { foto: FotoHouse }) {
         foto.destaque ? "row-span-2" : ""
       } ${foto.horizontal ? "col-span-2" : ""}`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element -- site estático: srcset feito à mão */}
-      <img
-        src={`${base}.webp`}
-        srcSet={`${base}-800.webp ${menor}w, ${base}.webp ${maior}w`}
-        sizes={sizes}
-        alt={foto.alt}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[var(--ease-calm)] group-hover:scale-[1.04] motion-reduce:transition-none"
-        style={{ objectPosition: foto.posicao ?? "center" }}
-      />
+      {variantes.map((v, i) => {
+        const base = asset(`/images/house/${v.arquivo}`);
+        const visivel = i === indice;
+        return (
+          // eslint-disable-next-line @next/next/no-img-element -- site estático: srcset feito à mão
+          <img
+            key={v.arquivo}
+            src={`${base}.webp`}
+            srcSet={`${base}-800.webp ${menor}w, ${base}.webp ${maior}w`}
+            sizes={sizes}
+            alt={visivel ? v.alt : ""}
+            aria-hidden={visivel ? undefined : true}
+            loading="lazy"
+            decoding="async"
+            className={`absolute inset-0 size-full object-cover transition-[transform,opacity] duration-1000 ease-[var(--ease-calm)] group-hover:scale-[1.04] motion-reduce:transition-none ${
+              visivel ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ objectPosition: v.posicao ?? "center" }}
+          />
+        );
+      })}
       <figcaption
         aria-hidden="true"
         className="absolute bottom-2.5 left-2.5 rounded-full bg-offwhite/90 px-3 py-1 text-xs font-semibold text-navy shadow-sm backdrop-blur-sm"
       >
-        {foto.legenda}
+        {atual.legenda}
       </figcaption>
     </figure>
   );
